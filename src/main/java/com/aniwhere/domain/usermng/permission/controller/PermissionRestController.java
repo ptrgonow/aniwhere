@@ -1,7 +1,9 @@
 package com.aniwhere.domain.usermng.permission.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController("permissionRestController")
+@RequestMapping("/perm")
 public class PermissionRestController {
 }
