@@ -10,6 +10,6 @@ public class ViewController {
 
     @GetMapping("/cor")
     public String course() {
-        return "aniwhere/route/course";
+        return "aniwhere/route/course-create";
     }
 }
