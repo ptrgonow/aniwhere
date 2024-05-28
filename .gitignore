@@ -196,4 +196,5 @@ $RECYCLE.BIN/
 
 Users/.keep
 /src/test/
+/application.properties
 /src/main/resources/application.properties
