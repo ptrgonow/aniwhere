@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/main-header.css">
+    <link rel="stylesheet" href="/css/aniwhere-side.css">
+    <link rel="stylesheet" href="/css/mypage.css">
+
+</head>
+<body>
+<div th:replace="~{/include/tab-header :: header}"></div>
+<div th:replace="~{/include/mypage-side :: side}"></div>
+<div class="col-md-9">
+
+    <div class="container content clear-fix">
+
+        <div class="pb-5">
+            <h1>나의 장바구니</h1>
+            <hr>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+
+                        <!-- Shopping cart table -->
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="p-2 px-3 text-uppercase">상품명</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">가격</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">수량</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">삭제</div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row" class="border-0">
+                                        <div class="p-2">
+                                            <img src="static/image/1632063_1.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                            <div class="ml-3 d-inline-block align-middle">
+                                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">강아지용 간식</a></h5>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td class="border-0 align-middle"><strong>38,000원</strong></td>
+                                    <td class="border-0 align-middle"><strong>2</strong></td>
+                                    <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="p-2">
+                                            <img src="static/image/15aa8c7ceeebc6e7dbbc3c270d508040.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                            <div class="ml-3 d-inline-block align-middle">
+                                                <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">고양이 화장실용 모래</a></h5>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td class="align-middle"><strong>13,000원</strong></td>
+                                    <td class="align-middle"><strong>3</strong></td>
+                                    <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="p-2">
+                                            <img src="static/image/400.png" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                            <div class="ml-3 d-inline-block align-middle">
+                                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block">토끼 사육장</a></h5>
+                                            </div>
+                                        </div>
+                                    <td class="align-middle"><strong>52,500원</strong></td>
+                                    <td class="align-middle"><strong>1</strong></td>
+                                    <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End -->
+                    </div>
+                </div>
+
+                <div class="row py-5 p-4 bg-white rounded shadow-sm">
+                    <div class="col-lg-6">
+                        <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">배송지</div>
+                        <div class="p-4">
+                            <p class="font-italic mb-4">고객님이 배송받을 주소를 입력해주세요.</p>
+                            <div class="input-group mb-4 border rounded-pill p-2">
+                                <input type="text" placeholder="주소찾기를 눌러주세요" aria-describedby="button-addon3" class="form-control border-0">
+                                <div class="input-group-append border-0">
+                                    <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"><i class="fa fa-gift mr-2"></i>주소찾기</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">배송 요청사항</div>
+                        <div class="p-4">
+                            <p class="font-italic mb-4"></p>
+                            <textarea name="" cols="30" rows="2" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">주문 정보 </div>
+                        <div class="p-4">
+                            <p class="font-italic mb-4">배송비와 추가 옵션비는 고객님이 선택하신 상품 내용을 참고해주세요.</p>
+                            <ul class="list-unstyled mb-4">
+                                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">상품 가격 </strong><strong>335,000원</strong></li>
+                                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">배송비</strong><strong>5,000원</strong></li>
+                                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">결제 금액</strong>
+                                    <h5 class="font-weight-bold">340,000원</h5>
+                                </li>
+                            </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">결제수단 선택</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
