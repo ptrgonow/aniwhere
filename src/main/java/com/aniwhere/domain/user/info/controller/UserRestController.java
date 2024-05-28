@@ -4,6 +4,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController("userRestController")
-@RequestMapping("/info")
+@RequestMapping("/register")
 public class UserRestController {
 }
