@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    font-size: 16px;
+}
+
+body {
+    font-size: 1rem;
+    height: 100vh;
+}
+
+
+span {
+    position: static; /* 기본 값으로 초기화, 필요에 따라 수정 */
+}
+
+span:before, span:after {
+    content: none; /* 가상 요소 제거 */
+    position: static; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    height: auto; /* 기본 값으로 초기화 */
+    bottom: auto; /* 기본 값으로 초기화 */
+    margin-top: 0; /* 기본 값으로 초기화 */
+    background: none; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+span:hover:before, span:hover:after {
+    background: none; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+
+
+
+/*  이용안내 사진 조절  */
+.image-container .p1 {
+
+    display: flex;
+    width: 440px;
+    height: 350px;
+    margin-left: 1rem;
+    margin-top: 10rem;
+    border-radius: 10%;
+
+
+}
+.image-container .p2 {
+
+    display: flex;
+    width: 440px;
+    height: 350px;
+    margin-left: 90rem;
+    margin-top: 4rem;
+    border-radius: 10%;
+}
+
+.image-container .p3 {
+
+    display: flex;
+    width: 440px;
+    height: 350px;
+    margin-left: 1rem;
+    margin-top: 3rem;
+    border-radius: 10%;
+
+
+}
+
+.image-container .p4 {
+
+    display: flex;
+    width: 440px;
+    height: 350px;
+    margin-left: 90rem;
+    margin-top: 4rem;
+    border-radius: 10%;
+}
+
+
+
+
+/*  중간 소제목 */
+
+.text-container1{
+    position: absolute;
+    top: 48%; /* 원하는 위치로 조정하세요 */
+    left: 45%; /* 원하는 위치로 조정하세요 */
+    margin-right: 10rem;
+}
+
+
+.transparent-text1 {
+
+    text-align: center;
+    margin-top: 1rem;
+    color: #646464;
+
+
+}
+
+.text-container3{
+    position: absolute;
+    top: 103%; /* 원하는 위치로 조정하세요 */
+    left: 45%; /* 원하는 위치로 조정하세요 */
+    margin-right: 10rem;
+
+}
+
+
+.transparent-text3 {
+
+    text-align: center;
+    margin-top: 1rem;
+    color: #646464;
+
+}
+
+.text-container5{
+    position: absolute;
+    top: 155%; /* 원하는 위치로 조정하세요 */
+    left: 45%; /* 원하는 위치로 조정하세요 */
+    margin-right: 10rem;
+
+}
+
+.transparent-text5 {
+
+    text-align: center;
+    margin-top: 1rem;
+    color: #646464;
+
+}
+
+/* 마지막 소제목 */
+.text-container7{
+    position: absolute;
+    top: 210%; /* 원하는 위치로 조정하세요 */
+    left: 40%; /* 원하는 위치로 조정하세요 */
+    margin-right: 10rem;
+
+
+}
+.transparent-text7 {
+
+    text-align: center;
+    margin-top: 1rem;
+
+}
+
+
+
+
+
+
+/* 중간 글 */
+
+.transparent-text2 {
+
+    text-align: center;
+    font-size: 15px;
+
+}
+
+.transparent-text4 {
+
+    text-align: center;
+    font-size: 15px;
+
+}
+
+.transparent-text6 {
+
+    text-align: center;
+    font-size: 15px;
+
+}
+
+/* 요금 참고 공지 */
+.pet.guide1 {
+
+    color: #B4B4B4;
+    text-align: center;
+    font-size: 15px;
+
+}
+
+.pet.guide2 {
+
+    color: #B4B4B4;
+    text-align: center;
+    font-size: 15px;
+
+}
+
+/* 이미지의 기본 상태를 투명하게 설정 */
+.image-container.p1 img {
+    opacity: 0.6; /* 초기 상태는 투명 */
+    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+}
+
+.image-container.p2 img {
+    opacity: 0.6; /* 초기 상태는 투명 */
+    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+}
+
+.image-container.p3 img {
+    opacity: 0.6; /* 초기 상태는 투명 */
+    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+}
+
+.image-container.p4 img {
+    opacity: 0.6; /* 초기 상태는 투명 */
+    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+/* 이미지에 호버 시 페이드인 효과 적용 */
+.image-container.p1:hover img {
+    opacity: 2; /* 불투명 */
+}
+
+.image-container.p2:hover img {
+    opacity: 2; /* 불투명 */
+}
+
+.image-container.p3:hover img {
+    opacity: 2; /* 불투명 */
+}
+
+.image-container.p4:hover img {
+    opacity: 2; /* 불투명 */
+}
+
+.h6 {
+    margin-bottom: 5rem;
+}
+
+.h3 {
+    margin-top: 10rem;
+    text-align: center;
+}
+
+
+
+
