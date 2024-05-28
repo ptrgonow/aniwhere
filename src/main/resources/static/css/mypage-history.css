@@ -207,3 +207,14 @@ table.table .avatar {
     margin-top: 10px;
     font-size: 13px;
 }
+body {
+    background: #ffffff;
+    background: -webkit-linear-gradient(to right, #f5f5f5, #fafafa);
+    background: linear-gradient(to right, #ffffff, #ffffff);
+    min-height: 120vh;
+}
+.container-xl{
+    width: 80%;
+    margin-left: 300px;
+    margin-top: 100px;
+}

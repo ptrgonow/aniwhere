@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ViewController {
 
     @GetMapping("/cart")
-    public String cart()  {return "/animall/shopcart";
+    public String cart()  {return "animall/shop-cart";
     }
 }

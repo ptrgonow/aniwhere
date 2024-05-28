@@ -2,37 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" href="/css/main-header.css">
     <link rel="stylesheet" href="/css/aniwhere-side.css">
     <link rel="stylesheet" href="/css/mypage.css">
-    <style type="text/css">
-        body {
-            background: #ffffff;
-            background: -webkit-linear-gradient(to right, #f5f5f5, #fafafa);
-            background: linear-gradient(to right, #ffffff, #ffffff);
-            min-height: 120vh;
-        }
 
-        .col-md-9{
-            margin-left: 300px;
-            margin-top: 100px;
-        }
-
-        .container content clear-fix{
-            display: flex;
-            align-items: center;
-        }
-    </style>
 </head>
 <body>
 <div th:replace="~{/include/tab-header :: header}"></div>
 <div th:replace="~{/include/mypage-side :: side}"></div>
-<div class="col-md-9">
+<div class="container">
+    <div class="row">
+<div class="col-md-9 offset-md-3 mt-5">
 
     <div class="container content clear-fix">
 
@@ -40,16 +29,17 @@
 
         <div class="row" style="height:100%">
 
-            <div class="col-md-3">
+            <div class="col-md-3 text-center">
 
-                <div href=# class="d-inline">
-                    <img src="/images/basic_profile.png" width="130px"><br><p class="pl-2 mt-2"><a href="#" class="btn" style="color:#8f9096;font-weight:600">사진 수정하기</a></p>
+                <div href=# class="d-inline-block">
+                    <img src="/images/basic_profile.png" width="130px"><br>
+                    <p class="mt-2"><a href="#" class="btn" style="color:#8f9096;font-weight:600">사진 수정하기</a></p>
                 </div>
 
 
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9 f1">
 
                 <div class="container">
 
@@ -107,31 +97,13 @@
     </div>
 
 </div>
-
-
-
+    </div>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-<script>
-    $(document).ready(function(){
-
-        $('.menu').on('click', function() {
-            $('.bar').toggleClass('animate');
-            $('.expand-menu').toggleClass('animate');
-            $('.expand-menu .nav-link').toggleClass('animate');
-            setTimeout(function(){
-                $('.expand-menu .nav-link').toggleClass('animate-show');
-            },500)
-        })
-
-    })
-</script>
 </html>
