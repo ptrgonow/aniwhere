@@ -14,11 +14,17 @@ public class ViewController {
     }
 
     @GetMapping("/mypage")
-    public String mypage() {return "/include/mypage";
+    public String mypage() {
+        return "/include/mypage";
     }
 
     @GetMapping("/history")
-    public String history() {return "/include/mypage-history";
+    public String history() {
+        return "/include/mypage-history";
     }
 
+    @GetMapping("/signin")
+    public String login() {
+        return "popup/login";
+    }
 }
