@@ -1,10 +1,18 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+}
 
 :root {
-    --grey-color: #7f8c8d;
-    --primary-color: #007bff;
-    --info-color: #17a2b8;
-    --success-color: #28a745;
+    --grey-color: #ffffff;
+    --primary-color: #971bd2;
+    --info-color: #0095d5;
+    --success-color: #fc2f2f;
     --warning-color: #ffc107;
     --danger-color: #dc3545;
 }
@@ -18,7 +26,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: black;
+    background: #febe98;
 }
 
 #sidebar {
