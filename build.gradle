@@ -39,3 +39,13 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+war {
+    manifest {
+        attributes(
+                'Implementation-Title': 'Aniwhere Project',
+                'Implementation-Version': '0.0.1',
+                'Implementation-Vendor': 'Your Company Name'
+        )
+    }
+}
