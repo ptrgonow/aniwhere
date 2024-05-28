@@ -10,8 +10,17 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
 @Configuration("mybatisConfig")
-@MapperScan("com.aniwhere")
+@MapperScan(basePackages = {
+        "com.aniwhere.domain.board.faq.mapper",
+        "com.aniwhere.domain.board.notice.mapper",
+        "com.aniwhere.domain.route.mapper",
+        "com.aniwhere.domain.shop.mapper",
+        "com.aniwhere.domain.user.info.mapper",
+        "com.aniwhere.domain.usermng.mapper"
+})
+
 public class MybatisConfig {
+
 
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
