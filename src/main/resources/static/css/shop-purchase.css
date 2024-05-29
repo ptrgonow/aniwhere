@@ -1,0 +1,169 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Main content area */
+.main-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.main-content h1, .main-content h2 {
+    margin-bottom: 15px;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Form elements */
+input[type="text"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    margin-right: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.textwarn {
+    color: red;
+    font-size: 12px;
+}
+
+/* Button styles */
+.btnNormal {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btnNormal:hover {
+    background-color: #0056b3;
+}
+
+/* Specific section styles */
+.orderArea, .totalArea, .payment-method, .payArea, .agree, .termArea, .total {
+    margin-bottom: 20px;
+}
+
+.totalArea_table, .ec-base-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.totalArea_table table, .ec-base-table table {
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.totalArea_table th, .totalArea_table td, .ec-base-table th, .ec-base-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.totalArea_table th {
+    background-color: #f2f2f2;
+}
+
+.payment-method h3, .total h4, .paymentAgree {
+    margin-bottom: 10px;
+}
+
+.total .price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.paymentAgree label {
+    cursor: pointer;
+}
+
+.displaynone {
+    display: none;
+}
+
+.displayflex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+}
+
+.ec-base-button {
+    text-align: center;
+}
+
+.gColumn {
+    display: flex;
+    justify-content: center;
+}
+
+.mileage, .rcellphone, .title {
+    margin-top: 20px;
+}
+
+.textAlign-right {
+    text-align: right;
+}
+
+.textAlign-center {
+    text-align: center;
+}

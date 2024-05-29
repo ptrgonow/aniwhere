@@ -123,45 +123,6 @@ body {
     background-color: #ffc107;
 }
 
-.additional-links button {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-}
-
-.additional-links .naver-link {
-    background-color: #28a745;
-    color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-}
-
-.additional-links .kakao-link {
-    background-color: #ffc107;
-    color: #000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-}
-
-.payment-method {
-    margin-bottom: 10px;
-}
-
-.payment-method .naver-pay {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    background-color: #03c75a;
-    color: #fff;
-}
-
 .additional-info {
     margin-bottom: 10px;
     font-size: 14px;
