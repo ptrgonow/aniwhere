@@ -13,24 +13,23 @@ html {
 }
 
 main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: contents;
     min-height: 100vh;
-    margin-top: 2rem;
+    margin-top: 5rem;
 }
 
 
 .map-container {
     display: flex;
-    flex-grow: 1;
+    align-items: center;
+    margin: 3rem 1rem 0 1rem;
 }
 
 .map {
     flex-grow: 1;
     height: 100%;
     width: 100%;
-    margin-left: 1rem;
+
 }
 
 .right-container {
@@ -253,9 +252,6 @@ main {
 
 /* 큰 화면 (데스크탑) */
 @media (min-width: 1024px) {
-    .map-container {
-        flex-direction: row;
-    }
 
     .map {
         flex-grow: 1;

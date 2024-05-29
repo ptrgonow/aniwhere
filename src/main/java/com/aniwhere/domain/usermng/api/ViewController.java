@@ -12,4 +12,19 @@ public class ViewController {
     public String runner() {
         return "aniwhere/runner/runner-list";
     }
+
+    @GetMapping("/mypage")
+    public String mypage() {
+        return "/include/mypage";
+    }
+
+    @GetMapping("/history")
+    public String history() {
+        return "/include/mypage-history";
+    }
+
+    @GetMapping("/signin")
+    public String login() {
+        return "popup/login";
+    }
 }

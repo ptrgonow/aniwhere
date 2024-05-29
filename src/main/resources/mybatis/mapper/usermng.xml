@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.aniwhere.domain.usermng.mapper.UserMngMapper">
+
+    <select id="findByUsername" resultType="com.aniwhere.domain.usermng.loginSession.domain.LoginSession">
+        <!-- 사용자 이름으로 사용자 정보를 찾는 SQL 쿼리 -->
+        SELECT username, password, role
+        FROM users
+        WHERE username = #{username}
+    </select>
 
 </mapper>

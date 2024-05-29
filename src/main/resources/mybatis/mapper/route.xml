@@ -6,4 +6,46 @@
 
 <mapper namespace="com.aniwhere.domain.route.mapper.RouteMapper">
 
+    <!-- Route 삽입 -->
+    <insert id="insertRoute" parameterType="com.aniwhere.domain.route.domain.Route">
+        INSERT INTO route (route_name, route_cont, user_id, create_at, update_at)
+        VALUES (#{routeName}, #{routeCont}, #{userId}, #{createAt}, #{updateAt})
+        <selectKey keyProperty="routeId" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!-- 특정 ID로 Route 조회 -->
+    <select id="selectRouteById" resultType="com.aniwhere.domain.route.dto.RouteDTO" parameterType="long">
+        SELECT route_id, route_name, route_cont, user_id, create_at, update_at
+        FROM route
+        WHERE route_id = #{id}
+    </select>
+
+    <!-- 특정 Route ID로 Marker 조회 -->
+    <select id="selectMarkersByRouteId" resultType="com.aniwhere.domain.route.dto.MarkerDTO" parameterType="long">
+        SELECT maker_id, route_id, longitude, latitude
+        FROM maker
+        WHERE route_id = #{id}
+    </select>
+
+    <!-- Marker 삽입 -->
+    <insert id="insertMarker" parameterType="com.aniwhere.domain.route.domain.Marker">
+        INSERT INTO maker (route_id, longitude, latitude)
+        VALUES (#{routeId}, #{longitude}, #{latitude})
+    </insert>
+
+    <!-- Route 업데이트 -->
+    <update id="updateRoute" parameterType="map">
+        UPDATE route
+        SET route_name = #{routeDto.routeName}, route_cont = #{routeDto.routeCont}, update_at = #{routeDto.updateAt}
+        WHERE route_id = #{id}
+    </update>
+
+    <!-- 특정 Route ID로 Marker 삭제 -->
+    <delete id="deleteMarkersByRouteId" parameterType="long">
+        DELETE FROM maker
+        WHERE route_id = #{routeId}
+    </delete>
+
 </mapper>

@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
@@ -45,7 +46,7 @@ war {
         attributes(
                 'Implementation-Title': 'Aniwhere Project',
                 'Implementation-Version': '0.0.1',
-                'Implementation-Vendor': 'Your Company Name'
+                'Implementation-Vendor': 'aniwhere'
         )
     }
 }
