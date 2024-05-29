@@ -12,4 +12,14 @@ public class ViewController {
     public String course() {
         return "aniwhere/route/course-create";
     }
+
+    @GetMapping("/cor-list")
+    public String courList() {
+        return "aniwhere/route/course-list";
+    }
+
+    @GetMapping("/runner")
+    public String runnerList() {
+        return "aniwhere/runner/runner-list";
+    }
 }

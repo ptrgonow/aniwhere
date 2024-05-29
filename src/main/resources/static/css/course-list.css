@@ -1,0 +1,311 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    text-decoration: none;
+    color: black;
+    list-style: none;
+}
+
+.walk_top{
+    text-align: center;
+    margin-top: 80px;
+}
+
+.walk_title{
+    text-align: center;
+    margin: 20px 0 20px 0;
+    background-color: #f8f8f7;
+    padding: 10px;
+}
+
+/* 스크롤 코스 추가 버튼 */
+.walk_add img{
+    width: 70px;
+    height: 70px;
+}
+
+#walk_add_btn{
+    right: 2%;
+    position: absolute;
+    top: 85%;
+}
+
+/* 해시태그 영역 */
+.hashtag_area{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.hash_item{
+    width: max-content;
+    position: relative;
+    text-align: center;
+    margin: 10px 10px 30px 0;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.hash_item::after{
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    height: 2px;
+    width: 100%;
+    left: 0;
+    background-color: darkgray;
+    transition: 0.3s;
+    transition-timing-function: ease-in-out;
+    transform: scaleX(0);
+}
+
+.hash_item:hover::after{
+    transform: scaleX(1);
+}
+
+/* 검색창 */
+.walk_search_area{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.walk_search i{
+    color: black;
+    padding-left: 5px;
+}
+
+.walk_search{
+    text-align: center;
+    margin-top: 10px;
+    padding: 0 10px;
+    border: 4px solid #febe98;
+    border-radius: 50px;
+}
+
+.search{
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 0 5px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.search:focus{
+    outline: none;
+}
+
+/* 카테고리 */
+.category_area{
+    display: flex;
+    padding: 40px;
+    margin-left: 70%;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.category_item{
+    display: flex;
+    padding: 7px;
+    border-radius: 3px;
+    border: 1px solid #555555;
+    font-size: 14px;
+}
+
+.select_list{
+    display: flex;
+    border-radius: 3px;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    transition: opacity 0.2s linear, visibility 0.2s linear;
+}
+
+.select_list_item{
+    padding: 3px;
+    font-size: 14px;
+}
+
+/* Map 카드 레이아웃 */
+.card_container {
+    display: grid;
+    max-width: 1000px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 14px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.card {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 100%;
+    height: 20rem;
+    overflow: hidden;
+    border-radius: 0.625rem;
+    box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: transform 500ms ease-in;
+}
+
+.card > * {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.card__background {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.card__content {
+    --flow-space: 0.9375rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: flex-end;
+    width: 100%;
+    height: 55%;
+    padding: 5px;
+    background: linear-gradient(
+            180deg,
+            hsla(0, 0%, 0%, 0) 0%,
+            hsl(0, 0%, 0%, 0.3) 10%,
+            hsl(0, 0%, 0%) 100%
+    );
+}
+
+.card__content--container {
+    --flow-space: 1.25rem;
+    width: 100%;
+}
+
+.card__title {
+    display: flex;
+    position: relative;
+    margin: 10px 5px var(--flow-space);
+    color: white;
+}
+
+.card__title::after {
+    content: "";
+    position: absolute;
+    height: 0.3125rem;
+    width: calc(100% + 1.25rem);
+    bottom: calc((1.25rem - 0.5rem) * -1);
+    right: 12rem;
+    background-color: #febe98;
+}
+
+.card_cont {
+    width: 300px;
+    height: 70px;
+    font-size: 15px;
+    color: white;
+}
+
+
+.card_hashtag{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    width: 100%;
+}
+
+.card_hashtag p{
+    display: flex;
+    font-size: 12px;
+    text-align: center;
+    font-weight: normal;
+    padding: 5px 5px;
+    margin-right: 5px;
+    color: #222222;
+    border: 1px solid #FF5959;
+    background-color: #febe98;
+    border-radius: 20px;
+}
+
+
+@media (any-hover: hover) and (any-pointer: fine) {
+    .card__content {
+        transform: translateY(72%);
+        transition: transform 500ms ease-out;
+        transition-delay: 500ms;
+    }
+
+    .card__title::after {
+        opacity: 0;
+        transform: scaleX(0);
+        transition: opacity 1000ms ease-in, transform 500ms ease-out;
+        transition-delay: 500ms;
+        transform-origin: right;
+    }
+
+    .card__background {
+        transition: transform 500ms ease-in;
+    }
+
+    .card__content--container > :not(.card__title),
+    .card__button {
+        opacity: 0;
+        transition: transform 500ms ease-out, opacity 500ms ease-out;
+    }
+
+    .card:hover,
+    .card:focus-within {
+        transform: scale(1.05);
+        transition: transform 500ms ease-in;
+    }
+
+    .card:hover .card__content,
+    .card:focus-within .card__content {
+        transform: translateY(0);
+        transition: transform 500ms ease-in;
+    }
+
+    .card:focus-within .card__content {
+        transition-duration: 0ms;
+    }
+
+    .card:hover .card__background,
+    .card:focus-within .card__background {
+        transform: scale(1.3);
+    }
+
+    .card:hover .card__content--container > :not(.card__title),
+    .card:hover .card__button,
+    .card:focus-within .card__content--container > :not(.card__title),
+    .card:focus-within .card__button {
+        opacity: 1;
+        transition: opacity 500ms ease-in;
+        transition-delay: 1000ms;
+    }
+
+    .card:hover .card__title::after,
+    .card:focus-within .card__title::after {
+        opacity: 1;
+        transform: scaleX(1);
+        transform-origin: left;
+        transition: opacity 500ms ease-in, transform 500ms ease-in;
+        transition-delay: 500ms;
+    }
+}

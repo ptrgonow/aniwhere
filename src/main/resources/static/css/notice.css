@@ -4,14 +4,10 @@
     padding: 0;
 }
 
-body {
-    list-style: none;
-    font-size: 1rem;
-}
-
 body a{
     text-decoration: none;
     color: black;
+    list-style: none;
 }
 
 /* 공지사항 */
@@ -31,10 +27,6 @@ body a{
     color: lightgray;
 }
 
-.notice_box{
-    position: relative;
-}
-
 .notice_write_btn {
     position: absolute;
     margin-left: 80.5%;
@@ -51,7 +43,7 @@ body a{
 
 .notice_content table{
     margin: 60px auto;
-    width: 70%;
+    width: 58%;
     border-left: none;
 }
 
@@ -83,7 +75,6 @@ body a{
     background-color: #e2e2e1;
     cursor: pointer;
 }
-
 
 /* 페이징 */
 .page_area{
@@ -138,3 +129,4 @@ body a{
     width: 70px;
     height: 30px;
 }
+
