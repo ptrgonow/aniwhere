@@ -21,7 +21,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable) // CSRF 보호 비활성화
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login", "/mng/signin", "/resources/**", "/css/**", "/js/**","/mng/guide").permitAll() // 로그인 페이지, 리소스, 메인 페이지는 모든 사용자에게 허용
+                        .requestMatchers("/", "/login", "/mng/signin", "/resources/**", "/css/**", "/js/**").permitAll() // 로그인 페이지, 리소스, 메인 페이지는 모든 사용자에게 허용
                         .requestMatchers("/admin/**").hasRole("ADMIN") // 관리자 페이지는 관리자만 접근 가능
                         .anyRequest().authenticated() // 나머지 모든 요청은 인증된 사용자만 접근 가능
                 )

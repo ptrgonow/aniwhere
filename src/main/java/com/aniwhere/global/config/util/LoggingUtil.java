@@ -19,4 +19,11 @@ public class LoggingUtil {
         getLogger(clazz).error(message, t);
     }
 
+    public void logDebug(Class<?> clazz, String message) {
+        getLogger(clazz).debug(message);
+    }
+
+    public void logWarn(Class<?> clazz, String message) {
+        getLogger(clazz).warn(message);
+    }
 }
