@@ -6,11 +6,11 @@
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans KR','Roboto', sans-serif;
-    font-size: 16px;
 }
 
+
 body {
-    font-size: 1rem;
+
     height: 100vh;
 }
 
@@ -42,32 +42,33 @@ span:hover:before, span:hover:after {
 .image-container .p1 {
 
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 1rem;
+    width: 370px;
+    height: 300px;
+    margin-left: 5rem;
     margin-top: 10rem;
-    border-radius: 10%;
+    border-radius: 5%;
 
 
 }
 .image-container .p2 {
 
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 90rem;
-    margin-top: 4rem;
-    border-radius: 10%;
+    width: 370px;
+    height: 300px;
+    margin-left: 70rem;
+    margin-top: 1rem;
+    border-radius: 5%;
+    margin-bottom: 1rem;
 }
 
 .image-container .p3 {
 
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 1rem;
-    margin-top: 3rem;
-    border-radius: 10%;
+    width: 370px;
+    height: 300px;
+    margin-left: 5rem;
+    margin-top: 2rem;
+    border-radius: 5%;
 
 
 }
@@ -75,11 +76,11 @@ span:hover:before, span:hover:after {
 .image-container .p4 {
 
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 90rem;
+    width: 370px;
+    height: 300px;
+    margin-left: 70rem;
     margin-top: 4rem;
-    border-radius: 10%;
+    border-radius: 5%;
 }
 
 
@@ -89,8 +90,8 @@ span:hover:before, span:hover:after {
 
 .text-container1{
     position: absolute;
-    top: 48%; /* 원하는 위치로 조정하세요 */
-    left: 45%; /* 원하는 위치로 조정하세요 */
+    top: 44%; /* 원하는 위치로 조정하세요 */
+    left: 46%; /* 원하는 위치로 조정하세요 */
     margin-right: 10rem;
 }
 
@@ -106,7 +107,7 @@ span:hover:before, span:hover:after {
 
 .text-container3{
     position: absolute;
-    top: 103%; /* 원하는 위치로 조정하세요 */
+    top: 92%; /* 원하는 위치로 조정하세요 */
     left: 45%; /* 원하는 위치로 조정하세요 */
     margin-right: 10rem;
 
@@ -123,8 +124,8 @@ span:hover:before, span:hover:after {
 
 .text-container5{
     position: absolute;
-    top: 155%; /* 원하는 위치로 조정하세요 */
-    left: 45%; /* 원하는 위치로 조정하세요 */
+    top: 137%; /* 원하는 위치로 조정하세요 */
+    left: 44%; /* 원하는 위치로 조정하세요 */
     margin-right: 10rem;
 
 }
@@ -137,11 +138,11 @@ span:hover:before, span:hover:after {
 
 }
 
-/* 마지막 소제목 */
+/* 소중한 반려동물을 위해 지금 */
 .text-container7{
     position: absolute;
-    top: 210%; /* 원하는 위치로 조정하세요 */
-    left: 40%; /* 원하는 위치로 조정하세요 */
+    top: 200%; /* 원하는 위치로 조정하세요 */
+    left: 39%; /* 원하는 위치로 조정하세요 */
     margin-right: 10rem;
 
 
@@ -149,7 +150,7 @@ span:hover:before, span:hover:after {
 .transparent-text7 {
 
     text-align: center;
-    margin-top: 1rem;
+    margin-bottom: 7rem;
 
 }
 
@@ -163,21 +164,24 @@ span:hover:before, span:hover:after {
 .transparent-text2 {
 
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
+    margin-right: 7rem;
 
 }
 
 .transparent-text4 {
 
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
+    margin-right: 7rem;
 
 }
 
 .transparent-text6 {
 
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
+    margin-right: 7rem;
 
 }
 
@@ -186,7 +190,7 @@ span:hover:before, span:hover:after {
 
     color: #B4B4B4;
     text-align: center;
-    font-size: 15px;
+    font-size: 10px;
 
 }
 
@@ -194,7 +198,7 @@ span:hover:before, span:hover:after {
 
     color: #B4B4B4;
     text-align: center;
-    font-size: 15px;
+    font-size: 10px;
 
 }
 
@@ -257,7 +261,56 @@ span:hover:before, span:hover:after {
 
 .text-container7 {
     margin-top: 7rem;
-    color: #acd5de;
+
     border-radius: 10%;
+    margin-right: 100px;
 
 }
+
+.all {
+
+    margin-left: 200px;
+
+}
+
+
+
+/* 스크롤 코스 추가 버튼 */
+.walk_add img {
+    width: 70px;
+    height: 70px;
+}
+
+#walk_add_btn {
+    right: 2%;
+    position: absolute;
+    top: 85%; /* top 속성을 사용 */
+}
+
+
+/* 채워지는 효과 */
+.btn {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    background: transparent;
+    text-transform: uppercase;
+    position: relative;
+    transition: background-color 0.4s, color 0.4s; /* 배경색과 텍스트 색상 전환 효과 */
+    overflow: hidden;
+    z-index: 1;
+    color: #B4B4B4;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover {
+    background-color: #ffc56c; /* 호버 시 배경색 변경 */
+    color: white; /* 호버 시 텍스트 색상 변경 */
+}
+
+
+
+

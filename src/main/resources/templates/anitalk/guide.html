@@ -11,15 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" href="/css/main-header.css">
+    <link rel="stylesheet" href="/css/aniwhere-side.css">
     <link rel="stylesheet" href="/css/guide.css">
 </head>
 <body>
 
 <div th:replace="~{include/tab-header :: header}"></div>
+<div th:replace="~{include/anitalk-side :: side}"></div>
 
+/* 따라다니는 코스 */
 
+<div class="walk_add">
+    <a href="#" id="walk_add_btn"><img src="/images/cursor.png"></a>
+</div>
+
+<div class="all">
 <div class="image-container p1">
-    <img src="/images/dog1.jpg" width="400" alt="images1" class="image-container p1">
+    <img src="/images/walk2.jpg" width="400" alt="images1" class="image-container p1">
 </div>
 
 
@@ -39,7 +47,7 @@
 
         <span>
         바로 산책, 예약 산책, 정기 산책까지 언제 어디서든 원하시는 방법으로
-        ‘Aniwhere’ 반려견 산책 서비스를 예약할 수 있어요
+        </span> <span>‘Aniwhere’ 반려견 산책 서비스를 예약할 수 있어요
         </span>
 
         <span class="pet guide1">
@@ -47,13 +55,14 @@
             </span>
 
         <span class="pet guide1">
-            * 반려동물 추가 또는 연휴 할증, 방문 시간 연장에 따라 추가요금이 발생할 수 있습니다 (서비스 수수료 2.4% 별도)
+            * 반려동물 추가 또는 연휴 할증, 방문 시간 연장에 따라 추가요금이 발생할 수 있습니다
             </span>
+        <span class="pet guide1">(서비스 수수료 2.4% 별도)</span>
     </div>
 </div>
 
 <div class="image-container p2">
-    <img src="/images/dog2.jpg" alt="image2" class="image-container p2">
+    <img src="/images/dog1.jpg" alt="image2" class="image-container p2">
 </div>
 
 <div class="text-container3">
@@ -84,15 +93,15 @@
 
 
 <div class="image-container p3">
-    <img src="/images/dogway1.jpg" width="400" alt="images3" class="image-container p3">
+    <img src="/images/map.jpg" width="400" alt="images3" class="image-container p3">
 </div>
 
 <div class="text-container5">
     <div class="transparent-text5">
         <span>
-            AniWhere은 엄선된 러너가
+            AniWhere은
         </span>
-        <span>방문합니다</span>
+        <span>엄선된 러너가 방문합니다</span>
     </div>
 </div>
 
@@ -112,16 +121,20 @@
 
 <div class="text-container7">
     <div class="transparent-text7">
-        <span><a href="#">
+        <span><a href="/route/cor" class="btn">
             소중한 반려동물을 위해 지금 시작하세요!!
         </a></span>
     </div>
 </div>
 
 <div class="image-container p4">
-    <img src="/images/dogway2.jpg" width="400" alt="images4" class="image-container p4">
+    <img src="/images/walk1.jpg" width="400" alt="images4" class="image-container p4">
+</div>
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/guide.js"></script>
 
 
 
