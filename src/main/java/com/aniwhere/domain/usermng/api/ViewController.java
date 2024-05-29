@@ -27,4 +27,7 @@ public class ViewController {
     public String login() {
         return "popup/login";
     }
+
+    @GetMapping("/guide")
+    public String guide() {return "anitalk/guide";}
 }

@@ -14,6 +14,28 @@ body {
     height: 100vh;
 }
 
+span {
+    position: static; /* 기본 값으로 초기화, 필요에 따라 수정 */
+}
+
+span:before, span:after {
+    content: none; /* 가상 요소 제거 */
+    position: static; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    height: auto; /* 기본 값으로 초기화 */
+    bottom: auto; /* 기본 값으로 초기화 */
+    margin-top: 0; /* 기본 값으로 초기화 */
+    background: none; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+span:hover:before, span:hover:after {
+    background: none; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+
 
 /*  이용안내 사진 조절  */
 
@@ -219,38 +241,6 @@ body {
     opacity: 2; /* 불투명 */
 }
 
-/* 이용료 */
-
-.pay {
-
-    text-align: center;
-    margin-top: 10rem;
-
-}
-
-.pay td {
-
-    text-align: center;
-    margin-top: 50px;
-    padding: 30px 20px;
-
-}
-
-.pay tr:hover td {
-    background : #e7f5ff;
-}
-
-.pay table {
-    width: 80%;
-
-    margin: auto;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
-
-}
 
 .h6 {
 
@@ -262,5 +252,12 @@ body {
 
     margin-top: 10rem;
     text-align: center;
+
+}
+
+.text-container7 {
+    margin-top: 7rem;
+    color: #acd5de;
+    border-radius: 10%;
 
 }
