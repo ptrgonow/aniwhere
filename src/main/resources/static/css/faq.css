@@ -10,11 +10,34 @@ body {
     list-style: none;
 }
 
+/* span 태그 기본값으로 초기화, 필요에 따라 수정 */
+span {
+    position: static;
+}
+
+span:before, span:after {
+    content: none; /* 가상 요소 제거 */
+    position: static; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    height: auto; /* 기본 값으로 초기화 */
+    bottom: auto; /* 기본 값으로 초기화 */
+    margin-top: 0; /* 기본 값으로 초기화 */
+    background: none; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+span:hover:before, span:hover:after {
+    background: none; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+
 /* Q&A 상단 */
 .q_area{
     position: relative;
-    width: 80%;
-    margin: 100px auto;
+    width: 55%;
+    margin: 80px auto;
     padding: 0 0 120px;
     display: block;
 }
@@ -50,6 +73,7 @@ body {
 
 .menu a{
     color: #222222;
+    font-size: 1.1rem;
 }
 
 .menu-active {
@@ -64,7 +88,6 @@ body {
 .q_accordion_container{
     border-top: 2px solid darkgray;
 }
-
 
 .q_accordion button{
     width: 100%;

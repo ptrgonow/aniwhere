@@ -18,4 +18,9 @@ public class ViewController {
         return "anitalk/notice";
     }
 
+    @GetMapping("/notice-detail")
+    public String noticeDetail() {
+        return "anitalk/notice-detail";
+    }
+
 }
