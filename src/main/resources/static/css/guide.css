@@ -6,13 +6,35 @@
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans KR','Roboto', sans-serif;
-    font-size: 16px;
 }
 
+
 body {
-    font-size: 1rem;
+
     height: 100vh;
 }
+
+span {
+    position: static; /* 기본 값으로 초기화, 필요에 따라 수정 */
+}
+
+span:before, span:after {
+    content: none; /* 가상 요소 제거 */
+    position: static; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    height: auto; /* 기본 값으로 초기화 */
+    bottom: auto; /* 기본 값으로 초기화 */
+    margin-top: 0; /* 기본 값으로 초기화 */
+    background: none; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+span:hover:before, span:hover:after {
+    background: none; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
 
 
 /*  이용안내 사진 조절  */
@@ -20,32 +42,33 @@ body {
 .image-container .p1 {
 
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 1rem;
+    width: 370px;
+    height: 300px;
+    margin-left: 5rem;
     margin-top: 10rem;
-    border-radius: 10%;
+    border-radius: 5%;
 
 
 }
 .image-container .p2 {
 
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 90rem;
-    margin-top: 4rem;
-    border-radius: 10%;
+    width: 370px;
+    height: 300px;
+    margin-left: 70rem;
+    margin-top: 1rem;
+    border-radius: 5%;
+    margin-bottom: 1rem;
 }
 
 .image-container .p3 {
 
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 1rem;
-    margin-top: 3rem;
-    border-radius: 10%;
+    width: 370px;
+    height: 300px;
+    margin-left: 5rem;
+    margin-top: 2rem;
+    border-radius: 5%;
 
 
 }
@@ -53,11 +76,11 @@ body {
 .image-container .p4 {
 
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 90rem;
+    width: 370px;
+    height: 300px;
+    margin-left: 70rem;
     margin-top: 4rem;
-    border-radius: 10%;
+    border-radius: 5%;
 }
 
 
@@ -67,8 +90,8 @@ body {
 
 .text-container1{
     position: absolute;
-    top: 48%; /* 원하는 위치로 조정하세요 */
-    left: 45%; /* 원하는 위치로 조정하세요 */
+    top: 44%; /* 원하는 위치로 조정하세요 */
+    left: 46%; /* 원하는 위치로 조정하세요 */
     margin-right: 10rem;
 }
 
@@ -84,7 +107,7 @@ body {
 
 .text-container3{
     position: absolute;
-    top: 103%; /* 원하는 위치로 조정하세요 */
+    top: 92%; /* 원하는 위치로 조정하세요 */
     left: 45%; /* 원하는 위치로 조정하세요 */
     margin-right: 10rem;
 
@@ -101,8 +124,8 @@ body {
 
 .text-container5{
     position: absolute;
-    top: 155%; /* 원하는 위치로 조정하세요 */
-    left: 45%; /* 원하는 위치로 조정하세요 */
+    top: 137%; /* 원하는 위치로 조정하세요 */
+    left: 44%; /* 원하는 위치로 조정하세요 */
     margin-right: 10rem;
 
 }
@@ -115,11 +138,11 @@ body {
 
 }
 
-/* 마지막 소제목 */
+/* 소중한 반려동물을 위해 지금 */
 .text-container7{
     position: absolute;
-    top: 210%; /* 원하는 위치로 조정하세요 */
-    left: 40%; /* 원하는 위치로 조정하세요 */
+    top: 200%; /* 원하는 위치로 조정하세요 */
+    left: 39%; /* 원하는 위치로 조정하세요 */
     margin-right: 10rem;
 
 
@@ -127,7 +150,7 @@ body {
 .transparent-text7 {
 
     text-align: center;
-    margin-top: 1rem;
+    margin-bottom: 7rem;
 
 }
 
@@ -141,21 +164,24 @@ body {
 .transparent-text2 {
 
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
+    margin-right: 7rem;
 
 }
 
 .transparent-text4 {
 
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
+    margin-right: 7rem;
 
 }
 
 .transparent-text6 {
 
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
+    margin-right: 7rem;
 
 }
 
@@ -164,7 +190,7 @@ body {
 
     color: #B4B4B4;
     text-align: center;
-    font-size: 15px;
+    font-size: 10px;
 
 }
 
@@ -172,7 +198,7 @@ body {
 
     color: #B4B4B4;
     text-align: center;
-    font-size: 15px;
+    font-size: 10px;
 
 }
 
@@ -219,38 +245,6 @@ body {
     opacity: 2; /* 불투명 */
 }
 
-/* 이용료 */
-
-.pay {
-
-    text-align: center;
-    margin-top: 10rem;
-
-}
-
-.pay td {
-
-    text-align: center;
-    margin-top: 50px;
-    padding: 30px 20px;
-
-}
-
-.pay tr:hover td {
-    background : #e7f5ff;
-}
-
-.pay table {
-    width: 80%;
-
-    margin: auto;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
-
-}
 
 .h6 {
 
@@ -264,3 +258,59 @@ body {
     text-align: center;
 
 }
+
+.text-container7 {
+    margin-top: 7rem;
+
+    border-radius: 10%;
+    margin-right: 100px;
+
+}
+
+.all {
+
+    margin-left: 200px;
+
+}
+
+
+
+/* 스크롤 코스 추가 버튼 */
+.walk_add img {
+    width: 70px;
+    height: 70px;
+}
+
+#walk_add_btn {
+    right: 2%;
+    position: absolute;
+    top: 85%; /* top 속성을 사용 */
+}
+
+
+/* 채워지는 효과 */
+.btn {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    background: transparent;
+    text-transform: uppercase;
+    position: relative;
+    transition: background-color 0.4s, color 0.4s; /* 배경색과 텍스트 색상 전환 효과 */
+    overflow: hidden;
+    z-index: 1;
+    color: #B4B4B4;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover {
+    background-color: #ffc56c; /* 호버 시 배경색 변경 */
+    color: white; /* 호버 시 텍스트 색상 변경 */
+}
+
+
+
+

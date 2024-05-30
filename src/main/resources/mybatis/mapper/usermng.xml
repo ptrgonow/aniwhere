@@ -1,13 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.aniwhere.domain.usermng.mapper.UserMngMapper">
 
-    <select id="findByUsername" resultType="com.aniwhere.domain.usermng.loginSession.domain.LoginSession">
-        <!-- 사용자 이름으로 사용자 정보를 찾는 SQL 쿼리 -->
+    <!-- 사용자 이름으로 사용자 정보를 찾는 SQL 쿼리 -->
+    <select id="findByUsername" resultType="com.aniwhere.domain.usermng.loginSession.dto.LoginDTO">
         SELECT username, password, role
+        FROM users
+        WHERE username = #{username}
+    </select>
+
+    <!-- 사용자 정보를 추가하는 SQL 쿼리 -->
+    <insert id="insertUser" parameterType="com.aniwhere.domain.usermng.register.dto.JoinDTO">
+        INSERT INTO users (username, password, role)
+        VALUES (#{userName}, #{password}, #{role})
+    </insert>
+
+    <!-- 사용자 이름으로 사용자 존재 여부를 확인하는 SQL 쿼리 -->
+    <select id="checkByUserDatabase" resultType="boolean">
+        SELECT IF(COUNT(*) > 0, true, false)
         FROM users
         WHERE username = #{username}
     </select>

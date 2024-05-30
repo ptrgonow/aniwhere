@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
     이 클래스는 RouteMapper 를 통해 데이터베이스와 상호작용합니다.
 
  */
-@Service
+@Service("routeService")
 public class RouteService {
 
     // 데이터 접근 계층과의 상호작용을 위한 RouteMapper 변수 선언
