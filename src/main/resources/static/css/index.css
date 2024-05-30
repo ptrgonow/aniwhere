@@ -51,9 +51,33 @@ main {
     width: 100%;
     height: 100%;
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.tc.n1 {
+    width: 50%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+.tc.n1 h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4rem;
+    letter-spacing: 0.4rem;
+}
+
+.tc.n1 p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.1rem;
 }
 
 .slick-n1 {
@@ -99,7 +123,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../images/d7.jpeg");
+    background-image: url("../images/d6.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -122,7 +146,7 @@ main {
 }
 
 .container.n3 {
-    background-image: url("../images/d6.jpeg");
+    background-image: url("../images/d7.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -137,4 +161,6 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
