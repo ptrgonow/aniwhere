@@ -20,84 +20,102 @@
 <div th:replace="~{/include/tab-header :: header}"></div>
 <div th:replace="~{/include/mypage-side :: side}"></div>
 <div class="container">
-    <div class="row">
-<div class="col-md-9 offset-md-3 mt-5">
 
-    <div class="container content clear-fix">
+        <div class="row gutters">
 
-        <h2 class="mt-5 mb-5">내 정보</h2>
-
-        <div class="row" style="height:100%">
-
-            <div class="col-md-3 text-center">
-
-                <div href=# class="d-inline-block">
-                    <img src="/images/basic_profile.png" width="130px"><br>
-                    <p class="mt-2"><a href="#" class="btn" style="color:#8f9096;font-weight:600">사진 수정하기</a></p>
-                </div>
-
-
-            </div>
-
-            <div class="col-md-9 f1">
-
-                <div class="container">
-
-                    <form>
-
-                        <div class="form-group">
-
-                            <label for=fullName>이 름</label>
-                            <input type="text" class="form-control" id="fullName" value="홍길동">
-
-                        </div>
-                        <div class="form-group">
-
-                            <label for=email>Email</label>
-                            <input type="email" class="form-control" id="email" value="apple@naver.com">
-
-                        </div>
-                        <div class="form-group">
-
-                            <label for=pass>비밀번호 확인</label>
-                            <input type="password" class="form-control" id="pass" value="기존 비밀번호를 입력해주세요">
-
-                        </div>
-                        <div class="form-group ">
-
-                            <label for=birthday>생년월일</label>
-                            <input type="date" class="form-control" id="birthday">
-
-                        </div>
-
-                        <div class="row mt-5">
-
-                            <div class="col">
-
-                                <button type="button" class="btn btn-primary btn-block">변경사항 저장</button>
-
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body v1 small-text">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 text-primary">내 정보</h6>
                             </div>
-
-                            <div class="col">
-
-                                <button type="button" class="btn btn-default btn-block">취소</button>
-
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">이름</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="이름을 입력하세요">
+                                </div>
                             </div>
-
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="eMail">이메일</label>
+                                    <input type="email" class="form-control" id="eMail" placeholder="ex)apple@naver.com">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="phone">전화번호</label>
+                                    <input type="text" class="form-control" id="phone" placeholder="전화번호를 입력해주세요">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="website">성별</label>
+                                    <input type="url" class="form-control" id="website" placeholder="성별을 선택하세요">
+                                </div>
+                            </div>
                         </div>
-
-                    </form>
-
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="addr">주소 관리</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="Street">시도명</label>
+                                    <input type="name" class="form-control" id="Street" placeholder="Enter Street">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="ciTy">시군구</label>
+                                    <input type="name" class="form-control" id="ciTy" placeholder="Enter City">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="sTate">읍면동</label>
+                                    <input type="text" class="form-control" id="sTate" placeholder="Enter State">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="zIp">상세주소</label>
+                                    <input type="text" class="form-control" id="zIp" placeholder="Zip Code">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <button type="button" id="submit" name="submit" class="btn btn-secondary">초기화</button>
+                                    <button type="button" id="submit" name="submit" class="btn btn-primary">수정하기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card h-200">
+                    <div class="card-body v2">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                </div>
+                                <h5 class="user-name">홍길동</h5>
+                                <h6 class="user-email">yuki@Maxwell.com</h6>
+                            </div>
+                            <div class="about">
+                                <h5>한줄소개</h5>
+                                <p>동물들을 사랑하는 10년 이상 반려견과 함께한 홍길동 입니다. 산책을 정말 좋아해요~</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-    </div>
-
-</div>
-    </div>
 </div>
 
 <!-- Optional JavaScript -->

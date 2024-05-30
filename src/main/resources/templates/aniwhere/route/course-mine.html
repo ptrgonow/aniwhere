@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,16 +15,15 @@
     <link rel="stylesheet" href="/css/mypage-history.css">
 </head>
 <body>
-<div th:replace="~{/include/tab-header :: header}"></div>
-<div th:replace="~{/include/mypage-side :: side}"></div>
-
+<div th:replace="~{include/tab-header::header}"></div>
+<div th:replace="~{include/aniwhere-side :: side}"></div>
 <div class="container-xl">
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h2>AniWhere <b>이용내역</b></h2>
+                        <h2>나의 <b>코스</b> 목록보기</h2>
                     </div>
                 </div>
             </div>
@@ -40,29 +38,27 @@
                                     <option>15</option>
                                     <option>20</option>
                                 </select>
-                            </label>
-                            <span>개씩 보기</span>
+                            </label> <P>개씩 보기</P>
                         </div>
                     </div>
                     <div class="col-sm-9">
                         <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         <div class="filter-group">
-                            <label>러너 프로필</label>
+                            <label>코스 이름 검색</label>
                             <input type="text" class="form-control">
                         </div>
 
                         <div class="filter-group">
-                            <label>이용현황</label>
+                            <label>정렬</label>
                             <label>
                                 <select class="form-control">
-                                    <option>모두</option>
-                                    <option>산책완료</option>
-                                    <option>결제취소</option>
-                                    <option>산책예정</option>
+                                    <option>등록순</option>
+                                    <option>거리순</option>
+                                    <option>금액순</option>
                                 </select>
                             </label>
                         </div>
-                        <span class="filter-icon"><i class="fa fa-filter"></i></span>
+
                     </div>
                 </div>
             </div>
@@ -70,58 +66,52 @@
                 <thead>
                 <tr>
                     <th>코스 No.</th>
-                    <th>러너 프로필</th>
+                    <th>코스 이름</th>
                     <th>거리</th>
-                    <th>사용일시</th>
-                    <th>이용현황</th>
-                    <th>이용요금</th>
-                    <th>상세내역</th>
+                    <th>등록일시</th>
+                    <th>누적 이용금액</th>
+                    <th>상세정보</tH>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="runner_image"> 홍길동</a></td>
+                    <td><a href="#">가로수길 가벼운 산책</a></td>
                     <td>1.8km</td>
                     <td>2024/05/11</td>
-                    <td><span class="status text-success">&bull;</span> 산책완료</td>
-                    <td>35,000원</td>
+                    <td>135,000원</td>
                     <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td><a href="#"><img src="/examples/images/avatar/2.jpg" class="avatar" alt="runner_image"> 유관순</a></td>
+                    <td><a href="#">도산공원 한바퀴 코스</a></td>
                     <td>2.2km</td>
                     <td>2024/05/09</td>
-                    <td><span class="status text-info">&bull;</span> 산책예정</td>
-                    <td>12,560원</td>
+                    <td>122,560원</td>
                     <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td><a href="#"><img src="/examples/images/avatar/3.jpg" class="avatar" alt="runner_image"> 김유신</a></td>
+                    <td><a href="#">도봉산 초입부 신나는 등산</a></td>
                     <td>2.2km</td>
                     <td>2024/05/09</td>
-                    <td><span class="status text-danger">&bull;</span> 결제취소</td>
-                    <td>27,000원</td>
+                    <td>207,000원</td>
                     <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td><a href="#"><img src="/examples/images/avatar/4.jpg" class="avatar" alt="runner_image"> 이성계</a></td>
+                    <td><a href="#">노견을 위한 부드러운 평지 숲길</a></td>
                     <td>2.1km</td>
                     <td>2024/04/24</td>
-                    <td><span class="status text-success">&bull;</span> 산책완료</td>
-                    <td>19,000원</td>
+                    <td>119,000원</td>
                     <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td><a href="#"><img src="/examples/images/avatar/5.jpg" class="avatar" alt="runner_image"> 구운몽</a></td>
+                    <td><a href="#">애견동반 공원 자유로운 놀이 산책</a></td>
                     <td>3.1km</td>
                     <td>2024/03/22</td>
-                    <td><span class="status text-success">&bull;</span> 산책완료</td>
-                    <td>31,000원</td>
+                    <td>91,000원</td>
                     <td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
                 </tr>
                 </tbody>
@@ -143,7 +133,5 @@
         </div>
     </div>
 </div>
-
 </body>
-
 </html>
