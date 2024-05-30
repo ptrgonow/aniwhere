@@ -28,4 +28,15 @@ public class ViewController {
         return "anitalk/guide";
     }
 
+    @GetMapping("/write")
+    public String noticeWrite() {
+        return "anitalk/notice-write";
+    }
+
+    @GetMapping("/faq-write")
+    public String faqWrite() {
+        return "anitalk/faq-write";
+    }
+
+
 }

@@ -128,3 +128,20 @@ span:hover:before, span:hover:after {
 .q_accordion button i.rotate{
     transform: none;
 }
+
+.faq_write_btn {
+
+    margin-top: 3rem;
+    position: absolute;
+    margin-left: 80.5%;
+    margin-bottom: 50px;
+    background-color: #febe98;
+
+
+}
+
+.faq_write_btn a{
+    padding: 10px 20px;
+    display: inline-block;
+    color: white;
+}
