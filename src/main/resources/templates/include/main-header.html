@@ -29,7 +29,7 @@
                     <a href="#" class="list__item--gray" onclick="openModal('loginModal')"><span>로그인</span></a>
                 </li>
                 <li th:if="${#authorization.expression('isAuthenticated()')}" class="list__item--gray">
-                    <span th:text="${#authentication.name}"></span>
+                   <a href="/mng/mypage"><span th:text="${#authentication.name}"></span></a>
                     <a href="/logout">Logout</a>
                 </li>
             </ul>

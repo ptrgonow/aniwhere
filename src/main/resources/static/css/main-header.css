@@ -33,8 +33,8 @@ a {
     width: 100%;
     height: 10%;
     background: #fff;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     display: flex;
     justify-content: center;
@@ -67,7 +67,7 @@ a {
             h1 {
                 font-family: 'Roboto', sans-serif;
                 color: #febe98;
-                font-size: 2.5rem;
+                font-size: 3rem;
                 -webkit-animation: mainFadeIn 2s forwards;
                 -o-animation: mainFadeIn 2s forwards;
                 animation: mainFadeIn 2s forwards;
@@ -111,6 +111,7 @@ a {
                 height: inherit;
                 background: #e193ac;
                 position: absolute;
+                margin-top: 1.5rem;
                 animation: secBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
                 animation-delay: 2s;
                 display: flex;
@@ -121,9 +122,10 @@ a {
                 animation-delay: 3.2s;
                 opacity: 0;
                 font-weight: 400;
+                margin-top: 1.5rem;
                 font-family: 'Roboto', sans-serif;
                 color: #ce6f32;
-                font-size: 10px;
+                font-size: 1rem;
                 text-transform: uppercase;
                 letter-spacing: 5px;
             }
@@ -219,16 +221,19 @@ a {
     }
 }
 
+
 /*          nav         */
 
-.container {
-    vertical-align: middle;
-    text-align: center;
+.h-container {
     width: 100%;
+    height: 35%;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .login {
     width: 100%;
+    height: 3rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -238,12 +243,14 @@ a {
 
 
 .list {
+    text-align: center;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
 li {
+    margin-top: 1rem;
     display: inline-block;
     padding: 0 20px;
 }
@@ -324,12 +331,11 @@ span {
 }
 
 
-
 /* 모달 스타일 */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     top: 0;
     width: 100%;
