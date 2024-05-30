@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div th:insert="~{ /templates/include/main-header :: header }"></div>
+<div th:insert="~{/include/main-header :: header }"></div>
 
 <div class="main-content">
     <h1>주문서 작성</h1>
@@ -208,8 +208,8 @@
                             <h4>쇼핑몰 이용약관</h4>
 
                             <textarea id="mall_agreement" name="mall_agreement" fw-filter=""
-                                      fw-label="쇼핑몰 이용약관" fw-msg="" maxlength="250" cols="70" rows="10" readonly="1">
-                                      <th:text="${agreementText}">
+                                      fw-label="쇼핑몰 이용약관" fw-msg="" maxlength="250" cols="70" rows="10" readonly="1" th:text="${agreementText}">
+
                             </textarea>
 
                             <input id="mall_agreement_checkbox0" name="mall_agreement_checkbox[]" fw-filter=""

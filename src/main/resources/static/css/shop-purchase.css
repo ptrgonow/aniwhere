@@ -1,88 +1,55 @@
-/* Basic reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* General body styles */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
     padding: 20px;
 }
 
-/* Main content area */
 .main-content {
-    background: #fff;
+    background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
 }
 
-.main-content h1, .main-content h2 {
-    margin-bottom: 15px;
+h1, h2, h3, h4 {
+    margin: 20px 0 10px;
 }
 
-/* Table styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
-table th, table td {
-    padding: 10px;
+th, td {
     border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
     text-align: left;
 }
 
-table th {
-    background-color: #f2f2f2;
+.inputTypeText {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
 }
 
-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+textarea {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
 }
 
-/* Form elements */
-input[type="text"], input[type="password"], select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="checkbox"], input[type="radio"] {
-    margin-right: 10px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.textwarn {
-    color: red;
-    font-size: 12px;
-}
-
-/* Button styles */
 .btnNormal {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    font-size: 16px;
-    color: #fff;
+    padding: 8px 12px;
     background-color: #007bff;
+    color: white;
     border: none;
-    border-radius: 4px;
-    text-align: center;
-    text-decoration: none;
     cursor: pointer;
 }
 
@@ -90,80 +57,59 @@ label {
     background-color: #0056b3;
 }
 
-/* Specific section styles */
-.orderArea, .totalArea, .payment-method, .payArea, .agree, .termArea, .total {
-    margin-bottom: 20px;
-}
-
-.totalArea_table, .ec-base-table {
-    width: 100%;
+/* Payment Method Styles */
+.payment-method {
     margin-top: 20px;
 }
 
-.totalArea_table table, .ec-base-table table {
-    width: 100%;
-    border: 1px solid #ddd;
+.payment-method .method span {
+    margin-right: 10px;
 }
 
-.totalArea_table th, .totalArea_table td, .ec-base-table th, .ec-base-table td {
-    padding: 10px;
-    text-align: left;
-}
-
-.totalArea_table th {
-    background-color: #f2f2f2;
-}
-
-.payment-method h3, .total h4, .paymentAgree {
-    margin-bottom: 10px;
-}
-
-.total .price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.paymentAgree label {
-    cursor: pointer;
-}
-
-.displaynone {
+.ec-order-payment-card, #payment_input_cash, #payment_input_tcash, #payment_input_icash {
     display: none;
 }
 
-.displayflex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 10px;
-}
-
-.ec-base-button {
-    text-align: center;
-}
-
-.gColumn {
-    display: flex;
-    justify-content: center;
-}
-
-.mileage, .rcellphone, .title {
+.totalArea, .termArea, .payArea {
     margin-top: 20px;
 }
 
-.textAlign-right {
-    text-align: right;
+/* Checkbox Styles */
+.check input[type="checkbox"] {
+    display: none;
 }
 
-.textAlign-center {
-    text-align: center;
+.check input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    display: inline-block;
+    color: #333;
+}
+
+.check input[type="checkbox"] + label:before {
+    content: '';
+    width: 17px;
+    height: 17px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: white;
+}
+
+.check input[type="checkbox"]:checked + label:after {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background-color: #007bff;
+    display: inline-block;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+}
+
+.check input[type="checkbox"]:checked + label:before {
+    border-color: #007bff;
 }
