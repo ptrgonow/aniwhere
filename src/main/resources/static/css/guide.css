@@ -8,11 +8,32 @@
     font-family: 'Noto Sans KR','Roboto', sans-serif;
 }
 
+html {
+    font-size: 16px;
+}
 
 body {
-
+    font-size: 1rem;
     height: 100vh;
 }
+
+main {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    margin-left: 20rem;
+    margin-right: 3rem;
+}
+
+h2 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+}
+
 
 span {
     position: static; /* 기본 값으로 초기화, 필요에 따라 수정 */
@@ -35,195 +56,56 @@ span:hover:before, span:hover:after {
     transition: none; /* 기본 값으로 초기화 */
 }
 
-
-
-/*  이용안내 사진 조절  */
-
-.image-container .p1 {
-
-    display: flex;
-    width: 370px;
-    height: 300px;
-    margin-left: 5rem;
-    margin-top: 10rem;
-    border-radius: 5%;
-
-
-}
-.image-container .p2 {
-
-    display: flex;
-    width: 370px;
-    height: 300px;
-    margin-left: 70rem;
-    margin-top: 1rem;
-    border-radius: 5%;
-    margin-bottom: 1rem;
+.guide-container {
+    width: 70%;
+    margin-top: 5rem;
+    display: contents;
+    margin-left: auto;
+    font-size: 1rem;
 }
 
-.image-container .p3 {
 
-    display: flex;
-    width: 370px;
-    height: 300px;
-    margin-left: 5rem;
+.image-container {
+    position: relative;
+    width: 70%;
+    border-radius: 10px;
     margin-top: 2rem;
-    border-radius: 5%;
-
-
-}
-
-.image-container .p4 {
-
+    margin-bottom: 2rem;
+    justify-content: center;
     display: flex;
-    width: 370px;
-    height: 300px;
-    margin-left: 70rem;
-    margin-top: 4rem;
-    border-radius: 5%;
 }
 
 
-
-
-/*  중간 소제목 */
-
-.text-container1{
-    position: absolute;
-    top: 44%; /* 원하는 위치로 조정하세요 */
-    left: 46%; /* 원하는 위치로 조정하세요 */
-    margin-right: 10rem;
-}
-
-
-.transparent-text1 {
-
+.tc {
+    margin-bottom: 3rem;
     text-align: center;
-    margin-top: 1rem;
-    color: #646464;
-
-
 }
 
-.text-container3{
-    position: absolute;
-    top: 92%; /* 원하는 위치로 조정하세요 */
-    left: 45%; /* 원하는 위치로 조정하세요 */
-    margin-right: 10rem;
-
+.tc.n1, .tc.n3, .tc.n5 {
+    color: #FFA07A;
 }
 
-
-.transparent-text3 {
-
-    text-align: center;
-    margin-top: 1rem;
-    color: #646464;
-
-}
-
-.text-container5{
-    position: absolute;
-    top: 137%; /* 원하는 위치로 조정하세요 */
-    left: 44%; /* 원하는 위치로 조정하세요 */
-    margin-right: 10rem;
-
-}
-
-.transparent-text5 {
-
-    text-align: center;
-    margin-top: 1rem;
-    color: #646464;
-
-}
-
-/* 소중한 반려동물을 위해 지금 */
-.text-container7{
-    position: absolute;
-    top: 200%; /* 원하는 위치로 조정하세요 */
-    left: 39%; /* 원하는 위치로 조정하세요 */
-    margin-right: 10rem;
-
-
-}
-.transparent-text7 {
-
-    text-align: center;
-    margin-bottom: 7rem;
-
-}
-
-
-
-
-
-
-/* 중간 글 */
-
-.transparent-text2 {
-
-    text-align: center;
-    font-size: 14px;
-    margin-right: 7rem;
-
-}
-
-.transparent-text4 {
-
-    text-align: center;
-    font-size: 14px;
-    margin-right: 7rem;
-
-}
-
-.transparent-text6 {
-
-    text-align: center;
-    font-size: 14px;
-    margin-right: 7rem;
-
-}
-
-/* 요금 참고 공지 */
-.pet.guide1 {
-
-    color: #B4B4B4;
-    text-align: center;
-    font-size: 10px;
-
-}
-
-.pet.guide2 {
-
-    color: #B4B4B4;
-    text-align: center;
-    font-size: 10px;
-
-}
-
-/* 이미지의 기본 상태를 투명하게 설정 */
 .image-container.p1 img {
-    opacity: 0.6; /* 초기 상태는 투명 */
-    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    opacity: 0.6;
+    transition: opacity 1s;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 }
 
 .image-container.p2 img {
     opacity: 0.6; /* 초기 상태는 투명 */
-    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    transition: opacity 1s;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 }
 
 .image-container.p3 img {
-    opacity: 0.6; /* 초기 상태는 투명 */
-    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    opacity: 0.6;
+    transition: opacity 1s;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 }
 
 .image-container.p4 img {
-    opacity: 0.6; /* 초기 상태는 투명 */
-    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    opacity: 0.6;
+    transition: opacity 1s;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -245,36 +127,6 @@ span:hover:before, span:hover:after {
     opacity: 2; /* 불투명 */
 }
 
-
-.h6 {
-
-    margin-bottom: 5rem;
-
-}
-
-.h3 {
-
-    margin-top: 10rem;
-    text-align: center;
-
-}
-
-.text-container7 {
-    margin-top: 7rem;
-
-    border-radius: 10%;
-    margin-right: 100px;
-
-}
-
-.all {
-
-    margin-left: 200px;
-
-}
-
-
-
 /* 스크롤 코스 추가 버튼 */
 .walk_add img {
     width: 70px;
@@ -284,22 +136,26 @@ span:hover:before, span:hover:after {
 #walk_add_btn {
     right: 2%;
     position: absolute;
-    top: 85%; /* top 속성을 사용 */
+    top: 85%;
+    z-index: 10;
 }
 
 
+.tc.n7 {
+    margin-bottom: 2rem;
+}
+
 /* 채워지는 효과 */
 .btn {
-    border: 1px solid lightgray;
     border-radius: 10px;
     padding: 10px;
     background: transparent;
     text-transform: uppercase;
     position: relative;
-    transition: background-color 0.4s, color 0.4s; /* 배경색과 텍스트 색상 전환 효과 */
+    transition: background-color 0.4s, color 0.4s;
     overflow: hidden;
     z-index: 1;
-    color: #B4B4B4;
+    color: #febe98;
 }
 
 .btn:focus {
@@ -307,8 +163,8 @@ span:hover:before, span:hover:after {
 }
 
 .btn:hover {
-    background-color: #ffc56c; /* 호버 시 배경색 변경 */
-    color: white; /* 호버 시 텍스트 색상 변경 */
+    background-color: #febe98;
+    color: #fff;
 }
 
 

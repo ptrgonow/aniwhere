@@ -23,15 +23,9 @@ public class ViewController {
         return "anitalk/notice-detail";
     }
 
-    @GetMapping("/notice-write")
-    public String noticeWrite() {
-        return "anitalk/notice-write";
+    @GetMapping("/guide")
+    public String guide() {
+        return "anitalk/guide";
     }
-
-    @GetMapping("/faq-write")
-    public String faqWrite() {
-        return "anitalk/faq-write";
-    }
-
 
 }

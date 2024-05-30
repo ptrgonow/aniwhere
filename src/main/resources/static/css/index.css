@@ -1,0 +1,140 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+/* color: #febe98 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+header {
+    width: 100%;
+    height: 35%;
+    font-weight: 600;
+    display: flex;
+}
+
+main {
+    width: 100%;
+    height: 300vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slick-n1 {
+    width: 35%;
+    height: 53%;
+    position: relative;
+    background-color: transparent;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    font-size: 2rem;
+    line-height: 1;
+    opacity: .75;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-next:before {
+    content: '→';
+    position: absolute;
+    left: 1rem;
+}
+
+.slick-prev:before {
+    content: '←';
+    position: absolute;
+    right: 1rem;
+}
+
+.container.n1 {
+    position: relative; /* 부모 요소에 상대 위치 지정 */
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.container.n1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/d7.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px); /* 블러 효과 */
+    opacity: 0.75;
+    z-index: -1; /* 배경 뒤에 위치하도록 설정 */
+}
+
+.container.n1 > * {
+    position: relative; /* 자식 요소에 상대 위치 지정 */
+    z-index: 1; /* 자식 요소가 가상 요소 위에 표시되도록 설정 */
+}
+
+.container.n2 {
+    background-image: url("../images/d9.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 2rem;
+}
+
+.container.n3 {
+    background-image: url("../images/d6.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 2rem;
+}
+
+.card {
+    width: 100%;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
