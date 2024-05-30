@@ -22,4 +22,7 @@ public class ViewController {
     public String runnerList() {
         return "aniwhere/runner/runner-list";
     }
+
+    @GetMapping("/cor-mine")
+    public String corMineList() {return "aniwhere/route/course-mine";}
 }

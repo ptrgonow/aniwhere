@@ -23,4 +23,9 @@ public class ViewController {
         return "anitalk/notice-detail";
     }
 
+    @GetMapping("/guide")
+    public String guide() {
+        return "anitalk/guide";
+    }
+
 }

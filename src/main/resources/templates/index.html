@@ -10,19 +10,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-    <link rel="stylesheet" href="/css/main-header.css">
+    <link rel="stylesheet" th:href="@{/css/main-header.css}">
+    <link rel="stylesheet" th:href="@{/css/main-footer.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+  
 </head>
 <body>
 <div th:replace="~{include/main-header :: header}"></div>
 
-
-<div class="main-container">
-    <div class="row">
-        <div class="col-md-12">
+<main>
+    <div class="container n1">
+        <h1>메인 페이지</h1>
+    </div>
+    <div class="container n2">
+        <div class="">
             <h1>메인 페이지</h1>
         </div>
     </div>
-</div>
+    <div class="container n3">
+        <div class="">
+            <h1>메인 페이지</h1>
+        </div>
+    </div>
 
+</main>
+
+
+<div th:replace="~{include/footer :: footer}"></div>
+<script th:src="@{/js/main-header.js}"></script>
 </body>
 </html>

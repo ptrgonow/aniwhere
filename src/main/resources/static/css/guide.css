@@ -6,6 +6,9 @@
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans KR','Roboto', sans-serif;
+}
+
+html {
     font-size: 16px;
 }
 
@@ -14,190 +17,95 @@ body {
     height: 100vh;
 }
 
-
-/*  이용안내 사진 조절  */
-
-.image-container .p1 {
-
+main {
+    width: auto;
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 1rem;
-    margin-top: 10rem;
-    border-radius: 10%;
-
-
-}
-.image-container .p2 {
-
-    display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 90rem;
-    margin-top: 4rem;
-    border-radius: 10%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    margin-left: 20rem;
+    margin-right: 3rem;
 }
 
-.image-container .p3 {
-
-    display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 1rem;
+h2 {
     margin-top: 3rem;
-    border-radius: 10%;
-
+    margin-bottom: 3rem;
 
 }
 
-.image-container .p4 {
 
+span {
+    position: static; /* 기본 값으로 초기화, 필요에 따라 수정 */
+}
+
+span:before, span:after {
+    content: none; /* 가상 요소 제거 */
+    position: static; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    height: auto; /* 기본 값으로 초기화 */
+    bottom: auto; /* 기본 값으로 초기화 */
+    margin-top: 0; /* 기본 값으로 초기화 */
+    background: none; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+span:hover:before, span:hover:after {
+    background: none; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+.guide-container {
+    width: 70%;
+    margin-top: 5rem;
+    display: contents;
+    margin-left: auto;
+    font-size: 1rem;
+}
+
+
+.image-container {
+    position: relative;
+    width: 70%;
+    border-radius: 10px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
     display: flex;
-    width: 440px;
-    height: 350px;
-    margin-left: 90rem;
-    margin-top: 4rem;
-    border-radius: 10%;
 }
 
 
-
-
-/*  중간 소제목 */
-
-.text-container1{
-    position: absolute;
-    top: 48%; /* 원하는 위치로 조정하세요 */
-    left: 45%; /* 원하는 위치로 조정하세요 */
-    margin-right: 10rem;
-}
-
-
-.transparent-text1 {
-
+.tc {
+    margin-bottom: 3rem;
     text-align: center;
-    margin-top: 1rem;
-    color: #646464;
-
-
 }
 
-.text-container3{
-    position: absolute;
-    top: 103%; /* 원하는 위치로 조정하세요 */
-    left: 45%; /* 원하는 위치로 조정하세요 */
-    margin-right: 10rem;
-
+.tc.n1, .tc.n3, .tc.n5 {
+    color: #FFA07A;
 }
 
-
-.transparent-text3 {
-
-    text-align: center;
-    margin-top: 1rem;
-    color: #646464;
-
-}
-
-.text-container5{
-    position: absolute;
-    top: 155%; /* 원하는 위치로 조정하세요 */
-    left: 45%; /* 원하는 위치로 조정하세요 */
-    margin-right: 10rem;
-
-}
-
-.transparent-text5 {
-
-    text-align: center;
-    margin-top: 1rem;
-    color: #646464;
-
-}
-
-/* 마지막 소제목 */
-.text-container7{
-    position: absolute;
-    top: 210%; /* 원하는 위치로 조정하세요 */
-    left: 40%; /* 원하는 위치로 조정하세요 */
-    margin-right: 10rem;
-
-
-}
-.transparent-text7 {
-
-    text-align: center;
-    margin-top: 1rem;
-
-}
-
-
-
-
-
-
-/* 중간 글 */
-
-.transparent-text2 {
-
-    text-align: center;
-    font-size: 15px;
-
-}
-
-.transparent-text4 {
-
-    text-align: center;
-    font-size: 15px;
-
-}
-
-.transparent-text6 {
-
-    text-align: center;
-    font-size: 15px;
-
-}
-
-/* 요금 참고 공지 */
-.pet.guide1 {
-
-    color: #B4B4B4;
-    text-align: center;
-    font-size: 15px;
-
-}
-
-.pet.guide2 {
-
-    color: #B4B4B4;
-    text-align: center;
-    font-size: 15px;
-
-}
-
-/* 이미지의 기본 상태를 투명하게 설정 */
 .image-container.p1 img {
-    opacity: 0.6; /* 초기 상태는 투명 */
-    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    opacity: 0.6;
+    transition: opacity 1s;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 }
 
 .image-container.p2 img {
     opacity: 0.6; /* 초기 상태는 투명 */
-    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    transition: opacity 1s;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 }
 
 .image-container.p3 img {
-    opacity: 0.6; /* 초기 상태는 투명 */
-    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    opacity: 0.6;
+    transition: opacity 1s;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 }
 
 .image-container.p4 img {
-    opacity: 0.6; /* 초기 상태는 투명 */
-    transition: opacity 1s; /* 2초 동안의 전환 효과 */
+    opacity: 0.6;
+    transition: opacity 1s;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -219,48 +127,46 @@ body {
     opacity: 2; /* 불투명 */
 }
 
-/* 이용료 */
-
-.pay {
-
-    text-align: center;
-    margin-top: 10rem;
-
+/* 스크롤 코스 추가 버튼 */
+.walk_add img {
+    width: 70px;
+    height: 70px;
 }
 
-.pay td {
-
-    text-align: center;
-    margin-top: 50px;
-    padding: 30px 20px;
-
+#walk_add_btn {
+    right: 2%;
+    position: absolute;
+    top: 85%;
+    z-index: 10;
 }
 
-.pay tr:hover td {
-    background : #e7f5ff;
+
+.tc.n7 {
+    margin-bottom: 2rem;
 }
 
-.pay table {
-    width: 80%;
-
-    margin: auto;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 15px;
+/* 채워지는 효과 */
+.btn {
+    border-radius: 10px;
+    padding: 10px;
+    background: transparent;
+    text-transform: uppercase;
+    position: relative;
+    transition: background-color 0.4s, color 0.4s;
     overflow: hidden;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
-
+    z-index: 1;
+    color: #febe98;
 }
 
-.h6 {
-
-    margin-bottom: 5rem;
-
+.btn:focus {
+    outline: none;
 }
 
-.h3 {
-
-    margin-top: 10rem;
-    text-align: center;
-
+.btn:hover {
+    background-color: #febe98;
+    color: #fff;
 }
+
+
+
+
