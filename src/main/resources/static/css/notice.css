@@ -32,6 +32,7 @@ body a{
     margin-left: 80.5%;
     margin-bottom: 50px;
     background-color: #febe98;
+    font-size: 15px;
 
 }
 
@@ -45,6 +46,7 @@ body a{
     margin: 60px auto;
     width: 58%;
     border-left: none;
+    font-size: 16px;
 }
 
 .notice_content table, th, td{
@@ -89,13 +91,13 @@ body a{
     margin: 10px 5px 30px 5px;
     justify-content: center;
     padding: 5px 5px;
+    font-size: 14px;
 }
 
 .page_form i{
     margin-right: 10px;
     margin-left: 10px;
 }
-
 
 .page_form p{
     font-weight: bold;
