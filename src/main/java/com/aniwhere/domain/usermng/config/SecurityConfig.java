@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -16,14 +17,14 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/login", "/loginProc", "/joinProc").permitAll()
-                        .requestMatchers("/resources/**", "/css/**", "/js/**").permitAll()
+                        .requestMatchers("/resources/**", "/css/**", "/js/**", "/static/**","/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .loginProcessingUrl("/loginProc")
-                        .defaultSuccessUrl("/")
+                        .successHandler(new SuccessHandler()) // SuccessHandler 사용
                         .failureUrl("/?error=true") // 로그인 실패 시 홈으로 리디렉션
                         .permitAll()
                 )
