@@ -29,6 +29,8 @@ a {
     cursor: pointer;
 }
 
+
+
 .logo-container {
     width: 100%;
     height: 10%;
@@ -111,6 +113,7 @@ a {
                 height: inherit;
                 background: #e193ac;
                 position: absolute;
+                margin-top: 1.5rem;
                 animation: secBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
                 animation-delay: 2s;
                 display: flex;
@@ -121,9 +124,10 @@ a {
                 animation-delay: 3.2s;
                 opacity: 0;
                 font-weight: 400;
+                margin-top: 1.5rem;
                 font-family: 'Roboto', sans-serif;
                 color: #ce6f32;
-                font-size: 10px;
+                font-size: 1rem;
                 text-transform: uppercase;
                 letter-spacing: 5px;
             }
@@ -219,12 +223,16 @@ a {
     }
 }
 
+
+
 /*          nav         */
 
-.container {
-    vertical-align: middle;
-    text-align: center;
+.h-container {
+
     width: 100%;
+    height: 35%;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .login {
@@ -238,12 +246,15 @@ a {
 
 
 .list {
+
+    text-align: center;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
 li {
+    margin-top: 1rem;
     display: inline-block;
     padding: 0 20px;
 }
@@ -322,7 +333,6 @@ span {
         }
     }
 }
-
 
 
 /* 모달 스타일 */
