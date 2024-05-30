@@ -23,4 +23,12 @@ public class ViewController {
         return "/include/mypage-history";
     }
 
+    @GetMapping("/signin")
+    public String login() {
+        return "popup/login";
+    }
+
+    @GetMapping("/guide")
+    public String guide() { return "anitalk/guide";
+    }
 }
