@@ -110,3 +110,17 @@ body {
 .row{
     align-items: center;
 }
+.list-unstyled li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.price {
+    margin-left: auto;
+}
+
+.text-muted {
+    min-width: 100px;
+}
