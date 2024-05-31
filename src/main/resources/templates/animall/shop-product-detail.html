@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/main-header.css">
+    <link rel="stylesheet" href="/static/css/shop-product-detail.css">
+
+</head>
+<body>
+
+<div th:insert="~{/include/main-header :: header }"></div>
+
+
+<div class="container">
+    <div class="product-image">
+        <img src="/static/image/shop_product/패션_코쿤펫_아기곰_패딩.png" alt="Dog in Jacket">
+    </div>
+    <div class="product-details">
+        <div class="product-title">퐁퐁패딩(베이지)</div>
+        <div class="product-description">가볍고 따뜻하게 편안한 매력적인 강아지 패딩</div>
+        <div class="product-price">56,000원</div>
+        <div class="size-selector">
+            <label for="size">사이즈</label>
+            <select id="size">
+                <option value="" disabled selected>[필수] 옵션을 선택해 주세요</option>
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
+            </select>
+        </div>
+        <div class="order-details">
+            <table>
+                <thead>
+                    <tr>
+                        <th>상품명</th>
+                        <th>상품수</th>
+                        <th>가격</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <h4>fyi : order details will go here</h4>
+                </tbody>
+            </table>
+            <div class="total">
+                <span>TOTAL: </span>
+                <span>0 (0개)</span>
+            </div>
+        </div>
+
+
+        <div class="additional-info">
+            <!-- 배너??? -->
+            <p>현장 결제할 때마다, 월 50 포인트</p>
+        </div>
+
+        <div class="reviews">
+            <a href="#reviews">REVIEW</a>
+            <a href="#qna">QnA</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

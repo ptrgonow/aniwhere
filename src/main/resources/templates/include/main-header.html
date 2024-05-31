@@ -29,7 +29,7 @@
                     <a href="#" class="list__item--gray" onclick="openModal('loginModal')"><span>로그인</span></a>
                 </li>
                 <li th:if="${#authorization.expression('isAuthenticated()')}" class="list__item--gray">
-                    <span th:text="${#authentication.name}"></span>
+                   <a href="/mng/mypage"><span th:text="${#authentication.name}"></span></a>
                     <a href="/logout">Logout</a>
                 </li>
             </ul>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="role">
                     <div class="block"></div>
-                    <p>당신과 나의 걸음</p>
+                    <p>모두를 위한 산책, 어디서든 ANIWHERE</p>
                 </div>
             </div>
         </div>

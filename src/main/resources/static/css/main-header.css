@@ -33,8 +33,8 @@ a {
     width: 100%;
     height: 10%;
     background: #fff;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     display: flex;
     justify-content: center;
@@ -225,7 +225,6 @@ a {
 /*          nav         */
 
 .h-container {
-
     width: 100%;
     height: 35%;
     font-size: 1.5rem;
@@ -234,6 +233,7 @@ a {
 
 .login {
     width: 100%;
+    height: 3rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -243,7 +243,6 @@ a {
 
 
 .list {
-
     text-align: center;
     list-style: none;
     margin: 0;
@@ -336,7 +335,7 @@ span {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     top: 0;
     width: 100%;
