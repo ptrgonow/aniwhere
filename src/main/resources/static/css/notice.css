@@ -1,14 +1,36 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+/* color: #febe98 */
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
 }
 
-body a{
+html {
+    font-size: 16px;
+}
+
+body {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+a {
     text-decoration: none;
-    color: black;
+    color: #000;
+}
+
+li {
     list-style: none;
 }
+
 
 /* 공지사항 */
 .notice_title{
@@ -32,6 +54,7 @@ body a{
     margin-left: 80.5%;
     margin-bottom: 50px;
     background-color: #febe98;
+    font-size: 15px;
 
 }
 
@@ -45,6 +68,7 @@ body a{
     margin: 60px auto;
     width: 58%;
     border-left: none;
+    font-size: 16px;
 }
 
 .notice_content table, th, td{
@@ -89,13 +113,13 @@ body a{
     margin: 10px 5px 30px 5px;
     justify-content: center;
     padding: 5px 5px;
+    font-size: 14px;
 }
 
 .page_form i{
     margin-right: 10px;
     margin-left: 10px;
 }
-
 
 .page_form p{
     font-weight: bold;

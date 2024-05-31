@@ -15,20 +15,17 @@ public class ViewController {
 
     @GetMapping("/mypage")
     public String mypage() {
-        return "/include/mypage";
+        return "popup/mypage";
     }
 
     @GetMapping("/history")
     public String history() {
-        return "/include/mypage-history";
+        return "popup/mypage-history";
     }
 
-    @GetMapping("/signin")
-    public String login() {
-        return "popup/login";
-    }
 
     @GetMapping("/guide")
-    public String guide() { return "anitalk/guide";
+    public String guide() {
+        return "anitalk/guide";
     }
 }

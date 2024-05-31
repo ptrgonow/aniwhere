@@ -16,14 +16,14 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/login", "/loginProc", "/joinProc").permitAll()
-                        .requestMatchers("/resources/**", "/css/**", "/js/**").permitAll()
+                        .requestMatchers("/resources/**", "/css/**", "/js/**", "/static/**","/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .loginProcessingUrl("/loginProc")
-                        .defaultSuccessUrl("/")
+                        .successHandler(new SuccessHandler()) // SuccessHandler 사용
                         .failureUrl("/?error=true") // 로그인 실패 시 홈으로 리디렉션
                         .permitAll()
                 )
@@ -36,7 +36,7 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .exceptionHandling(exceptionHandling -> exceptionHandling
-                        .accessDeniedPage("/access-denied")
+                        .accessDeniedPage("/error/403")
                 );
 
 

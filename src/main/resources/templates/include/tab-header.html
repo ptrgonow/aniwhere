@@ -27,7 +27,7 @@
                     <a href="#" class="list__item--gray"> <span>로그인</span></a>
                 </li>
                 <li th:if="${#authorization.expression('isAuthenticated()')}" class="list__item--gray">
-                    <span th:text="${#authentication.name}"></span>
+                    <a href="/mng/mypage"><span th:text="${#authentication.name}"></span></a>
                     <a th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
@@ -38,7 +38,7 @@
                 <a href="/route/cor" class="list__item--yellow"> <span>AniWhere</span></a>
             </li>
             <li class="list__item--blue">
-                <a href="/" class="list__item--blue"> <span>AniMall</span></a>
+                <a href="/shop/main" class="list__item--blue"> <span>AniMall</span></a>
             </li>
             <li class="list__item--red">
                 <a href="/board/notice" class="list__item--red"> <span>AniTalk</span></a>
