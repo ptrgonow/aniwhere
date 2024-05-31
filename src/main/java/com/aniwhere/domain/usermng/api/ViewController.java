@@ -15,12 +15,12 @@ public class ViewController {
 
     @GetMapping("/mypage")
     public String mypage() {
-        return "/include/mypage";
+        return "popup/mypage";
     }
 
     @GetMapping("/history")
     public String history() {
-        return "/include/mypage-history";
+        return "popup/mypage-history";
     }
 
 
