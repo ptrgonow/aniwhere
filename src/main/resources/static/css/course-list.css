@@ -102,6 +102,7 @@ body {
     border-radius: 50px;
     font-size: 16px;
     font-weight: 300;
+    background-color: #f8f8f7;
 }
 
 .search:focus{

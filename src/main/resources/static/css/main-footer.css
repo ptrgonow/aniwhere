@@ -54,6 +54,7 @@ body a {
 
 .footer_content li {
     margin-bottom: 5px;
+    margin-top: 0;
 }
 
 .footer_info {
@@ -97,9 +98,10 @@ body a {
     margin-bottom: 10px;
 }
 
-/* @media (max-width: 1690px) {
+@media (max-width: 1690px) {
     .footer_container {
         padding: 50px 5% 40px;
     }
- */
+}
+
 
