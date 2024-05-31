@@ -19,3 +19,4 @@ window.addEventListener('scroll', () => {
         scrollButtons.classList.remove('visible');
     }
 });
+

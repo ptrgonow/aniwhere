@@ -20,55 +20,65 @@
 <div th:replace="~{/include/tab-header :: header }"></div>
 <div th:replace="~{/include/animall-side :: side }"></div>
 
-<div class="container">
-    <div class="product-image">
-        <img src="" alt="Dog in Jacket">
-    </div>
-    <div class="product-details">
-        <div class="product-title">퐁퐁패딩(베이지)</div>
-        <div class="product-description">가볍고 따뜻하게 편안한 매력적인 강아지 패딩</div>
-        <div class="product-price">56,000원</div>
-        <div class="size-selector">
-            <label for="size">사이즈</label>
-            <select id="size">
-                <option value="" disabled selected>[필수] 옵션을 선택해 주세요</option>
-                <option value="S">Small</option>
-                <option value="M">Medium</option>
-                <option value="L">Large</option>
-            </select>
+<main>
+    <div class="s-container">
+        <div class="product-image">
+            <img src="" alt="Dog in Jacket">
         </div>
-        <div class="order-details">
-            <table>
-                <thead>
+        <div class="product-details">
+            <div class="product-title">퐁퐁패딩(베이지)</div>
+            <div class="product-description">가볍고 따뜻하게 편안한 매력적인 강아지 패딩</div>
+            <div class="product-price">56,000원</div>
+            <div class="size-selector">
+                <label for="size">사이즈</label>
+                <select id="size">
+                    <option value="" disabled selected>[필수] 옵션을 선택해 주세요</option>
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                </select>
+            </div>
+            <div class="fyi">
+                <span>친환경 제품입니다.</span>
+            </div>
+            <div class="order-details">
+                <table>
+                    <thead>
                     <tr>
                         <th>상품명</th>
                         <th>상품수</th>
                         <th>가격</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <h4>fyi : order details will go here</h4>
-                </tbody>
-            </table>
-            <div class="total">
-                <span>TOTAL: </span>
-                <span>0 (0개)</span>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
+                </table>
+                <div class="total">
+                    <span>TOTAL: </span>
+                    <span>0 (0개)</span>
+                </div>
             </div>
+            
+            <div class="additional-info">
+                <!-- 배너??? -->
+                <p>현장 결제할 때마다, 월 50 포인트</p>
+            </div>
+            
+            <div class="buttons">
+                <button class="buy-now" th:onclick="|location.href='@{/pay/view}'|">바로구매</button>
+                <button class="add-to-cart">장바구니</button>
+                <button class="wishlist">관심상품</button>
+            </div>
+            
+            <div class="reviews">
+                <a href="#">REVIEW</a>
+                <a href="/board/faq">FAQ</a>
+            </div>
+        
         </div>
-
-
-        <div class="additional-info">
-            <!-- 배너??? -->
-            <p>현장 결제할 때마다, 월 50 포인트</p>
-        </div>
-
-        <div class="reviews">
-            <a href="#reviews">REVIEW</a>
-            <a href="#qna">QnA</a>
-        </div>
-
     </div>
-</div>
+</main>
 
 </body>
 </html>

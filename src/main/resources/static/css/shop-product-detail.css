@@ -1,15 +1,43 @@
-body {
-    font-family: Arial, sans-serif;
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+/* color: #febe98 */
+
+* {
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
 }
 
-.total span {
+html {
+    width: 100%;
+    height: 100vh;
+    font-size: 16px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+
+.total span,
+.fyi span {
     position: static; /* 기본 값으로 초기화, 필요에 따라 수정 */
+    letter-spacing: 0.2rem;
 }
 
-.total span:before, .total span:after {
+.total span:before, .total span:after,
+.fyi span:before, .fyi span:after{
     content: none; /* 가상 요소 제거 */
     position: static; /* 기본 값으로 초기화 */
     width: auto; /* 기본 값으로 초기화 */
@@ -20,20 +48,19 @@ body {
     transition: none; /* 기본 값으로 초기화 */
 }
 
-.total span:hover:before, .total span:hover:after {
+.total span:hover:before, .total span:hover:after,
+.fyi span:hover:before, .fyi span:hover:after{
     background: none; /* 기본 값으로 초기화 */
     width: auto; /* 기본 값으로 초기화 */
     transition: none; /* 기본 값으로 초기화 */
 }
 
-.container {
+.s-container {
     display: flex;
-    max-width: 1200px;
-    margin: 20px auto;
+    width: 50%;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
 }
 
 .product-image {
@@ -54,6 +81,7 @@ body {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid #000;
+    letter-spacing: 0.1rem;
 }
 
 .product-title {
@@ -77,6 +105,12 @@ body {
     color: #333;
     border-bottom: 1px solid #000;
 }
+
+.fyi {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
 
 .size-selector {
     margin-bottom: 20px;
@@ -115,15 +149,15 @@ body {
 }
 
 .total {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
 }
 
 .buttons {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    justify-content: space-evenly;
+    margin-top: 1rem;
 }
 
 .buttons button {
@@ -156,7 +190,8 @@ body {
 
 .reviews {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
+    margin-top: 2rem;
 }
 
 .reviews a {
