@@ -31,9 +31,6 @@ span:hover:before, span:hover:after {
     transition: none; /* 기본 값으로 초기화 */
 }
 
-
-
-
 table {
     margin: auto;
 }
@@ -51,10 +48,6 @@ input[type="text"] {
     box-sizing: border-box;
     outline: none; /* 클릭 시 기본 아웃라인 제거 */
 }
-
-
-
-
 
 /* 클릭(포커스) 상태 스타일 */
 input[type="text"]:focus {
@@ -165,4 +158,15 @@ input[type="submit"]:active {
 
     text-align: center;
 
+}
+
+
+.write_title {
+    text-align: center; /* 부모 요소를 가운데 정렬 */
+}
+
+.write_title hr {
+    margin: 5px auto 50px auto; /* 위쪽과 아래쪽 여백은 유지하면서 좌우 여백을 자동으로 설정하여 가운데 정렬 */
+    width: 68%; /* 원하는 너비로 설정 */
+    color: lightgray;
 }
