@@ -13,5 +13,9 @@ public class ViewController {
         return "animall/shop-admin";
     }
 
+    @GetMapping("/product-reg")
+    public String preg() {
+        return "animall/shop-admin-product-reg";
+    }
 
 }

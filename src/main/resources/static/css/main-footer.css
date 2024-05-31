@@ -65,6 +65,7 @@ li {
 .footer_content li {
     margin-top: 0;
     margin-bottom: 5px;
+    margin-top: 0;
 }
 
 .footer_info {
@@ -108,9 +109,10 @@ li {
     margin-bottom: 10px;
 }
 
-/* @media (max-width: 1690px) {
+@media (max-width: 1690px) {
     .footer_container {
         padding: 50px 5% 40px;
     }
- */
+}
+
 
