@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="/css/aniwhere-side.css">
     <link rel="stylesheet" href="/css/notice-write.css">
 
+
+
+
 </head>
 <body>
 
@@ -26,11 +29,16 @@
 
         </table>
         <form action="notice.html" method="POST">
+
+            <div class="titleCen">
             <tr><td colspan="2" class="write_title2"><h2>공지사항 작성</h2></td></tr>
             <tr><td colspan="2"><hr></td></tr>
+            </div>
 
             <tr><td class="header">제목</td></tr>
             <tr><td><input type="text" id="title-input" placeholder="제목을 입력하세요" name="title"></td></tr>
+
+            <div class="category">
             <tr><td class="header">카테고리</td></tr>
             <tr>
                 <td>
@@ -41,12 +49,16 @@
                     </select>
                 </td>
             </tr>
+            </div>
+
             <!-- 수정된 부분 -->
             <div id="editor-container">
                 <textarea name="text" id="editor"></textarea>
             </div>
             <!-- 등록 버튼 -->
             <p><input type="submit" value="등록" onclick="alert('작성완료')"></p>
+            <p><button type="button" onclick="goBack()">목록</button></p>
+
         </form>
     </div>
 </div>
@@ -59,6 +71,12 @@
     document.getElementById('detail-input').addEventListener('click', function() {
         this.placeholder = '';
     });
+</script>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
