@@ -1,8 +1,14 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+}
+html {
+    font-size: 16px;
 }
 
 body {
@@ -12,8 +18,12 @@ body {
     min-height: 100vh;
 }
 
-body a {
-    color: black;
+a {
+    color: #000;
+}
+
+li {
+    list-style: none;
 }
 
 .footer {
