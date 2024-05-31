@@ -1,0 +1,133 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 1rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 메인 콘텐츠 스타일 설정 */
+main {
+    padding: 2em;
+    flex: 1;
+    text-align: center;
+    margin-top: 60px; /*메인 콘텐츠의 상단 여백*/
+}
+/* 메인의 콘텐츠 레이아웃 스타일 설정 */
+.container {
+    display: flex;
+    flex: 1;
+    margin-top: 100px; /*헤더 높이만큼 아래로 내려가게 함*/
+}
+
+/* 메인에서 화면에 보여지는 제품들... */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.product {
+    width: calc(33.333% - 20px);
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    text-align: center;
+}
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+.style-buttons{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.style-buttons button{
+    margin: 0 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* 제품 정렬 방식 - 스타일 변경을 위한 클래스 */
+.grid .product {
+    width: calc(33.333% - 20px);
+}
+.list .product{
+    width: calc(100% - 20px);
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.list .product img {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+}
+.compact .product {
+    width: calc(50% - 20px);
+}
+.detailed .product {
+    width: calc(100% - 20px);
+}
+.masonry .product {
+    width: calc(25% - 20px);
+}
+
+/* 스크롤 버튼 스타일 - 우측 하단 위치 */
+.scroll-buttons{
+    position:fixed;
+    bottom:100px;
+    right:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    opacity:0;
+    transition: opacity 0.3s;
+}
+.scroll-buttons button{
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color:white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.scroll-buttons button:hover{
+    background-color: #555;
+}
+.scroll-buttons.visible{
+    opacity: 1;
+}
+
+/* 푸터 스타일 설정 *************************************************************/
+footer {
+    background-color: #555;
+    color: white;
+    text-align: center;
+    padding: 1em;
+
+    width: 100%;
+    bottom: 0;
+}
+
+
+
+
+
+
+
