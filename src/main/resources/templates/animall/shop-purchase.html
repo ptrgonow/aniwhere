@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="/css/main-header.css">
     <link rel="stylesheet" href="/css/aniwhere-side.css">
     <link rel="stylesheet" href="/css/shop-purchase.css">
-    <link rel="stylesheet" href="/js/shop-purchase.js">
+
 </head>
 <body>
 
-<div th:replace="~{/include/tab-header :: header}"></div>
-<div th:replace="~{/include/mypage-side :: side}"></div>
+<div th:replace="~{/include/tab-header :: header }"></div>
+<div th:replace="~{/include/animall-side :: side }"></div>
+
 
 <div class="container">
     <div id="titleArea">
@@ -186,20 +187,26 @@
                             </colgroup>
                             <tbody>
                             <tr class="emailCheck ">
-                                <th scope="row">이메일 <span class="icoRequired">필수</span>
-                                </th>
+                                <th scope="row">이메일<span class="icoRequired">필수</span></th>
                                 <td>
-                                    <div class="displayFlex"><input id="useCheckEmailDuplication" name="useCheckEmailDuplication" fw-filter="" fw-label="useCheckEmailDuplication" fw-msg="" value="F" type="hidden" disabled=""><input id="etc_subparam_email1" name="etc_subparam_email1" fw-filter="isFill" fw-label="이메일" fw-alone="N" fw-msg="" placeholder="" value="" type="text" disabled=""> <input id="emailDuplCheck" name="emailDuplCheck" fw-filter="" fw-label="email 중복 체크" fw-msg="" value="F" type="hidden" disabled=""><input id="login_id_type" name="login_id_type" fw-filter="" fw-label="로그인 아이디 타입" fw-msg="" value="id" type="hidden" disabled=""><button type="button" class="btnBasic" onclick="checkEmail(&#39;&#39;)">중복확인</button>
+                                    <div class="displayFlex"><input id="useCheckEmailDuplication" name="useCheckEmailDuplication" fw-filter="" fw-label="useCheckEmailDuplication" fw-msg="" value="F" type="hidden" disabled="">
+                                        <input id="etc_subparam_email1" name="etc_subparam_email1" fw-filter="isFill" fw-label="이메일" fw-alone="N" fw-msg="" placeholder="" value="" type="text" disabled="">
+                                        <input id="emailDuplCheck" name="emailDuplCheck" fw-filter="" fw-label="email 중복 체크" fw-msg="" value="F" type="hidden" disabled="">
+                                        <input id="login_id_type" name="login_id_type" fw-filter="" fw-label="로그인 아이디 타입" fw-msg="" value="id" type="hidden" disabled="">
+                                        <button type="button" class="btnBasic" onclick="checkEmail(&#39;&#39;)">중복확인</button>
                                     </div>
-                                    <ul class="ec-base-help"><li id="emailMsg">
-                                    </li></ul>
+                                    <ul class="ec-base-help">
+                                        <li id="emailMsg"></li>
+                                    </ul>
                                 </td>
                             </tr>
                             <tr class="idCheck ">
-                                <th scope="row">아이디 <span class="icoRequired">필수</span>
+                                <th scope="row">아이디<span class="icoRequired">필수</span>
                                 </th>
                                 <td>
-                                    <div class="displayFlex"><input id="etc_subparam_member_id" name="etc_subparam_member_id" fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="아이디" fw-msg="" class="inputTypeText" placeholder="" value="" type="text" disabled=""> <input id="idDuplCheck" name="idDuplCheck" fw-filter="" fw-label="id 중복 체크" fw-msg="" value="" type="hidden" disabled=""><button type="button" class="btnBasic" onclick="checkId(&#39;&#39;)">중복확인</button>
+                                    <div class="displayFlex">
+                                        <input id="etc_subparam_member_id" name="etc_subparam_member_id" fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="아이디" fw-msg="" class="inputTypeText" placeholder="" value="" type="text" disabled=""> <input id="idDuplCheck" name="idDuplCheck" fw-filter="" fw-label="id 중복 체크" fw-msg="" value="" type="hidden" disabled="">
+                                        <button type="button" class="btnBasic" onclick="checkId(&#39;&#39;)">중복확인</button>
                                     </div>
                                     <p id="idMsg" class="ec-base-help"></p>
                                 </td>
@@ -645,5 +652,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

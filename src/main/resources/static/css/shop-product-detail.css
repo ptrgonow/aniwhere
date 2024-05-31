@@ -5,6 +5,27 @@ body {
     background-color: #f5f5f5;
 }
 
+.total span {
+    position: static; /* 기본 값으로 초기화, 필요에 따라 수정 */
+}
+
+.total span:before, .total span:after {
+    content: none; /* 가상 요소 제거 */
+    position: static; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    height: auto; /* 기본 값으로 초기화 */
+    bottom: auto; /* 기본 값으로 초기화 */
+    margin-top: 0; /* 기본 값으로 초기화 */
+    background: none; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+.total span:hover:before, .total span:hover:after {
+    background: none; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
 .container {
     display: flex;
     max-width: 1200px;
@@ -32,18 +53,21 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid #000;
 }
 
 .product-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
+    border-bottom: 1px solid #000;
 }
 
 .product-description {
     margin-bottom: 20px;
     font-size: 16px;
     color: #666;
+    border-bottom: 1px solid #000;
 }
 
 .product-price {
@@ -51,6 +75,7 @@ body {
     font-weight: bold;
     margin-bottom: 20px;
     color: #333;
+    border-bottom: 1px solid #000;
 }
 
 .size-selector {

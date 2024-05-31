@@ -11,17 +11,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" href="/css/main-header.css">
-    <link rel="stylesheet" href="/static/css/shop-product-detail.css">
+    <link rel="stylesheet" href="/css/aniwhere-side.css">
+    <link rel="stylesheet" href="/css/shop-product-detail.css">
 
 </head>
 <body>
 
-<div th:insert="~{/include/tab-header :: header }"></div>
-
+<div th:replace="~{/include/tab-header :: header }"></div>
+<div th:replace="~{/include/animall-side :: side }"></div>
 
 <div class="container">
     <div class="product-image">
-        <img src="/static/image/shop_product/패션_코쿤펫_아기곰_패딩.png" alt="Dog in Jacket">
+        <img src="" alt="Dog in Jacket">
     </div>
     <div class="product-details">
         <div class="product-title">퐁퐁패딩(베이지)</div>
