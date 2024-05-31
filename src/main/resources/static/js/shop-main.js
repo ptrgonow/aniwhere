@@ -19,27 +19,3 @@ window.addEventListener('scroll', () => {
         scrollButtons.classList.remove('visible');
     }
 });
-
-/* 사이드 바 탭 버튼 카테고리/브랜드 */
-function showTab(tab){
-    const tabs = document.querySelectorAll('.tab-content');
-    tabs.forEach(t => t.classList.remove('active'));
-
-    const buttons = document.querySelectorAll('.tab-button');
-    buttons.forEach(b => b.classList.remove('active'));
-
-    document.getElementById(tab).classList.add('active');
-    document.querySelector(`.tab-button[onclick="showTab('${tab}')"]`).classList.add('active');
-}
-
-/* 사이드 바 탭 버튼 카테고리/브랜드 => 알파벳 순서 */
-function filterBrands(initial){
-    const brands = document.querySelectorAll('.brand-item');
-    brands.forEach(brand => {
-        if(initial === 'all' || brand.dataset.initial === initial){
-            brand.style.display = '';
-        }else{
-            brand.style.display = 'none';
-        }
-    });
-}

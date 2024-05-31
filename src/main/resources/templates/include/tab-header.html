@@ -27,7 +27,7 @@
                     <a href="#" class="list__item--gray"> <span>로그인</span></a>
                 </li>
                 <li th:if="${#authorization.expression('isAuthenticated()')}" class="list__item--gray">
-                    <span th:text="${#authentication.name}"></span>
+                    <a href="/mng/mypage"><span th:text="${#authentication.name}"></span></a>
                     <a th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
