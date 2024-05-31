@@ -15,10 +15,24 @@ import java.nio.file.Paths;
 public class ViewController {
 
 
-
-    @GetMapping("/cart")
-    public String cart()  {return "animall/shop-cart";
+    @GetMapping("/main")
+    public String shopMain()  {
+        return "animall/shop-main";
     }
 
+    @GetMapping("/cart")
+    public String cart()  {
+        return "animall/shop-cart";
+    }
+
+    @GetMapping("/detail")
+    public String detail()  {
+        return "animall/shop-product-detail";
+    }
+
+    @GetMapping("/purchase")
+    public String purchase()  {
+        return "animall/shop-purchase";
+    }
 
 }
