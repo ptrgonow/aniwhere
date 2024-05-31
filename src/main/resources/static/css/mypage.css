@@ -1,19 +1,68 @@
-body {
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+/* color: #febe98 */
+
+* {
     margin: 0;
-    padding-top: 40px;
-    color: #2e323c;
-    background: #f5f6fa;
-    position: relative;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+li {
+    list-style: none;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mp-container {
+    width: 65%;
     height: 100%;
 }
+
+.in-cont {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 5rem;
+    height: 60%;
+}
+
 .account-settings .user-profile {
     margin: 0 0 1rem 0;
     padding-bottom: 1rem;
     text-align: center;
 }
+
 .account-settings .user-profile .user-avatar {
     margin: 0 0 1rem 0;
 }
+
 .account-settings .user-profile .user-avatar img {
     width: 90px;
     height: 90px;
@@ -21,9 +70,11 @@ body {
     -moz-border-radius: 100px;
     border-radius: 100px;
 }
+
 .account-settings .user-profile h5.user-name {
     margin: 0 0 0.5rem 0;
 }
+
 .account-settings .user-profile h6.user-email {
     margin: 0;
     font-size: 0.8rem;
@@ -36,8 +87,8 @@ body {
 }
 .account-settings .about h5 {
     margin: 0 0 15px 0;
-    color: #007ae1;
 }
+
 .account-settings .about p {
     font-size: 0.825rem;
 }
@@ -58,13 +109,9 @@ body {
     border-radius: 5px;
     border: 0;
     margin-bottom: 1rem;
-    margin-top: 150px;
-}
-
-.card.h-100{
-    margin-left: 150px;
 
 }
+
 
 .small-text {
     font-size: 16px; /* 원하는 크기로 조정하세요 */
@@ -77,4 +124,9 @@ body {
 
 .addr{
     margin-top: 100px;
+}
+
+.sub-btn {
+    margin-top: 1rem;
+    text-align: center;
 }
