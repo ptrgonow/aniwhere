@@ -103,7 +103,6 @@ main {
 }
 
 .p-info {
-    display: flex;
     margin: 1rem 0;
     white-space: nowrap;
     overflow: hidden;
