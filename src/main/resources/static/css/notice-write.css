@@ -38,39 +38,48 @@ table {
     margin: auto;
 }
 
-input[type="text"],
-textarea {
-    border: 1.5px rgb(255, 197, 108) solid;
-    width: 500px;
-    height: 30px; /* input[type="text"]의 높이 */
+/* 기본 스타일 */
+input[type="text"] {
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    border: 1.5px solid rgb(255, 197, 108); /* 주황색 테두리 */
     border-radius: 5px;
-    padding-left: 10px;
-    text-align: left;
+    background-color: white; /* 흰색 배경 */
+    color: black; /* 텍스트 색상 */
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none; /* 클릭 시 기본 아웃라인 제거 */
+}
+
+
+
+
+
+/* 클릭(포커스) 상태 스타일 */
+input[type="text"]:focus {
+    border: 1.5px solid rgb(255, 197, 108); /* 포커스 시 주황색 테두리 유지 */
 }
 
 textarea {
-    height: 330px; /* textarea의 높이 */
-    resize: vertical; /* textarea 크기 조정 방향 */
+    height: 100px; /* 내용 입력창 높이 설정 */
+    resize: vertical; /* 높이 조절 가능 */
 }
 
-input[type="file"] {
-    border: 1.5px rgb(255, 197, 108) solid;
-    border-radius: 5px;
-    padding: 5px;
-    width: 200px;
-}
 
-input[type="submit"] {
-    width: 100px;
+
+input[type="submit"], button[type="button"] {
+    width: 70px;
     height: 40px;
     font-size: 15px;
     border: 0;
     outline: 1.5px rgb(255, 197, 108) solid;
     border-radius: 5px;
-    background-color: #ffd093; /* 버튼 배경을 하얀색으로 변경 */
-    color: black; /* 버튼 텍스트 색상을 검정으로 변경 */
+    background-color: #ffd093; /* 버튼 배경 색상 */
+    color: black; /* 버튼 텍스트 색상 */
     cursor: pointer;
     float: right; /* 버튼을 오른쪽으로 배치 */
+    margin-right: 1rem;
 }
 
 input[type="submit"]:active {
@@ -78,11 +87,13 @@ input[type="submit"]:active {
     background-color: rgb(255, 162, 11); /* 클릭 시 버튼 배경 색상 */
 }
 
-.header {
 
+
+.header {
 
     height: 30px;
     text-align: center;
+
 }
 
 .all {
@@ -91,23 +102,33 @@ input[type="submit"]:active {
     justify-content: center;
     align-items: center;
     height: 95vh;
+    padding-inline: 20px;
 
 }
 
+
+
+.category {
+
+    float: right; /* 카테고리 입력창을 오른쪽으로 배치 */
+    width: 200px; /* 카테고리 입력창의 너비 */
+
+}
 
 
 .write_title2 {
-    margin-top: 3rem;
+
     text-align: center;
     width: fit-content;
+
 }
 
 .write_title hr {
-    margin: 5px 0 10px 0;
-    width: 100%;
+    margin: 15px 10px 50px 10px; /* 위, 오른쪽, 아래, 왼쪽 여백을 각각 5px, 10px, 50px, 10px로 지정 */
+    width: calc(100% - 20px); /* 너비를 전체 너비에서 좌우 여백의 총합인 20px를 뺀 값으로 설정 */
     color: lightgray;
-
 }
+
 
 #editor-container {
 
@@ -131,11 +152,17 @@ input[type="submit"]:active {
     resize: none; /* 사용자가 입력 창의 크기를 조절할 수 없도록 합니다. */
 }
 
-.ck-editor__editable { /* CKEditor 콘텐츠 영역 스타일 */
-    min-height: 400px; /* 최소 높이 설정 */
-    max-height: 600px; /* 최대 높이 설정 */
-    overflow: auto; /* 스크롤 활성화 */
-    padding: 20px; /* 콘텐츠 내부 여백 설정 */
-    box-sizing: border-box; /* 박스 모델 설정 */
+.ck-editor__editable {
+    min-height: 400px !important; /* 최소 높이 설정 */
+    max-height: 600px !important; /* 최대 높이 설정 */
+    overflow: auto !important; /* 스크롤 활성화 */
+    padding: 20px !important; /* 콘텐츠 내부 여백 설정 */
+    box-sizing: border-box !important; /* 박스 모델 설정 */
+    border: 1.5px solid rgb(255, 197, 108) !important; /* 테두리 설정 */
 }
 
+.titleCen {
+
+    text-align: center;
+
+}
