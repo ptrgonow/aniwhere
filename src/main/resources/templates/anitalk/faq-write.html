@@ -17,15 +17,17 @@
 </head>
 <body>
 
-<div th:replace="~{include/tab-header::header}"></div>
-
-<form action="notice.html" method="post"></form>
-
 <div class="all">
     <div class="write_title">
         <table>
-            <tr><td colspan="2" class="write_title2"><h2>FAQ 작성</h2></td></tr>
+
+        </table>
+        <form action="notice.html" method="POST">
+            <tr><td colspan="2" class="write_title2"><h2>공지사항 작성</h2></td></tr>
             <tr><td colspan="2"><hr></td></tr>
+
+            <tr><td class="header">질문</td></tr>
+            <tr><td><input type="text" id="title-input" placeholder="질문을 입력하세요" name="title"></td></tr>
             <tr><td class="header">카테고리</td></tr>
             <tr>
                 <td>
@@ -33,21 +35,19 @@
                         <option value="option1">산책코스</option>
                         <option value="option2">러너</option>
                         <option value="option3">상품</option>
-                        <option value="option4">보호센터</option>
+                        <option value="option3">보호센터</option>
                     </select>
                 </td>
             </tr>
-            <tr><td class="header">질문</td></tr>
-            <tr><td><input type="text" id="title-input" placeholder="질문을 입력하세요" name="title"></td></tr>
-            <tr><td class="header">답변</td></tr>
-            <tr><td><textarea placeholder="답변을 입력하세요" id="detail-input" name="detail"></textarea></td></tr>
-            <tr><td class="header">사진 첨부</td></tr>
-            <tr><td><input type="file" name="photo"></td></tr>
-            <tr><td><input type="submit" value="등록" onclick="alert('작성완료')"></td></tr>
-        </table>
+            <!-- 수정된 부분 -->
+            <div id="editor-container">
+                <textarea name="text" id="editor"></textarea>
+            </div>
+            <!-- 등록 버튼 -->
+            <p><input type="submit" value="등록" onclick="alert('작성완료')"></p>
+        </form>
     </div>
 </div>
-
 
 <script>
     // 플레이스홀더 텍스트를 클릭 시 사라지도록 설정
@@ -59,8 +59,9 @@
     });
 </script>
 
-
-
-
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor.create( document.querySelector( '#editor' ) );
+</script>
 </body>
 </html>
