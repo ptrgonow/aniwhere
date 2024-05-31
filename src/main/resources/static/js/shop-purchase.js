@@ -1,3 +1,25 @@
+
+    function showPaymentSection() {
+    const sections = document.querySelectorAll('.payment-section');
+    sections.forEach(section => section.style.display = 'none');
+
+    const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+    document.getElementById(selectedPayment + '-section').style.display = 'block';
+}
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const paymentMethods = document.querySelectorAll('input[name="payment"]');
+    paymentMethods.forEach(method => {
+    method.addEventListener('change', showPaymentSection);
+});
+
+    // Show the default selected section
+    showPaymentSection();
+});
+
+
+/*
+
 $(document).ready(function() {
     // Handle Payment Method Selection
     $('input[name="addr_paymethod"]').on('change', function() {
@@ -30,14 +52,6 @@ $(document).ready(function() {
             $('#simpleJoinGuide').hide();
         }
     });
-/*
-    // Handle Cash Receipt Request
-    $('input[name="cashreceipt_regist"]').on('change', function() {
-        if ($(this).val() === '1') {
-            $('#cashreceipt_form_area').show();
-        } else {
-            $('#cashreceipt_form_area').hide();
-        }
-    });
-*/
+
 });
+*/
