@@ -104,8 +104,15 @@ main {
 
 .p-info {
     display: flex;
-    justify-content: space-between;
     margin: 1rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.p-icon {
+    text-align: right;
+    margin-right: 0.5rem;
 }
 
 .p-price {
