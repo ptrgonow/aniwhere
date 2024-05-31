@@ -182,13 +182,3 @@ input[type="submit"]:active {
 
 }
 
-
-.write_title {
-    text-align: center; /* 부모 요소를 가운데 정렬 */
-}
-
-.write_title hr {
-    margin: 5px auto 50px auto; /* 위쪽과 아래쪽 여백은 유지하면서 좌우 여백을 자동으로 설정하여 가운데 정렬 */
-    width: 68%; /* 원하는 너비로 설정 */
-    color: lightgray;
-}
