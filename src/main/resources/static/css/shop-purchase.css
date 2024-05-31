@@ -1,0 +1,273 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    width: 75%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 2px solid #ddd;
+}
+
+h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.contents {
+    margin-bottom: 20px;
+}
+
+.ec-base-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.ec-base-table th,
+.ec-base-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.ec-base-table th {
+    background-color: #f9f9f9;
+    text-align: left;
+    width: 150px;
+}
+
+.ec-base-table td {
+    background-color: #fff;
+}
+
+.inputTypeText,
+select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.btnBasic {
+    background-color: #f9f9f9;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+button.btnApply {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.agreeArea {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f7f7f7;
+}
+
+.allAgree {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.allAgree input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.allAgree label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.agreement ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.agreement ul li {
+    margin-bottom: 10px;
+}
+
+.agreement ul li .agree {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.agreement ul li .agree .check {
+    display: flex;
+    align-items: center;
+}
+
+.agreement ul li .agree .check input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.agreement ul li .agree .check label {
+    font-size: 14px;
+}
+
+.agreement ul li .agree .btnAgree {
+    background-color: transparent;
+    color: #333;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+}
+
+.ec-base-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ec-base-button .btnSubmit {
+    width: calc(100% - 20px);
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.helpArea {
+    font-size: 12px;
+    color: #666;
+}
+
+.helpArea ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.helpArea ul li {
+    margin-bottom: 5px;
+}
+
+.proPrice .totalPrice {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.ec-order-payment-card .cardSelect {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.displayFlex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.segment.unique {
+    margin-bottom: 20px;
+}
+
+.prdBox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.thumbnail img {
+    width: 90px;
+    height: 90px;
+    margin-right: 20px;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.description .prdName {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.description .info {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.description .info li {
+    margin-bottom: 3px;
+}
+
+.description .proPrice {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.control {
+    display: flex;
+    align-items: center;
+}
+
+.control input {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.control .btnNormal {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.totalPay .txtEm {
+    font-size: 18px;
+    color: red;
+    text-align: right;
+    margin-top: 10px;
+}

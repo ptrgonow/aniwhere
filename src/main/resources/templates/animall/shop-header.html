@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/shop-header.css">
+
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <div class="logo-search">
+            <img height="30" length="30" src="/image/shop_product/logo.jpg" alt="로고" class="logo">
+            <div class=" search-icon">
+                <input placeholder="검색어를 입력하세요" class="search-bar">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div align="right" class="user-actions">
+            <a href="#">로그인</a>
+            <a href="#">회원가입</a>
+            <a href="#">고객센터</a>
+        </div>
+        <aside class="sidebar">
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('category')">카테고리</button>
+                <button class="tab-button" onclick="showTab('brand')">브랜드</button>
+            </div>
+            <div id="category" class="tab-content active">
+                <ul>
+                    <li><a href="#">전체상품</a></li>
+                    <li><a href="#">뷰티</a></li>
+                    <li><a href="#">패션잡화</a></li>
+                    <li><a href="#">식품</a></li>
+                    <li><a href="#">생활/주방</a></li>
+                    <li><a href="#">키즈</a></li>
+                    <li><a href="#">반려동물</a></li>
+                    <li><a href="#">문구/취미</a></li>
+                    <li><a href="#">스포츠/레져</a></li>
+                    <li><a href="#">친환경</a></li>
+                </ul>
+            </div>
+            
+            <div id="brand" class="tab-content">
+                <div class="alphabet-filter">
+                    <button class="all-button" onclick="filterBrands('all')">ALL</button>
+                    <div class="alphabet-buttons">
+                        <!--<li class="tab-link" data-tab="tab-1001">ALL</li>-->
+                        <button onclick="filterBrands('ㄱ')">ㄱ</button>
+                        <button onclick="filterBrands('ㄴ')">ㄴ</button>
+                        <button onclick="filterBrands('ㄷ')">ㄷ</button>
+                        <button onclick="filterBrands('ㄹ')">ㄹ</button>
+                        <button onclick="filterBrands('ㅁ')">ㅁ</button>
+                        <button onclick="filterBrands('ㅂ')">ㅂ</button>
+                        <button onclick="filterBrands('ㅅ')">ㅅ</button>
+                        <button onclick="filterBrands('ㅇ')">ㅇ</button>
+                        <button onclick="filterBrands('ㅈ')">ㅈ</button>
+                        <button onclick="filterBrands('ㅊ')">ㅊ</button>
+                        <button onclick="filterBrands('ㅋ')">ㅋ</button>
+                        <button onclick="filterBrands('ㅌ')">ㅌ</button>
+                        <button onclick="filterBrands('ㅍ')">ㅍ</button>
+                        <button onclick="filterBrands('ㅎ')">ㅎ</button>
+                    </div>
+                </div>
+                
+                <ul id="brand-list">
+                    <li class="brand-item" data-initial="ㄱ"><a href="#">기그위</a></li>
+                    <li class="brand-item" data-initial="ㄴ"><a href="#">나누</a></li>
+                    <li class="brand-item" data-initial="ㄷ"><a href="#">동구</a></li>
+                    <li class="brand-item" data-initial="ㄹ"><a href="#">룩플라이</a></li>
+                    <!--나중에 브랜드 추가-->
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+
+
+</header>
+</body>
+</html>
