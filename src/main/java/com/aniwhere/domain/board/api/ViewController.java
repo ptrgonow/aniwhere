@@ -38,5 +38,8 @@ public class ViewController {
         return "anitalk/faq-write";
     }
 
+    @GetMapping("/walking-course")
+    public String walkingCourse() { return "anitalk/walking-course"; }
+
 
 }
