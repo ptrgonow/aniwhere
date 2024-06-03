@@ -29,14 +29,10 @@ main {
     left: 23rem;
 }
 
-.style-buttons span, .product-card span {
-    position: static;
-}
 
 .style-buttons span:before, .style-buttons span:after,
 .product-card span:before, .product-card span:after {
     content: none; /* 가상 요소 제거 */
-    position: static; /* 기본 값으로 초기화 */
     width: auto; /* 기본 값으로 초기화 */
     height: auto; /* 기본 값으로 초기화 */
     bottom: auto; /* 기본 값으로 초기화 */
@@ -78,52 +74,66 @@ main {
     flex: 1;
 }
 
-/* 메인에서 화면에 보여지는 제품들... */
-
-.products {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.style-buttons {
+    display: flex; /* 버튼들을 가로로 배치 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin-bottom: 1.5rem;
 }
+
+.style-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem; /* 아이콘 크기 조절 */
+    margin-left: 0.5rem; /* 버튼 간 간격 */
+    color: #333; /* 아이콘 색상 */
+}
+
 
 .product-card {
-    width: 300px;
-    margin: 1rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    padding: 1rem;
-    text-align: center;
+    border: 1px solid #ddd; /* 얇은 테두리 */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* 호버 효과 */
 }
 
-.p-image {
+.product-card:hover {
+    transform: translateY(-5px); /* 살짝 위로 이동 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 강조 */
+}
+
+.p-image img {
     width: 100%;
-    height: 300px;
-    overflow: hidden;
-    background-color: #000;
+    height: 250px; /* 이미지 높이 */
+    object-fit: cover; /* 이미지 비율 유지 */
+}
+
+.p-cont {
+    padding: 1rem;
+}
+
+.p-cont span {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    color: #333; /* 제목 색상 */
 }
 
 .p-info {
-    margin: 1rem 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.p-icon {
-    text-align: right;
-    margin-right: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    padding: 0.5rem 1rem;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9; /* 연한 배경색 */
 }
 
 .p-price {
-    margin: 1rem 0;
-    font-size: 1.5rem;
     font-weight: 600;
+    color: #c44536; /* 강조 색상 */
 }
 
-.product-card img {
-    max-width: 100%;
-    height: auto;
-}
 .style-buttons {
     margin: 2rem 0;
     text-align: center;
@@ -134,28 +144,108 @@ main {
 }
 
 /* 제품 정렬 방식 - 스타일 변경을 위한 클래스 */
+
+/* 그리드 형식 제품 카드 */
+.products.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
 .grid .product-card {
-    width: 300px;
-    margin: 1rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 세로 방향으로 배치 */
+    height: 400px; /* 카드 높이 고정 */
+}
+
+.grid .p-image {
+    height: 250px; /* 이미지 영역 높이 */
+    overflow: hidden;
+}
+
+.grid .p-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율 유지 */
+}
+
+.grid .p-cont {
+    flex-grow: 1; /* 남은 공간을 채우도록 확장 */
     padding: 1rem;
+}
+
+.grid .p-cont span {
+    vertical-align: middle;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    width: auto;
+    height: 3em;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 2줄까지 표시 */
+    -webkit-box-orient: vertical;
+}
+
+.grid .p-info {
+    padding: 0.5rem 1rem;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
     text-align: center;
 }
-.list .product-card {
-    width: 100%;
-    height: 100px;
+
+
+/* 리스트 형식 제품 카드 */
+
+/* 리스트 형식 */
+.products.list {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
+    flex-direction: column;
 }
-.list .product-card .p-image {
-    width: 100px;
+
+.list .product-card {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.list .p-image {
+    width: 8rem;
+    height: auto;
+    margin-right: 1rem;
+}
+
+.list .p-image img {
+    width: 100%;
     height: 100%;
-    margin-right: 20px;
+    object-fit: cover;
+}
+
+.list .p-info {
+    width: 150px;
+    height: 100%;
+    margin-left: 1rem;
+    text-align: right;
+}
+
+.list .p-cont {
+    width: 50%;
+    flex-grow: 1;
+}
+
+.list .p-cont span {
+    margin-bottom: 0.3rem;
+    white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    width: 100%; /* 컨테이너 너비에 맞춤 */
+    display: inline-block; /* 애니메이션 적용 위해 inline-block 유지 */
+
 }
 
 /* 스크롤 버튼 스타일 - 우측 하단 위치 */
+
+
 .scroll-buttons {
     position: fixed;
     bottom: 10%;

@@ -13,9 +13,5 @@ $(document).ready(function() {
         }, 500);
     }).scroll();
 
-    // 클릭 이벤트에 올라가는 동작 방지
-    $("#walk_add_btn").on("click", function(e) {
-        e.preventDefault();
-    });
 
 });

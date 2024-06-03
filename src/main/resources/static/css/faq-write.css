@@ -59,7 +59,6 @@ table {
 
 input[type="text"],
 textarea {
-    border: 1.5px rgb(255, 197, 108) solid;
     width: 500px;
     height: 30px; /* input[type="text"]의 높이 */
     border-radius: 5px;
@@ -73,7 +72,6 @@ textarea {
 }
 
 input[type="file"] {
-    border: 1.5px rgb(255, 197, 108) solid;
     border-radius: 5px;
     padding: 5px;
     width: 200px;
@@ -84,7 +82,7 @@ input[type="submit"] {
     height: 40px;
     font-size: 15px;
     border: 0;
-    outline: 1.5px rgb(255, 197, 108) solid;
+    outline: 1px rgb(255, 197, 108) solid;
     border-radius: 5px;
     background-color: #ffd093; /* 버튼 배경을 하얀색으로 변경 */
     color: black; /* 버튼 텍스트 색상을 검정으로 변경 */
@@ -113,8 +111,6 @@ input[type="submit"]:active {
 
 }
 
-
-
 .write_title2 {
     margin-top: 3rem;
     text-align: center;
@@ -129,7 +125,6 @@ input[type="submit"]:active {
 }
 
 #editor-container {
-
     width: 800px; /* 입력 창 컨테이너의 최대 너비를 지정합니다. */
     margin: 0 auto; /* 가운데 정렬합니다. */
     padding: 10px; /* 컨테이너의 내부 여백을 설정합니다. */
@@ -158,3 +153,8 @@ input[type="submit"]:active {
     box-sizing: border-box; /* 박스 모델 설정 */
 }
 
+
+.ck-toolbar {
+    background-color: #fff; /* 배경색 변경 */
+    border: none; /* 테두리 제거 */
+}

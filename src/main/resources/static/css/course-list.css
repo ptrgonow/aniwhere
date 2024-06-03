@@ -28,16 +28,33 @@ li {
     list-style: none;
 }
 
+main {
+    margin: 3rem 0 0 3rem;
+    width: 100%;
+    height: 100%;
+
+}
+
+.cor-list {
+    display: flex;
+    margin-left: 8rem;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .walk_top{
     text-align: center;
-    margin-top: 80px;
 }
 
 .walk_title{
-    text-align: center;
-    margin: 20px 0 20px 0;
+    width: 100%;
+    height: 15%;
+    margin-top: 2rem;
     background-color: #f8f8f7;
-    padding: 10px;
+    padding: 1rem;
 }
 
 /* 스크롤 코스 추가 버튼 */
@@ -55,19 +72,16 @@ li {
 /* 해시태그 영역 */
 .hashtag_area{
     display: flex;
-    text-align: center;
+    height: 3rem;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 10px;
+    padding: 1rem;
+    align-items: center;
     font-size: 1rem;
 }
 
 .hash_item{
-    width: max-content;
     position: relative;
-    text-align: center;
-    margin: 10px 10px 30px 0;
-    padding: 10px;
+    padding: 1rem;
     cursor: pointer;
 }
 
@@ -93,10 +107,8 @@ li {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 100%;
-    vertical-align: middle;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 1rem;
+
 }
 
 .walk_search i{
@@ -104,15 +116,15 @@ li {
     padding-left: 5px;
 }
 
-.walk_search{
+.walk_search {
+    width: 20rem;
     text-align: center;
-    margin-top: 10px;
     padding: 0 10px;
     border: 4px solid #febe98;
     border-radius: 50px;
 }
 
-.search{
+.search {
     border: none;
     height: 100%;
     width: 100%;
@@ -368,12 +380,11 @@ li {
     color: white;
 }
 .runner_cont{
-    bottom: 20px;
-    padding: 5px;
+    width: auto;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    font-size: 14px;
+    font-size: 1rem;
     text-align: center;
-
-
+    margin-top: 3rem;
 }
