@@ -137,13 +137,7 @@ main {
     z-index: 1; /* 자식 요소가 가상 요소 위에 표시되도록 설정 */
 }
 
-.container.n2 {
-    background-image: url("../images/d9.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-top: 2rem;
-}
+
 
 .container.n3 {
     background-image: url("../images/d7.jpeg");
@@ -169,11 +163,29 @@ main {
 
 
 
+
+
 /* 중앙 메인 */
+
+
+
+.container.n2 {
+    background-image: url("../images/d9.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 2rem;
+    filter: blur(0);
+}
 
 .slide img {
     border-radius: 10px; /* 모서리를 둥글게 만듭니다. */
+    margin-left: 5rem;
+    margin-bottom: 12rem;
+    filter: blur(0);
+    z-index: 1;
 }
+
 
 .slider-item {
     position: relative;
@@ -187,5 +199,88 @@ main {
     background-color: rgba(255, 255, 255, 0.7); /* 배경색 설정 */
     padding: 10px; /* 캡션 내부 여백 설정 */
     box-sizing: border-box;
+    filter: blur(5px); /* 블러 효과 */
+}
+
+.tc.n2 {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.tc.n2 h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 28rem;
+    letter-spacing: 0.1rem;
+}
+
+.tc.n2 p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.1rem;
+}
+
+.slick-n2 {
+    width: 50%; /* Adjust the width as needed */
+    position: relative;
+}
+
+.slider-item {
+    position: relative;
+    margin: 0 10px; /* Add some margin between slides */
+}
+
+.slider-item img {
+    width: 80%;
+    height: auto;
+    border-radius: 10px; /* Round the corners of the images */
+    filter: blur(0); /* Remove blur from the image itself */
+}
+
+.caption {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+    padding: 10px;
+    border-radius: 10px; /* Round the corners of the caption */
+    z-index: 1;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-size: 2rem;
+    line-height: 1;
+    opacity: .75;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-next:before {
+    content: '→';
+}
+
+.slick-prev:before {
+    content: '←';
+}
+
+/* 화살표 조절 */
+.slick-prev {
+    left: 80px;
+    z-index: 2;
+}
+
+.slick-next {
+    right: 470px; /* Adjust the right position to reduce the gap */
+    z-index: 2;
 }
 

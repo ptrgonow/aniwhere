@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,8 +17,8 @@
     <link rel="stylesheet" th:href="@{/css/main-footer.css}">
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <link rel="stylesheet" th:href="@{/css/index.css}">
-
 </head>
+
 <body>
 <div th:replace="~{include/main-header :: header}"></div>
 
@@ -50,22 +51,22 @@
 
     <div class="container n2">
         <div class="tc n2">
-            <h1>이달의 Best 상품 이달의 New 상품</h1>
+            <h2>이달의 Best 상품</h2>
         </div>
 
         <div class="slick-n2">
             <div class="slide">
-                <img src="/images/p1.png" alt="제품1">
+                <img src="/images/p1s.png" alt="제품1">
                 <h3>흡수혁명</h3>
                 <p>31,900원</p>
             </div>
             <div class="slide">
-                <img src="/images/p2.png" alt="제품2">
+                <img src="/images/p2s.png" alt="제품2">
                 <h3>네츄럴코어</h3>
                 <p>45,500원</p>
             </div>
             <div class="slide">
-                <img src="/images/p3.png" alt="제품3">
+                <img src="/images/p3s.png" alt="제품3">
                 <h3>하루 유산균</h3>
                 <p>9,300원</p>
             </div>
@@ -82,10 +83,13 @@
 
 </main>
 
+
+
 <div th:replace="~{include/footer :: footer}"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script th:src="@{/js/main-header.js}"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script th:src="@{/js/index.js}"></script>
+
 </body>
 </html>
