@@ -19,151 +19,81 @@
 <div th:replace="~{include/tab-header::header}"></div>
 <div th:replace="~{include/aniwhere-side :: side}"></div>
 
-<!-- 따라다니는 코스 추가 버튼 -->
-<div class="walk_add">
-    <a href="route/course-create" id="walk_add_btn"><img src="/images/add.png"></a>
-</div>
 
-<!-- 해시태그 및 검색창 -->
-<div class="walk_top">
-    <h2>산책 코스 전체 목록</h2>
-</div>
+<main>
+    
+    <!-- 따라다니는 코스 추가 버튼 -->
+    <div class="walk_add">
+        <a href="/route/cor" id="walk_add_btn">
+            <img src="/images/d2.jpeg" alt="">
+        </a>
+    </div>
+    <div class="cor-list">
+        
+        
+        <!-- 해시태그 및 검색창 -->
+        <div class="walk_top">
+            <h2>산책 코스 전체 목록</h2>
+        </div>
+        
+        <div class="walk_title">
+            <div class="hashtag_area">
+                <span class="hash_item">#분위기 좋은</span>
+                <span class="hash_item">#댕댕천국</span>
+                <span class="hash_item">#활기찬</span>
+                <span class="hash_item">#조용한</span>
+                <span class="hash_item">#산책로</span>
+                <span class="hash_item">#리버뷰</span>
+                <span class="hash_item">#뷰맛집</span>
+            </div>
+            <div class="walk_search_area">
+                <table class="walk_search">
+                    <tr>
+                        <td>
+                            <input type="text" class="search" placeholder="지역을 입력하세요">
+                        </td>
+                        <td>
+                            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="runner_cont">
+                <a href="/route/cor-mine" class="list_btn">나의 코스 보기</a>
+            </div>
+        </div>
+        
+        <div class="category_area">
+            <div class="category">
+                <select class="category_item" name="select_list">
+                    <option class="select_list_item" value="">카테고리 선택</option>
+                    <option class="select_list_item" value="인기순">인기순</option>
+                    <option class="select_list_item" value="조회순">조회순</option>
+                    <option class="select_list_item" value="등록순">등록순</option>
+                </select>
+            </div>
+        
+        </div>
+        
+        <div class="card_container">
+            <div class="card">
+                <img src="/images/d5.jpeg" alt="지도1" class="card__background"/>
+                <div class="card__content">
+                    <div class="card__content--container">
+                        <h3 class="card__title">작성자</h3>
+                        <p class="card_cont">장소에 대한 간단한 설명</p>
+                        <div class="card_hashtag">
+                            <p class="card__hash">#분위기 좋은</p>
+                            <p class="card__hash">#활기찬</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-<div class="walk_title">
-    <div class="hashtag_area">
-        <span class="hash_item">#분위기 좋은</span>
-        <span class="hash_item">#댕댕천국</span>
-        <span class="hash_item">#활기찬</span>
-        <span class="hash_item">#조용한</span>
-        <span class="hash_item">#산책로</span>
-        <span class="hash_item">#리버뷰</span>
-        <span class="hash_item">#뷰맛집</span>
-    </div>
-    <div class="walk_search_area">
-        <table class="walk_search">
-            <tr>
-                <td>
-                    <input type="text" class="search" placeholder="지역을 입력하세요">
-                </td>
-                <td>
-                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="runner_cont">
-        <a href="/route/cor-mine" class="list_btn">나의 코스 보기</a>
-    </div>
-</div>
-
-<div class="category_area">
-    <div class="category">
-        <select class="category_item" name="select_list">
-            <option class="select_list_item" value="">카테고리 선택</option>
-            <option class="select_list_item" value="인기순">인기순</option>
-            <option class="select_list_item" value="조회순">조회순</option>
-            <option class="select_list_item" value="등록순">등록순</option>
-        </select>
-    </div>
-
-</div>
-
-<div class="card_container">
-    <div class="card">
-        <img src="/images/map7.png" alt="지도1" class="card__background"/>
-        <div class="card__content">
-            <div class="card__content--container">
-                <h3 class="card__title">작성자</h3>
-                <p class="card_cont">장소에 대한 간단한 설명</p>
-                <div class="card_hashtag">
-                    <p class="card__hash">#분위기 좋은</p>
-                    <p class="card__hash">#활기찬</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <img src="/images/map2.png" alt="지도2" class="card__background"/>
-        <div class="card__content">
-            <div class="card__content--container">
-                <h3 class="card__title">작성자</h3>
-                <p class="card_cont">장소에 대한 간단한 설명</p>
-                <div class="card_hashtag">
-                    <p class="card__hash">#댕댕천국</p>
-                    <p class="card__hash">#뷰맛집</p>
-                    <p class="card__hash">#산책로</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <img src="/images/map3.png" alt="지도2" class="card__background"/>
-        <div class="card__content">
-            <div class="card__content--container">
-                <h3 class="card__title">작성자</h3>
-                <p class="card_cont">장소에 대한 간단한 설명</p>
-                <div class="card_hashtag">
-                    <p class="card__hash">#분위기 좋은</p>
-                    <p class="card__hash">#활기찬</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <img src="/images/map4.png" alt="지도2" class="card__background"/>
-        <div class="card__content">
-            <div class="card__content--container">
-                <h3 class="card__title">작성자</h3>
-                <p class="card_cont">장소에 대한 간단한 설명</p>
-                <div class="card_hashtag">
-                    <p class="card__hash">#분위기 좋은</p>
-                    <p class="card__hash">#활기찬</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <img src="/images/map5.png" alt="지도2" class="card__background"/>
-        <div class="card__content">
-            <div class="card__content--container">
-                <h3 class="card__title">작성자</h3>
-                <p class="card_cont">장소에 대한 간단한 설명</p>
-                <div class="card_hashtag">
-                    <p class="card__hash">#분위기 좋은</p>
-                    <p class="card__hash">#활기찬</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <img src="/images/map6.png" alt="지도2" class="card__background"/>
-        <div class="card__content">
-            <div class="card__content--container">
-                <h3 class="card__title">작성자</h3>
-                <p class="card_cont">장소에 대한 간단한 설명</p>
-                <div class="card_hashtag">
-                    <span class="card__hash">#분위기 좋은</span>
-                    <span class="card__hash">#활기찬</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <img src="/images/map2.jpg" alt="지도2" class="card__background"/>
-        <div class="card__content">
-            <div class="card__content--container">
-                <h3 class="card__title">작성자</h3>
-                <p class="card_cont">장소에 대한 간단한 설명</p>
-                <div class="card_hashtag">
-                    <p class="card__hash">#분위기 좋은</p>
-                    <p class="card__hash">#활기찬</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="/js/course-list.js"></script>
 </body>
 </html>

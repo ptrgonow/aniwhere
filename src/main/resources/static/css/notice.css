@@ -16,7 +16,7 @@ html {
 
 body {
     width: 100%;
-    height: auto;
+    height: 100vh;
     margin: 0;
     font-size: 1rem;
     font-weight: 400;
@@ -31,8 +31,20 @@ li {
     list-style: none;
 }
 
+main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-left: 8rem;
+}
 
 /* 공지사항 */
+
+.notice_box {
+    width: 100%;
+}
+
 .notice_title{
     margin-top: 80px;
     font-weight: normal;

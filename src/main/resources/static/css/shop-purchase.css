@@ -29,3 +29,158 @@ a {
 li {
     list-style: none;
 }
+
+main {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    margin-left: 20rem;
+    margin-right: 3rem;
+
+}
+/* ... (기존 CSS 스타일 유지) ... */
+
+/* 주문 컨테이너 스타일 */
+.order-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.order-title {
+    display: flex;
+    justify-content: space-between; /* 제목과 버튼 사이 간격 */
+    align-items: center;
+}
+
+.order-title h1 {
+    margin: 0; /* 제목 마진 제거 */
+}
+
+.order-title button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* 섹션 스타일 */
+.order-section {
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+/* 주문자 정보 */
+.order-section.orderer-info {
+    background-color: #f8f9fa;
+}
+
+.orderer-info .info-detail p {
+    margin-bottom: 0.5rem;
+}
+
+.orderer-info .modify-btn {
+    background-color: #e9ecef;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 배송 정보 */
+.order-section.delivery-info {
+    background-color: #e9ecef;
+}
+
+.delivery-info address {
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.delivery-info .modify-btn {
+    background-color: #f8f9fa;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 주문 상품 정보 */
+.product-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.product-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+/* 최종 결제 금액 */
+.payment-info {
+    background-color: #e9ecef;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: right;
+}
+
+.payment-info div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.payment-info .total-price {
+    font-weight: bold;
+}
+
+/* 결제 방법 */
+.order-section.payment-method {
+    background-color: #e9ecef;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.payment-method label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+
+.payment-info div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.payment-info .total-price {
+    font-weight: bold;
+}
+
+/* 결제 방법 */
+.payment-method {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.payment-method label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}

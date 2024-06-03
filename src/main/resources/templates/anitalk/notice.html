@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" href="/css/notice.css">
     <link rel="stylesheet" href="/css/main-header.css">
-
-
+    
+    
     <link rel="stylesheet" href="/css/aniwhere-side.css">
 </head>
 <body>
@@ -22,88 +22,92 @@
 <div th:replace="~{include/tab-header::header}"></div>
 <div th:replace="~{include/anitalk-side :: side}"></div>
 
-<!-- 공지사항 -->
-<div class="notice_box">
-    <div class="notice_title">
-        <h2>Notice</h2>
-        <hr>
-        <div class="notice_content">
-            <table>
-                <tr>
-                    <th>번호</th>
-                    <th>카테고리</th>
-                    <th>제목</th>
-                    <th>작성일</th>
-                    <th>조회수</th>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>이벤트</td>
-                    <td>신제품 할인 진행중</td>
-                    <td>2024-05-20</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>이용방법</td>
-                    <td>이달의 추천 러너</td>
-                    <td>2024-05-20</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>이벤트</td>
-                    <td>제품 후기 이벤트</td>
-                    <td>2024-05-20</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>이벤트</td>
-                    <td>제품 후기 이벤트</td>
-                    <td>2024-05-20</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>이벤트</td>
-                    <td>제품 후기 이벤트</td>
-                    <td>2024-05-20</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>이벤트</td>
-                    <td>제품 후기 이벤트</td>
-                    <td>2024-05-20</td>
-                    <td>0</td>
-                </tr>
-            </table>
-            <div class="notice_write_btn"><a href="/board/write">글쓰기</a></div>
+<main>
+    
+    <!-- 공지사항 -->
+    <div class="notice_box">
+        <div class="notice_title">
+            <h2>Notice</h2>
+            <hr>
+        </div>
+            <div class="notice_content">
+                <table>
+                    <tr>
+                        <th>번호</th>
+                        <th>카테고리</th>
+                        <th>제목</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>이벤트</td>
+                        <td>신제품 할인 진행중</td>
+                        <td>2024-05-20</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>이용방법</td>
+                        <td>이달의 추천 러너</td>
+                        <td>2024-05-20</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>이벤트</td>
+                        <td>제품 후기 이벤트</td>
+                        <td>2024-05-20</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>이벤트</td>
+                        <td>제품 후기 이벤트</td>
+                        <td>2024-05-20</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>이벤트</td>
+                        <td>제품 후기 이벤트</td>
+                        <td>2024-05-20</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>이벤트</td>
+                        <td>제품 후기 이벤트</td>
+                        <td>2024-05-20</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+                <div class="notice_write_btn"><a href="/board/write">글쓰기</a></div>
+            </div>
+        <!-- 페이징 처리 -->
+        <div class="page_area">
+            <div class="page_form">
+                <a href="#"><i class="fa-solid fa-angles-left"></i></a>
+                <a href="#"><i class="fa-solid fa-angle-left"></i></a>
+                <p><a href="#">1</a></p>
+                <p><a href="#">2</a></p>
+                <p><a href="#">3</a></p>
+                <a href="#"><i class="fa-solid fa-angle-right"></i></a>
+                <a href="#"><i class="fa-solid fa-angles-right"></i></a>
+            </div>
+        </div>
+        
+        <!-- 검색창 -->
+        <div class="search_area">
+            <div class="search_form">
+                <input type="text" name="search_text" placeholder="Search">
+                <button type="submit">검색</button>
+            </div>
         </div>
     </div>
-</div>
-
-<!-- 페이징 처리 -->
-<div class="page_area">
-    <div class="page_form">
-        <a href="#"><i class="fa-solid fa-angles-left"></i></a>
-        <a href="#"><i class="fa-solid fa-angle-left"></i></a>
-        <p><a href="#">1</a></p>
-        <p><a href="#">2</a></p>
-        <p><a href="#">3</a></p>
-        <a href="#"><i class="fa-solid fa-angle-right"></i></a>
-        <a href="#"><i class="fa-solid fa-angles-right"></i></a>
-    </div>
-</div>
-
-<!-- 검색창 -->
-<div class="search_area">
-    <div class="search_form">
-        <input type="text" name="search_text" placeholder="Search">
-        <button type="submit">검색</button>
-    </div>
-</div>
+    
+    
+</main>
 
 </body>
 </html>
