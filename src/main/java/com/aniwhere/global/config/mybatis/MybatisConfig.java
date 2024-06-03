@@ -15,8 +15,7 @@ import javax.sql.DataSource;
         "com.aniwhere.domain.board.notice.mapper",
         "com.aniwhere.domain.route.mapper",
         "com.aniwhere.domain.shop.mapper",
-        "com.aniwhere.domain.user.info.mapper",
-        "com.aniwhere.domain.usermng.mapper"
+        "com.aniwhere.domain.user.mapper"
 })
 
 public class MybatisConfig {
