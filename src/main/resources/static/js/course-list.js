@@ -8,7 +8,6 @@ $(document).ready(function() {
         var scrollTop = $(window).scrollTop();
         var newPosition = scrollTop + floatPosition + "px";
 
-
         $("#walk_add_btn").stop().animate({
             "top": newPosition
         }, 500);
