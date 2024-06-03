@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const accordionBtns = document.querySelectorAll('.q_accordion button');
 
 accordionBtns.forEach(btn => {
-    btn.addEventListener('click', (event) => {
+    btn.addEventListener('click', () => {
         const targetSection = btn.nextElementSibling;
         const content = targetSection.querySelector('.faq_a');
 
