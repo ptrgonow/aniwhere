@@ -198,17 +198,16 @@ span:hover:before, span:hover:after {
     gap: 30px;
 }
 
-.product_reg{
+.product_modi{
     padding: 10px;
     background-color: #4b5366;
     color: white;
     cursor: pointer;
 }
 
-.reg_cancel{
+.modi_cancel{
     padding: 10px;
-    background-color: #FF5959;
-    border: #b71c1c;
-    color: white;
+    background-color: #f8f8f7;
+    color: #222222;
     cursor: pointer;
 }
