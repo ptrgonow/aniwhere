@@ -50,6 +50,17 @@ span:hover:before, span:hover:after {
     transition: none; /* 기본 값으로 초기화 */
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    margin-left: 8rem;
+}
+
+
+
 
 /* Q&A 상단 */
 .q_area{
@@ -58,19 +69,23 @@ span:hover:before, span:hover:after {
     margin: 80px auto;
     padding: 0 0 120px;
     display: block;
+
 }
 
 .q_area h1{
     margin-top: 10px;
     margin-bottom: 10px;
+    background-color: #f0f0f0;
 }
 
 .q_area p{
     font-size: 14px;
+
 }
 
 .q_area h1, .q_text2{
     text-align: center;
+
 }
 
 
@@ -87,11 +102,7 @@ span:hover:before, span:hover:after {
     width: 25%;
     text-align: center;
     padding: 10px;
-}
-
-.menu a{
-    color: #222222;
-    font-size: 1.1rem;
+    cursor: pointer;
 }
 
 .menu-active {
@@ -127,15 +138,16 @@ span:hover:before, span:hover:after {
     transform: rotate(180deg);
 }
 
-.q_accordion p{
-    background-color: #e2e2e1;
-    font-size: 14px;
+.q_accordion .a_accordion {
     max-height: 0;
-    opacity: 0;
-    line-height: 1.6;
     overflow: hidden;
-    transition: all 0.3s;
+    transition: max-height 0.3s ease;
 }
+
+.q_accordion .a_accordion:target {
+    max-height: 200px; /* 적절한 높이로 조절하세요 */
+}
+
 
 .q_accordion p.show{
     max-height: 200px;
@@ -154,8 +166,6 @@ span:hover:before, span:hover:after {
     margin-left: 80.5%;
     margin-bottom: 50px;
     background-color: #febe98;
-
-
 }
 
 .faq_write_btn a{
@@ -163,3 +173,18 @@ span:hover:before, span:hover:after {
     display: inline-block;
     color: white;
 }
+
+
+
+#walking-course{
+    display: block;
+}
+
+#runner {
+   display: none;
+
+}
+#pet-products {
+    display: none;
+}
+
