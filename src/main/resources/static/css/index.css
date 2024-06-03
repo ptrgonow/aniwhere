@@ -164,3 +164,28 @@ main {
     border-radius: 0.5rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
+
+
+
+
+
+/* 중앙 메인 */
+
+.slide img {
+    border-radius: 10px; /* 모서리를 둥글게 만듭니다. */
+}
+
+.slider-item {
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* 배경색 설정 */
+    padding: 10px; /* 캡션 내부 여백 설정 */
+    box-sizing: border-box;
+}
+
