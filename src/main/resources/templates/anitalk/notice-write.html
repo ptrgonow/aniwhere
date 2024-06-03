@@ -14,10 +14,6 @@
     <link rel="stylesheet" href="/css/main-header.css">
     <link rel="stylesheet" href="/css/aniwhere-side.css">
     <link rel="stylesheet" href="/css/notice-write.css">
-
-
-
-
 </head>
 <body>
 
@@ -25,40 +21,32 @@
 
 <div class="all">
     <div class="write_title">
-        <table>
-
-        </table>
-        <form action="notice.html" method="POST">
-
+        <form action="/board/notice/write" method="POST">
             <div class="titleCen">
-            <tr><td colspan="2" class="write_title2"><h2>공지사항 작성</h2></td></tr>
-            <tr><td colspan="2"><hr></td></tr>
+                <h2>공지사항 작성</h2>
+                <hr>
             </div>
-
-            <tr><td class="header">제목</td></tr>
-            <tr><td><input type="text" id="title-input" placeholder="제목을 입력하세요" name="title"></td></tr>
-
+            
+            <label class="header" for="title-input">제목</label>
+            <input type="text" id="title-input" placeholder="제목을 입력하세요" name="title">
+            
             <div class="category">
-            <tr><td class="header">카테고리</td></tr>
-            <tr>
-                <td>
-                    <select name="category">
-                        <option value="option1">이벤트</option>
-                        <option value="option2">이용방법</option>
-                        <option value="option3">신고</option>
-                    </select>
-                </td>
-            </tr>
+                <label class="header" for="category">카테고리</label>
+                <select name="category" id="category">
+                    <option value="option1">이벤트</option>
+                    <option value="option2">이용방법</option>
+                    <option value="option3">신고</option>
+                </select>
             </div>
-
-            <!-- 수정된 부분 -->
+            
+            <!-- CKEditor 영역 -->
             <div id="editor-container">
                 <textarea name="text" id="editor"></textarea>
             </div>
+            
             <!-- 등록 버튼 -->
             <p><input type="submit" value="등록" onclick="alert('작성완료')"></p>
             <p><button type="button" onclick="goBack()">목록</button></p>
-
         </form>
     </div>
 </div>
@@ -68,12 +56,7 @@
     document.getElementById('title-input').addEventListener('click', function() {
         this.placeholder = '';
     });
-    document.getElementById('detail-input').addEventListener('click', function() {
-        this.placeholder = '';
-    });
-</script>
-
-<script>
+    
     function goBack() {
         window.history.back();
     }
@@ -81,8 +64,14 @@
 
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 <script>
-    ClassicEditor.create( document.querySelector( '#editor' ) );
+    ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
 </script>
 </body>
-
 </html>
