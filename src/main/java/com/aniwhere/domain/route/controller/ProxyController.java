@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
     ProxyController 클래스는 프록시 역할을 하는 REST 컨트롤러입니다.
     클라이언트의 요청을 받아 대신 다른 서버에 요청을 보내고 그 응답을 반환합니다.
  */
-@RestController("ProxyController")
+@RestController
 public class ProxyController {
 
     private final LoggingUtil loggingUtil;

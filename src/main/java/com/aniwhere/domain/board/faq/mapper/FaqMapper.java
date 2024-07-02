@@ -8,10 +8,4 @@ import java.util.List;
 @Mapper
 public interface FaqMapper {
 
-    List<FaqDTO> selectFaq();
-    FaqDTO selectFaqById(Long id);
-    void insertFaq(FaqDTO faqDTO);
-    void updateFaq();
-    void deleteFaq();
-
 }
