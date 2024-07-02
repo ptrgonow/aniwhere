@@ -1,5 +1,6 @@
 package com.aniwhere.domain.user.loginSession.service;
 
+import com.aniwhere.domain.user.loginSession.domain.CustomUserDetails;
 import com.aniwhere.domain.user.loginSession.dto.LoginDTO;
 import com.aniwhere.domain.user.mapper.UserMngMapper;
 import org.springframework.beans.factory.annotation.Autowired;
