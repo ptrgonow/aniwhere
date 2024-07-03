@@ -18,7 +18,7 @@ public class JoinController {
 
 
     @PostMapping(value = "/joinProc", consumes = "application/x-www-form-urlencoded")
-    public RedirectView joinProc(@RequestParam("username") String userName,
+    public RedirectView joinProc(@RequestParam("userId") String userId,
                                  @RequestParam("password") String password,
                                  @RequestParam("email") String email,
                                  @RequestParam("address") String address) {
