@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
 
 
-
     const rowsPerPage = 5;
     let currentPage = 1;
 
