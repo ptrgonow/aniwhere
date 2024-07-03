@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const rowsPerPage = 5;
     let currentPage = 1;
 
+
     function displayTable(page) {
         const table = document.getElementById('notice_table');
         table.innerHTML = `
