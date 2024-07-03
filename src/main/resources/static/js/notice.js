@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // 더 많은 데이터 추가 가능
     ];
 
+
     const rowsPerPage = 5;
     let currentPage = 1;
 
