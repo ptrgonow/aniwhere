@@ -17,13 +17,8 @@ public class JoinController {
     private final JoinService joinService;
 
 
-    @PostMapping(value = "/joinProc", consumes = "application/x-www-form-urlencoded")
-    public RedirectView joinProc(@RequestParam("username") String userName,
-                                 @RequestParam("password") String password,
-                                 @RequestParam("email") String email,
-                                 @RequestParam("address") String address) {
-        Join join = new Join();
-
+    @PostMapping("/joinProc")
+    public RedirectView joinProc(Join join) {
         joinService.joinProcess(join);
         return new RedirectView("/");
     }
