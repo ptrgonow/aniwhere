@@ -12,85 +12,12 @@
 
     <!-- 애니웨어 공지사항 css-->
     <link rel="stylesheet" href="/css/notice.css">
+
 </head>
 
 <body>
 
-<!--PreLoader-->
-<div class="loader">
-    <div class="loader-inner">
-        <div class="circle"></div>
-    </div>
-</div>
-<!--PreLoader Ends-->
-
-<!-- header -->
-<div class="top-header-area" id="sticker">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12 text-center">
-                <div class="main-menu-wrap">
-                    <!-- logo -->
-                    <div class="site-logo">
-                        <a href="index.html">
-                            <img src="assets/img/logo.png" alt="">
-                        </a>
-                    </div>
-                    <!-- logo -->
-
-                    <!-- menu start -->
-                    <nav class="main-menu">
-                        <ul>
-                            <li class="current-list-item"><a href="#">Home</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Static Home</a></li>
-                                    <li><a href="index_2.html">Slider Home</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="sub-menu">
-                                    <li><a href="404.html">404 page</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="checkout.html">Check Out</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="notice.html">News</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="notice.html">공지사항</a>
-                                <ul class="sub-menu">
-                                    <li><a href="notice.html">News</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Shop</a>
-                                <ul class="sub-menu">
-                                    <li><a href="#">Shop</a></li>
-                                    <li><a href="#">Check Out</a></li>
-                                    <li><a href="#">Single Product</a></li>
-                                    <li><a href="#">Cart</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="header-icons">
-                                    <a class="shopping-cart" href="#"><i class="fas fa-shopping-cart"></i></a>
-                                    <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
-                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                    <div class="mobile-menu"></div>
-                    <!-- menu end -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end header -->
+<div th:replace="~{include/header :: header}"></div>
 
 <!-- search area -->
 <div class="search-area">
@@ -136,7 +63,7 @@
         <table id="notice_table">
             <!-- JavaScript에서 내용이 삽입될 것입니다. -->
         </table>
-        <div class="notice_write_btn"><a href="notice-write.html">글쓰기</a></div>
+        <div class="notice_write_btn"><a href="/board/notice-write">글쓰기</a></div>
     </div>
 
     <!-- 페이징 처리 -->
@@ -157,6 +84,7 @@
 
 
 <script src="/js/notice.js"></script>
+<div th:replace="~{include/footer :: footer}"></div>
 
 </body>
 </html>

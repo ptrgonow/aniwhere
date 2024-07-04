@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             row.innerHTML = `
                 <td>${item.번호}</td>
                 <td>${item.카테고리}</td>
-                <td><a href="notice-detail.html">${item.제목}</a></td>
+                <td><a href="notice-detail">${item.제목}</a></td>
                 <td>${item.작성일}</td>
                 <td>${item.조회수}</td>
             `;

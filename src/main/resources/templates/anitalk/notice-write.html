@@ -9,9 +9,11 @@
 </head>
 <body>
 
+<div th:replace="~{include/header :: header}"></div>
+
 <div class="main-wrapper">
 
-    <link rel="stylesheet" href="/css/notice-write.css">
+    <link rel="stylesheet" href="/static/css/notice-write.css">
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-name mb-4">
@@ -33,7 +35,7 @@
 
                     <div class="button-group">
                         <button id="notice-btn" type="submit" class="btn btn-primary btn-lg">등록</button>
-                        <a href="notice.html" class="btn btn-secondary btn-lg ms-4">목록</a>
+                        <a href="/board/notice" class="btn btn-secondary btn-lg ms-4">목록</a>
                     </div>
                 </form>
 
@@ -41,6 +43,7 @@
             </div>
         </div>
     </div>
-
+</div>
+<div th:replace="~{include/footer :: footer}"></div>
 </body>
 </html>
