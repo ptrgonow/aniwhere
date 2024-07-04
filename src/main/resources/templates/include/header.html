@@ -43,37 +43,26 @@
                     <!-- menu start -->
                     <nav class="main-menu">
                         <ul>
-                            <li class="current-list-item"><a href="#">Home</a>
+                            <li class="current-list-item"><a href="/">Home</a></li>
+                            <li><a href="/">AniWhere</a>
                                 <ul class="sub-menu">
-                                    <li><a href="/">Static Home</a></li>
-                                    <li><a href="/">Slider Home</a></li>
+                                    <li><a href="/">course</a></li>
+                                    <li><a href="/">member</a></li>
                                 </ul>
                             </li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="#">Pages</a>
+                            
+                            <li><a href="/">AniMall</a>
                                 <ul class="sub-menu">
-                                    <li><a href="404.html">404 page</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="checkout.html">Check Out</a></li>
-                                    <li><a href="faq.html">Contact</a></li>
-                                    <li><a href="news.html">News</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="/l">Shop</a></li>
+                                    <li><a href="/">Check Out</a></li>
+                                    <li><a href="/">Single Product</a></li>
+                                    <li><a href="/">Cart</a></li>
                                 </ul>
                             </li>
-                            <li><a href="news.html">News</a>
+                            <li><a href="/">Anitalk</a>
                                 <ul class="sub-menu">
-                                    <li><a href="news.html">News</a></li>
-                                    <li><a href="single-news.html">Single News</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="faq.html">Contact</a></li>
-                            <li><a href="shop.html">Shop</a>
-                                <ul class="sub-menu">
-                                    <li><a href="shop.html">Shop</a></li>
-                                    <li><a href="checkout.html">Check Out</a></li>
-                                    <li><a href="single-product.html">Single Product</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="/">Notice</a></li>
+                                    <li><a href="/">FAQ</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -83,18 +72,14 @@
                                         <a href="/join">회원가입</a>
                                     </span>
                                     <span sec:authorize="isAuthenticated()">
-                                        <span sec:authentication="name"></span>님 환영합니다.
+                                        <span class="text-white" sec:authentication="name"></span>
                                         <a class="mobile-hide search-bar-icon" href="/logout"><i class="fas fa-arrow-left-long"></i></a>
                                     </span>
                                 </div>
                             </li>
                         </ul>
                     </nav>
-                    
-                    <span sec:authorize="isAuthenticated()">
-                        <span class="mobile-hide search-bar-icon" sec:authentication="name"></span>님 환영합니다.
-                        <a class="mobile-hide search-bar-icon" href="/logout"><i class="fas fa-arrow-left-long"></i></a>
-                    </span>
+                    <a class="mobile-show search-bar-icon" href="/logout"><i class="fas fa-arrow-left-long"></i></a>
                     <div class="mobile-menu"></div>
                     <!-- menu end -->
                 </div>
