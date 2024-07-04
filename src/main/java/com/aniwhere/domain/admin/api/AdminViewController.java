@@ -12,4 +12,14 @@ public class AdminViewController {
     public String dashboard() {
         return "admin/dashboard";
     }
+
+    @GetMapping("/products")
+    public String products() {
+        return "admin/AllProduct";
+    }
+
+    @GetMapping("/orders")
+    public String orders() {
+        return "admin/Orders";
+    }
 }
