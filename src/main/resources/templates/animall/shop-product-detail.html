@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>Single Product</title>
-
-	<link rel="stylesheet" href="/css/all.min.css">
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/shop-product-detail.css">
-
+	<title>제품 정보 페이지</title>
 </head>
+
 <body>
-	
+	<div th:replace="~{/include/header :: header }"></div>
+
 	<!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -92,7 +89,7 @@
 						</div>
 						<h3>Strawberry</h3>
 						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> 장바구니</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 text-center">
@@ -102,7 +99,7 @@
 						</div>
 						<h3>Berry</h3>
 						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> 장바구니</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
@@ -112,7 +109,7 @@
 						</div>
 						<h3>Lemon</h3>
 						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> 장바구니</a>
 					</div>
 				</div>
 			</div>
@@ -120,10 +117,6 @@
 	</div>
 	<!-- end more products -->
 
-
-	<script src="/js/jquery-1.11.3.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/shop-product-detail.js"></script>
-
+	<div th:replace="~{/include/footer :: footer }"></div>
 </body>
 </html>
