@@ -1,16 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
-
-    <!-- title -->
-    <title>공지사항</title>
-
-
-    <!-- 애니웨어 공지사항 css-->
+<div th:replace="~{include/header :: header}"></div>
     <link rel="stylesheet" href="/css/notice.css">
 
 </head>
@@ -63,7 +52,7 @@
         <table id="notice_table">
             <!-- JavaScript에서 내용이 삽입될 것입니다. -->
         </table>
-        <div class="notice_write_btn"><a href="/board/notice-write">작성</a></div>
+        <div class="notice_write_btn"><a href="/board/notice-write">글쓰기</a></div>
     </div>
 
     <!-- 페이징 처리 -->
