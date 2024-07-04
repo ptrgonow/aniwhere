@@ -20,7 +20,7 @@ body {
 }
 
 .breadcrumb-section.breadcrumb-bg:after{
-    background-image: url("../img/d.jpg");
+    background-image: url("../img/d.jpg") !important;
     background-size: cover;
     background-position: center;
     left: 0;
@@ -66,12 +66,16 @@ body {
 
 /* 아코디언 */
 .accordion-button:not(.collapsed) {
-    background-color: #07212e; /* 변경하고 싶은 배경색 */
-    color: white;
-    border-color: white;
+    background-color: #07212e !important; /* 변경하고 싶은 배경색 */
+    color: white !important;
+    border-color: white !important;
 }
 
 .accordion-button {
-    background-color: #fff;
-    color: #000;
+    background-color: #fff !important;
+    color: #000 !important;
+}
+
+.embed-responsive-item{
+    width: 100%;
 }

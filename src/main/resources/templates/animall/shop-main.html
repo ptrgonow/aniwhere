@@ -7,13 +7,14 @@
 
     <title>Shop</title>
 
-	<link rel="stylesheet" href="/css/all.min.css">
+	<link rel="stylesheet" href="/assets/css/all.min.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/shop-main.css">
 
 </head>
 <body>
-    
+<div th:replace="~{include/header :: header}"></div>
+
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -143,9 +144,10 @@
 		<button id="scroll-down" onclick="scrollToBottom()">▼</button>
 	</div>
 
-	<script src="/js/jquery-1.11.3.min.js"></script>
+	<script src="/assets/js/jquery-1.11.3.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/shop-main.js"></script>
 
+<div th:replace="~{include/footer :: footer}"></div>
 </body>
 </html>
