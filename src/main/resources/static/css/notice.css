@@ -41,6 +41,7 @@
     color: black;
     padding: 10px;
     cursor: text;
+    text-align: center;
 }
 
 .notice_content table td{
@@ -72,7 +73,6 @@
     padding: 0;
     margin-left: 5rem;
     margin-top: 5rem;
-
 }
 
 .search_form input {
@@ -91,7 +91,6 @@
     color: white;
     cursor: pointer;
     border-radius: 5px;
-
 }
 
 .search_form button:hover {
@@ -101,10 +100,7 @@
 /* 글쓰기 버튼 */
 .notice_write_btn {
     text-align: center;
-
     margin-left: 73rem;
-
-
 }
 
 .notice_write_btn a {
