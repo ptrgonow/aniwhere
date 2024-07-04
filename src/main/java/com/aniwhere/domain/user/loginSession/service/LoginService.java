@@ -1,6 +1,7 @@
 package com.aniwhere.domain.user.loginSession.service;
 
 import com.aniwhere.domain.user.loginSession.domain.CustomUserDetails;
+import com.aniwhere.domain.user.loginSession.domain.Login;
 import com.aniwhere.domain.user.loginSession.dto.LoginDTO;
 import com.aniwhere.domain.user.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,16 @@ public class LoginService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        LoginDTO loginDTO = userMapper.findByUsername(username);
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+        LoginDTO loginDTO = userMapper.findByUsername(userId);
         if (loginDTO == null) {
             throw new UsernameNotFoundException("User not found");
         }
         return new CustomUserDetails(
-                loginDTO.getUserName(),
+                loginDTO.getUserId(),
                 loginDTO.getPassword(),
                 loginDTO.getRole()
         );
     }
+
 }

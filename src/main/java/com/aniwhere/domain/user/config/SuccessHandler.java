@@ -12,7 +12,9 @@ import java.io.IOException;
 
 public class SuccessHandler implements AuthenticationSuccessHandler {
 
-    private RequestCache requestCache = new HttpSessionRequestCache();
+    private final RequestCache requestCache = new HttpSessionRequestCache();
+
+
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,

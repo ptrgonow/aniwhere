@@ -14,8 +14,6 @@ public class JoinService {
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
-
-
     public void joinProcess(Join join) {
 
         JoinDTO joinDTO = new JoinDTO();

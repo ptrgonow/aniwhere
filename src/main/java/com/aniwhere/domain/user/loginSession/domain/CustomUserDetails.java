@@ -13,8 +13,8 @@ public class CustomUserDetails implements UserDetails {
     private final String password;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public CustomUserDetails(String username, String password, String role) {
-        this.username = username;
+    public CustomUserDetails(String userId, String password, String role) {
+        this.username = userId;
         this.password = password;
         this.authorities = Collections.singletonList(new SimpleGrantedAuthority(role));
     }
