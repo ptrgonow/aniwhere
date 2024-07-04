@@ -11,4 +11,14 @@ public class MainController {
     public String home() {
         return "index";
     }
+
+    @GetMapping("/faq")
+    public String faq() {
+        return "faq";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
 }

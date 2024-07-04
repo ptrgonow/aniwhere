@@ -5,20 +5,21 @@
         
         // testimonial sliders
         $(".testimonial-sliders").owlCarousel({
-            items: 1,
+            items: 3,
             loop: true,
             autoplay: true,
+            margin: 17,
             responsive:{
                 0:{
                     items:1,
                     nav:false
                 },
                 600:{
-                    items:1,
+                    items:2,
                     nav:false
                 },
                 1000:{
-                    items:1,
+                    items:3,
                     nav:false,
                     loop:true
                 }
@@ -57,7 +58,7 @@
             items: 4,
             loop: true,
             autoplay: true,
-            margin: 30,
+            margin: 20,
             responsive:{
                 0:{
                     items:1,
