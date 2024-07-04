@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,6 +10,21 @@
 
 
 <div th:replace="~{include/header :: header}"></div>
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p></p>
+                    <h1>AniWhere Guide</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
 
     <div class="walk_add">
         <a href="#" id="walk_add_btn"><img src="/img/d5.jpeg"></a>
@@ -90,6 +105,6 @@
 
 
 <div th:replace="~{include/footer :: footer}"></div>
-<script src="/static/js/guide.js"></script>
+<script src="/js/guide.js"></script>
 </body>
 </html>
