@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+    <!-- title -->
+    <title>공지사항</title>
+
+
+    <!-- 애니웨어 공지사항 css-->
+    <link rel="stylesheet" href="/css/notice.css">
+</head>
+
+<body>
+
+<!--PreLoader-->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+
+<!-- header -->
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="assets/img/logo.png" alt="">
+                        </a>
+                    </div>
+                    <!-- logo -->
+
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li class="current-list-item"><a href="#">Home</a>
+                                <ul class="sub-menu">
+                                    <li><a href="index.html">Static Home</a></li>
+                                    <li><a href="index_2.html">Slider Home</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul class="sub-menu">
+                                    <li><a href="404.html">404 page</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="checkout.html">Check Out</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="notice.html">News</a></li>
+                                    <li><a href="shop.html">Shop</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="notice.html">공지사항</a>
+                                <ul class="sub-menu">
+                                    <li><a href="notice.html">News</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Shop</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">Shop</a></li>
+                                    <li><a href="#">Check Out</a></li>
+                                    <li><a href="#">Single Product</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="header-icons">
+                                    <a class="shopping-cart" href="#"><i class="fas fa-shopping-cart"></i></a>
+                                    <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
+<!-- search area -->
+<div class="search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                <div class="search-bar">
+                    <div class="search-bar-tablecell">
+                        <h3>Search For:</h3>
+                        <input type="text" placeholder="Keywords">
+                        <button type="submit">Search <i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end search arewa -->
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>왈왈</p>
+                    <h1>AniWhere Notice</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- 공지사항 -->
+<div class="notice_box">
+    <div class="notice_title">
+        <h2>Notice</h2>
+        <hr>
+    </div>
+    <div class="notice_content">
+        <table id="notice_table">
+            <!-- JavaScript에서 내용이 삽입될 것입니다. -->
+        </table>
+        <div class="notice_write_btn"><a href="notice-write.html">글쓰기</a></div>
+    </div>
+
+    <!-- 페이징 처리 -->
+    <div class="page_area">
+        <div class="page_form" id="pagination"></div>
+    </div>
+
+    <!-- 검색창 -->
+    <div class="search_area">
+        <div class="search_form">
+            <input type="text" name="search_text" placeholder="Search">
+            <button type="submit">검색</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/notice.js"></script>
+
+</body>
+</html>

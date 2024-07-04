@@ -1,0 +1,163 @@
+/* 공지사항 */
+
+.notice_box {
+    width: 100%;
+}
+
+.notice_title{
+    margin-top: 80px;
+    font-weight: normal;
+}
+
+.notice_title h2{
+    text-align: center;
+    margin: 10px 10px;
+}
+
+.notice_title hr{
+    margin: 0 auto 10px auto;
+    width: 7%;
+    color: lightgray;
+}
+
+
+.notice_content table{
+    margin: 60px auto;
+    width: 58%;
+    border-left: none;
+    font-size: 16px;
+}
+
+.notice_content table, th, td{
+    border-collapse: collapse;
+    border: 1px solid darkgray;
+    border-right-style: none;
+    border-left-style: none;
+}
+
+.notice_content table th{
+    background-color: #febe98;
+    border-top: 2px solid darkgray;
+    color: black;
+    padding: 10px;
+    cursor: text;
+}
+
+.notice_content table td{
+    text-align: center;
+    padding: 20px;
+}
+
+.notice_content table td:nth-child(3){
+    text-align: left;
+}
+
+.notice_content table tr:hover{
+    background-color: #e2e2e1;
+    cursor: pointer;
+}
+
+
+/* 검색 처리 */
+.search_area {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.search_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin-left: 5rem;
+    margin-top: 5rem;
+
+}
+
+.search_form input {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search_form button {
+    width: 70px;
+    height: 30px;
+    border: none;
+    background-color: #febe98;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
+.search_form button:hover {
+    background-color: #f5a623;
+}
+
+/* 글쓰기 버튼 */
+.notice_write_btn {
+    text-align: center;
+
+    margin-left: 73rem;
+
+
+}
+
+.notice_write_btn a {
+    padding: 10px 20px;
+    background-color: #febe98;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.notice_write_btn a:hover {
+    background-color: #f5a623;
+}
+
+
+/* a태그 제목 색상 검정으로 */
+
+.notice_content table td a {
+    color: black;
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.notice_content table td a:hover {
+    color: gray; /* 마우스 오버 시 색상 변경 */
+}
+
+
+/* 페이징 */
+.page_area {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.page_form {
+    display: inline-block;
+}
+
+.page_form a, .page_form span {
+    color: black;
+    margin: 0 5px;
+    padding: 10px 15px;
+    border: 1px solid #febe98;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.page_form a:hover {
+    background-color: #febe98;
+    color: white;
+}
+
+.page_form .active {
+    background-color: #febe98;
+    color: white;
+}
