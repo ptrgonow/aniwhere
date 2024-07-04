@@ -4,13 +4,10 @@ import com.aniwhere.domain.user.join.domain.Join;
 import com.aniwhere.domain.user.join.service.JoinService;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 
-@Controller
+@RestController
 @AllArgsConstructor
 public class JoinController {
 
@@ -18,8 +15,8 @@ public class JoinController {
 
 
     @PostMapping("/joinProc")
-    public RedirectView joinProc(Join join) {
+    public String joinProc(@RequestBody Join join) {
         joinService.joinProcess(join);
-        return new RedirectView("/");
+        return "success";
     }
 }

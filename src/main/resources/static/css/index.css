@@ -499,8 +499,3 @@ a.boxed-btn, a.bordered-btn, a.cart-btn {
     opacity: 0.8;
 }
 
-.page-wrapper {
-    margin-top: 85px;
-    position: relative;
-    z-index: 1;
-}

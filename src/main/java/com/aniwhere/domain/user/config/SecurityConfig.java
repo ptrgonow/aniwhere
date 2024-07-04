@@ -23,14 +23,17 @@ public class SecurityConfig {
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .loginProcessingUrl("/loginProc")
-                        .successHandler(new SuccessHandler()) // SuccessHandler 사용
-                        .failureUrl("/?error=true") // 로그인 실패 시 홈으로 리디렉션
+                        .usernameParameter("userId")  // Custom username parameter
+                        .passwordParameter("userPwd") // Custom password parameter
+                        .defaultSuccessUrl("/", true)
+                        .failureUrl("/login?error=true")
                         .permitAll()
                 )
                 .csrf(csrf -> csrf.disable())
+
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/?logout=true")
+                        .logoutSuccessUrl("/login?logout=true&message=logoutSuccess")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()

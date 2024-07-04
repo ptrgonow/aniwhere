@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" th:fragment="header">
+<html lang="ko" th:fragment="header" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,19 +34,19 @@
                 <div class="main-menu-wrap">
                     <!-- logo -->
                     <div class="site-logo">
-                        <a href="index.html">
+                        <a href="/">
                             <img src="/img/logo.png" alt="">
                         </a>
                     </div>
                     <!-- logo -->
-
+                    
                     <!-- menu start -->
                     <nav class="main-menu">
                         <ul>
                             <li class="current-list-item"><a href="#">Home</a>
                                 <ul class="sub-menu">
-                                    <li><a href="index.html">Static Home</a></li>
-                                    <li><a href="index_2.html">Slider Home</a></li>
+                                    <li><a href="/">Static Home</a></li>
+                                    <li><a href="/">Slider Home</a></li>
                                 </ul>
                             </li>
                             <li><a href="about.html">About</a></li>
@@ -78,13 +78,23 @@
                             </li>
                             <li>
                                 <div class="header-icons">
-                                    <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-                                    <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                    <span sec:authorize="isAnonymous()">
+                                        <a href="/login">로그인</a>
+                                        <a href="/join">회원가입</a>
+                                    </span>
+                                    <span sec:authorize="isAuthenticated()">
+                                        <span sec:authentication="name"></span>님 환영합니다.
+                                        <a class="mobile-hide search-bar-icon" href="/logout"><i class="fas fa-arrow-left-long"></i></a>
+                                    </span>
                                 </div>
                             </li>
                         </ul>
                     </nav>
-                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    
+                    <span sec:authorize="isAuthenticated()">
+                        <span class="mobile-hide search-bar-icon" sec:authentication="name"></span>님 환영합니다.
+                        <a class="mobile-hide search-bar-icon" href="/logout"><i class="fas fa-arrow-left-long"></i></a>
+                    </span>
                     <div class="mobile-menu"></div>
                     <!-- menu end -->
                 </div>
@@ -92,22 +102,3 @@
         </div>
     </div>
 </div>
-
-<!-- search area -->
-<div class="search-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <span class="close-btn"><i class="fas fa-window-close"></i></span>
-                <div class="search-bar">
-                    <div class="search-bar-tablecell">
-                        <h3>Search For:</h3>
-                        <input type="text" placeholder="Keywords">
-                        <button type="submit">Search <i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end search area -->
