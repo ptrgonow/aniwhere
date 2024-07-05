@@ -9,7 +9,10 @@
 <div class="page-wrapper">
     <div class="container d-flex justify-content-center">
         <div class="join col-xl-8 col-8">
-            <form method="post" action="/loginProc">
+            <form method="post" th:action="@{/loginProc}">
+                <div th:if="${param.error}" class="error">
+                    <p>아이디 또는 비밀번호가 잘못되었습니다.</p>
+                </div>
                 <h2><span class="entypo-login"><i class="fa fa-sign-in"></i></span> Login</h2>
                 <button id="login-btn" class="submit">
                     <span class="entypo-lock"><i class="fa fa-lock"></i></span>
@@ -23,18 +26,19 @@
                     <i class="fa fa-key"></i>
                 </span>
                 <input type="password" id="userPwd" name="userPwd" class="pass" placeholder="비밀번호" required>
-                
-                <div th:if="${param.error}" class="error">
-                    <p>아이디 또는 비밀번호가 잘못되었습니다.</p>
-                </div>
             </form>
             <div class="social-login">
-                <button class='btn-social-login' style='background:#1FC700'><i class="xi-3x xi-naver"></i></button>
-                <button class='btn-social-login' style='background:#FFEB00'><i class="xi-3x xi-kakaotalk text-dark"></i></button>
+                <button onclick="location.href='/oauth2/authorization/naver'" id="naver" class='btn-social-login' style='background:#1FC700'>
+                    <i class="xi-3x xi-naver"></i>
+                </button>
+                <button onclick="location.href='/oauth2/authorization/kakao'" id="kakao" class='btn-social-login' style='background:#FFEB00'>
+                    <i class="xi-3x xi-kakaotalk text-dark"></i>
+                </button>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 
 <div th:replace="~{include/footer :: footer}"></div>
