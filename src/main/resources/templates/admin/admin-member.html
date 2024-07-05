@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/admin-member.css">
+</head>
+<body>
+<div th:replace="~{admin/admin-side :: side}"></div>
+
+<div class="body-wrapper">
+    <div class="container-fluid">
+
+        <table class="table table-striped table-hover rounded-5 shadow">
+            <thead class="table-primary">
+            <tr>
+                <th>회원 No</th>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>이메일</th>
+                <th>주소</th>
+                <th>전화번호</th>
+                <th>가입일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="member, status : ${members}">
+                <td th:text="${status.index + 1}"></td>
+                <td>
+                    <span th:text="${#strings.abbreviate(member.userId, 15)}" class="user-id"></span>
+                </td>
+                <td th:text="${member.userName}"></td>
+                <td th:text="${member.email}"></td>
+                <td th:text="${member.address} + ' ' + ${member.detailAddress}"></td>
+                <td th:text="${member.phone}"></td>
+                <td th:text="${member.createdAt}"></td>
+            </tr>
+            </tbody>
+        </table>
+</div>
+</div>
+</body>
+</html>

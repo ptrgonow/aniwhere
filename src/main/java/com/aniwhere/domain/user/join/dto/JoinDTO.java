@@ -15,5 +15,6 @@ public class JoinDTO {
     private String zipCode;
     private String phone;
     private String role;
+    private String createdAt;
 
 }

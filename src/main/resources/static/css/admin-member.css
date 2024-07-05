@@ -1,0 +1,22 @@
+body {
+    padding-top: 50px;
+
+}
+
+.container {
+    max-width: 960px;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    font-weight: 500; /* 글씨 굵기 조절 */
+}
+
+.table-primary th {
+    background-color: #007bff; /* 진한 파란색 헤더 */
+    color: white;
+}
+
+.shadow {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
