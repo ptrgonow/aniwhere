@@ -7,13 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Map;
-
 
 @Controller
 @AllArgsConstructor
 public class MainController {
-
 
     private final HomeService homeService;
 
@@ -23,6 +20,6 @@ public class MainController {
         if (userName != null) {
             model.addAttribute("name", userName);
         }
-        return "index"; // index.html 템플릿으로 이동
+        return "index";
     }
 }

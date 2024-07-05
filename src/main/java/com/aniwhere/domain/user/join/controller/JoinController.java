@@ -17,7 +17,6 @@ public class JoinController {
 
     private final JoinService joinService;
 
-
     @PostMapping("/joinProc")
     public String joinProc(@RequestBody Join join) {
         boolean success = joinService.joinProcess(join);

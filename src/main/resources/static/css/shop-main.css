@@ -1,258 +1,114 @@
-/*-------------------------------------------------------------------
-                              = 차 례 =
-                          공통 요소
-                          상품 메인 페이지
-                          그리드 & 리스트 형식 view
-                          스크롤 버튼 스타일 (우측 하단)
---------------------------------------------------------------------*/
-
-/*--------------------------------------------------------------------------
-                                공통 적용 요소
---------------------------------------------------------------------------*/
-
-html {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 28px;
-  height: 100%;
+/* 제품 리스트 그리드 형식 */
+.product-lists.grid-view .col-lg-4,
+.product-lists.grid-view .col-md-6 {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  box-sizing: border-box;
+  padding: 10px;
 }
 
-body {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  letter-spacing: 0.1px;
-  line-height: 1.8;
-  color: #051922;
-  overflow-x: hidden;
-}
-
-body img {
-  max-width: 100%;
-}
-
-a {
-  cursor: pointer;
-  text-decoration: none;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-a:hover {
-  color: #F28123;
-  text-decoration: none;
-}
-
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  margin: 0 0 1.25rem 0;
-  color: #051922;
-}
-
-/*--------------------------------------------------------------------------
-                        product 관련 사항 - 상품 메인 페이지
---------------------------------------------------------------------------*/
-.product-section-custom {
-  margin-top: 150px;
-  margin-bottom: 150px;
-}
-
-.product-filters-custom {
-  margin-bottom: 80px;
-}
-
-.product-filters-custom ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: center;
-}
-
-.product-filters-custom ul li {
-  display: inline-block;
-  font-weight: 700;
-  font-size: 18px;
-  margin: 15px;
-  border: 2px solid #051922;
-  color: #323232;
-  cursor: pointer;
-  padding: 8px 20px;
-  border-radius: 25px;
-}
-
-.product-filters-custom ul li.active {
-  border: 2px solid #F28123;
-  background-color: #F28123;
-  color: #fff;
-}
-
-.single-product-item-custom {
-  margin-bottom: 30px;
-  -webkit-box-shadow: 0 0 20px #e4e4e4;
-  box-shadow: 0 0 20px #e4e4e4;
-  padding-bottom: 50px;
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out;
-}
-
-.single-product-item-custom:hover {
-  transform: translateY(-8px);
-}
-
-.product-image-custom {
-  padding: 30px 30px 0;
-}
-
-.product-image-custom img {
-  width: 90%;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.single-product-item-custom h3 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-p.product-price-custom {
-  font-family: 'Poppins', sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-p.product-price-custom span {
+/* 그리드 뷰 항목 스타일 */
+.product-lists.grid-view .single-product-item {
   display: block;
-  opacity: 0.8;
-  font-size: 15px;
-  font-weight: 400;
 }
 
-a.cart-btn-custom {
-  display: inline-block;
-  background-color: #F28123;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 50px;
-}
-
-a.cart-btn-custom i {
-  margin-right: 5px;
-}
-
-.pagination-wrap-custom {
-  margin-top: 40px;
-}
-
-.pagination-wrap-custom ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.pagination-wrap-custom ul li {
-  display: inline-block;
-}
-
-.pagination-wrap-custom ul li a {
-  color: #6f6f6f;
-  font-size: 15px;
-  background-color: #f3f3f3;
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 5px;
-  margin: 3px;
-  font-weight: 600;
-}
-
-.pagination-wrap-custom ul li a.active {
-  background-color: #F28123;
-}
-
-
-/*--------------------------------------------------------------------------
-                                그리드 - 리스트 view
---------------------------------------------------------------------------*/
-
-.product-lists-custom.grid-view-custom .col-md-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-
-.product-lists-custom.list-view-custom .col-md-6 {
+/* 제품 리스트 리스트 형식 */
+.product-lists.list-view .col-lg-4,
+.product-lists.list-view .col-md-6,
+.product-lists.list-view .col-12 {
   flex: 0 0 100%;
   max-width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: start;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-top: 0; /* 리스트 뷰에서 각 아이템의 간격 */
 }
 
-.product-lists-custom.list-view-custom .single-product-item-custom {
+/* 리스트 뷰 항목 스타일 */
+.product-lists.list-view .single-product-item {
   display: flex;
   align-items: center;
-  justify-content: start;
   width: 100%;
+  background: #f9f9f9; /* 배경색 */
+  padding: 20px; /* 패딩 */
+  border-radius: 10px; /* 둥근 테두리 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+  margin-bottom: 20px; /* 아래 여백 */
 }
 
-.product-lists-custom.list-view-custom .product-image-custom {
+.product-lists.list-view .product-image {
+  flex: 0 0 100px;
+  max-width: 100px;
   margin-right: 20px;
 }
 
-.product-lists-custom.list-view-custom .product-image-custom img {
-  width: 100px;
+.product-lists.list-view .product-image img {
+  width: 100%;
   height: auto;
 }
 
-.product-lists-custom.list-view-custom .cart-btn-custom {
+.product-lists.list-view .product-details {
+  flex-grow: 1;
+}
+
+.product-lists.list-view .cart-btn {
   margin-left: auto;
+  background: #ff6600; /* 버튼 배경색 */
+  color: #fff; /* 버튼 글자색 */
+  padding: 10px 20px; /* 버튼 패딩 */
+  border: none; /* 버튼 테두리 없애기 */
+  border-radius: 5px; /* 둥근 테두리 */
+  cursor: pointer; /* 포인터 커서 */
 }
 
-.view-toggle-buttons-custom {
-  margin-bottom: 20px;
-  text-align: right; /* Ensures buttons are right-aligned */
+.product-lists.list-view .cart-btn:hover {
+  background: #ff4500; /* 호버 시 버튼 색상 변경 */
 }
 
-.view-toggle-buttons-custom .btn {
+/* 토글 버튼 스타일 */
+.view-toggle-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+.view-toggle-buttons .btn {
   margin-right: 10px;
+  background: #ff6600; /* 버튼 배경색 */
+  color: #fff; /* 버튼 글자색 */
+  padding: 10px 20px; /* 버튼 패딩 */
+  border: none; /* 버튼 테두리 없애기 */
+  border-radius: 5px; /* 둥근 테두리 */
+  cursor: pointer; /* 포인터 커서 */
 }
 
+.view-toggle-buttons .btn:hover {
+  background: #ff4500; /* 호버 시 버튼 색상 변경 */
+}
 
-/*--------------------------------------------------------------------------
-                          스크롤 버튼 스타일 - 우측 하단 위치
---------------------------------------------------------------------------*/
-.scroll-buttons-custom {
+/* 스크롤 버튼 스타일 */
+.scroll-buttons {
   position: fixed;
-  bottom: 5%;
-  right: 1rem;
+  bottom: 20px;
+  right: 20px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  gap: 10px;
 }
 
-.scroll-buttons-custom button{
-  padding: 10px;
+.scroll-buttons button {
+  background: #333; /* 헤더나 푸터의 배경색으로 설정 */
+  color: #ffa500; /* 옅은 오렌지색 화살표 */
   border: none;
-  background-color: #333;
-  color:white;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.scroll-buttons-custom button:hover{
-  background-color: #555;
-}
-
-.scroll-buttons-custom.visible{
+  border-radius: 49%;
+  width: 40px;
+  height: 40px;
   display: flex;
-  opacity: 1;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+}
+
+.scroll-buttons button:hover {
+  background: #555; /* 호버 시 색상 변경 */
 }

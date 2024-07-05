@@ -16,6 +16,7 @@ spring:
             client-id: ${KAKAO_CLIENT_ID}
             client-secret: ${KAKAO_CLIENT_SECRET}
             client-name: Kakao
+            client-authentication-method: post
             authorization-grant-type: authorization_code
             redirect-uri: "http://localhost:8543/login/oauth2/code/kakao"
             scope:

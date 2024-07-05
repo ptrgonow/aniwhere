@@ -24,10 +24,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
         Map<String, Object> attributes = oAuth2User.getAttributes();
+
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
                 .getUserInfoEndpoint().getUserNameAttributeName();
@@ -37,30 +39,34 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         String email = null;
         String mobile = null;
 
-        switch (registrationId) {
-            case "naver":
-                Map<String, Object> response = (Map<String, Object>) attributes.get("response");
-                userid = (String) response.get("id");
-                username = (String) response.get("name");
-                email = (String) response.get("email");
-                mobile = (String) response.get("mobile");
-                break;
+        try {
+            switch (registrationId) {
+                case "naver":
+                    Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+                    userid = (String) response.get("id");
+                    username = (String) response.get("name");
+                    email = (String) response.get("email");
+                    mobile = (String) response.get("mobile");
+                    break;
 
-            case "kakao":
-                Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
-                Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
-                userid = attributes.get("id").toString();
-                username = (String) profile.get("nickname");
-                email = (String) kakaoAccount.get("email");
-                mobile = null;
-                break;
+                case "kakao":
+                    userid = attributes.get("id").toString();
+                    Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
+                    Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
+                    username = (String) profile.get("nickname");
+                    email = (String) kakaoAccount.get("email");
+                    mobile = null; // 카카오에서는 모바일 정보를 사용하지 않음
+                    break;
 
-            default:
-                userid = oAuth2User.getAttribute(userNameAttributeName);
-                username = oAuth2User.getAttribute("name");
-                email = oAuth2User.getAttribute("email");
-                mobile = oAuth2User.getAttribute("mobile");
-                break;
+                default:
+                    userid = oAuth2User.getAttribute(userNameAttributeName);
+                    username = oAuth2User.getAttribute("name");
+                    email = oAuth2User.getAttribute("email");
+                    mobile = oAuth2User.getAttribute("mobile");
+                    break;
+            }
+        } catch (Exception e) {
+            throw new OAuth2AuthenticationException(e.getMessage());
         }
 
         LoginDTO user = userMapper.findByUserId(userid);
@@ -74,7 +80,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
             joinDTO.setAddress("");
             joinDTO.setDetailAddress("");
             joinDTO.setZipCode("");
-            joinDTO.setPhone(mobile);
+            joinDTO.setPhone(mobile); // 네이버는 모바일 정보 사용, 카카오는 null
             joinDTO.setRole("ROLE_USER");
             joinDTO.setSocial(true);
             userMapper.register(joinDTO);

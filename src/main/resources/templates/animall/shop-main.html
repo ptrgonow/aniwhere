@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Main</title>
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/shop-main.css">
 </head>
 <body>
@@ -24,8 +25,8 @@
         <!-- 새로운 div 내의 독립적 버튼들 -->
         <div class="row-custom">
             <div class="col-md-12 text-right view-toggle-buttons-custom">
-                <button class="btn btn-outline-primary toggle-view-custom grid-view-custom"><i class="fas fa-th"></i> Grid</button>
-                <button class="btn btn-outline-primary toggle-view-custom list-view-custom"><i class="fas fa-list"></i> List</button>
+                <button class="btn btn-outline-primary toggle-view-custom grid-view-custom"><i class="fas fa-th"></i> </button>
+                <button class="btn btn-outline-primary toggle-view-custom list-view-custom"><i class="fas fa-list"></i> </button>
             </div>
         </div>
 
@@ -74,14 +75,14 @@
                     <a href="#" class="cart-btn-custom"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center avocado-custom">
                 <div class="single-product-item-custom">
                     <div class="product-image-custom">
                         <a href="#"><img src="#" alt="img4"></a>
                     </div>
                     <h3>Avocado</h3>
                     <p class="product-price-custom"><span>Per Kg</span> 50$ </p>
-                    <a href="#" class="cart-btn-custom"><i class="#"></i> Add to Cart</a>
+                    <a href="#" class="cart-btn-custom"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center apple-custom">
@@ -94,7 +95,7 @@
                     <a href="#" class="cart-btn-custom"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 text-center apple-custom">
                 <div class="single-product-item-custom">
                     <div class="product-image-custom">
                         <a href="#"><img src="#" alt="img6"></a>
@@ -140,6 +141,8 @@
 
 <div th:replace="~{include/footer :: footer}"></div>
 
+
+<script src="/js/main.js"></script>
 <script src="/js/shop-main.js"></script>
 
 </body>

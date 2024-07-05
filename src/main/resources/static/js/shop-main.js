@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Product filters
     const filterButtons = document.querySelectorAll('.product-filters-custom li');
-    const products = document.querySelectorAll('.product-lists-custom .col-lg-6');
+    const products = document.querySelectorAll('.product-lists-custom .col-lg-4, .product-lists-custom .col-md-6');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
