@@ -1,17 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Single Product</title>
-
-	<link rel="stylesheet" href="/assets/css/all.min.css">
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/shop-product-detail.css">
-
-</head>
+<div th:replace="~{include/header :: header}"></div>
+<link rel="stylesheet" href="/css/shop-product-detail.css">
 <body>
 	
 	<!--PreLoader-->
@@ -120,10 +110,8 @@
 	</div>
 	<!-- end more products -->
 
+	<div th:replace="~{include/footer :: footer}"></div>
 
-	<script src="/assets/js/jquery-1.11.3.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/shop-product-detail.js"></script>
+	<script src="/js/shop-main.js"></script>
 
 </body>
-</html>
