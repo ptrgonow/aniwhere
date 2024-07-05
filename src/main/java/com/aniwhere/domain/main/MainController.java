@@ -33,14 +33,4 @@ public class MainController {
         return "index"; // index.html 템플릿으로 이동
     }
 
-    // TODO : 진석이한테 위치 변경하라고 할 것 (둘 다 board 로 이동)
-    @GetMapping("/faq")
-    public String faq() {
-        return "faq";
-    }
-
-    @GetMapping("/about")
-    public String about() {
-        return "about";
-    }
 }
