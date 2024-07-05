@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @AllArgsConstructor
 public class MainController {
 
-
     private final HomeService homeService;
 
     @GetMapping("/")
@@ -21,6 +20,6 @@ public class MainController {
         if (userName != null) {
             model.addAttribute("name", userName);
         }
-        return "index"; // index.html 템플릿으로 이동
+        return "index";
     }
 }
