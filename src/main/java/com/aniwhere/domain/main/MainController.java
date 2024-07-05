@@ -25,16 +25,4 @@ public class MainController {
         }
         return "index"; // index.html 템플릿으로 이동
     }
-
-
-
-    @GetMapping("/faq")
-    public String faq() {
-        return "faq";
-    }
-
-    @GetMapping("/about")
-    public String about() {
-        return "about";
-    }
 }
