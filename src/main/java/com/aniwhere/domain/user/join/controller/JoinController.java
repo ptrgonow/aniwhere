@@ -13,7 +13,6 @@ public class JoinController {
 
     private final JoinService joinService;
 
-
     @PostMapping("/joinProc")
     public String joinProc(@RequestBody Join join) {
         joinService.joinProcess(join);

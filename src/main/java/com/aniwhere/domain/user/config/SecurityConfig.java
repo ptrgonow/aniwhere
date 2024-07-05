@@ -4,10 +4,22 @@ import com.aniwhere.domain.user.join.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient;
+import org.springframework.security.oauth2.client.endpoint.OAuth2AuthorizationCodeGrantRequest;
+import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+
+import java.net.URI;
 
 @Configuration
 @EnableWebSecurity
@@ -16,21 +28,15 @@ public class SecurityConfig {
 
     private final CustomOAuth2UserService customOAuth2UserService;
 
-    // SecurityFilterChain : Spring Security 의 필터 연결을 구성하는 인터페이스
-    // (시큐리티 6.0 이후 추가된 인터페이스, 이전에는 WebSecurityConfigurerAdapter 사용)
-    // (람다식 '->' 사용 : 메소드가 하나일 때 사용 가능 / 람다식은 익명클래스를 간단하게 표현할 수 있게 해줌)
-    // (익명 클래스 : 이름이 없는 클래스, 클래스를 정의하면서 동시에 객체를 생성하는 방법)
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // 요청 권한 인가
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/login", "/loginProc", "/joinProc", "/join").permitAll()
-                        .requestMatchers("/resources/**", "/css/**", "/js/**", "/static/**","/img/**").permitAll()
+                        .requestMatchers("/resources/**", "/css/**", "/js/**", "/static/**", "/img/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
-                // Form Login (사이트 자체 제작 로그인 페이지)
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .loginProcessingUrl("/loginProc")
@@ -40,8 +46,6 @@ public class SecurityConfig {
                         .failureUrl("/login?error=true")
                         .permitAll()
                 )
-                // OAuth2 Login (Naver, Kakao 같은 소셜 로그인 처리)
-                // TODO : 아직 구현 안됨
                 .oauth2Login(oauth2Login ->
                         oauth2Login
                                 .loginPage("/login")
@@ -50,12 +54,12 @@ public class SecurityConfig {
                                 .userInfoEndpoint(userInfoEndpoint -> userInfoEndpoint
                                         .userService(customOAuth2UserService)
                                 )
+                                .tokenEndpoint(tokenEndpoint ->
+                                        tokenEndpoint
+                                                .accessTokenResponseClient(kakaoAccessTokenResponseClient())
+                                )
                 )
-
-                // CSRF 토큰 비활성화 (CSRF : Cross Site Request Forgery - 사이트간 요청 위조)
                 .csrf(csrf -> csrf.disable())
-
-                // 로그아웃 설정 (세션 초기화, 쿠키 삭제)
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout=true&message=logoutSuccess")
@@ -67,7 +71,6 @@ public class SecurityConfig {
                         .accessDeniedPage("/error/403")
                 );
 
-
         return http.build();
     }
 
@@ -76,6 +79,27 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public DefaultAuthorizationCodeTokenResponseClient kakaoAccessTokenResponseClient() {
+        DefaultAuthorizationCodeTokenResponseClient tokenResponseClient = new DefaultAuthorizationCodeTokenResponseClient();
+        tokenResponseClient.setRequestEntityConverter(new KakaoOAuth2AccessTokenRequestEntityConverter());
+        return tokenResponseClient;
+    }
 
+    private static class KakaoOAuth2AccessTokenRequestEntityConverter implements Converter<OAuth2AuthorizationCodeGrantRequest, RequestEntity<?>> {
+        @Override
+        public RequestEntity<?> convert(OAuth2AuthorizationCodeGrantRequest authorizationCodeGrantRequest) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
+            MultiValueMap<String, String> formParameters = new LinkedMultiValueMap<>();
+            formParameters.add(OAuth2ParameterNames.GRANT_TYPE, authorizationCodeGrantRequest.getGrantType().getValue());
+            formParameters.add(OAuth2ParameterNames.CODE, authorizationCodeGrantRequest.getAuthorizationExchange().getAuthorizationResponse().getCode());
+            formParameters.add(OAuth2ParameterNames.REDIRECT_URI, authorizationCodeGrantRequest.getAuthorizationExchange().getAuthorizationRequest().getRedirectUri());
+            formParameters.add(OAuth2ParameterNames.CLIENT_ID, authorizationCodeGrantRequest.getClientRegistration().getClientId());
+            formParameters.add(OAuth2ParameterNames.CLIENT_SECRET, authorizationCodeGrantRequest.getClientRegistration().getClientSecret());
+
+            return new RequestEntity<>(formParameters, headers, HttpMethod.POST, URI.create(authorizationCodeGrantRequest.getClientRegistration().getProviderDetails().getTokenUri()));
+        }
+    }
 }
