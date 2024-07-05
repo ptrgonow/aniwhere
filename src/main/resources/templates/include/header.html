@@ -37,7 +37,7 @@
                     <!-- logo -->
                     <div class="site-logo">
                         <a href="/">
-                            <img src="/img/lo5.png" alt="">
+                            <img src="/img/lo6.png" alt="">
                         </a>
                     </div>
                     <!-- logo -->
@@ -67,7 +67,7 @@
 
                                     <li><a href="/board/guide">Guide</a></li>
                                     <li><a href="/board/notice">Notice</a></li>
-                                    <li><a href="/faq">FAQ</a></li>
+                                    <li><a href="/board/faq">FAQ</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -77,7 +77,7 @@
                                         <a href="/join">회원가입</a>
                                     </span>
                                     <span sec:authorize="isAuthenticated()">
-                                        <span class="text-white" sec:authentication="name"></span>
+                                        <span class="text-white" th:text="${name}"></span>
                                         <a class="mobile-hide search-bar-icon" href="/logout"><i class="fas fa-arrow-left-long"></i></a>
                                     </span>
                                 </div>

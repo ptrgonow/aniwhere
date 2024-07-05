@@ -16,5 +16,6 @@ public class JoinDTO {
     private String phone;
     private String role;
     private String createdAt;
+    private boolean isSocial;
 
 }

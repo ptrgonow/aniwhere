@@ -1,5 +1,7 @@
 package com.aniwhere.domain.user.config;
 
+import com.aniwhere.domain.user.join.service.CustomOAuth2UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -7,12 +9,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import java.util.Collections;
-import java.util.Map;
-
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     // SecurityFilterChain : Spring Security 의 필터 연결을 구성하는 인터페이스
     // (시큐리티 6.0 이후 추가된 인터페이스, 이전에는 WebSecurityConfigurerAdapter 사용)
@@ -45,6 +47,9 @@ public class SecurityConfig {
                                 .loginPage("/login")
                                 .defaultSuccessUrl("/", true)
                                 .failureUrl("/login?error=true")
+                                .userInfoEndpoint(userInfoEndpoint -> userInfoEndpoint
+                                        .userService(customOAuth2UserService)
+                                )
                 )
 
                 // CSRF 토큰 비활성화 (CSRF : Cross Site Request Forgery - 사이트간 요청 위조)
@@ -70,7 +75,6 @@ public class SecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
 
 

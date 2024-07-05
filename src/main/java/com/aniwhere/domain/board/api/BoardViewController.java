@@ -28,6 +28,11 @@ public class BoardViewController {
         return "anitalk/guide";
     }
 
+    @GetMapping("/faq")
+    public String faq() {
+        return "anitalk/faq";
+    }
+
 
 
 }

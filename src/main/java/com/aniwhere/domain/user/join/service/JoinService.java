@@ -26,6 +26,7 @@ public class JoinService {
         joinDTO.setZipCode(join.getZipCode());
         joinDTO.setPhone(join.getPhone());
         joinDTO.setRole("ROLE_USER");
+        joinDTO.setSocial(false);
 
         userMapper.register(joinDTO);
 
