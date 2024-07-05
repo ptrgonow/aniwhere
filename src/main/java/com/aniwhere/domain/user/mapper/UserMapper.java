@@ -16,6 +16,15 @@ public interface UserMapper {
 
      @Select("SELECT user_id AS userId, user_pwd AS userPwd, user_name AS userName, role FROM user WHERE user_id = #{username}")
      LoginDTO findByUserId(String username);
+
+     @Select("SELECT COUNT(*) FROM user WHERE user_id = #{userId}")
+     boolean existsByUserId(String userId);
+
+     @Select("SELECT COUNT(*) FROM user WHERE email = #{email}")
+     boolean existsByEmail(String email);
+
+     @Select("SELECT COUNT(*) FROM user WHERE phone = #{phone}")
+     boolean existsByPhone(String phone);
 }
 
 

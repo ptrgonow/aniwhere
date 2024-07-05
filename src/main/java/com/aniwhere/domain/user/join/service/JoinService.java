@@ -6,6 +6,7 @@ import com.aniwhere.domain.user.join.domain.Join;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -14,7 +15,11 @@ public class JoinService {
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public void joinProcess(Join join) {
+    @Transactional
+    public boolean joinProcess(Join join) {
+        if (isDuplicate(join.getUserId(), join.getEmail(), join.getPhone())) {
+            return false; // 중복 항목 존재, 가입 불가
+        }
 
         JoinDTO joinDTO = new JoinDTO();
         joinDTO.setUserId(join.getUserId());
@@ -29,8 +34,12 @@ public class JoinService {
         joinDTO.setSocial(false);
 
         userMapper.register(joinDTO);
+        return true; // 가입 성공
+    }
 
-
-
+    public boolean isDuplicate(String userId, String email, String phone) {
+        return userMapper.existsByUserId(userId) ||
+                userMapper.existsByEmail(email) ||
+                userMapper.existsByPhone(phone);
     }
 }

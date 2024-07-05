@@ -40,6 +40,8 @@ body {
     background: rgba(255, 255, 255, .95);
     color: #F28123;
     align-items: center;
+    position: relative;
+    padding-bottom: 30px; /* 아래쪽 패딩 추가 (메시지가 표시될 공간 확보) */
 }
 
 .reg-form{
@@ -91,4 +93,20 @@ body {
 
 .fa-solid.fa-right-to-bracket{
     font-size: 1.5rem;
+}
+.duplicate-message {
+    display: block;
+    font-size: 13px;
+    color: red;
+    margin-top: 5px;
+    position: absolute; /* .duplicate-message를 absolute positioning으로 설정 */
+    bottom: 0; /* 아래쪽 패딩에 맞춰 위치 조정 */
+}
+
+#email-local{
+    width: 50%;
+}
+
+#email-domain-custom{
+    width: 50%;
 }
