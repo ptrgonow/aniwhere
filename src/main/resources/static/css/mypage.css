@@ -1,0 +1,97 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+.reg-text{
+    justify-content: center;
+    gap: 7px;
+    align-items: center;
+    display: flex;
+    margin-left: 15px;
+    color: #07212e;
+}
+
+.material-symbols-outlined {
+    font-size: 4rem;
+    color: #07212e;
+}
+
+.modi-form{
+    border: 2px solid #F28123;
+    padding-bottom: 20px;
+}
+
+.form-input{
+    display: flex;
+    width: 370px;
+    padding: 16px;
+    border-radius: 7px;
+    border: 0;
+    margin: 15px;
+    font-size: 18px;
+    height: auto;
+    outline-color: rgba(0, 0, 0, 0);
+    background: rgba(255, 255, 255, .95);
+    color: #F28123;
+    align-items: center;
+}
+
+.reg-form{
+    width: 80px;
+    display: inline-block;
+}
+
+.in-text{
+    border: none;
+    background-color: #e2e2e1;
+}
+
+.address-inputs {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.address-inputs .in-text {
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.address-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.address-buttons button {
+    height: calc(3 * 54px / 3);
+    white-space: nowrap;
+    color: #FFFFFF;
+    background-color: #07212e;
+    border: none;
+    font-size: 1rem;
+}
+
+.form-input-address{
+    height: auto;
+}
+
+#modi-btn, #del-btn{
+    justify-content: center;
+    background-color: #07212e;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+#del-btn{
+    background-color: #E74C3C;
+}
+
+.mypage-btn{
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+}
