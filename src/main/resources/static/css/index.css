@@ -499,3 +499,6 @@ a.boxed-btn, a.bordered-btn, a.cart-btn {
     opacity: 0.8;
 }
 
+.mypage a{
+    color: #FFFFFF;
+}

@@ -8,36 +8,55 @@
     <div class="container d-flex justify-content-center">
         <div class="join col-xl-8 col-8 d-flex justify-content-center w-100 h-100">
             <form id="joinForm">
+                <h2 class="reg-text"><span class="material-symbols-outlined">how_to_reg</span>Sign Up</h2>
                 <div class="form-input">
-                    <label for="userId">아이디</label>
-                    <input type="text" id="userId" name="userId" required>
+                    <label for="userId" class="reg-form">아이디</label>
+                    <input type="text" id="userId" name="userId" class="in-text" pattern="[a-z0-9]{5,}" title="5자 이상, 영어 소문자와 숫자만 입력 가능합니다." required>
+                    <span id="userId-message" class="duplicate-message"></span>
                 </div>
                 <div class="form-input">
-                    <label for="userPwd">비밀번호</label>
-                    <input type="password" id="userPwd" name="userPwd" required>
+                    <label for="userPwd" class="reg-form">비밀번호</label>
+                    <input type="password" id="userPwd" name="userPwd" class="in-text" required>
                 </div>
                 <div class="form-input">
-                    <label for="userName">이름</label>
-                    <input type="text" id="userName" name="userName" required>
+                    <label for="userName" class="reg-form">이름</label>
+                    <input type="text" id="userName" name="userName" class="in-text" pattern="[가-힣]{2,}" title="한글 2글자 이상 입력해주세요." required>
+                    <span id="userName-message" class="duplicate-message"></span>
                 </div>
                 <div class="form-input">
-                    <label for="email">이메일</label>
-                    <input type="text" id="email" name="email" required>
+                    <label for="email-local" class="reg-form">이메일</label>
+                    <div class="email-container">
+                        <input type="text" id="email-local" name="email-local" class="in-text" required>
+                        <span>@</span>
+                        <select id="email-domain" name="email-domain">
+                            <option value="">직접 입력</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="daum.net">daum.net</option>
+                        </select>
+                        <input type="text" id="email-domain-custom" name="email-domain-custom" class="in-text" style="display: none;">
+                    </div>
+                    <span id="email-message" class="duplicate-message"></span>
                 </div>
                 <div class="form-input">
-                    <label for="address">주소</label>
-                    <input type="text" id="address" name="address" >
-                    <button type="button" id="searchAddress">주소검색</button>
-                    <input type="text" id="detailAddress" name="detailAddress">
-                    <input type="text" id="zipCode" name="zipCode" required>
+                    <label for="address" class="reg-form">주소</label>
+                    <div class="address-inputs">
+                        <input type="text" id="address" name="address" class="in-text">
+                        <input type="text" id="detailAddress" name="detailAddress" class="in-text">
+                        <input type="text" id="zipCode" name="zipCode" class="in-text" required>
+                    </div>
+                    <div class="address-buttons">
+                        <button type="button" id="searchAddress">주소검색</button>
+                    </div>
                 </div>
                 <div class="form-input">
-                    <label for="phone">휴대폰</label>
-                    <input type="text" id="phone" name="phone" required>
+                    <label for="phone" class="reg-form">휴대폰</label>
+                    <input type="text" id="phone" name="phone" class="in-text" pattern="[0-9]+" title="숫자만 입력 가능합니다." required placeholder="ex)01012345678">
+                    <span id="phone-message" class="duplicate-message"></span>
                 </div>
             </form>
             <div class="icon">
-                <button id="join-btn" type="button">
+                <button id="join-btn" type="button" class="form-input">
                     <i class="fa-solid fa-right-to-bracket"></i>
                 </button>
             </div>

@@ -94,6 +94,7 @@ body {
     display: flex;
     align-items: center;
     margin-left: 2px;
+    justify-content: center;
 }
 
 .owl-nav.disabled, .owl-prev, .owl-next, .owl-dots{

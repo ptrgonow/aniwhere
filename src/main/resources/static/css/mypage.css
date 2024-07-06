@@ -1,30 +1,23 @@
 @import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
 
-body {
-    background-image: url(../img/d14.jpg);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    font-family: 'Noto Sans KR','Roboto', sans-serif;
-
-}
-
-.join {
-    flex-direction: column;
-    align-items: center;
-}
-
 .reg-text{
+    justify-content: center;
+    gap: 7px;
     align-items: center;
     display: flex;
     margin-left: 15px;
-    color: #F28123;
+    color: #07212e;
 }
 
 .material-symbols-outlined {
-    font-size: 5rem;
-    color: #F28123;
+    font-size: 4rem;
+    color: #07212e;
+}
+
+.modi-form{
+    border: 2px solid #F28123;
+    padding-bottom: 20px;
 }
 
 .form-input{
@@ -40,8 +33,6 @@ body {
     background: rgba(255, 255, 255, .95);
     color: #F28123;
     align-items: center;
-    position: relative;
-    padding-bottom: 30px; /* 아래쪽 패딩 추가 (메시지가 표시될 공간 확보) */
 }
 
 .reg-form{
@@ -77,36 +68,30 @@ body {
     height: calc(3 * 54px / 3);
     white-space: nowrap;
     color: #FFFFFF;
-    background-color: #F28123;
+    background-color: #07212e;
     border: none;
+    font-size: 1rem;
 }
 
 .form-input-address{
     height: auto;
 }
 
-#join-btn{
+#modi-btn, #del-btn{
     justify-content: center;
-    background-color: #F28123;
+    background-color: #07212e;
     color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 30px;
 }
 
-.fa-solid.fa-right-to-bracket{
-    font-size: 1.5rem;
-}
-.duplicate-message {
-    display: block;
-    font-size: 13px;
-    color: red;
-    margin-top: 5px;
-    position: absolute; /* .duplicate-message를 absolute positioning으로 설정 */
-    bottom: 0; /* 아래쪽 패딩에 맞춰 위치 조정 */
+#del-btn{
+    background-color: #E74C3C;
 }
 
-#email-local{
-    width: 50%;
-}
-
-#email-domain-custom{
-    width: 50%;
+.mypage-btn{
+    justify-content: center;
+    display: flex;
+    gap: 10px;
 }

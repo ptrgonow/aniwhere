@@ -1,9 +1,9 @@
-package com.aniwhere.domain.user.join.dto;
+package com.aniwhere.domain.user.mypage.dto;
 
 import lombok.Data;
 
 @Data
-public class JoinDTO {
+public class UserDetailDTO {
 
     private int Id;
     private String userId;

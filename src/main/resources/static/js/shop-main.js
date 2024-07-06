@@ -7,7 +7,7 @@ function scrollToBottom(){
 }
 
 window.addEventListener('scroll', () => {
-    const scrollButtons = document.querySelector('.scroll-buttons');
+    const scrollButtons = document.querySelector('.scroll-buttons-custom');
     if(window.scrollY > 100) {
         scrollButtons.classList.add('visible');
     }else{
@@ -17,22 +17,22 @@ window.addEventListener('scroll', () => {
 
 document.addEventListener("DOMContentLoaded", function() {
     // Add event listeners to toggle buttons
-    document.querySelector('.toggle-view.grid-view').addEventListener('click', function() {
-        document.querySelector(".product-lists").classList.add("grid-view");
-        document.querySelector(".product-lists").classList.remove("list-view");
+    document.querySelector('.toggle-view-custom.grid-view-custom').addEventListener('click', function() {
+        document.querySelector(".product-lists-custom").classList.add("grid-view-custom");
+        document.querySelector(".product-lists-custom").classList.remove("list-view-custom");
     });
 
-    document.querySelector('.toggle-view.list-view').addEventListener('click', function() {
-        document.querySelector(".product-lists").classList.add("list-view");
-        document.querySelector(".product-lists").classList.remove("grid-view");
+    document.querySelector('.toggle-view-custom.list-view-custom').addEventListener('click', function() {
+        document.querySelector(".product-lists-custom").classList.add("list-view-custom");
+        document.querySelector(".product-lists-custom").classList.remove("grid-view-custom");
     });
 
     // Default to grid view
-    document.querySelector(".product-lists").classList.add("grid-view");
+    document.querySelector(".product-lists-custom").classList.add("grid-view-custom");
 
     // Product filters
-    const filterButtons = document.querySelectorAll('.product-filters li');
-    const products = document.querySelectorAll('.product-lists .col-lg-4');
+    const filterButtons = document.querySelectorAll('.product-filters-custom li');
+    const products = document.querySelectorAll('.product-lists-custom .col-lg-4, .product-lists-custom .col-md-6');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {

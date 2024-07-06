@@ -1,9 +1,9 @@
-package com.aniwhere.domain.user.join.dto;
+package com.aniwhere.domain.user.mypage.domain;
 
 import lombok.Data;
 
 @Data
-public class JoinDTO {
+public class UserDetail {
 
     private int Id;
     private String userId;
@@ -14,8 +14,4 @@ public class JoinDTO {
     private String detailAddress;
     private String zipCode;
     private String phone;
-    private String role;
-    private String createdAt;
-    private boolean isSocial;
-
 }
