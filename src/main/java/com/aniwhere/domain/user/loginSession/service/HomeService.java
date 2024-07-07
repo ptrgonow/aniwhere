@@ -1,4 +1,4 @@
-package com.aniwhere.domain.user.join.service;
+package com.aniwhere.domain.user.loginSession.service;
 
 import com.aniwhere.domain.user.loginSession.dto.LoginDTO;
 import com.aniwhere.domain.user.mapper.UserMapper;
