@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,16 +24,25 @@ public class ShopViewController {
     private final ProductService productService;
 
     @GetMapping("/main")
-    public String shopMain(Model model)  {
+    public String shopMain(Model model,@RequestParam(defaultValue = "1") int page,
+                           @RequestParam(defaultValue = "9") int size)  {
+
 
         String userName = homeService.getAuthenticatedUserName();
         if (userName == null) {
             return "redirect:/login";
         }
 
-        model.addAttribute("name", userName);
-        List<Product> products = productService.findAllProducts();
+        int totalProducts = productService.getTotal();
+        int totalPages = (int) Math.ceil((double) totalProducts / size);
+
+        int offset = (page - 1) * size;
+
+        List<Product> products = productService.findAllProductsWithLimit(size, offset);
+
         model.addAttribute("products", products);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
 
         return "animall/shop-main";
     }

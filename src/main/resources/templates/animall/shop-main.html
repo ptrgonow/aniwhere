@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Shop</title>
-
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var allProducts = {
+            all: /*[[${products}]]*/,
+            dog: /*[[${dogs}]]*/,
+            cat: /*[[${cats}]]*/,
+            others: /*[[${others}]]*/
+        };
+        /*]]>*/
+    </script>
 </head>
 <body>
 <div th:replace="~{include/header :: header}"></div>
@@ -34,22 +44,19 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-filters">
-                    <ul>
-                        <li class="active" data-filter="*">전체</li>
-                        <li data-filter=".dog">강아지</li>
-                        <li data-filter=".cat">고양이</li>
-                        <li data-filter=".others">기타</li>
-                    </ul>
-                </div>
+        <div class="col-md-12">
+            <div class="product-filters">
+                <ul>
+                    <li class="active" data-category="all">전체</li>
+                    <li data-category="dog">강아지</li>
+                    <li data-category="cat">고양이</li>
+                    <li data-category="others">기타</li>
+                </ul>
             </div>
         </div>
 
-        <div id="product-container" class="row product-lists" >
-            <div class="col-lg-4 col-md-6 text-center" th:each="product, status : ${products}">
+        <div id="product-container" class="row product-lists">
+            <div th:each="product : ${products}" class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
                         <a><img th:src="${product.image}" alt="외부 이미지"></a>
@@ -57,13 +64,12 @@
                     <div class="product-details">
                         <h3 th:text="${product.name}">상품 이름</h3>
                         <div class="product-price">
-                        <p th:text="${product.price}"></p>원
+                            <p th:text="${product.price}"></p>원
                         </div>
                     </div>
                     <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
-
         </div>
 
         <div id="pagination-container" class="pagination-mini"></div>

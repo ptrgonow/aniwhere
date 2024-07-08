@@ -9,8 +9,20 @@ import java.util.List;
 @Mapper
 public interface ShopMapper {
 
-    @Select("SELECT * FROM product")
-    List<Product> findAllProducts();
+    @Select("SELECT COUNT(*) FROM product")
+    int getTotalProductCount();
+
+    @Select("SELECT * FROM product LIMIT #{limit} OFFSET #{offset}")
+    List<Product> findAllProductsWithLimit(@Param("limit") int limit, @Param("offset") int offset);
+
+    @Select("SELECT * FROM product WHERE category3 LIKE '%강아지%'")
+    List<Product> findDogProducts();
+
+    @Select("SELECT * FROM product WHERE category3 LIKE '%고양이%'")
+    List<Product> findCatProducts();
+
+    @Select("SELECT * FROM product WHERE category3 NOT LIKE '%강아지%' AND name NOT LIKE '%고양이%'")
+    List<Product> findOtherProducts();
 
     @Select("SELECT * FROM product WHERE product_id = #{productId}")
     Product findProductById(Integer productId);
