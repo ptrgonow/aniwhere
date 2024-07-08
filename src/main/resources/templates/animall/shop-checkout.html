@@ -76,14 +76,15 @@
                      </div>
                      <div class="accordion-item">
                         <h2 class="accordion-header" id="headingThree">
-                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                               결제 정보
                            </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
                            <div class="accordion-body">
                               <div class="card-details">
-                                 <p>Your card details goes here.</p>
+                                  <div id="payment-method"></div>
+                                  <div id="agreement"></div>
                               </div>
                            </div>
                         </div>
@@ -131,11 +132,11 @@
                         </tr>
                         <tr>
                            <td>총 가격</td>
-                           <td>$240</td>
+                           <td id="amount">24000</td>
                         </tr>
                      </tbody>
                   </table>
-                  <a href="#" class="boxed-btn">결제하기</a>
+                   <button class="btn btn-info" id="payment-button" style="margin-top: 30px">결제하기</button>
                </div>
             </div>
          </div>
@@ -174,3 +175,4 @@
 </body>
 <div th:replace="~{include/footer :: footer}"></div>
 <script src="https://js.tosspayments.com/v2/standard"></script>
+<script src="/js/checkout.js"></script>

@@ -76,10 +76,10 @@
                                         <a href="/join">회원가입</a>
                                     </span>
                                     <span sec:authorize="isAuthenticated()">
-                                        <a class="mypage" th:href="@{/mypage/detail}">mypage</a>
                                         <input type="hidden" id="userId" th:value="${userId}">
-                                        <span class="text-white" th:text="${name}"></span>
-                                        <a class="mobile-hide search-bar-icon" href="/logout"><i class="fas fa-arrow-left-long"></i></a>
+                                        <a><span class="text-white" th:text="${name}"></span></a>
+                                        <a class="mypage" th:href="@{/mypage/detail}">mypage</a>
+                                        <a class="mobile-hide search-bar-icon" href="/logout">로그아웃</a>
                                     </span>
                                 </div>
                             </li>
