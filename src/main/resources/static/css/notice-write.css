@@ -83,8 +83,34 @@ input[type="submit"]:hover, a.button:hover {
     border-radius: 4px;
 }
 
+/* CKEditor 컨테이너 크기 조정 */
 #editor-container {
-    margin-bottom: 15px;
+    width: 100%; /* 에디터 컨테이너의 너비를 100%로 설정 */
+    max-width: 800px; /* 최대 너비를 800px로 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* CKEditor 기본 스타일 수정 */
+.cke_editor {
+    height: 600px; /* 원하는 높이로 조정 */
+    box-sizing: border-box; /* 박스 크기 조정 */
+}
+
+/* 에디터의 내부 내용 영역 크기 조정 */
+.cke_contents {
+    min-height: 500px; /* 최소 높이 설정 */
+}
+
+/* 글쓰기 제목 위치 수정 해야함*/
+#title-input {
+
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
 }
 
 .button-group {

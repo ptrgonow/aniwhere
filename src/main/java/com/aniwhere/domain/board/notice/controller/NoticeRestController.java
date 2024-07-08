@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/notice") // REST API 경로를 '/api/notice'로 수정
 public class NoticeRestController {
 
     private final NoticeService noticeService;
@@ -19,16 +18,17 @@ public class NoticeRestController {
     }
 
     // 모든 공지사항 조회
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<NoticeDTO>> getNotices() {
         List<NoticeDTO> notices = noticeService.getAllNotices();
         return ResponseEntity.ok(notices);
     }
 
-    // 공지사항 등록
-    @PostMapping("/submit-notice")
-    public ResponseEntity<Void> createNotice(@RequestBody NoticeDTO noticeDTO) {
-        noticeService.createNotice(noticeDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    // 공지사항 수정
+    @PutMapping("/update")
+    public ResponseEntity<Void> updateNotice(@RequestBody NoticeDTO noticeDTO) {
+        noticeService.updateNotice(noticeDTO);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
 }
