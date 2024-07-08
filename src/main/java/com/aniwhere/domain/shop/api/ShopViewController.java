@@ -33,4 +33,14 @@ public class ShopViewController {
         return "animall/shop-product-detail";
     }
 
+    @GetMapping("/review")
+    public String review(){
+        return "animall/shop-review";
+    }
+
+    @GetMapping("/review-single")
+    public String reviewSingle(){
+        return "animall/shop-review-single";
+    }
+
 }

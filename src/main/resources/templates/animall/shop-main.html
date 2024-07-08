@@ -1,134 +1,128 @@
 <!DOCTYPE html>
-<div th:replace="~{include/header :: header}"></div>
-<link rel="stylesheet" href="/css/shop-main.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
 
+    <link rel="stylesheet" href="/css/shop-main.css">
+
+</head>
 <body>
-
-<!-- breadcrumb-section -->
-<div class="breadcrumb-section breadcrumb-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="breadcrumb-text">
-                    <p>모든 상품</p>
-                    <h1>AniMall</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end breadcrumb section -->
+<div th:replace="~{include/header :: header}"></div>
 
 <!--PreLoader-->
-<div class="loader-custom">
-    <div class="loader-inner-custom">
-        <div class="circle-custom"></div>
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
     </div>
 </div>
 <!--PreLoader Ends-->
 
 <!-- products -->
-<div class="product-section-custom mt-150 mb-150">
-    <div class="container-custom">
+<div class="product-section mt-150 mb-150">
+    <div class="container">
 
         <!-- 새로운 div 내의 독립적 버튼들 -->
-        <div class="row-custom">
-            <div class="col-md-12 text-right view-toggle-buttons-custom">
-                <button class="btn btn-outline-primary toggle-view-custom grid-view-custom"><i class="fas fa-th"></i> Grid</button>
-                <button class="btn btn-outline-primary toggle-view-custom list-view-custom"><i class="fas fa-list"></i> List</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="view-toggle-buttons">
+                    <button class="btn btn-outline-primary toggle-view grid-view"><i class="fas fa-th"></i> </button>
+                    <button class="btn btn-outline-primary toggle-view list-view"><i class="fas fa-list"></i> </button>
+                </div>
             </div>
         </div>
 
-        <div class="row-custom">
+        <div class="row">
             <div class="col-md-12">
-                <div class="product-filters-custom">
+                <div class="product-filters">
                     <ul>
                         <li class="active" data-filter="*">All</li>
-                        <li data-filter=".strawberry-custom">Strawberry</li>
-                        <li data-filter=".berry-custom">Berry</li>
-                        <li data-filter=".lemon-custom">Lemon</li>
-                        <li data-filter=".apple-custom">Apple</li>
+                        <li data-filter=".strawberry">Strawberry</li>
+                        <li data-filter=".berry">Berry</li>
+                        <li data-filter=".lemon">Lemon</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="row-custom product-lists-custom">
-            <div class="col-lg-4 col-md-6 text-center strawberry-custom">
-                <div class="single-product-item-custom">
-                    <div class="product-image-custom">
-                        <a href="#"><img src="#" alt="img1"></a>
+        <div class="row product-lists">
+            <div class="col-lg-4 col-md-6 text-center strawberry">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="shop-product-detail.html"><img src="/img/products/product-img-1.jpg" alt="Strawberry"></a>
                     </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price-custom"><span>Per Kg</span> 85$ </p>
-                    <a href="#" class="cart-btn-custom"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <div class="product-details">
+                        <h3>Strawberry</h3>
+                        <p class="product-price"><span>Per Kg</span> 85$ </p>
+                    </div>
+                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 text-center berry-custom">
-                <div class="single-product-item-custom">
-                    <div class="product-image-custom">
-                        <a href="#"><img src="#" alt="img2"></a>
+            <div class="col-lg-4 col-md-6 text-center berry">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="shop-product-detail.html"><img src="/img/products/product-img-2.jpg" alt="Berry"></a>
                     </div>
-                    <h3>Berry</h3>
-                    <p class="product-price-custom"><span>Per Kg</span> 70$ </p>
-                    <a href="#" class="cart-btn-custom"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <div class="product-details">
+                        <h3>Berry</h3>
+                        <p class="product-price"><span>Per Kg</span> 70$ </p>
+                    </div>
+                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 text-center lemon-custom">
-                <div class="single-product-item-custom">
-                    <div class="product-image-custom">
-                        <a href="#"><img src="#" alt="img3"></a>
+            <div class="col-lg-4 col-md-6 text-center lemon">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="shop-product-detail.html"><img src="/img/products/product-img-3.jpg" alt="Lemon"></a>
                     </div>
-                    <h3>Lemon</h3>
-                    <p class="product-price-custom"><span>Per Kg</span> 35$ </p>
-                    <a href="#" class="cart-btn-custom"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item-custom">
-                    <div class="product-image-custom">
-                        <a href="#"><img src="#" alt="img4"></a>
+                    <div class="product-details">
+                        <h3>Lemon</h3>
+                        <p class="product-price"><span>Per Kg</span> 35$ </p>
                     </div>
-                    <h3>Avocado</h3>
-                    <p class="product-price-custom"><span>Per Kg</span> 50$ </p>
-                    <a href="#" class="cart-btn-custom"><i class="#"></i> Add to Cart</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center apple-custom">
-                <div class="single-product-item-custom">
-                    <div class="product-image-custom">
-                        <a href="#"><img src="#" alt="img5"></a>
-                    </div>
-                    <h3>Green Apple</h3>
-                    <p class="product-price-custom"><span>Per Kg</span> 45$ </p>
-                    <a href="#" class="cart-btn-custom"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item-custom">
-                    <div class="product-image-custom">
-                        <a href="#"><img src="#" alt="img6"></a>
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="shop-product-detail.html"><img src="/img/products/product-img-4.jpg" alt="Avocado"></a>
                     </div>
-                    <h3>Green Apple</h3>
-                    <p class="product-price-custom"><span>Per Kg</span> 45$ </p>
-                    <a href="#" class="cart-btn-custom"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <div class="product-details">
+                        <h3>Avocado</h3>
+                        <p class="product-price"><span>Per Kg</span> 50$ </p>
+                    </div>
+                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 text-center strawberry-custom">
-                <div class="single-product-item-custom">
-                    <div class="product-image-custom">
-                        <a href="#"><img src="#" alt="img7"></a>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="shop-product-detail.html"><img src="/img/products/product-img-5.jpg" alt="Green Apple"></a>
                     </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price-custom"><span>Per Kg</span> 80$ </p>
-                    <a href="#" class="cart-btn-custom"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <div class="product-details">
+                        <h3>Green Apple</h3>
+                        <p class="product-price"><span>Per Kg</span> 45$ </p>
+                    </div>
+                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center strawberry">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="shop-product-detail.html"><img src="/img/products/product-img-6.jpg" alt="Strawberry"></a>
+                    </div>
+                    <div class="product-details">
+                        <h3>Strawberry</h3>
+                        <p class="product-price"><span>Per Kg</span> 80$ </p>
+                    </div>
+                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
         </div>
 
-        <div class="row-custom">
+        <div class="row">
             <div class="col-lg-12 text-center">
-                <div class="pagination-wrap-custom">
+                <div class="pagination-wrap">
                     <ul>
                         <li><a href="#">Prev</a></li>
                         <li><a href="#">1</a></li>
@@ -143,12 +137,14 @@
 </div>
 <!-- end products -->
 
-<div class="scroll-buttons-custom">
-    <button id="scroll-up-custom" onclick="scrollToTop()">▲</button>
-    <button id="scroll-down-custom" onclick="scrollToBottom()">▼</button>
+<div class="scroll-buttons">
+    <button id="scroll-up" onclick="scrollToTop()">▲</button>
+    <button id="scroll-down" onclick="scrollToBottom()">▼</button>
 </div>
 
 <div th:replace="~{include/footer :: footer}"></div>
+
 <script src="/js/shop-main.js"></script>
 
 </body>
+</html>

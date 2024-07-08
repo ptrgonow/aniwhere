@@ -1,32 +1,44 @@
-/* 제품 리스트 그리드 형식 */
-.product-lists.grid-view .col-lg-4,
-.product-lists.grid-view .col-md-6 {
+
+
+/* 공통 스타일 */
+.product-section {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+/* 페이지네이션과 제품 리스트 간의 간격 추가 */
+.pagination-wrap {
+  margin-top: 60px; /* 페이지네이션과 제품 카드 간의 간격 추가 */
+  clear: both;
+}
+
+.product-lists .col-lg-4, .product-lists .col-md-6, .product-lists .col-12 {
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+/* 그리드 뷰 스타일 */
+.product-lists.grid-view .col-lg-4, .product-lists.grid-view .col-md-6 {
   flex: 0 0 33.33%;
   max-width: 33.33%;
-  box-sizing: border-box;
-  padding: 10px;
+  margin-bottom: 20px;
 }
 
-/* 그리드 뷰 항목 스타일 */
-.product-lists.grid-view .single-product-item {
-  display: block;
-}
 
-/* 제품 리스트 리스트 형식 */
-.product-lists.list-view .col-lg-4,
-.product-lists.list-view .col-md-6,
-.product-lists.list-view .col-12 {
+/* 리스트 뷰 스타일 */
+.product-lists.list-view .col-md-6 {
   flex: 0 0 100%;
   max-width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  margin-top: 0; /* 리스트 뷰에서 각 아이템의 간격 */
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 40px;
 }
 
-/* 리스트 뷰 항목 스타일 */
 .product-lists.list-view .single-product-item {
   display: flex;
   align-items: center;
+  justify-content: start;
   width: 100%;
   background: #f9f9f9; /* 배경색 */
   padding: 20px; /* 패딩 */
@@ -93,13 +105,20 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.scroll-buttons.visible {
+  display: flex;
+  opacity: 1;
 }
 
 .scroll-buttons button {
   background: #333; /* 헤더나 푸터의 배경색으로 설정 */
   color: #ffa500; /* 옅은 오렌지색 화살표 */
   border: none;
-  border-radius: 49%;
+  border-radius: 50%;
   width: 40px;
   height: 40px;
   display: flex;
