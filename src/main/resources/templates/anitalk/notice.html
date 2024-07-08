@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <div th:replace="~{include/header :: header}"></div>
-<link rel="stylesheet" href="/css/notice.css">
+    <link rel="stylesheet" href="/css/notice.css">
 
 <body>
 
@@ -10,8 +10,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <p>왈왈</p>
-                    <h1>AniWhere Notice</h1>
+                    <h1>AniTalk</h1>
                 </div>
             </div>
         </div>
@@ -22,14 +21,31 @@
 <!-- 공지사항 -->
 <div class="notice_box">
     <div class="notice_title">
-        <h2>Notice</h2>
+        <h2>공지사항</h2>
         <hr>
     </div>
     <div class="notice_content">
         <table id="notice_table">
-            <!-- JavaScript에서 내용이 삽입될 것입니다. -->
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="notice, stat : ${notices}" th:data-notice-id="${notice.noticeId}">
+                <td th:text="${stat.index + 1}"></td>
+                <td><a th:href="@{/nt/detail(id=${notice.noticeId})}" th:text="${notice.title}"></a></td>
+                <td th:text="${notice.departmentName}"></td>
+                <td th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}"></td>
+            </tr>
+
+            </tbody>
         </table>
-        <div class="notice_write_btn"><a href="/board/notice-write">작성</a></div>
+        <div class="notice_write_btn">
+            <a href="/board/notice-write">작성</a>
+        </div>
     </div>
 
     <!-- 페이징 처리 -->
