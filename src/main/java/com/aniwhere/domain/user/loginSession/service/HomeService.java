@@ -17,6 +17,7 @@ public class HomeService {
 
     private final UserMapper userMapper;
 
+    // 인증된 사용자 이름 가져오기
     public String getAuthenticatedUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
@@ -52,4 +53,37 @@ public class HomeService {
         }
         return null;
     }
+
+    // 인증된 사용자 ID 가져오기
+    public String getAuthenticatedUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            Object principal = authentication.getPrincipal();
+            String userId = null;
+
+            if (principal instanceof OAuth2User) {
+                OAuth2User oauthUser = (OAuth2User) principal;
+                Map<String, Object> attributes = oauthUser.getAttributes();
+                String registrationId = oauthUser.getAuthorities().toString();
+
+                if (registrationId.contains("ROLE_USER")) {
+                    if (attributes.containsKey("response")) { // Naver
+                        Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+                        userId = (String) response.get("id");
+                    } else if (attributes.containsKey("kakao_account")) { // Kakao
+                        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
+                        userId = (String) kakaoAccount.get("email");
+                    } else { // Other providers
+                        userId = oauthUser.getAttribute("sub");
+                    }
+                }
+            } else if (principal instanceof UserDetails) {
+                userId = ((UserDetails) principal).getUsername();
+            }
+
+            return userId;
+        }
+        return null;
+    }
+
 }

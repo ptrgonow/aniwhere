@@ -27,6 +27,7 @@ public class RouteService {
 
     private final RouteMapper routeMapper;
 
+
     public RouteDTO getRouteById(Long id) {
         RouteDTO route = routeMapper.selectRouteById(id);
         List<MarkerDTO> markers = routeMapper.selectMarkersByRouteId(id);
@@ -39,6 +40,7 @@ public class RouteService {
         route.setName(routeDto.getName());
         route.setDescription(routeDto.getDescription());
         route.setCreatedAt(LocalDateTime.now());
+        route.setUserId(routeDto.getUserId()); // userId 설정
         routeMapper.insertRoute(route);
 
         List<Marker> markers = routeDto.getMarkers().stream()

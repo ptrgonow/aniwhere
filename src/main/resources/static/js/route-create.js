@@ -327,6 +327,7 @@ function captureAndSaveRoute() {
         let base64Image = canvas.toDataURL("image/png");
 
         const routeData = {
+            userId: $('#userId').val(),
             name: $('#routeName').val(),
             description: $('#routeDescription').val(),
             markers: getMarkersData(),
@@ -335,7 +336,7 @@ function captureAndSaveRoute() {
 
         $.ajax({
             type: 'POST',
-            url: '/map/routes',
+            url: '/map/route',
             data: JSON.stringify(routeData),
             contentType: 'application/json',
             success: function(response) {
