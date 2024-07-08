@@ -1,5 +1,7 @@
 package com.aniwhere.domain.shop.api;
 
+import com.aniwhere.domain.shop.product.domain.Product;
+import com.aniwhere.domain.shop.product.service.ProductService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import jakarta.servlet.Filter;
 import jakarta.servlet.http.HttpSession;
@@ -9,12 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/shop")
 @RequiredArgsConstructor
 public class ShopViewController {
 
     private final HomeService homeService;
+    private final ProductService productService;
 
     @GetMapping("/main")
     public String shopMain(Model model)  {
@@ -25,6 +30,9 @@ public class ShopViewController {
         }
 
         model.addAttribute("name", userName);
+        List<Product> products = productService.findAllProducts();
+        model.addAttribute("products", products);
+
         return "animall/shop-main";
     }
 
@@ -48,10 +56,9 @@ public class ShopViewController {
         return "animall/shop-review-single";
     }
 
-    @GetMapping("/check-out")
-    public String checkOut(){
-        return "animall/shop-check-out";
+    @GetMapping("/checkout")
+    public String checkout(){
+        return "animall/shop-checkout";
     }
-
 
 }

@@ -1,8 +1,10 @@
 package com.aniwhere.domain.user.mypage.service;
 
 import com.aniwhere.domain.user.mapper.UserMapper;
+import com.aniwhere.domain.user.mypage.domain.UserDetail;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,18 +12,19 @@ import org.springframework.stereotype.Service;
 public class MyService {
 
     private final UserMapper userMapper;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserDetailDTO getUserDetailByUserId(String userId) {
+    public UserDetail getUserDetailByUserId(String userId) {
         UserDetailDTO userDetail = userMapper.detailByUserId(userId);
-        return convertToDTO(userDetail);
+        return convertToDomain(userDetail);
     }
 
-    public UserDetailDTO convertToDTO(UserDetailDTO userDetail){
+    public UserDetail convertToDomain(UserDetailDTO userDetail){
 
-        UserDetailDTO detailDto = new UserDetailDTO();
+        UserDetail detailDto = new UserDetail();
         detailDto.setId(userDetail.getId());
         detailDto.setUserId(userDetail.getUserId());
-        detailDto.setUserPwd(userDetail.getUserPwd());
+        detailDto.setUserPwd(passwordEncoder.encode(userDetail.getUserPwd()));
         detailDto.setUserName(userDetail.getUserName());
         detailDto.setEmail(userDetail.getEmail());
         detailDto.setAddress(userDetail.getAddress());
@@ -32,7 +35,13 @@ public class MyService {
         return detailDto;
     }
 
-
+    public boolean checkPassword(String userId, String userPwd) {
+        UserDetailDTO userDetailDTO = userMapper.detailByUserId(userId);
+        if (userDetailDTO != null) {
+            return passwordEncoder.matches(userPwd, userDetailDTO.getUserPwd());
+        }
+        return false;
+    }
 
 
 }

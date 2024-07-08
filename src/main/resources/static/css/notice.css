@@ -9,9 +9,11 @@
     font-weight: normal;
 }
 
+/* 공지사항 타이틀 글씨 크기 조절 */
 .notice_title h2{
     text-align: center;
     margin: 10px 10px;
+    font-size: 30px;
 }
 
 .notice_title hr{
@@ -36,9 +38,9 @@
 }
 
 .notice_content table th{
-    background-color: #febe98;
+    background-color: #3f4e59;
     border-top: 2px solid darkgray;
-    color: black;
+    color: #ffffff;
     padding: 10px;
     cursor: text;
     text-align: center;
@@ -87,14 +89,14 @@
     width: 70px;
     height: 30px;
     border: none;
-    background-color: #febe98;
+    background-color: #8b8e91;
     color: white;
     cursor: pointer;
     border-radius: 5px;
 }
 
 .search_form button:hover {
-    background-color: #f5a623;
+    background-color: #3f4e59;
 }
 
 /* 글쓰기 버튼 */
@@ -105,14 +107,15 @@
 
 .notice_write_btn a {
     padding: 10px 20px;
-    background-color: #febe98;
+    background-color: #8b8e91;
     color: white;
     text-decoration: none;
     border-radius: 5px;
 }
 
 .notice_write_btn a:hover {
-    background-color: #f5a623;
+    background-color: #3f4e59;
+
 }
 
 
@@ -142,18 +145,18 @@
     color: black;
     margin: 0 5px;
     padding: 10px 15px;
-    border: 1px solid #febe98;
+    background-color: #e5e5e5;
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
 }
 
 .page_form a:hover {
-    background-color: #febe98;
+    background-color: #8b8e91;
     color: white;
 }
 
 .page_form .active {
-    background-color: #febe98;
+    background-color: #8b8e91;
     color: white;
 }

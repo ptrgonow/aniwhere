@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <title>Shop</title>
 
-    <link rel="stylesheet" href="/css/shop-main.css">
-
 </head>
 <body>
 <div th:replace="~{include/header :: header}"></div>
-
-<!--PreLoader-->
-<div class="loader">
-    <div class="loader-inner">
-        <div class="circle"></div>
+<link rel="stylesheet" href="/css/shop-main.css">
+<!--PreLoader Ends-->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>반려동물 용품</p>
+                    <h1>AniMall</h1>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<!--PreLoader Ends-->
-
 <!-- products -->
 <div class="product-section mt-150 mb-150">
     <div class="container">
@@ -36,103 +39,35 @@
             <div class="col-md-12">
                 <div class="product-filters">
                     <ul>
-                        <li class="active" data-filter="*">All</li>
-                        <li data-filter=".strawberry">Strawberry</li>
-                        <li data-filter=".berry">Berry</li>
-                        <li data-filter=".lemon">Lemon</li>
+                        <li class="active" data-filter="*">전체</li>
+                        <li data-filter=".dog">강아지</li>
+                        <li data-filter=".cat">고양이</li>
+                        <li data-filter=".others">기타</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="row product-lists">
-            <div class="col-lg-4 col-md-6 text-center strawberry">
+        <div id="product-container" class="row product-lists" >
+            <div class="col-lg-4 col-md-6 text-center" th:each="product, status : ${products}">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="shop-product-detail.html"><img src="/img/products/product-img-1.jpg" alt="Strawberry"></a>
+                        <a><img th:src="${product.image}" alt="외부 이미지"></a>
                     </div>
                     <div class="product-details">
-                        <h3>Strawberry</h3>
-                        <p class="product-price"><span>Per Kg</span> 85$ </p>
+                        <h3 th:text="${product.name}">상품 이름</h3>
+                        <div class="product-price">
+                        <p th:text="${product.price}"></p>원
+                        </div>
                     </div>
-                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 text-center berry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="shop-product-detail.html"><img src="/img/products/product-img-2.jpg" alt="Berry"></a>
-                    </div>
-                    <div class="product-details">
-                        <h3>Berry</h3>
-                        <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    </div>
-                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center lemon">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="shop-product-detail.html"><img src="/img/products/product-img-3.jpg" alt="Lemon"></a>
-                    </div>
-                    <div class="product-details">
-                        <h3>Lemon</h3>
-                        <p class="product-price"><span>Per Kg</span> 35$ </p>
-                    </div>
-                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="shop-product-detail.html"><img src="/img/products/product-img-4.jpg" alt="Avocado"></a>
-                    </div>
-                    <div class="product-details">
-                        <h3>Avocado</h3>
-                        <p class="product-price"><span>Per Kg</span> 50$ </p>
-                    </div>
-                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="shop-product-detail.html"><img src="/img/products/product-img-5.jpg" alt="Green Apple"></a>
-                    </div>
-                    <div class="product-details">
-                        <h3>Green Apple</h3>
-                        <p class="product-price"><span>Per Kg</span> 45$ </p>
-                    </div>
-                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center strawberry">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="shop-product-detail.html"><img src="/img/products/product-img-6.jpg" alt="Strawberry"></a>
-                    </div>
-                    <div class="product-details">
-                        <h3>Strawberry</h3>
-                        <p class="product-price"><span>Per Kg</span> 80$ </p>
-                    </div>
-                    <a href="shop-cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
+
         </div>
 
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="pagination-wrap">
-                    <ul>
-                        <li><a href="#">Prev</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a class="active" href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">Next</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <div id="pagination-container" class="pagination-mini"></div>
+
     </div>
 </div>
 <!-- end products -->
@@ -143,7 +78,7 @@
 </div>
 
 <div th:replace="~{include/footer :: footer}"></div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
 <script src="/js/shop-main.js"></script>
 
 </body>
