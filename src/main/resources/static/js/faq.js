@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // 클릭된 항목에 active 클래스 추가
             this.classList.add('active');
+            this.classList.add('active');
         });
     });
 });
