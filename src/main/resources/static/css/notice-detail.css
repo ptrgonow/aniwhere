@@ -62,6 +62,7 @@ span:hover:before, span:hover:after {
 .detail_area h2{
     text-align: center;
     margin: 80px 0 10px 0;
+    font-size: 30px;
 }
 
 .area_hr{
@@ -167,12 +168,13 @@ span:hover:before, span:hover:after {
 
 .all_detail a{
     padding: 10px 20px;
-    background-color: #febe98;
+    background-color: #8b8e91;
     color: white;
     text-decoration: none;
     border-radius: 5px;
 }
 
 .all_detail a:hover{
-    background-color: #f5a623;
+    background-color: #3f4e59;
+    color: #ffffff;
 }
