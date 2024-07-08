@@ -1,6 +1,10 @@
 @import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
 
+.page-wrapper{
+    margin-bottom: 85px;
+}
+
 .reg-text{
     justify-content: center;
     gap: 7px;
@@ -27,7 +31,7 @@
     border-radius: 7px;
     border: 0;
     margin: 15px;
-    font-size: 18px;
+    font-size: 1rem;
     height: auto;
     outline-color: rgba(0, 0, 0, 0);
     background: rgba(255, 255, 255, .95);
@@ -36,13 +40,32 @@
 }
 
 .reg-form{
-    width: 80px;
+    width: 110px;
     display: inline-block;
 }
 
 .in-text{
     border: none;
     background-color: #e2e2e1;
+}
+
+#pwdForm{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.pwd-info{
+    font-size: 0.7rem;
+    color: #E74C3C;
+    margin-left: 15px;
+    padding-left: 16px;
+}
+
+.pwd-con{
+    margin-left: auto;
+    color: #FFFFFF;
+    background-color: #07212e;
+    border: none;
 }
 
 .address-inputs {
@@ -94,4 +117,16 @@
     justify-content: center;
     display: flex;
     gap: 10px;
+}
+
+#nowPwd, #newPwd, #confirmPwd{
+    font-size: 1rem;
+}
+
+#check-icon{
+    background-color: #07212e;
+    color: #0ea78b;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
 }

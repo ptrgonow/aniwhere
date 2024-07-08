@@ -57,9 +57,8 @@ public class ShopViewController {
     }
 
     @GetMapping("/checkout")
-    public String checkout()  {
+    public String checkout(){
         return "animall/shop-checkout";
-
-
+    }
 
 }
