@@ -1,10 +1,3 @@
-
-$(document).ready(function() {
-
-
-
-});
-
 $(document).ready(function() {
     $('.slick-n2').slick({
         dots: true,
