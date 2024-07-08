@@ -1,27 +1,25 @@
 package com.aniwhere.domain.user.mypage.controller;
 
 import com.aniwhere.domain.user.mypage.domain.UserDetail;
+import com.aniwhere.domain.user.mypage.dto.PwdCheckDTO;
 import com.aniwhere.domain.user.mypage.service.MyService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
-@Controller
+@RestController
 @RequestMapping("/mypage")
 @AllArgsConstructor
-public class MyController {
+public class MyRestController {
 
     private final MyService myService;
 
-    // 스프링 프레임워크로 해당 유저ID 가져오는 로직
-    private String getAuthenticatedUserId() {
+    @GetMapping("/authenticatedUserId")
+    public String getAuthenticatedUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             Object principal = authentication.getPrincipal();
@@ -29,22 +27,19 @@ public class MyController {
                 return ((UserDetails) principal).getUsername();
             } else if (principal instanceof OAuth2User) {
                 OAuth2User oauthUser = (OAuth2User) principal;
-                return  oauthUser.getAttribute("userId");
+                return oauthUser.getAttribute("userId");
             }
         }
         return null;
     }
 
-    @GetMapping("/detail")
-    public String my(Model model) {
-
-        String userId = getAuthenticatedUserId();
-
-        UserDetail userDetail = myService.getUserDetailByUserId(userId);
-
-        model.addAttribute("detail", userDetail);
-
-        return "popup/mypage";
+    @PostMapping("/pwdcheck")
+    public String checkPassword(@RequestBody PwdCheckDTO pwdCheckDTO) {
+        boolean isPasswordMatch = myService.checkPassword(pwdCheckDTO.getUserId(), pwdCheckDTO.getUserPwd());
+        if (isPasswordMatch) {
+            return "비밀번호가 일치합니다";
+        } else {
+            return "비밀번호가 일치하지 않습니다";
+        }
     }
-
 }

@@ -43,4 +43,14 @@ public class ShopViewController {
         return "animall/shop-review-single";
     }
 
+    @GetMapping("/cart")
+    public String cart() {
+        return "animall/shop-cart";
+    }
+
+    @GetMapping("/checkout")
+    public String checkout(){
+        return "animall/shop-checkout";
+    }
+
 }
