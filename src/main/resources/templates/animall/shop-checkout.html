@@ -80,6 +80,7 @@
                      </div>
                      <div class="accordion-item">
                         <h2 class="accordion-header" id="headingThree">
+
                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                               결제 정보
                            </button>
@@ -87,10 +88,8 @@
                         <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
                            <div class="accordion-body">
                               <div class="card-details">
-                                 <!-- 결제 UI -->
-                                 <div id="payment-method"></div>
-                                 <!-- 이용약관 UI -->
-                                 <div id="agreement"></div>
+                                  <div id="payment-method"></div>
+                                  <div id="agreement"></div>
                               </div>
                            </div>
                         </div>
@@ -194,3 +193,4 @@
 <div th:replace="~{include/footer :: footer}"></div>
 <script src="https://js.tosspayments.com/v2/standard"></script>
 <script src="/js/shop-checkout.js"></script>
+

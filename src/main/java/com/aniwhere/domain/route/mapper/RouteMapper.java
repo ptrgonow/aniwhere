@@ -13,32 +13,24 @@ import java.util.List;
 public interface RouteMapper {
 
 
-    @Insert("INSERT INTO route (name, description, created_at, user_id) " +
-            "VALUES (#{name}, #{description}, #{createdAt}, #{userId})")
+    @Insert("INSERT INTO route (name, description, created_at, user_id) VALUES (#{name}, #{description}, #{createdAt}, #{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertRoute(Route route);
 
-    @Select("SELECT id, name, description, user_id " +
-            "FROM route " +
-            "WHERE id = #{id}")
-    RouteDTO selectRouteById(Long id);
+    @Select("SELECT id, name, description, created_at, user_id FROM route WHERE id = #{id}")
+    RouteDTO selectRouteById(@Param("id") Long id);
 
-    @Select("SELECT id, route_id, longitude, latitude " +
-            "FROM marker " +
-            "WHERE route_id = #{id}")
-    List<MarkerDTO> selectMarkersByRouteId(Long id);
+    @Select("SELECT id, route_id, longitude, latitude FROM marker WHERE route_id = #{id}")
+    List<MarkerDTO> selectMarkersByRouteId(@Param("id") Long id);
 
-    @Insert("INSERT INTO marker (route_id, longitude, latitude) " +
-            "VALUES (#{routeId}, #{longitude}, #{latitude})")
+    @Insert("INSERT INTO marker (route_id, longitude, latitude) VALUES (#{routeId}, #{longitude}, #{latitude})")
     void insertMarker(Marker marker);
 
-    @Update("UPDATE route " +
-            "SET name = #{routeDto.name}, description = #{routeDto.description} " +
-            "WHERE id = #{id}")
+    @Update("UPDATE route SET name = #{routeDto.name}, description = #{routeDto.description} WHERE id = #{id}")
     void updateRoute(@Param("id") Long id, @Param("routeDto") RouteDTO routeDto);
 
-    @Delete("DELETE FROM marker " +
-            "WHERE route_id = #{routeId}")
-    void deleteMarkersByRouteId(Long routeId);
+    @Delete("DELETE FROM marker WHERE route_id = #{routeId}")
+    void deleteMarkersByRouteId(@Param("routeId") Long routeId);
 
 }
+

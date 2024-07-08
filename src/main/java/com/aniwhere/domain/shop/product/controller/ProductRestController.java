@@ -19,13 +19,6 @@ public class ProductRestController {
 
     private final ProductService productService;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.findAllProducts();
-
-        return ResponseEntity.ok(products);
-    }
-
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable Integer id) {
         return productService.findProductById(id);

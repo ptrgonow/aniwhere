@@ -157,3 +157,21 @@ p.product-price {
 .product-details{
   margin-bottom: 35px;
 }
+#pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-btn {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  background-color: #007bff; /* 파란색 배경 */
+  color: #fff; /* 흰색 글씨 */
+}
