@@ -33,6 +33,11 @@ public class ShopViewController {
         return "animall/shop-product-detail";
     }
 
+    @GetMapping("/cart")
+    public String cart()  {
+        return "animall/shop-cart";
+    }
+
     @GetMapping("/review")
     public String review(){
         return "animall/shop-review";
@@ -42,5 +47,11 @@ public class ShopViewController {
     public String reviewSingle(){
         return "animall/shop-review-single";
     }
+
+    @GetMapping("/check-out")
+    public String checkOut(){
+        return "animall/shop-check-out";
+    }
+
 
 }
