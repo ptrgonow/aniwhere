@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/shop-review.css">
+</head>
+
+<body>
+<div th:replace="~{include/header :: header}"></div>
+
+<div class="row">
+    <div class="col-md-12 text-right view-toggle-buttons">
+        <button class="btn btn-outline-primary toggle-view grid-view"><i class="fas fa-th"></i> </button>
+        <button class="btn btn-outline-primary toggle-view list-view"><i class="fas fa-list"></i> </button>
+    </div>
+</div>
+
+<!-- latest news -->
+<div class="latest-news mt-150 mb-150 grid-view">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 news-item">
+                <div class="single-latest-news">
+                    <a href="shop-review-single.html">
+                        <img src="/img/products/product-img-1.jpg" alt="News Image 1" class="latest-news-img">
+                    </a>
+                    <div class="news-text-box">
+                        <h3><a href="#">You will vainly look for fruit on it in autumn.</a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i class="fas fa-user"></i> Admin</span>
+                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                        </p>
+                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
+                        <a href="#" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 news-item">
+                <div class="single-latest-news">
+                    <a href="#">
+                        <img src="/img/products/product-img-1.jpg" alt="News Image 1" class="latest-news-img">
+                    </a>
+                    <div class="news-text-box">
+                        <h3><a href="#">A man's worth has its season, like tomato.</a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i class="fas fa-user"></i> Admin</span>
+                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                        </p>
+                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
+                        <a href="#" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 news-item">
+                <div class="single-latest-news">
+                    <a href="#"><div class="latest-news-bg news-bg-1"></div></a>
+                    <div class="news-text-box">
+                        <h3><a href="#">Good thoughts bear good fresh juicy fruit.</a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i class="fas fa-user"></i> Admin</span>
+                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                        </p>
+                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
+                        <a href="#" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 news-item">
+                <div class="single-latest-news">
+                    <a href="#"><div class="latest-news-bg news-bg-1"></div></a>
+                    <div class="news-text-box">
+                        <h3><a href="#">Fall in love with the fresh orange</a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i class="fas fa-user"></i> Admin</span>
+                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                        </p>
+                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
+                        <a href="#" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 news-item">
+                <div class="single-latest-news">
+                    <a href="#"><div class="latest-news-bg news-bg-1"></div></a>
+                    <div class="news-text-box">
+                        <h3><a href="#">Why the berries always look delecious</a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i class="fas fa-user"></i> Admin</span>
+                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                        </p>
+                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
+                        <a href="#" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 news-item">
+                <div class="single-latest-news">
+                    <a href="#"><div class="latest-news-bg news-bg-1"></div></a>
+                    <div class="news-text-box">
+                        <h3><a href="#">Love for fruits are genuine of John Doe</a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i class="fas fa-user"></i> Admin</span>
+                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2018</span>
+                        </p>
+                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
+                        <a href="#" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination moved here -->
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="pagination-wrap">
+                    <ul>
+                        <li><a href="#">Prev</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a class="active" href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end latest news -->
+
+<div th:replace="~{include/footer :: footer}"></div>
+
+<script src="/js/shop-review.js"></script>
+
+</body>
+</html>
