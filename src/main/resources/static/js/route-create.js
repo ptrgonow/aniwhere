@@ -335,7 +335,7 @@ function captureAndSaveRoute() {
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8543/api/routes',
+            url: '/map/routes',
             data: JSON.stringify(routeData),
             contentType: 'application/json',
             success: function(response) {
