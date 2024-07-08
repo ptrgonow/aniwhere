@@ -7,5 +7,9 @@ import java.util.List;
 
 @Data
 public class RouteDTO {
-
+    private Long id;
+    private String name;
+    private String description;
+    private String image;
+    private List<MarkerDTO> markers;
 }
