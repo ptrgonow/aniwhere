@@ -14,10 +14,15 @@ public class ProductService {
 
     private final ShopMapper shopMapper;
 
-
-    public List<Product> findAllProducts() {
-        return shopMapper.findAllProducts();
+    public int getTotal(){
+        return shopMapper.getTotalProductCount();
     }
+
+    public List<Product> findAllProductsWithLimit(int limit, int offset) {
+        return shopMapper.findAllProductsWithLimit(limit, offset);
+    }
+
+
 
     public Product findProductById(Integer productId) {
         return shopMapper.findProductById(productId);
