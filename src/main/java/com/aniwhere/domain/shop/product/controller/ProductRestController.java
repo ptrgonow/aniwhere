@@ -5,6 +5,7 @@ import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.shop.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,9 +19,11 @@ public class ProductRestController {
 
     private final ProductService productService;
 
-    @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.findAllProducts();
+    @GetMapping("/all")
+    public ResponseEntity<List<Product>> getAllProducts() {
+        List<Product> products = productService.findAllProducts();
+
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")

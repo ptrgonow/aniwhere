@@ -1,3 +1,46 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const pageSize = 9;
+
+    const productData = [];
+    document.querySelectorAll('#product-container .single-product-item').forEach(item => {
+        productData.push({
+            image: item.querySelector('.product-image img').src,
+            name: item.querySelector('.product-details h3').innerText,
+            price: parseInt(item.querySelector('.product-details .product-price p').innerText.replace(/,/g, ''), 10)
+        });
+    });
+
+    $('#pagination-container').pagination({
+        dataSource: productData,
+        pageSize: pageSize,
+        callback: function(data, pagination) {
+            const container = $('#product-container');
+            container.empty();
+
+            data.forEach(product => {
+                const productDiv = `
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                       <div class="product-image">
+                            <a><img src="${product.image}" alt="Product Image"></a>
+                        </div>
+                        <div class="product-details">
+                            <h3>${product.name}</h3>
+                        <div class="product-price">
+                                <p>${product.price}원</p> 
+                            </div>
+                        </div>
+                        <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>`;
+                container.append(productDiv);
+            });
+        }
+    });
+});
+
+
+
 function scrollToTop(){
     window.scrollTo({top: 0, behavior: 'smooth' });
 }
@@ -55,81 +98,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-/*
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function scrollToBottom() {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-
-window.addEventListener('scroll', () => {
-    const scrollButtons = document.querySelector('.scroll-buttons');
-    if (window.scrollY > 100) {
-        scrollButtons.classList.add('visible');
-    } else {
-        scrollButtons.classList.remove('visible');
-    }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const gridViewBtn = document.querySelector('.toggle-view.grid-view');
-    const listViewBtn = document.querySelector('.toggle-view.list-view');
-
-    // Add event listeners to toggle buttons
-    gridViewBtn.addEventListener('click', function() {
-        productList.classList.add("grid-view");
-        productList.classList.remove("list-view");
-        resetItemHeights();
-        forceReflow();
-    });
-
-    listViewBtn.addEventListener('click', function() {
-        productList.classList.add("list-view");
-        productList.classList.remove("grid-view");
-        resetItemHeights();
-        forceReflow();
-    });
-
-    // Default to grid view
-    productList.classList.add("grid-view");
-
-    // Product filters
-    const filterButtons = document.querySelectorAll('.product-filters li');
-    const products = document.querySelectorAll('.product-lists .col-lg-4');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            const filter = this.getAttribute('data-filter');
-
-            products.forEach(product => {
-                if (filter === '*' || product.classList.contains(filter.substring(1))) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-            forceReflow(); // 레이아웃 재계산
-        });
-    });
-
-    // 레이아웃 재계산을 강제 트리거하는 함수
-    function forceReflow() {
-        productList.style.display = 'none';
-        productList.offsetHeight; // 트리거
-        productList.style.display = '';
-    }
-
-    // 각 항목의 높이를 초기화하는 함수
-    function resetItemHeights() {
-        const items = document.querySelectorAll('.single-product-item');
-        items.forEach(item => {
-            item.style.height = 'auto';
-        });
-    }
-});
-*/
