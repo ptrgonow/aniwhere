@@ -1,6 +1,6 @@
 package com.aniwhere.domain.main;
 
-import com.aniwhere.domain.user.join.service.HomeService;
+import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Controller;

@@ -27,7 +27,7 @@ public class NaverShoppingService {
         String clientId = env.getProperty("naver.client.id");
         String clientSecret = env.getProperty("naver.client.secret");
 
-        String query = "강아지";
+        String query = "고양이";
         int display = 100;
 
         for (int start = 1; start <= 1000; start += 100) {
