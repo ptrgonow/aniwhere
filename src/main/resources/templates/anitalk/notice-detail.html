@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 상세</title>
-    <link rel="stylesheet" href="/css/notice-detail.css">
-</head>
-<body>
 <div th:replace="~{include/header :: header}"></div>
+<link rel="stylesheet" href="/css/notice-detail.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+
+
+
 
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
@@ -53,7 +52,7 @@
             </div>
 
             <div class="delete_button">
-                <a th:href="@{/board/notice-delete(id=${notice.noticeId})}" class="button">삭제</a>
+                <a href="#" id="delete-button" th:attr="data-id=${notice.noticeId}" class="button">삭제</a>
             </div>
 
             <div class="back_button">
@@ -65,5 +64,7 @@
 </div>
 
 <div th:replace="~{include/footer :: footer}"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/notice-detail.js"></script> <!-- 여기에서 'notice.js'를 포함시키세요. -->
 </body>
 </html>

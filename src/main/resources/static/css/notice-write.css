@@ -40,8 +40,15 @@ body {
     font-weight: bold;
 }
 
+.input-group {
+    display: flex; /* flexbox 사용 */
+    justify-content: center; /* 가운데 정렬 */
+    margin-bottom: 1rem;
+}
+
 input[type="text"], #editor {
-    width: calc(100% - 20px);
+    width: 100%;
+    max-width: 800px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -75,12 +82,12 @@ input[type="submit"]:hover, a.button:hover {
 }
 
 #title-input {
-    width: 118%;
-    padding: 10px;
-    margin-bottom: 15px;
-    margin-left: 1rem;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* CKEditor 컨테이너 크기 조정 */
@@ -101,21 +108,9 @@ input[type="submit"]:hover, a.button:hover {
     min-height: 500px; /* 최소 높이 설정 */
 }
 
-/* 글쓰기 제목 위치 수정 해야함*/
-#title-input {
-
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-}
-
 .button-group {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center; /* 버튼을 가운데 정렬 */
     margin-top: 20px; /* 텍스트 영역과 버튼 사이 간격 */
 }
 
@@ -128,8 +123,6 @@ input[type="submit"]:hover, a.button:hover {
 .NtWrite {
     text-align: center;
     margin-bottom: 3rem;
-
-
 }
 
 /* 공지사항 작성 버튼 */
