@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 작성</title>
-    <link rel="stylesheet" href="/css/notice.css">
-    <link rel="stylesheet" href="/css/notice-write.css">
-
+<div th:replace="~{include/header :: header}"></div>
+<link rel="stylesheet" href="/css/notice-write.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CKEditor 4 CDN -->
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
-</head>
+
 <body>
-<div th:replace="~{include/header :: header}"></div>
+
 
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
@@ -36,13 +31,11 @@
 
             <div class="card-body-inner">
                 <form id="notice-form" action="/board/submit-notice" method="POST">
-                    <div class="mb-4 row">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="title-input" placeholder="제목을 입력하세요" name="title" required>
-                        </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="title-input" placeholder="제목을 입력하세요" name="title" required>
                     </div>
 
-                    <div id="editor-container" class="col-sm-12">
+                    <div id="editor-container">
                         <textarea name="content" id="editor" required></textarea>
                     </div>
 
@@ -62,4 +55,4 @@
 
 <div th:replace="~{include/footer :: footer}"></div>
 </body>
-</html>
+

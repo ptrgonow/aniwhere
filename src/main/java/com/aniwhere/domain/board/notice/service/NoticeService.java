@@ -20,8 +20,10 @@ public class NoticeService {
     }
 
     public NoticeDTO getNoticeById(Long id) {
+        noticeMapper.incrementHit(id); // 조회수 증가
         return noticeMapper.getNoticeById(id);
     }
+
 
     public void createNotice(NoticeDTO noticeDTO) {
         noticeMapper.insertNotice(noticeDTO);
@@ -30,4 +32,11 @@ public class NoticeService {
     public void updateNotice(NoticeDTO noticeDTO) {
         noticeMapper.updateNotice(noticeDTO);
     }
+
+    // 공지사항 삭제
+    public void deleteNotice(int id) {
+        noticeMapper.deleteNotice(id);
+    }
+
+
 }

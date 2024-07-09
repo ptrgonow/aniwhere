@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 수정</title>
-    <link rel="stylesheet" href="/css/notice.css">
-    <link rel="stylesheet" href="/css/notice-write.css">
-
-    <!-- CKEditor 4 CDN -->
-    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
-</head>
-<body>
 <div th:replace="~{include/header :: header}"></div>
+<link rel="stylesheet" href="/css/notice-write.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CKEditor 4 CDN -->
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+
+<body>
+
 
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
@@ -30,26 +25,26 @@
 <div class="main-wrapper">
     <div class="page-wrapper">
         <div class="content container-fluid">
-            <div class="NtWrite">
+            <div class="NtWrite text-center">
                 <h3>공지사항 수정</h3>
             </div>
 
             <div class="card-body-inner">
                 <form id="notice-form" th:action="@{/board/update-notice}" method="POST">
-                    <div class="mb-4 row">
-                        <div class="col-sm-10">
+                    <div class="mb-4 row justify-content-center">
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="title-input" placeholder="제목을 입력하세요" name="title" th:value="${notice.title}" required>
                         </div>
                     </div>
 
-                    <div id="editor-container" class="col-sm-12">
+                    <div id="editor-container" class="col-sm-12 text-center">
                         <textarea name="content" id="editor" required th:text="${notice.content}"></textarea>
                     </div>
 
                     <input type="hidden" name="noticeId" th:value="${notice.noticeId}">
 
-                    <div class="button-group">
-                        <button type="submit" class="NtBtn1">수정 완료</button>
+                    <div class="button-group text-center">
+                        <button type="submit" class="NtBtn1">수정</button>
                         <a th:href="@{/board/notice}" class="NtBtn2">목록</a>
                     </div>
                 </form>

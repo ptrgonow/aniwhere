@@ -1,11 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-    <link rel="stylesheet" href="/css/guide.css">
-</head>
+<div th:replace="~{include/header :: header}"></div>
+<link rel="stylesheet" href="/css/guide.css">
 <body>
 
 
@@ -17,17 +12,21 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <p></p>
-                    <h1>AniWhere Guide</h1>
+                    <p>어떤게 궁금해?</p>
+                    <h1>AniTalk</h1>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- end breadcrumb section -->
+<div class="notice_title">
+    <h2>이용안내</h2>
+    <hr>
+</div>
 
     <div class="walk_add">
-        <a href="#" id="walk_add_btn"><img src="/img/d5.jpeg"></a>
+        <a href="#" id="walk_add_btn"><img src="/img/cursor.png"></a>
     </div>
 
 
@@ -98,7 +97,7 @@
         </div>
 
         <div class="tc n7">
-            <span><a href="#" class="btn">코스 등록 하기</a></span>
+            <span><a href="/route/cre" class="lastBtn">코스 등록 하기</a></span>
         </div>
 
     </div>
