@@ -22,14 +22,16 @@
 		<div class="row">
 			<div class="col-md-5">
 				<div class="single-product-img">
-					<img src="#" alt="hi1">
+					<img th:src="${details.image}" alt="hi1">
 				</div>
 			</div>
 			<div class="col-md-7">
 				<div class="single-product-content">
-					<h3>상 품 이 름</h3>
-					<p class="single-product-pricing"><span>Per Kg (단위 혹은 갯수)</span>$50 가격</p>
-					<p>상품 설명 들어갈 자리입니다. 바로 구매 버튼을 누르면 로그인 페이지 혹은 그냥 결제 페이지로 이동. 관심 상품은 현재 재고가 없어도 등록 가능. 장바구니는 재고가 없으면 장바구니 담기 불가. IDEA: 재고 갯수가 5개 이하 남았을 경우 고객이 장바구니를 클릭하면 한정 수량 남았다는 메세지를 보여주는건 어떨까?</p>
+					<h3 th:text="${details.name.replaceAll('<[^>]*>', '')}">상 품 이 름</h3>
+					<div class="product-price">
+					<p class="single-product-pricing" th:text="${details.price}"></p>원
+					</div>
+					<a th:href="@{${details.link}}">현재 보고있는 상품에 관심이 있으신가요? >상품 바로 보러가기<</a>
 					<div class="single-product-form">
 
 						<form action="#">
@@ -51,7 +53,11 @@
 							<a href="#" class="cart-btn cart-btn-emphasis-orange"><i class="fas fa-shopping-cart"></i> 장바구니 </a>
 						</div>
 
-						<p><strong>Categories: </strong>Fruits, Organic - 카테고리 분류란 DB에 저장된 그대로.. 자동분류?</p>
+						<strong class="category-container">Categories:
+							<p th:text="${details.category1}"></p>>
+							<p th:text="${details.category2}"></p>>
+							<p th:text="${details.category3}"></p>
+						</strong>
 					</div>
 					<h4>Share:</h4>
 					<ul class="product-share">

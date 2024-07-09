@@ -12,16 +12,16 @@ public interface ShopMapper {
     @Select("SELECT COUNT(*) FROM product")
     int getTotalProductCount();
 
-    @Select("SELECT * FROM product LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category3, link, price FROM product LIMIT #{limit} OFFSET #{offset}")
     List<Product> findAllProductsWithLimit(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT * FROM product WHERE category3 LIKE '%강아지%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category3, link, price FROM product WHERE category3 LIKE '%강아지%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findDogProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT * FROM product WHERE category3 LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category3, price, link FROM product WHERE category3 LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findCatProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT * FROM product WHERE category3 NOT LIKE '%강아지%' AND name NOT LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category3, link, price FROM product WHERE category3 NOT LIKE '%강아지%' AND name NOT LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findOtherProducts(@Param("limit") int limit, @Param("offset") int offset);
 
     @Select("SELECT * FROM product WHERE product_id = #{productId}")
