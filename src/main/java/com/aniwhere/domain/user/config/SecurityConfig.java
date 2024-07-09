@@ -35,7 +35,7 @@ public class SecurityConfig {
                         .requestMatchers("/", "/login", "/loginProc", "/joinProc", "/join").permitAll()
                         .requestMatchers("/resources/**", "/css/**", "/js/**", "/static/**", "/img/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
@@ -60,6 +60,7 @@ public class SecurityConfig {
                                 )
                 )
                 .csrf(csrf -> csrf.disable())
+
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout=true&message=logoutSuccess")

@@ -1,4 +1,4 @@
-package com.aniwhere.domain.shop.wishlist.domain;
+package com.aniwhere.domain.shop.cart.domain;
 
 import lombok.Data;
 

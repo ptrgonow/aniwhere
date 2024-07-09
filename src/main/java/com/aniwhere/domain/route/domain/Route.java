@@ -10,5 +10,6 @@ public class Route {
     private String userId;
     private String name;
     private String description;
+    private String image;
     private LocalDateTime createdAt;
 }

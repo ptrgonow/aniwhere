@@ -1,4 +1,4 @@
-package com.aniwhere.domain.shop.wishlist.service;
+package com.aniwhere.domain.shop.cart.service;
 
 import org.springframework.stereotype.Service;
 

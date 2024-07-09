@@ -7,6 +7,7 @@ import com.aniwhere.domain.route.dto.RouteDTO;
 import com.aniwhere.domain.route.mapper.RouteMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,10 +24,18 @@ import java.nio.file.Paths;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class RouteService {
 
     private final RouteMapper routeMapper;
 
+    public int countRoutes() {
+        return routeMapper.countRoutes();
+    }
+
+    public List<RouteDTO> getRoutes(int limit, int offset) {
+        return routeMapper.selectRoutes(limit, offset);
+    }
 
     public RouteDTO getRouteById(Long id) {
         RouteDTO route = routeMapper.selectRouteById(id);
@@ -40,7 +49,14 @@ public class RouteService {
         route.setName(routeDto.getName());
         route.setDescription(routeDto.getDescription());
         route.setCreatedAt(LocalDateTime.now());
-        route.setUserId(routeDto.getUserId()); // userId 설정
+        route.setUserId(routeDto.getUserId());
+
+        // 이미지 저장
+        if (routeDto.getImage() != null && !routeDto.getImage().isEmpty()) {
+            saveImage(routeDto.getImage(), route.getId());
+            route.setImage(routeDto.getImage()); // 데이터베이스에 저장할 이미지 설정
+        }
+
         routeMapper.insertRoute(route);
 
         List<Marker> markers = routeDto.getMarkers().stream()
@@ -53,11 +69,6 @@ public class RouteService {
                 }).collect(Collectors.toList());
 
         saveMarkers(route.getId(), markers);
-
-        // 이미지 저장
-        if (routeDto.getImage() != null && !routeDto.getImage().isEmpty()) {
-            saveImage(routeDto.getImage(), route.getId());
-        }
 
         return route.getId();
     }
@@ -89,6 +100,7 @@ public class RouteService {
         // 이미지 저장
         if (routeDto.getImage() != null && !routeDto.getImage().isEmpty()) {
             saveImage(routeDto.getImage(), id);
+            routeDto.setImage(routeDto.getImage()); // 데이터베이스에 저장할 이미지 설정
         }
     }
 

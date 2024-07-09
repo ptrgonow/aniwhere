@@ -3,6 +3,7 @@ $(document).ready(function() {
     $('#createRoute').on('click', captureAndSaveRoute);
     $('#reset').on('click', resetMarkers);
     $('#previous-step').on('click', removeLastMarkerAndLine);
+
 });
 
 let mapboxAccessToken = 'none';
@@ -340,8 +341,8 @@ function captureAndSaveRoute() {
             data: JSON.stringify(routeData),
             contentType: 'application/json',
             success: function(response) {
-                console.log('Route data and image saved successfully');
                 alert("경로 데이터와 이미지가 저장되었습니다.");
+                window.location.href = '/';
             },
             error: function(data) {
                 alert("오류 발생!");

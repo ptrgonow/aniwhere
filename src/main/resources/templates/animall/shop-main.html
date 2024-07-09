@@ -1,23 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Shop</title>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var allProducts = {
-            all: /*[[${products}]]*/,
-            dog: /*[[${dogs}]]*/,
-            cat: /*[[${cats}]]*/,
-            others: /*[[${others}]]*/
-        };
-        /*]]>*/
-    </script>
-</head>
-<body>
 <div th:replace="~{include/header :: header}"></div>
 <link rel="stylesheet" href="/css/shop-main.css">
+<body>
 <!--PreLoader Ends-->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
@@ -84,7 +68,6 @@
 </div>
 
 <div th:replace="~{include/footer :: footer}"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
 <script th:inline="javascript">
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -113,7 +96,6 @@
 
         createPaginationLinks();
     });
-</script>
-
+</script>\
 </body>
-</html>
+
