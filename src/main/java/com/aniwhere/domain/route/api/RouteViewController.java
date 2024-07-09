@@ -29,7 +29,7 @@ public class RouteViewController {
     }
 
     @GetMapping("/list")
-    public String getRoutes(@RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "0") int offset, Model model) {
+    public String getRoutes(@RequestParam(defaultValue = "3") int limit, @RequestParam(defaultValue = "0") int offset, Model model) {
         List<RouteDTO> routes = routeService.getRoutes(limit, offset);
         int totalRoutes = routeService.countRoutes();
         int currentPage = offset / limit + 1;

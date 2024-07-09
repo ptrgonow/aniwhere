@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <div th:replace="~{include/header :: header}"></div>
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/route-list.css">
+<input type="hidden" th:value="${routes}">
 <body>
 
 <!--PreLoader-->
@@ -25,39 +27,34 @@
 </div>
 
 <div class="container">
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>경로이름</th>
-            <th>경로설명</th>
-            <th>등록시간</th>
-            <th>작성자</th>
-            <th>경로 이미지</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="route, stat : ${routes}">
-            <td th:text="${stat.index + 1}"></td>
-            <td th:text="${route.name}">경로이름</td>
-            <td th:text="${route.description}">경로설명</td>
-            <td th:text="${#temporals.format(route.createdAt, 'yyyy-MM-dd HH:mm:ss')}">등록시간</td>
-            <td th:text="${route.userName}">작성자</td>
-            <td>
+    <section class="card-container">
+        <div class="card-main" th:each="route : ${routes}">
+            <div class="card-img">
                 <img th:src="${route.image}" alt="Route Image"/>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div>
-        <a th:href="@{/routes(offset=${offset - limit < 0 ? 0 : offset - limit}, limit=${limit})}" th:if="${currentPage > 1}">Previous</a>
-        <span th:each="i : ${#numbers.sequence(1, totalPages)}">
-            <a th:href="@{/routes(offset=${(i - 1) * limit}, limit=${limit})}" th:text="${i}" th:classappend="${i == currentPage} ? 'current' : ''"></a>
+            </div>
+            <div class="card-content">
+                <h3 th:text="${route.name}"></h3>
+                <h5 th:text="${route.userName}"></h5>
+                <p th:text="${route.description}"></p>
+                <div class="card-date">
+                    <span th:text="${#temporals.format(route.createdAt, 'yyyy-MM-dd HH:mm:ss')}">등록시간</span>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <a th:href="@{/route/list(offset=${offset - limit < 0 ? 0 : offset - limit}, limit=${limit})}" th:if="${currentPage > 1}"><i class="fa fa-angle-left"></i></a>
+            <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{/route/list(offset=${(i - 1) * limit}, limit=${limit})}" th:text="${i}" th:classappend="${i == currentPage} ? 'current' : ''"></a>
         </span>
-        <a th:href="@{/routes(offset=${offset + limit}, limit=${limit})}" th:if="${currentPage < totalPages}">Next</a>
-    </div>
+            <a th:href="@{/route/list(offset=${offset + limit}, limit=${limit})}" th:if="${currentPage < totalPages}"><i class="fa fa-angle-right"></i></a>
+        </div>
+    </section>
+    
 </div>
 </body>
+
+
+
 
 <div th:replace="~{include/footer :: footer}"></div>
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>

@@ -15,9 +15,9 @@ public interface RouteMapper {
     @Select("SELECT COUNT(*) FROM route")
     int countRoutes();
 
-    @Select("SELECT r.id, r.name, r.description, r.created_at AS createdAt, u.user_name AS userName, r.image" +
+    @Select("SELECT  r.id, r.user_id AS userId, r.name, r.description, r.created_at AS createdAt, u.user_name AS userName, r.image" +
             "        FROM route r" +
-            "        JOIN user u ON r.user_id = u.id" +
+            "        JOIN user u ON r.user_id = u.user_id" +
             "        ORDER BY r.created_at DESC" +
             "        LIMIT #{limit} OFFSET #{offset}")
     List<RouteDTO> selectRoutes(@Param("limit") int limit, @Param("offset") int offset);

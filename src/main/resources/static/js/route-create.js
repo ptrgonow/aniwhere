@@ -342,7 +342,7 @@ function captureAndSaveRoute() {
             contentType: 'application/json',
             success: function(response) {
                 alert("경로 데이터와 이미지가 저장되었습니다.");
-                window.location.href = '/';
+                window.location.href = '/route/list';
             },
             error: function(data) {
                 alert("오류 발생!");
