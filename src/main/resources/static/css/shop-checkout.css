@@ -32,6 +32,35 @@
     margin-right: 5px;
 }
 
+#headingTwo{
+    position: relative;
+}
+
+.new-del{
+    position: absolute;
+    right: 40px;
+    cursor: pointer;
+    top: 50%; /* 수직 중앙 정렬 */
+    transform: translateY(-50%);
+    z-index: 1000;
+    font-size: 1rem;
+}
+
+.new-del:hover{
+    color: #F28123;
+}
+
+#detailAddress{
+    max-width: 600px;
+}
+
+#searchAddress{
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 23.2%;
+    border-radius: 3px;
+}
+
 #payment-button{
     width: 100%;
     background-color: #F28123;
@@ -66,4 +95,15 @@
 
 .owl-nav.disabled, .owl-prev, .owl-next, .owl-dots{
     display: none;
+}
+
+.sticky {
+    position: sticky;
+    top: 120px; /* 원하는 고정 위치 */
+    z-index: 1; /* 다른 요소들보다 위에 표시되도록 z-index 조정 */
+    transition: transform 0.6s ease-out;
+}
+
+.sticky.scrolled {
+    transform: translateY(20px);
 }

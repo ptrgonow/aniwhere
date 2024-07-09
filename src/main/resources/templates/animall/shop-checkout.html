@@ -17,7 +17,7 @@
          <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                <div class="breadcrumb-text">
-                  <p>Products Order</p>
+                  <p>상품을 결제하세요</p>
                   <h1>주문/결제</h1>
                </div>
             </div>
@@ -42,10 +42,10 @@
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
                            <div class="accordion-body">
                               <div class="billing-address-form">
-                                 <form action="index.html">
-                                    <p><input type="text" placeholder="이름"></p>
-                                    <p><input type="email" placeholder="이메일"></p>
-                                    <p><input type="tel" placeholder="연락처"></p>
+                                 <form>
+                                    <p><input type="text" placeholder="이름" readonly></p>
+                                    <p><input type="email" placeholder="이메일" readonly></p>
+                                    <p><input type="tel" placeholder="연락처" readonly></p>
                                  </form>
                               </div>
                            </div>
@@ -54,20 +54,21 @@
                      <div class="accordion-item">
                         <h2 class="accordion-header" id="headingTwo">
                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                              배송지 정보 <span>새로운 배송지 작성</span>
+                              배송지 정보
                            </button>
+                           <span class="new-del">+ 새로운 배송지 작성</span>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
                            <div class="accordion-body">
                               <span class="del-box"><input type="checkbox" class="del-check">위와 동일하게 작성</span>
                               <div class="billing-address-form">
-                                 <form action="index.html">
-                                    <p><input type="text" placeholder="이름"></p>
+                                 <form id="shipping-form">
+                                    <p><input type="text" placeholder="수취인"></p>
                                     <p><input type="email" placeholder="이메일"></p>
                                     <p>
-                                       <input type="text" id="address" name="address" class="in-text"><button type="button" id="searchAddress" class="in-text">주소검색</button>
-                                       <input type="text" id="detailAddress" name="detailAddress" class="in-text">
-                                       <input type="text" id="zipCode" name="zipCode" class="in-text" required>
+                                       <input type="text" id="address" name="address" class="in-text" placeholder="우편번호">
+                                       <input type="text" id="detailAddress" name="detailAddress" class="in-text" placeholder="주소"><button type="button" id="searchAddress" class="in-text" onclick="searchAdd()">주소검색</button>
+                                       <input type="text" id="zipCode" name="zipCode" class="in-text" placeholder="상세주소" required>
                                     </p>
                                     <p><input type="tel" placeholder="연락처"></p>
                                     <p>
@@ -80,7 +81,6 @@
                      </div>
                      <div class="accordion-item">
                         <h2 class="accordion-header" id="headingThree">
-
                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                               결제 정보
                            </button>
@@ -96,11 +96,10 @@
                      </div>
                   </div>
                </div>
-
             </div>
 
             <div class="col-lg-4">
-               <div class="order-details-wrap">
+               <div class="order-details-wrap sticky">
                   <table class="order-details">
                      <thead>
                         <tr>
@@ -153,7 +152,7 @@
                      </tbody>
                   </table>
                   <!-- 결제하기 버튼 -->
-                  <button class="button" id="payment-button" style="margin-top: 30px">결제하기</button>
+                  <button class="button" id="payment-button">결제하기</button>
                </div>
             </div>
          </div>
@@ -192,5 +191,6 @@
 </body>
 <div th:replace="~{include/footer :: footer}"></div>
 <script src="https://js.tosspayments.com/v2/standard"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/shop-checkout.js"></script>
 
