@@ -50,22 +50,9 @@ document.addEventListener("DOMContentLoaded", function() {
             productContainer.insertAdjacentHTML('beforeend', productElement);
         }
 
-        // 페이지네이션 UI 업데이트
-        updatePagination(totalPages);
     }
 
-    function updatePagination() {
-        paginationContainer.innerHTML = ''; // 기존 버튼 초기화
 
-        for (let i = 1; i <= totalPages; i++) {
-            const button = document.createElement('button');
-            button.textContent = i;
-            button.classList.add('page-btn');
-            if (i === currentPage) button.classList.add('active');
-            button.addEventListener('click', () => renderProducts(i)); // 페이지 버튼 클릭 시 상품 다시 렌더링
-            paginationContainer.appendChild(button);
-        }
-    }
 
     // 현재 필터 가져오기 함수
     function getCurrentFilter() {
