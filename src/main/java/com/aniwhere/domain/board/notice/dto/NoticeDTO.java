@@ -11,4 +11,6 @@ public class NoticeDTO {
     private String title;        // 제목
     private String content;      // 내용
     private LocalDateTime createdAt; // 작성 일시
+    private int hit;  // 조회수
 }
+

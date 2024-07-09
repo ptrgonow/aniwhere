@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <title>Shop</title>
-</head>
-<input type="hidden" id="currentPage" th:value="${currentPage}">
-<input type="hidden" id="totalPages" th:value="${totalPages}">
-<body>
 <div th:replace="~{include/header :: header}"></div>
 <link rel="stylesheet" href="/css/shop-main.css">
+<input type="hidden" id="currentPage" th:value="${currentPage}">
+<input type="hidden" id="totalPages" th:value="${totalPages}">
+  
+<body>
 
 <!--PreLoader Ends-->
 <div class="breadcrumb-section breadcrumb-bg">
@@ -130,9 +127,5 @@
 </div>
 
 <div th:replace="~{include/footer :: footer}"></div>
-
 <script src="/js/shop-main.js"></script>
-<script th:inline="javascript">
 
-</script>
-</body>

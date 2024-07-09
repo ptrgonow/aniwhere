@@ -83,4 +83,9 @@ public class ShopViewController {
         return "animall/shop-checkout";
     }
 
-}
+    @GetMapping("/summary")
+        public String summary(){
+            return "animall/shop-summary";
+        }
+    }
+

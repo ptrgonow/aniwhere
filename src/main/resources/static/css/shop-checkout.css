@@ -8,7 +8,7 @@
     font-family: 'Noto Sans KR','Roboto', sans-serif;
 }
 
-.accordion-button:not(.collapsed) {
+.accordion-header, .accordion-button:not(.collapsed) {
     background-color: #07212e !important; /* 변경하고 싶은 배경색 */
     color: white !important;
     border-color: white !important;
@@ -17,6 +17,44 @@
 .accordion-button {
     background-color: #fff !important;
     color: #000 !important;
+}
+
+.order-details{
+    width: 100%;
+}
+
+.del-box{
+    display: flex;
+    place-content: flex-end;
+}
+
+.del-check{
+    margin-right: 5px;
+}
+
+#payment-button{
+    width: 100%;
+    background-color: #F28123;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.cost{
+    background-color: #f8f8f7;
+}
+
+#detail-table{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.checkout-details th{
+    border-bottom: 1px solid #e2e2e1;
+    padding: 18px;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .owl-stage{

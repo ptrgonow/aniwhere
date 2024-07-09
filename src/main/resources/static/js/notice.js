@@ -1,48 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const noticeData = [
-        { 번호: 10, 카테고리: '이벤트', 제목: '신제품 할인 진행중', 작성일: '2024-05-20', 조회수: 0 },
-        { 번호: 9, 카테고리: '이용방법', 제목: '이달의 추천 러너', 작성일: '2024-05-20', 조회수: 0 },
-        { 번호: 8, 카테고리: '이벤트', 제목: '제품 후기 이벤트', 작성일: '2024-05-20', 조회수: 0 },
-        { 번호: 7, 카테고리: '이벤트', 제목: '제품 후기 이벤트', 작성일: '2024-05-20', 조회수: 0 },
-        { 번호: 6, 카테고리: '이벤트', 제목: '제품 후기 이벤트', 작성일: '2024-05-20', 조회수: 0 },
-        { 번호: 5, 카테고리: '이벤트', 제목: '제품 후기 이벤트', 작성일: '2024-05-20', 조회수: 0 },
-        // 더 많은 데이터 추가 가능
-    ];
-
-
-    const rowsPerPage = 5;
+    const rowsPerPage = 8;
     let currentPage = 1;
 
-
-    function displayTable(page) {
-        const table = document.getElementById('notice_table');
-        table.innerHTML = `
-            <tr>
-                <th>번호</th>
-                <th>카테고리</th>
-                <th>제목</th>
-                <th>작성일</th>
-                <th>조회수</th>
-            </tr>
-        `;
+    function displayTable(noticeData, page) {
+        const tableBody = document.querySelector('#notice_table tbody');
+        tableBody.innerHTML = ''; // 기존 테이블 내용을 지우기
 
         const start = (page - 1) * rowsPerPage;
         const end = page * rowsPerPage;
         const paginatedItems = noticeData.slice(start, end);
 
         for (const item of paginatedItems) {
-            const row = table.insertRow();
+            const row = tableBody.insertRow();
             row.innerHTML = `
-                <td>${item.번호}</td>
-                <td>${item.카테고리}</td>
-                <td><a href="notice-detail">${item.제목}</a></td>
-                <td>${item.작성일}</td>
-                <td>${item.조회수}</td>
+                <td>${item.noticeId}</td>
+                <td><a href="/board/notice-detail?id=${item.noticeId}">${item.title}</a></td>
+                <td class="date">${formatDate(item.createdAt)}</td>
+                <td>${item.hit}</td>
             `;
         }
     }
 
-    function setupPagination() {
+    function setupPagination(noticeData) {
         const pagination = document.getElementById('pagination');
         pagination.innerHTML = '';
 
@@ -56,14 +35,28 @@ document.addEventListener('DOMContentLoaded', function () {
             pageItem.addEventListener('click', function (e) {
                 e.preventDefault();
                 currentPage = i;
-                displayTable(currentPage);
-                setupPagination();
+                displayTable(noticeData, currentPage);
+                setupPagination(noticeData);
             });
 
             pagination.appendChild(pageItem);
         }
     }
 
-    displayTable(currentPage);
-    setupPagination();
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    // 데이터베이스에서 공지사항 데이터를 가져오기
+    fetch('/list')
+        .then(response => response.json())
+        .then(data => {
+            displayTable(data, currentPage);
+            setupPagination(data);
+        })
+        .catch(error => console.error('Error fetching notices:', error));
 });

@@ -76,6 +76,11 @@ body {
     color: #000 !important;
 }
 
+/* 활성화 되지 않은 탭 숨기기 */
+.d-none{
+    display: none !important;
+}
+
 .embed-responsive-item{
     width: 100%;
 }

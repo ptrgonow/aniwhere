@@ -3,7 +3,62 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
 <body>
 
+<!--PreLoader-->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>함께 달려요</p>
+                    <h1>AniWhere</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>경로이름</th>
+            <th>경로설명</th>
+            <th>등록시간</th>
+            <th>작성자</th>
+            <th>경로 이미지</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="route, stat : ${routes}">
+            <td th:text="${stat.index + 1}"></td>
+            <td th:text="${route.name}">경로이름</td>
+            <td th:text="${route.description}">경로설명</td>
+            <td th:text="${#temporals.format(route.createdAt, 'yyyy-MM-dd HH:mm:ss')}">등록시간</td>
+            <td th:text="${route.userName}">작성자</td>
+            <td>
+                <img th:src="${route.image}" alt="Route Image"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a th:href="@{/routes(offset=${offset - limit < 0 ? 0 : offset - limit}, limit=${limit})}" th:if="${currentPage > 1}">Previous</a>
+        <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{/routes(offset=${(i - 1) * limit}, limit=${limit})}" th:text="${i}" th:classappend="${i == currentPage} ? 'current' : ''"></a>
+        </span>
+        <a th:href="@{/routes(offset=${offset + limit}, limit=${limit})}" th:if="${currentPage < totalPages}">Next</a>
+    </div>
+</div>
 </body>
+
 <div th:replace="~{include/footer :: footer}"></div>
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
 
