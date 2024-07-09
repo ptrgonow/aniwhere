@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Shop</title>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var allProducts = {
-            all: /*[[${products}]]*/,
-            dog: /*[[${dogs}]]*/,
-            cat: /*[[${cats}]]*/,
-            others: /*[[${others}]]*/
-        };
-        /*]]>*/
-    </script>
 </head>
+<input type="hidden" id="currentPage" th:value="${currentPage}">
+<input type="hidden" id="totalPages" th:value="${totalPages}">
 <body>
 <div th:replace="~{include/header :: header}"></div>
 <link rel="stylesheet" href="/css/shop-main.css">
+
 <!--PreLoader Ends-->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
@@ -47,34 +38,89 @@
         <div class="col-md-12">
             <div class="product-filters">
                 <ul>
-                    <li class="active" data-category="all">전체</li>
+                    <li data-category="all">전체</li>
                     <li data-category="dog">강아지</li>
                     <li data-category="cat">고양이</li>
                     <li data-category="others">기타</li>
                 </ul>
             </div>
         </div>
-
-        <div id="product-container" class="row product-lists">
-            <div th:each="product : ${products}" class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a><img th:src="${product.image}" alt="외부 이미지"></a>
-                    </div>
-                    <div class="product-details">
-                        <h3 th:text="${product.name}">상품 이름</h3>
-                        <div class="product-price">
-                            <p th:text="${product.price}"></p>원
+        <div class="all category-container">
+            <div id="product-container" class="row product-lists">
+                <div th:each="product : ${products}" class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a><img th:src="${product.image}" alt="외부 이미지"></a>
                         </div>
+                        <div class="product-details">
+                            <h3 th:text="${product.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
+                            <div class="product-price">
+                                <p th:text="${product.price}"></p>원
+                            </div>
+                        </div>
+                        <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                     </div>
-                    <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
+            <div id="pagination-container-all" class="pagination-container"></div>
         </div>
-
-        <div id="pagination-container">
+        <div class="dog category-container">
+            <div id="product-container-dog" class="row dogs-lists">
+                <div th:each="dogs : ${dog}" class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a><img th:src="${dogs.image}" alt="외부 이미지"></a>
+                        </div>
+                        <div class="product-details">
+                            <h3 th:text="${dogs.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
+                            <div class="product-price">
+                                <p th:text="${dogs.price}"></p>원
+                            </div>
+                        </div>
+                        <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div id="pagination-container-dog" class="pagination-container"></div>
         </div>
-
+        <div class="cat category-container">
+            <div id="product-container-cat" class="row cat-lists">
+                <div th:each="cats : ${cat}" class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a><img th:src="${cats.image}" alt="외부 이미지"></a>
+                        </div>
+                        <div class="product-details">
+                            <h3 th:text="${cats.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
+                            <div class="product-price">
+                                <p th:text="${cats.price}"></p>원
+                            </div>
+                        </div>
+                        <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div id="pagination-container-cat" class="pagination-container"></div>
+        </div>
+        <div class="others category-container">
+            <div id="product-container-other" class="row product-lists">
+                <div th:each="others : ${other}" class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a><img th:src="${others.image}" alt="외부 이미지"></a>
+                        </div>
+                        <div class="product-details">
+                            <h3 th:text="${others.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
+                            <div class="product-price">
+                                <p th:text="${others.price}"></p>원
+                            </div>
+                        </div>
+                        <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div id="pagination-container-other" class="pagination-container"></div>
+        </div>
     </div>
 </div>
 
@@ -84,36 +130,9 @@
 </div>
 
 <div th:replace="~{include/footer :: footer}"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
+
+<script src="/js/shop-main.js"></script>
 <script th:inline="javascript">
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const paginationContainer = document.getElementById('pagination-container');
-
-        const currentPage = parseInt(/*[[${currentPage}]]*/);
-        const totalPages = parseInt(/*[[${totalPages}]]*/);
-
-        const rangeSize = 9;
-        const currentRangeStart = Math.floor((currentPage - 1) / rangeSize) * rangeSize + 1;
-        const currentRangeEnd = Math.min(currentRangeStart + rangeSize - 1, totalPages);
-
-        function createPaginationLinks() {
-            let links = '';
-            if (currentRangeStart > 1) {
-                links += `<a href="/shop/main?page=${currentRangeStart - rangeSize}&size=9" class="page-link">&laquo;</a>`;
-            }
-            for (let i = currentRangeStart; i <= currentRangeEnd; i++) {
-                links += `<a href="/shop/main?page=${i}&size=9" class="page-link ${i === currentPage ? 'active' : ''}">${i}</a>`;
-            }
-            if (currentRangeEnd < totalPages) {
-                links += `<a href="/shop/main?page=${currentRangeStart + rangeSize}&size=9" class="page-link">&raquo;</a>`;
-            }
-            paginationContainer.innerHTML = links;
-        }
-
-        createPaginationLinks();
-    });
 </script>
-
 </body>
-</html>

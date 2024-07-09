@@ -22,7 +22,17 @@ public class ProductService {
         return shopMapper.findAllProductsWithLimit(limit, offset);
     }
 
+    public List<Product> findDog(int limit, int offset){
+        return shopMapper.findDogProducts(limit, offset);
+    }
 
+    public List<Product> findCat(int limit, int offset){
+        return shopMapper.findCatProducts(limit, offset);
+    }
+
+    public List<Product> findOthers(int limit, int offset){
+        return shopMapper.findOtherProducts(limit, offset);
+    }
 
     public Product findProductById(Integer productId) {
         return shopMapper.findProductById(productId);

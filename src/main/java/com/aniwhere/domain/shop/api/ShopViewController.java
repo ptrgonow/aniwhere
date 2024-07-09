@@ -39,8 +39,14 @@ public class ShopViewController {
         int offset = (page - 1) * size;
 
         List<Product> products = productService.findAllProductsWithLimit(size, offset);
+        List<Product> dogs = productService.findDog(size, offset);
+        List<Product> cats = productService.findCat(size, offset);
+        List<Product> others = productService.findOthers(size, offset);
 
         model.addAttribute("products", products);
+        model.addAttribute("dog", dogs);
+        model.addAttribute("cat", cats);
+        model.addAttribute("other", others);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
 
@@ -48,7 +54,12 @@ public class ShopViewController {
     }
 
     @GetMapping("/detail")
-    public String detail()  {
+    public String detail(Model model, @RequestParam("id") Integer id)  {
+
+        Product detail = productService.findProductById(id);
+
+        model.addAttribute("details", detail);
+
         return "animall/shop-product-detail";
     }
 
