@@ -47,7 +47,7 @@
                 <div th:each="product : ${products}" class="col-lg-4 col-md-6 text-center">
                     <div class="single-product-item">
                         <div class="product-image">
-                            <a><img th:src="${product.image}" alt="외부 이미지"></a>
+                            <a th:href="@{/shop/detail(id=${product.productId})}"><img th:src="${product.image}" alt="외부 이미지"></a>
                         </div>
                         <div class="product-details">
                             <h3 th:text="${product.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
@@ -66,7 +66,7 @@
                 <div th:each="dogs : ${dog}" class="col-lg-4 col-md-6 text-center">
                     <div class="single-product-item">
                         <div class="product-image">
-                            <a><img th:src="${dogs.image}" alt="외부 이미지"></a>
+                            <a th:href="@{/shop/detail(id=${dogs.productId})}"><img th:src="${dogs.image}" alt="외부 이미지"></a>
                         </div>
                         <div class="product-details">
                             <h3 th:text="${dogs.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
@@ -85,7 +85,7 @@
                 <div th:each="cats : ${cat}" class="col-lg-4 col-md-6 text-center">
                     <div class="single-product-item">
                         <div class="product-image">
-                            <a><img th:src="${cats.image}" alt="외부 이미지"></a>
+                            <a th:href="@{/shop/detail(id=${cats.productId})}"><img th:src="${cats.image}" alt="외부 이미지"></a>
                         </div>
                         <div class="product-details">
                             <h3 th:text="${cats.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
