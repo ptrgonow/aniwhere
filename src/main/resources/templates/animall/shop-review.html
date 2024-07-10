@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shop</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <div th:replace="~{include/header :: header}"></div>
     <link rel="stylesheet" href="/css/shop-review.css">
-</head>
 
 <body>
-<div th:replace="~{include/header :: header}"></div>
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Product Review Board</p>
+                    <h1>제품 사용 후기 게시판</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!--PreLoader-->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
 
 <div class="row">
     <div class="col-md-12 text-right view-toggle-buttons">

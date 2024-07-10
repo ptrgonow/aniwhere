@@ -1,6 +1,7 @@
 package com.aniwhere.domain.shop.mapper;
 
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
+import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.product.domain.Product;
 import org.apache.ibatis.annotations.*;
 
@@ -38,4 +39,5 @@ public interface ShopMapper {
 
     @Delete("DELETE FROM product WHERE product_id = #{productId}")
     void deleteProduct(Integer productId);
+
 }

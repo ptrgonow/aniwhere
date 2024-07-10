@@ -54,38 +54,52 @@ public class ShopViewController {
     }
 
     @GetMapping("/detail")
-    public String detail(Model model, @RequestParam("id") Integer id)  {
-
-        Product detail = productService.findProductById(id);
-
-        model.addAttribute("details", detail);
-
+    public String detail(Model model)  {
+        model.addAttribute("name", homeService.getAuthenticatedUserName());
+        model.addAttribute("userId", homeService.getAuthenticatedUserId());
         return "animall/shop-product-detail";
     }
 
     @GetMapping("/cart")
-    public String cart()  {
+    public String cart(Model model)  {
+        model.addAttribute("name", homeService.getAuthenticatedUserName());
+        model.addAttribute("userId", homeService.getAuthenticatedUserId());
         return "animall/shop-cart";
     }
 
     @GetMapping("/review")
-    public String review(){
+    public String review(Model model){
+        model.addAttribute("name", homeService.getAuthenticatedUserName());
+        model.addAttribute("userId", homeService.getAuthenticatedUserId());
         return "animall/shop-review";
     }
 
     @GetMapping("/review-single")
-    public String reviewSingle(){
+    public String reviewSingle(Model model){
+        model.addAttribute("name", homeService.getAuthenticatedUserName());
+        model.addAttribute("userId", homeService.getAuthenticatedUserId());
         return "animall/shop-review-single";
     }
 
     @GetMapping("/checkout")
-    public String checkout(){
+    public String checkout(Model model){
+        model.addAttribute("name", homeService.getAuthenticatedUserName());
+        model.addAttribute("userId", homeService.getAuthenticatedUserId());
         return "animall/shop-checkout";
     }
 
-    @GetMapping("/summary")
-        public String summary(){
-            return "animall/shop-summary";
+    @GetMapping("/order-search")
+    public String orderSearch(Model model){
+        model.addAttribute("name", homeService.getAuthenticatedUserName());
+        model.addAttribute("userId", homeService.getAuthenticatedUserId());
+        return "animall/shop-order-search";
+        }
+
+    @GetMapping("/order-summary")
+        public String orderSummary(Model model){
+        model.addAttribute("name", homeService.getAuthenticatedUserName());
+        model.addAttribute("userId", homeService.getAuthenticatedUserId());
+        return "animall/shop-order-summary";
         }
     }
 
