@@ -68,6 +68,7 @@ span:hover:before, span:hover:after {
     align-items: center;
     width: 80%;
     margin: 5rem auto;
+
 }
 
 .image-container {
@@ -86,7 +87,7 @@ span:hover:before, span:hover:after {
 }
 
 .tc.n1, .tc.n3, .tc.n5 {
-    color: #FFA07A;
+    color: #8b8e91;
 }
 
 .image-container.p1 img,
@@ -117,6 +118,8 @@ span:hover:before, span:hover:after {
     position: absolute;
     top: 85%;
     z-index: 10;
+    border-radius: 20px;
+
 }
 
 .tc.n7 {
@@ -124,23 +127,49 @@ span:hover:before, span:hover:after {
 }
 
 /* 채워지는 효과 */
-.btn {
-    border-radius: 10px;
-    padding: 10px;
+.lastBtn {
+    border-radius: 20px;
+    padding: 30px;
     background: transparent;
     text-transform: uppercase;
     position: relative;
     transition: background-color 0.4s, color 0.4s;
     overflow: hidden;
     z-index: 1;
-    color: #febe98;
+    color: #8b8e91;
+
 }
 
-.btn:focus {
+.lastBtn:focus {
     outline: none;
 }
 
-.btn:hover {
-    background-color: #febe98;
+.lastBtn:hover {
+    background-color: #8b8e91;
     color: #fff;
+}
+
+
+
+/* 이용안내 */
+
+.notice_box {
+    width: 100%;
+}
+
+.notice_title {
+    margin-top: 80px;
+    font-weight: normal;
+}
+
+.notice_title h2 {
+    text-align: center;
+    margin: 10px 10px;
+    font-size: 30px;
+}
+
+.notice_title hr {
+    margin: 0 auto 10px auto;
+    width: 7%;
+    color: lightgray;
 }
