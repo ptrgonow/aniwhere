@@ -6,14 +6,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const tableBody = document.querySelector('#notice_table tbody');
         tableBody.innerHTML = ''; // 기존 테이블 내용을 지우기
 
+        if (noticeData.length === 0) {
+            const row = tableBody.insertRow();
+            const cell = row.insertCell(0);
+            cell.colSpan = 4;
+            cell.textContent = '이런 내용은 없는디유;;;';
+            cell.style.textAlign = 'center';
+            return;
+        }
+
         const start = (page - 1) * rowsPerPage;
         const end = page * rowsPerPage;
         const paginatedItems = noticeData.slice(start, end);
 
-        for (const item of paginatedItems) {
+        // 최신 게시글이 번호 1이 되도록 역순 번호 매기기
+        for (const [index, item] of paginatedItems.entries()) {
             const row = tableBody.insertRow();
+            const rowNumber = (noticeData.length - (start + index)); // 역순 번호 계산
             row.innerHTML = `
-                <td>${item.noticeId}</td>
+                <td>${rowNumber}</td>
                 <td><a href="/board/notice-detail?id=${item.noticeId}">${item.title}</a></td>
                 <td class="date">${formatDate(item.createdAt)}</td>
                 <td>${item.hit}</td>
@@ -51,12 +62,33 @@ document.addEventListener('DOMContentLoaded', function () {
         return `${year}-${month}-${day}`;
     }
 
-    // 데이터베이스에서 공지사항 데이터를 가져오기
-    fetch('/list')
-        .then(response => response.json())
-        .then(data => {
-            displayTable(data, currentPage);
-            setupPagination(data);
-        })
-        .catch(error => console.error('Error fetching notices:', error));
+    function fetchNotices(query = '') {
+        const url = query ? `/search?query=${query}` : '/list';
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                displayTable(data, currentPage);
+                setupPagination(data);
+            })
+            .catch(error => console.error('Error fetching notices:', error));
+    }
+
+    // 초기 데이터 로드
+    fetchNotices();
+
+    // 검색 요청 처리
+    document.querySelector('.search_form button').addEventListener('click', function (e) {
+        e.preventDefault();
+        const query = document.querySelector('.search_form input[name="search_text"]').value;
+        fetchNotices(query);
+    });
+
+    // 엔터 키 검색 처리
+    document.querySelector('.search_form input[name="search_text"]').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const query = document.querySelector('.search_form input[name="search_text"]').value;
+            fetchNotices(query);
+        }
+    });
 });

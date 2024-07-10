@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 @Mapper
 public interface NoticeMapper {
 
-    @Select("SELECT notice_id AS noticeId, title, content, created_at AS createdAt FROM notice ORDER BY notice_id DESC")
-    List<NoticeDTO> getAllNotices();
 
 
 
@@ -30,4 +28,14 @@ public interface NoticeMapper {
     @Update("UPDATE notice SET hit = hit + 1 WHERE notice_id = #{noticeId}")
     void incrementHit(Long noticeId);
 
-}
+
+    @Select("SELECT notice_id AS noticeId, title, content, created_at AS createdAt, hit FROM notice ORDER BY notice_id DESC")
+    List<NoticeDTO> getAllNotices();
+    
+    // 검색
+    @Select("SELECT notice_id AS noticeId, title, content, created_at AS createdAt, hit FROM notice WHERE title LIKE CONCAT('%', #{query}, '%') OR content LIKE CONCAT('%', #{query}, '%')")
+    List<NoticeDTO> searchNotices(String query);
+
+    }
+
+

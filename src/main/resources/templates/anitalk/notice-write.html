@@ -2,11 +2,10 @@
 <div th:replace="~{include/header :: header}"></div>
 <link rel="stylesheet" href="/css/notice-write.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CKEditor 4 CDN -->
+<!-- CKEditor 4 CDN -->
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
 
 <body>
-
 
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
@@ -49,10 +48,6 @@
     </div>
 </div>
 
-<script>
-    CKEDITOR.replace('editor');
-</script>
-
+<!-- Include footer -->
 <div th:replace="~{include/footer :: footer}"></div>
-</body>
-
+<script src="/js/notice-write.js"></script>

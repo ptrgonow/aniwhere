@@ -8,10 +8,6 @@
     box-sizing: border-box;
 }
 
-html {
-    font-size: 16px;
-    height: 100%;
-}
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
@@ -57,6 +53,7 @@ li {
 .notice_content table {
     margin: 60px auto;
     width: 70%; /* 테이블 너비 조정 */
+
     border-left: none;
     font-size: 16px;
 }
@@ -140,7 +137,7 @@ li {
 /* 글쓰기 버튼 */
 .notice_write_btn {
     text-align: center;
-    margin-left: 79rem;
+    margin-left: 91rem;
 }
 
 .notice_write_btn a {
