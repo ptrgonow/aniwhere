@@ -20,7 +20,7 @@
 <div class="page-wrapper">
     <div class="container d-flex justify-content-center">
         <div class="join col-xl-8 col-8 d-flex justify-content-center w-100 h-100">
-            <form id="joinForm">
+            <form id="joinForm" method="post" th:action="@{/mypage/update}">
                 <h3 class="reg-text"><span class="material-symbols-outlined">person_edit</span>내 정보 수정</h3>
                 <div class="modi-form">
                     <div class="form-input">
@@ -35,11 +35,11 @@
                     <p class="pwd-info">* 정보 수정을 원하실 경우 현재 비밀번호를 입력하세요</p>
                     <div class="form-input" >
                         <label for="userPwd" class="reg-form" id="newPwd">변경할 비밀번호</label>
-                        <input type="password" id="confirmNewPwd" name="userPwd" class="in-text" th:field="${detail.userPwd}">
+                        <input type="password" id="userNewPwd" name="userPwd" class="in-text" th:field="${detail.userPwd}">
                     </div>
                     <div class="form-input" >
                         <label for="userPwd" class="reg-form" id="confirmPwd">변경할 비밀번호<br/> 확인</label>
-                        <input type="password" id="userNewPwd" name="userPwd" class="in-text" th:field="${detail.userPwd}">
+                        <input type="password" id="confirmNewPwd" name="userPwd" class="in-text" th:field="${detail.userPwd}">
                     </div>
                     <div class="form-input">
                         <label for="userName" class="reg-form">이름</label>
