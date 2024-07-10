@@ -11,21 +11,31 @@ Version: 1.0
 # Base - Genral & Typography
 
 ----------------------------------------------------------------------------- */
+
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 28px;
   height: 100%;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 1rem;
-  letter-spacing: 0.1px;
-  line-height: 1.8;
-  color: #051922;
-  overflow-x: hidden;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f4f4f4;
+  height: 100%;
 }
 
 body img {
@@ -862,10 +872,20 @@ a.mobile-show {
   padding: 50px 0;
 }
 
+.footer {
+  height: 350px;
+}
+
 .footer-area {
+  height: 100%;
   background-color: #051922;
   color: #fff;
-  padding: 150px 0;
+  padding: 50px 0;
+}
+
+.row.foot {
+  display: flex;
+  justify-content: space-between;
 }
 
 h2.widget-title {

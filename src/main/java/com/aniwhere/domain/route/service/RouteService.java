@@ -117,12 +117,12 @@ public class RouteService {
     }
 
     // 이미지 저장 메서드
-    private void saveImage(String base64Image, Long routeId) throws IOException, FileNotFoundException {
+    private void saveImage(String base64Image, Long Id) throws IOException, FileNotFoundException {
         String[] parts = base64Image.split(",");
         String imageString = parts[1];
         byte[] imageBytes = Base64.getDecoder().decode(imageString);
         String timeStamp = new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
-        String fileName = "src/main/resources/static/images/" + routeId + "_" + timeStamp + ".png";
+        String fileName = "src/main/resources/static/images/" + timeStamp + "_" + Id + ".png";
 
         Files.createDirectories(Paths.get("src/main/resources/static/images/"));
 
