@@ -4,130 +4,215 @@
 
 <body>
 
-	
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<p>직접 담은 상품을 확인해 보세요</p>
-						<h1>장바구니</h1>
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>직접 담은 상품을 확인해 보세요</p>
+					<h1>장바구니</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- cart -->
+<div class="cart-section mt-150 mb-150">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-12">
+				<div class="cart-table-wrap">
+					<table class="cart-table">
+						<thead class="cart-table-head">
+						<tr class="table-head-row">
+							<th class="product-check"></th>
+							<th class="product-image">이미지</th>
+							<th class="product-name">상품명</th>
+							<th class="product-price">가격</th>
+							<th class="product-quantity">수량</th>
+							<th class="product-total">총 금액</th>
+							<th class="product-delete">삭제</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr class="table-body-row" th:each="carts : ${cart}">
+							<input type="hidden" th:value="${carts.cartId}" id="cartId">
+							<td class="product-check">
+								<input type="checkbox" class="item-checkbox" th:checked="${carts.checked == 'Y'}">
+							</td>
+							<td class="product-image"><img th:src="${carts.image}" alt=""></td>
+							<td class="product-name" th:text="${carts.name.replaceAll('<[^>]*>', '')}">Strawberry</td>
+							<td class="product-price" th:text="${carts.price}">$85</td>
+							<td class="product-quantity"><input type="number" th:value="${carts.quantity}"></td>
+							<td class="product-total" th:text="${#numbers.formatInteger(carts.totalPrice, 0, 'COMMA')} + '원'"></td>
+							<td class="product-remove">
+								<a href="#" class="delete-btn" th:data-cart-id="${carts.cartId}"><i class="far fa-window-close"></i></a>
+							</td>
+						</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="total-section">
+					<table class="total-table">
+						<thead class="total-table-head">
+						<tr class="table-total-row">
+							<th>항목</th>
+							<th>금액</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr class="total-data">
+							<td><strong>상품가격 </strong></td>
+							<td id="totalProductPrice">0원</td>
+						</tr>
+						<tr class="total-data">
+							<td><strong>배송비 </strong></td>
+							<td id="shippingFee">2,500원</td>
+						</tr>
+						<tr class="total-data">
+							<td><strong>결제금액 </strong></td>
+							<td id="totalPrice">2,500원</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="cart-buttons">
+						<a href="/shop/main" class="boxed-btn">계속 쇼핑하기</a>
+						<a href="/shop/checkout" class="boxed-btn black">주문하기</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end breadcrumb section -->
+</div>
+<!-- end cart -->
 
-	<!-- cart -->
-	<div class="cart-section mt-150 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-md-12">
-					<div class="cart-table-wrap">
-						<table class="cart-table">
-							<thead class="cart-table-head">
-								<tr class="table-head-row">
-									<th class="product-remove"></th>
-									<th class="product-image">이미지</th>
-									<th class="product-name">상품명</th>
-									<th class="product-price">가격</th>
-									<th class="product-quantity">수량</th>
-									<th class="product-total">총 금액</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="/img/toy_01.jpg" alt=""></td>
-									<td class="product-name">Strawberry</td>
-									<td class="product-price">$85</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="/img/toy_02.jpg" alt=""></td>
-									<td class="product-name">Berry</td>
-									<td class="product-price">$70</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="/img/toy_03.png" alt=""></td>
-									<td class="product-name">Lemon</td>
-									<td class="product-price">$35</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-							</tbody>
-						</table>
+<!-- logo carousel -->
+<div class="logo-carousel-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="logo-carousel-inner">
+					<div class="single-logo-item">
+						<img src="/img/brand_logo_01.png" alt="">
 					</div>
-				</div>
-
-				<div class="col-lg-4">
-					<div class="total-section">
-						<table class="total-table">
-							<thead class="total-table-head">
-								<tr class="table-total-row">
-									<th>항목</th>
-									<th>금액</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="total-data">
-									<td><strong>상품가격 </strong></td>
-									<td>$500</td>
-								</tr>
-								<tr class="total-data">
-									<td><strong>배송비 </strong></td>
-									<td>$45</td>
-								</tr>
-								<tr class="total-data">
-									<td><strong>결제금액 </strong></td>
-									<td>$545</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="cart-buttons">
-							<a href="/shop/main" class="boxed-btn">계속 쇼핑하기</a>
-							<a href="/shop/checkout" class="boxed-btn black">주문하기</a>
-						</div>
+					<div class="single-logo-item">
+						<img src="/img/brand_logo_02.png" alt="">
+					</div>
+					<div class="single-logo-item">
+						<img src="/img/brand_logo_03.png" alt="">
+					</div>
+					<div class="single-logo-item">
+						<img src="/img/brand_logo_04.png" alt="">
+					</div>
+					<div class="single-logo-item">
+						<img src="/img/brand_logo_05.jpg" alt="">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end cart -->
-
-	<!-- logo carousel -->
-	<div class="logo-carousel-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo-carousel-inner">
-						<div class="single-logo-item">
-							<img src="/img/brand_logo_01.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="/img/brand_logo_02.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="/img/brand_logo_03.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="/img/brand_logo_04.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="/img/brand_logo_05.jpg" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end logo carousel -->
+</div>
+<!-- end logo carousel -->
 </body>
 <div th:replace="~{include/footer :: footer}"></div>
+<script th:inline="javascript">
+	$(document).ready(function() {
+		// 페이지 로드 시 총 주문 금액 가져오기
+		updateTotalOrderPrice();
+
+		$(".product-quantity input").on("change", function() {
+			const $row = $(this).closest("tr");
+			const cartId = $row.find("#cartId").val();
+			const newQuantity = parseInt($(this).val(), 10);
+			const price = parseInt($row.find(".product-price").text().replace(/[^0-9]/g, ''), 10);
+			console.log('가격', price)
+			if (!isNaN(newQuantity) && newQuantity >= 0 && !isNaN(price)) {
+				const newTotalPrice = newQuantity * price;
+				$row.find(".product-total").text(newTotalPrice + "원");
+				console.log('총금액', newTotalPrice)
+				$.ajax({
+					url: "/cart/update/" + cartId,
+					type: "POST",
+					data: { quantity: newQuantity, totalPrice: newTotalPrice },
+					success: function(response) {
+						$row.find(".product-quantity input").val(response.quantity);
+						$row.find(".product-total").text(newTotalPrice.toLocaleString() + "원");
+						console.log(response.totalPrice);
+						updateTotalOrderPrice(); // 수량 변경 후 다시 총 주문 금액 업데이트
+					},
+					error: function(xhr, status, error) {
+						alert("Error updating cart quantity: " + error);
+					}
+				});
+			} else {
+				alert("Invalid quantity.");
+				// 오류 발생 시 기존 값으로 되돌리기 (직접 구현 필요)
+			}
+		});
+		updateTotalOrderPrice();
+		$(".delete-btn").on("click", function(event) {
+			event.preventDefault();
+			const cartId = $(this).data("cartId");
+
+			if (confirm("정말 삭제하시겠습니까?")) {
+				$.ajax({
+					url: "/cart/delete/" + cartId,
+					type: "DELETE",
+					success: function(response) {
+						// 삭제 성공 시 해당 행 제거
+						$(event.target).closest("tr").remove();
+						updateTotalOrderPrice();
+					},
+					error: function(xhr, status, error) {
+						alert("Error deleting cart item: " + error);
+					}
+				});
+			}
+		});
+		$(".item-checkbox").on("change", function() {
+			const $row = $(this).closest("tr");
+			const cartId = $row.find("#cartId").val();
+			const checked = $(this).is(":checked") ? 'Y' : 'N';
+
+			$.ajax({
+				url: "/cart/update/" + cartId + "/checked",
+				type: "POST",
+				contentType: "application/json", // JSON 형식으로 데이터 전송
+				data: JSON.stringify({ checked: checked }),
+				success: function(response) {
+					updateTotalOrderPrice();
+				},
+				error: function(xhr, status, error) {
+					alert("Error updating cart item checked status: " + error);
+
+				}
+			});
+		});
+
+		// 총 주문 금액 업데이트 함수
+		function updateTotalOrderPrice() {
+			$.ajax({
+				url: "/cart/total-price",
+				type: "GET",
+				success: function(totalProductPrice) {
+					const shippingFee = 2500; // 배송비
+					const totalPrice = totalProductPrice + shippingFee;
+
+					$("#totalProductPrice").text(totalProductPrice.toLocaleString() + "원"); // 상품 가격 업데이트
+					$("#totalPrice").text(totalPrice.toLocaleString() + "원"); // 결제 금액 업데이트
+				},
+				error: function(xhr, status, error) {
+					alert("Error fetching total order price: " + error);
+				}
+			});
+		}
+	});
+</script>

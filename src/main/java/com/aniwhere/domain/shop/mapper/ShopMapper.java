@@ -1,9 +1,12 @@
 package com.aniwhere.domain.shop.mapper;
 
+import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.shop.product.domain.Product;
+import lombok.Data;
 import org.apache.ibatis.annotations.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Mapper
@@ -12,30 +15,58 @@ public interface ShopMapper {
     @Select("SELECT COUNT(*) FROM product")
     int getTotalProductCount();
 
-    @Select("SELECT product_id as productId, name, image, category3, link, price FROM product LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category3, price FROM product LIMIT #{limit} OFFSET #{offset}")
     List<Product> findAllProductsWithLimit(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category3, link, price FROM product WHERE category3 LIKE '%강아지%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category3, price FROM product WHERE category3 LIKE '%강아지%' and category3 not like '%고양이%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findDogProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category3, price, link FROM product WHERE category3 LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category3, price FROM product WHERE category3 LIKE '%고양이%' and category3 not like '%강아지%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findCatProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category3, link, price FROM product WHERE category3 NOT LIKE '%강아지%' AND name NOT LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category3, price FROM product WHERE category3 NOT LIKE '%강아지%' AND category3 NOT LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findOtherProducts(@Param("limit") int limit, @Param("offset") int offset);
 
     @Select("SELECT * FROM product WHERE product_id = #{productId}")
     Product findProductById(Integer productId);
 
-    @Insert("INSERT IGNORE INTO product(name, link, image, price, hprice, brand, maker, category1, category2, category3, category4, naver_product_id) " +
-            "VALUES (#{name}, #{link}, #{image}, #{price}, #{hprice}, #{brand}, #{maker}, #{category1}, #{category2}, #{category3}, #{category4}, #{naverProductId})")
+    @Insert("INSERT IGNORE INTO product(name, image, price, category3) " +
+            "VALUES (#{name}, #{image}, #{price}, #{category3})")
     @Options(useGeneratedKeys = true, keyProperty = "productId")
     void saveProduct(ProductDTO product);
 
-    @Update("UPDATE product SET name = #{name}, link = #{link}, image = #{image}, price = #{price}, hprice = #{hprice}, brand = #{brand}, " +
-            "maker = #{maker}, category1 = #{category1}, category2 = #{category2}, category3 = #{category3}, category4 = #{category4}, naver_product_id = #{naverProductId} WHERE product_id = #{productId}")
+    @Update("UPDATE product SET name = #{name}, image = #{image}, price = #{price}, " +
+            "category3 = #{category3} WHERE product_id = #{productId}")
     void updateProduct(ProductDTO product);
 
     @Delete("DELETE FROM product WHERE product_id = #{productId}")
     void deleteProduct(Integer productId);
+
+    @Select("SELECT EXISTS(SELECT 1 FROM cart WHERE user_id = #{userId} AND product_id = #{productId})")
+    boolean existsCartItem(@Param("userId") String userId, @Param("productId") Integer productId);
+
+    @Select("SELECT price FROM product WHERE product_id = #{productId}")
+    String getProductPriceById(Integer productId);
+
+    @Insert("INSERT INTO cart (user_id, product_id, quantity, total_price) VALUES (#{userId}, #{productId}, #{quantity}, #{totalPrice})")
+    void insertCartItem(Cart cart); // 새로운 메소드 추가
+
+    @Select("SELECT SUM(total_price) FROM cart WHERE user_id = #{userId} AND checked = 'Y'")
+    Integer getTotalOrderPrice(String userId);
+
+    @Select("SELECT c.cart_id as cartId, c.quantity, p.product_id as productId, c.user_id as userId, p.name, p.image, p.price, c.checked, c.total_price as totalPrice FROM cart c JOIN product p ON c.product_id = p.product_id WHERE c.user_id = #{userId}")
+    List<Cart> getCartItemsByUserId(String userId);
+
+    @Select("SELECT * FROM cart WHERE cart_id = #{cartId}")
+    Cart getCartItemById(Integer cartId);
+
+    @Update("UPDATE cart SET quantity = #{quantity}, total_price = #{totalPrice} WHERE cart_id = #{cartId}")
+    void updateCartItemQuantity(@Param("cartId") Integer cartId, @Param("quantity") Integer quantity, @Param("totalPrice") Integer totalPrice);
+
+    @Update("UPDATE cart SET checked = #{checked} WHERE cart_id = #{cartId}")
+    void updateCartItemChecked(@Param("cartId") Integer cartId, @Param("checked") String checked);
+
+    @Delete("DELETE FROM cart WHERE cart_id = #{cartId}")
+    void deleteCartItem(Integer cartId);
+
 }

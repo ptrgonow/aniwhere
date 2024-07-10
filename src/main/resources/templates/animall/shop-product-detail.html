@@ -30,7 +30,6 @@
 					<div class="product-price">
 					<p class="single-product-pricing" th:text="${details.price}"></p>원
 					</div>
-					<a th:href="@{${details.link}}">현재 보고있는 상품에 관심이 있으신가요? >상품 바로 보러가기<</a>
 					<div class="single-product-form">
 
 						<form action="#">
@@ -53,19 +52,16 @@
 						</div>
 
 						<strong class="category-container">Categories:
-							<p th:text="${details.category1}"></p>>
-							<p th:text="${details.category2}"></p>>
 							<p th:text="${details.category3}"></p>
 						</strong>
 					</div>
-					<h4>Share:</h4>
-					<ul class="product-share">
-						<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-						<li><a href=""><i class="fab fa-twitter"></i></a></li>
-						<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
-						<li><a href=""><i class="fab fa-linkedin"></i></a></li>
-					</ul>
+
 				</div>
+
+			</div>
+			<hr>
+			<div class="single-product-content">
+				<img th:src="${details.detail_url}">
 			</div>
 		</div>
 	</div>

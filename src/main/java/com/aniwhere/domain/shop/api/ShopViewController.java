@@ -1,11 +1,17 @@
 package com.aniwhere.domain.shop.api;
 
+import com.aniwhere.domain.shop.cart.domain.Cart;
+import com.aniwhere.domain.shop.cart.service.CartService;
 import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.service.ProductService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import jakarta.servlet.Filter;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +28,21 @@ public class ShopViewController {
 
     private final HomeService homeService;
     private final ProductService productService;
+    private final CartService cartService;
 
+    private String getAuthenticatedUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserDetails) {
+                return ((UserDetails) principal).getUsername();
+            } else if (principal instanceof OAuth2User) {
+                OAuth2User oauthUser = (OAuth2User) principal;
+                return  oauthUser.getAttribute("userId");
+            }
+        }
+        return null;
+    }
     @GetMapping("/main")
     public String shopMain(Model model,@RequestParam(defaultValue = "1") int page,
                            @RequestParam(defaultValue = "9") int size)  {
@@ -64,7 +84,11 @@ public class ShopViewController {
     }
 
     @GetMapping("/cart")
-    public String cart()  {
+    public String cart(Model model)  {
+        String userId = getAuthenticatedUserId();
+        List<Cart> cart = cartService.getCartItems(userId);
+        model.addAttribute("cart", cart);
+
         return "animall/shop-cart";
     }
 
