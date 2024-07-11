@@ -23,7 +23,7 @@
    <div class="checkout-section mt-150 mb-150">
       <div class="container">
          <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-7">
                <div class="checkout-accordion-wrap">
                   <div class="accordion" id="accordionExample">
                      <div class="accordion-item">
@@ -95,12 +95,12 @@
                </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                <div class="order-details-wrap sticky">
                   <table class="order-details">
                      <thead>
                      <tr>
-                        <th>주문 상품 목록</th>
+                        <th class="col-4">상품명</th>
                         <th>가격</th>
                         <th>수량</th>
                         <th>총 금액</th>
@@ -119,7 +119,7 @@
                   <table class="order-details" id="detail-table">
                      <tbody class="checkout-details">
                      <tr>
-                        <th class="cost">상품 총 가격</th>
+                        <th class="col-3 cost">상품 총 가격</th>
                         <td id="totalProductPrice" th:text="${#numbers.formatInteger(totalProductPrice, 0, 'COMMA')} + '원'"></td>
                      </tr>
                      <tr>
