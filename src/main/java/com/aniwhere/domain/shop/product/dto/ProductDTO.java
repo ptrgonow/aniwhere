@@ -13,6 +13,7 @@ public class ProductDTO {
     private String hprice;
     private String brand;
     private String maker;
+    private String detail_url;
     private String category1;
     private String category2;
     private String category3;

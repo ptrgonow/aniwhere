@@ -5,15 +5,6 @@
 <input type="hidden" id="totalPages" th:value="${totalPages}">
 
 <body>
-
-
-<!--PreLoader-->
-<div class="loader">
-    <div class="loader-inner">
-        <div class="circle"></div>
-    </div>
-</div>
-<!--PreLoader Ends-->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
         <div class="row">
@@ -52,12 +43,14 @@
         <div class="all category-container">
             <div id="product-container" class="row product-lists">
                 <div th:each="product : ${products}" class="col-lg-4 col-md-6 text-center">
+
                     <div class="single-product-item">
                         <div class="product-image">
                             <a th:href="@{/shop/detail(id=${product.productId})}"><img th:src="${product.image}" alt="외부 이미지"></a>
                         </div>
                         <div class="product-details">
                             <h3 th:text="${product.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
+                            <input type="hidden" id="productId" th:value="${product.productId}">
                             <div class="product-price">
                                 <p th:text="${product.price}"></p>원
                             </div>
@@ -135,4 +128,28 @@
 
 <div th:replace="~{include/footer :: footer}"></div>
 <script src="/js/shop-main.js"></script>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        $(".cart-btn").click(function(event) {
+            event.preventDefault();
+
+            const $productItem = $(this).closest(".single-product-item");
+            const productId = $productItem.find(".product-details #productId").val(); // product-details 안의 #productId 선택
+
+            const quantity = 1;
+
+            $.ajax({
+                url: "/cart/add/" + productId + "?quantity=" + quantity,
+                type: "POST",
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(xhr, status, error) {
+                    alert("이미 장바구니에 존재하는 상품입니다");
+                }
+            });
+        });
+    });
+</script>
+
 
