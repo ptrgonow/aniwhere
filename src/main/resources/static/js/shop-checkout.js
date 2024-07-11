@@ -68,12 +68,45 @@ function searchAdd() {
         }
     }).open();
 }
+$(document).ready(function() {
+    $(".del-check").on("change", function() {
+        const isChecked = $(this).is(":checked");
+        const $userNameInput = $("#shipping-form input[type='text'][placeholder='수취인']");
+        const $userEmailInput = $("#shipping-form input[type='email'][placeholder='이메일']");
+        const $userPhoneInput = $("#shipping-form input[type='tel'][placeholder='연락처']");
+        const $userAddressInput = $("#shipping-form input[name='address']");
+        const $userDetailAddressInput = $("#shipping-form input[name='detailAddress']");
+        const $userZipCodeInput = $("#shipping-form input[name='zipCode']");
+
+
+        if (isChecked) {
+
+            $userNameInput.val($("input[type='text'][readonly]").val());
+            $userEmailInput.val($("input[type='email'][readonly]").val());
+            $userPhoneInput.val($("input[type='tel'][readonly]").val());
+            $userAddressInput.val($("input[name='address'][readonly]").val());
+            $userDetailAddressInput.val($("input[name='detailAddress'][readonly]").val());
+            $userZipCodeInput.val($("input[name='zipCode'][readonly]").val());
+        } else {
+
+            $userNameInput.val('');
+            $userEmailInput.val('');
+            $userPhoneInput.val('');
+            $userAddressInput.val('');
+            $userDetailAddressInput.val('');
+            $userZipCodeInput.val('');
+        }
+    });
+});
+
 
 // 토스페이먼츠 결제위젯
 async function toss() {
     const button = document.getElementById("payment-button");
-    const totalPriceElement = document.getElementById("total-price");
-    let totalPrice = parseInt(totalPriceElement.innerText);
+    const totalPriceElement = document.getElementById("totalPrice"); // #totalPrice 요소 선택 (total-price가 아닌 totalPrice)
+    const totalPriceText = totalPriceElement.innerText;
+    const totalPrice = parseInt(totalPriceText.replace(/[^0-9]/g, ''), 10); // 숫자만 추출
+
 
     //결제위젯 초기화
     const clientKey = "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm";
