@@ -2,7 +2,7 @@
 <div th:replace="~{include/header :: header}"></div>
 <link rel="stylesheet" href="/css/notice-detail.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="role" th:content="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
 <body>
 
 
@@ -47,11 +47,11 @@
         <hr>
         <!-- 수정 삭제 목록 버튼-->
         <div class="button_container">
-            <div class="update_button">
+            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                 <a th:href="@{/board/notice-update(id=${notice.noticeId})}" class="button">수정</a>
             </div>
 
-            <div class="delete_button">
+            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                 <a href="#" id="delete-button" th:attr="data-id=${notice.noticeId}" class="button">삭제</a>
             </div>
 

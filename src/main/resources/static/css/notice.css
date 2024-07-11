@@ -12,7 +12,6 @@
 body {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 1rem;
-    line-height: 1.5;
     color: #333;
     background-color: #f4f4f4;
     height: 100%;
@@ -29,11 +28,11 @@ li {
 
 /* 공지사항 */
 .notice_box {
+    margin-top: 80px;
     width: 100%;
 }
 
 .notice_title {
-    margin-top: 80px;
     font-weight: normal;
 }
 
@@ -49,7 +48,9 @@ li {
     width: 7%;
     color: lightgray;
 }
-
+.notice_content {
+    min-height: 500px;
+}
 .notice_content table {
     margin: 60px auto;
     width: 70%; /* 테이블 너비 조정 */
@@ -123,32 +124,36 @@ li {
     width: 70px;
     height: 30px;
     border: none;
-    background-color: #8b8e91;
+    background-color: #f28123;
     color: white;
     cursor: pointer;
     border-radius: 5px;
 }
 
 .search_form button:hover {
-    background-color: #3f4e59;
+    background-color: #ffd0af;
 }
 
 /* 글쓰기 버튼 */
 .notice_write_btn {
     text-align: center;
-    margin-left: 91rem;
+    display: flex;
+    justify-content: end;
+    width: 85%;
+
 }
 
 .notice_write_btn a {
     padding: 10px 20px;
-    background-color: #8b8e91;
+    background-color: #f28123;
     color: white;
     text-decoration: none;
     border-radius: 5px;
 }
 
 .notice_write_btn a:hover {
-    background-color: #3f4e59;
+
+    background-color: #ffd0af;
     color: #ffffff;
 }
 
@@ -177,19 +182,19 @@ li {
     color: black;
     margin: 0 5px;
     padding: 10px 15px;
-    background-color: #e5e5e5;
+    background-color: #f4f4f4;
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
 }
 
 .page_form a:hover {
-    background-color: #8b8e91;
+    background-color: #ffd0af;
     color: white;
 }
 
 .page_form .active {
-    background-color: #8b8e91;
+    background-color: #f28123;
     color: white;
 }
 
@@ -213,7 +218,7 @@ li {
 }
 
 .notice_content table th {
-    background-color: #3f4e59;
+    background-color: #f28123;
     color: #ffffff;
     text-align: center;
 }

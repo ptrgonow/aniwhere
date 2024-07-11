@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const rowsPerPage = 8;
     let currentPage = 1;
 
+/*
+
+안녕하세요 아래 매서드는 ㅇㅇㅇㅇㅇ 기능입니다.
+
+
+*/
     function displayTable(noticeData, page) {
         const tableBody = document.querySelector('#notice_table tbody');
         tableBody.innerHTML = ''; // 기존 테이블 내용을 지우기
@@ -18,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const start = (page - 1) * rowsPerPage;
         const end = page * rowsPerPage;
         const paginatedItems = noticeData.slice(start, end);
+
 
         // 최신 게시글이 번호 1이 되도록 역순 번호 매기기
         for (const [index, item] of paginatedItems.entries()) {
@@ -48,11 +55,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentPage = i;
                 displayTable(noticeData, currentPage);
                 setupPagination(noticeData);
+
             });
 
             pagination.appendChild(pageItem);
         }
     }
+
 
     function formatDate(dateString) {
         const date = new Date(dateString);
