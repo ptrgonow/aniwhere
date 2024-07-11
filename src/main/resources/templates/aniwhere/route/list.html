@@ -21,6 +21,7 @@
 <div class="container">
     <section class="card-container">
         <div class="card-main" th:each="route : ${routes}">
+            <a class="card-link" th:href="@{/route/${route.id}/markers}"></a>
             <div class="card-img">
                 <img th:src="${route.image}" alt="Route Image"/>
             </div>

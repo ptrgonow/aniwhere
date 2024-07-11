@@ -6,15 +6,15 @@ import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.mypage.domain.UserDetail;
 import com.aniwhere.domain.user.mypage.service.MyService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,37 +26,31 @@ public class MyController {
 
     private final MyService myService;
     private final HomeService homeService;
-    private final RouteService routeService;
 
-    // 스프링 프레임워크로 해당 유저ID 가져오는 로직
-    private String getAuthenticatedUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                return ((UserDetails) principal).getUsername();
-            } else if (principal instanceof OAuth2User) {
-                OAuth2User oauthUser = (OAuth2User) principal;
-                return  oauthUser.getAttribute("userId");
-            }
-        }
-        return null;
-    }
 
     @GetMapping("/detail")
     public String my(Model model) {
 
-        String userId = getAuthenticatedUserId();
+        String userName = homeService.getAuthenticatedUserName();
 
-        UserDetail userDetail = myService.getUserDetailByUserId(userId);
+        UserDetail userDetail = myService.getUserDetailByUserId(userName);
 
         model.addAttribute("detail", userDetail);
+        model.addAttribute("name", userName);
 
         return "/mypage/modify";
     }
 
-    @GetMapping("/routedetail")
-    public String routeDetail(@RequestParam("id") String id, Model model) {
+    @GetMapping("/routedetail/{id}")
+    public String routeDetail(@PathVariable("id") Long id, Model model) {
+
+        RouteDTO routeDetail = myService.getRouteDetailById(id);
+        String userName = homeService.getAuthenticatedUserName();
+        String userId = homeService.getAuthenticatedUserId();
+
+        model.addAttribute("routeDetail", routeDetail);
+        model.addAttribute("name", userName);
+        model.addAttribute("id", userId);
 
         return "/mypage/route-detail";
     }
@@ -64,17 +58,13 @@ public class MyController {
     @GetMapping("/routelist")
     public String routeList(@RequestParam(defaultValue = "3") int limit, @RequestParam(defaultValue = "0") int offset, Model model) {
 
-        String authenticatedUserId = homeService.getAuthenticatedUserId();
-        List<RouteDTO> userRouteList = myService.selectRouteByUserId(authenticatedUserId, limit, offset);
+        String userId = homeService.getAuthenticatedUserId();
+        String userName = homeService.getAuthenticatedUserName();
+        List<RouteDTO> userRouteList = myService.selectRouteByUserId(userId, limit, offset);
 
-        int totalRoutes = myService.countUserRoutes(authenticatedUserId);
+        int totalRoutes = myService.countUserRoutes(userId);
         int currentPage = offset / limit + 1;
         int totalPages = (int) Math.ceil((double) totalRoutes / limit);
-
-        // 디버깅 로그 추가
-        System.out.println("Total Routes: " + totalRoutes);
-        System.out.println("Current Page: " + currentPage);
-        System.out.println("Total Pages: " + totalPages);
 
         model.addAttribute("userRoutes", userRouteList);
         model.addAttribute("currentPage", currentPage);
@@ -83,7 +73,8 @@ public class MyController {
         model.addAttribute("offset", offset);
 
         model.addAttribute("userRouteList", userRouteList);
-        model.addAttribute("authenticatedUserName", homeService.getAuthenticatedUserName());
+        model.addAttribute("name", userName);
+        model.addAttribute("id", userId);
 
         return "/mypage/route-list";
     }

@@ -2,7 +2,7 @@
 <div th:replace="~{include/header :: header}"></div>
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/route-list.css">
-<input type="hidden" th:value="${authenticatedUserName}">
+<input type="hidden" th:value="${name}">
 <body>
 
 <!-- breadcrumb-section -->
@@ -23,7 +23,7 @@
     <section class="card-container">
         <h4 class="no-route" th:if="${#lists.isEmpty(userRoutes)}">등록한 코스 내역이 없습니다</h4>
             <div class="card-main" th:each="userRoute : ${userRoutes}">
-                <a class="card-link" th:href="@{/mypage/routedetail/{id}}"></a>
+                <a class="card-link" th:href="@{/mypage/routedetail/{id}(id=${userRoute.id})}"></a>
                 <div class="card-img">
                     <img th:src="${userRoute.image}" alt="Route Image"/>
                 </div>
