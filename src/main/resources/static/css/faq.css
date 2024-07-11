@@ -57,7 +57,7 @@ body {
 }
 
 .menu.active {
-    background-color: #F28123; /* 클릭된 상태의 배경색 */
+    background-color: #3f4e59; /* 클릭된 상태의 배경색 */
     color: white; /* 클릭된 상태의 글자색 */
 }
 
@@ -81,3 +81,31 @@ body {
 .embed-responsive-item{
     width: 100%;
 }
+
+/* FAQ */
+.FAQ_box {
+    width: 100%;
+
+}
+
+.FAQ_title {
+    margin-top: 60px; /* 기존 80px에서 60px로 조정 */
+    font-weight: normal;
+    position: relative;
+    top: -70px; /* 10px 위로 이동 */
+}
+
+
+/* FAQ 타이틀 글씨 크기 조절 */
+.FAQ_title h2 {
+    text-align: center;
+    margin: 10px 10px ;
+    font-size: 30px;
+}
+
+.FAQ_title hr {
+    margin: 0 auto 10px auto;
+    width: 7%;
+    color: lightgray;
+}
+

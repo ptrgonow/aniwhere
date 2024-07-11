@@ -50,7 +50,7 @@
                         </div>
                         <div class="product-details">
                             <h3 th:text="${product.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
-                            <input type="hidden" id="productId" th:value="${product.productId}">
+                            <input type="hidden" class="productId" th:value="${product.productId}">
                             <div class="product-price">
                                 <p th:text="${product.price}"></p>원
                             </div>
@@ -69,6 +69,7 @@
                             <a th:href="@{/shop/detail(id=${dogs.productId})}"><img th:src="${dogs.image}" alt="외부 이미지"></a>
                         </div>
                         <div class="product-details">
+                            <input type="hidden" class="productId" th:value="${dogs.productId}">
                             <h3 th:text="${dogs.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
                             <div class="product-price">
                                 <p th:text="${dogs.price}"></p>원
@@ -88,6 +89,7 @@
                             <a th:href="@{/shop/detail(id=${cats.productId})}"><img th:src="${cats.image}" alt="외부 이미지"></a>
                         </div>
                         <div class="product-details">
+                            <input type="hidden" class="productId" th:value="${cats.productId}">
                             <h3 th:text="${cats.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
                             <div class="product-price">
                                 <p th:text="${cats.price}"></p>원
@@ -107,6 +109,7 @@
                             <a><img th:src="${others.image}" alt="외부 이미지"></a>
                         </div>
                         <div class="product-details">
+                            <input type="hidden" class="productId" th:value="${others.productId}">
                             <h3 th:text="${others.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
                             <div class="product-price">
                                 <p th:text="${others.price}"></p>원
@@ -134,7 +137,7 @@
             event.preventDefault();
 
             const $productItem = $(this).closest(".single-product-item");
-            const productId = $productItem.find(".product-details #productId").val(); // product-details 안의 #productId 선택
+            const productId = $productItem.find(".product-details .productId").val(); // product-details 안의 #productId 선택
 
             const quantity = 1;
 

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     private final LoginService loginService;
-    private final HomeService homeService;
 
     @PostMapping(value = "/loginProc", consumes = "application/x-www-form-urlencoded")
     public String loginProc(@RequestParam("userId") String userId,

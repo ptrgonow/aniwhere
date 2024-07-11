@@ -27,13 +27,11 @@ public class MyController {
     private final MyService myService;
     private final HomeService homeService;
 
-
     @GetMapping("/detail")
     public String my(Model model) {
-
+      
         String userName = homeService.getAuthenticatedUserName();
-
-        UserDetail userDetail = myService.getUserDetailByUserId(userName);
+        UserDetail userDetail = myservice.getUserDetailByUserId(userName);
 
         model.addAttribute("detail", userDetail);
         model.addAttribute("name", userName);
