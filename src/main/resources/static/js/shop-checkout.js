@@ -137,14 +137,28 @@ async function toss() {
 
     //'결제하기' 버튼 누르면 결제창 띄우기
     button.addEventListener("click", async function () {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+
+        const customerEmail = document.querySelector('input[name="email"]').value;
+        const customerName = document.querySelector('input[name="userName"]').value;
+        const customerMobilePhone = document.querySelector('input[name="phone"]').value;
+        const cleanedMobilePhone = customerMobilePhone.replace(/-/g, '');
+        const onlyNumbers = cleanedMobilePhone.replace(/[^0-9]/g, '');
+        const orderId = `${year}${month}${day}A001`;
+        const successUrl = `${window.location.origin}/shop/success/payment?&customerEmail=${customerEmail}&customerName=${customerName}&customerMobilePhone=${onlyNumbers}&totalPrice=${totalPrice}`;
+
+
         await widgets.requestPayment({
-            orderId: "DMzckbI76qfdcWQPzeokD",
+            orderId: orderId,
             orderName: "토스 티셔츠 외 2건",
-            successUrl: window.location.origin + "/success.html",
+            successUrl: successUrl,
             failUrl: window.location.origin + "/fail.html",
-            customerEmail: "customer123@gmail.com",
-            customerName: "김토스",
-            customerMobilePhone: "01012341234",
+            customerEmail: customerEmail,
+            customerName: customerName,
+            customerMobilePhone: onlyNumbers,
         });
     });
 }

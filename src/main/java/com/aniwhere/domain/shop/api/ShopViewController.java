@@ -124,8 +124,10 @@ public class ShopViewController {
     }
 
     @GetMapping("/summary")
-        public String summary(){
-            return "animall/shop-summary";
-        }
+    public String summary(){
+        return "animall/shop-summary";
     }
+
+}
+
 

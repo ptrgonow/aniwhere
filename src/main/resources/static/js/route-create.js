@@ -58,7 +58,7 @@ function initializeMap() {
             center: [position.coords.longitude, position.coords.latitude],
             zoom: 16,
             language: 'ko-KR',
-            preserveDrawingBuffer: true
+            preserveDrawingBuffer: true,
         });
 
         map.on('load', () => {
