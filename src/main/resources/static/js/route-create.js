@@ -3,6 +3,17 @@ $(document).ready(function() {
     $('#createRoute').on('click', captureAndSaveRoute);
     $('#reset').on('click', resetMarkers);
     $('#previous-step').on('click', removeLastMarkerAndLine);
+    $('#modiRoute').on('click', captureAndSaveNewRoute);
+    $('#back').on('click', function() {
+        window.location.href = '/mypage/routelist';
+    });
+    $('#routeDel').on('click', deleteMyRoute);
+
+    // 페이지가 로드될 때 마커 데이터를 로드
+    const routeId = $('#routeId').val();
+    if (routeId) {
+        loadMarkers(routeId);
+    }
 
 });
 
@@ -52,6 +63,11 @@ function initializeMap() {
                 if (error) throw error;
                 map.addImage('fIcon', image);
                 addCurrentLocationMarker(position.coords.longitude, position.coords.latitude);
+                // 마커 로드 위치를 지도 초기화 이후로 이동
+                const routeId = $('#routeId').val();
+                if (routeId) {
+                    loadMarkers(routeId);
+                }
             });
         });
 
@@ -320,6 +336,11 @@ function captureAndSaveRoute() {
         currentLocationMarker.remove();
     }
 
+    if (markers.length === 0) {
+        alert("저장할 경로가 없습니다. 경로를 추가해 주세요.");
+        return;
+    }
+
     html2canvas(mapElement.get(0), {
         proxy: '/html2canvas/proxy.json',
         allowTaint: false,
@@ -361,4 +382,118 @@ function getMarkersData() {
         longitude: markerInfo.coordinates[0],
         latitude: markerInfo.coordinates[1]
     }));
+}
+
+// 마커 위치
+function calculateCenter(markers) {
+    if (markers.length === 0) return [0, 0];
+
+    let sumLng = 0, sumLat = 0;
+    markers.forEach(marker => {
+        sumLng += marker.longitude;
+        sumLat += marker.latitude;
+    });
+
+    return [sumLng / markers.length, sumLat / markers.length];
+}
+
+function loadMarkers(id) {
+    $.ajax({
+        type: 'GET',
+        url: `/mypage/one/routedetail/${id}`,
+        success: function(data) {
+            console.log("Loaded markers:", data);
+
+            if (data && data.markers) {
+                data.markers.forEach(marker => {
+                    console.log("Adding marker:", marker);
+                    addMarker(marker.longitude, marker.latitude);
+                });
+                const center = calculateCenter(data.markers);
+                map.setCenter(center);
+                map.setZoom(15); // 줌 레벨 설정
+            }
+        },
+        error: function(data) {
+            console.error("Error loading markers:", data);
+        }
+    });
+}
+
+//경로 업데이트
+function captureAndSaveNewRoute() {
+    let mapElement = $('#map');
+    const routeId = $('#routeId').val();
+
+    if (markers.length === 0) {
+        alert("경로가 없습니다. 경로를 추가해 주세요.");
+        return;
+    }
+
+    if (currentLocationMarker) {
+        currentLocationMarker.remove();
+    }
+
+    html2canvas(mapElement.get(0), {
+        proxy: '/html2canvas/proxy.json',
+        allowTaint: false,
+        useCORS: true
+    }).then((canvas) => {
+        let base64Image = canvas.toDataURL("image/png");
+
+        const routeData = {
+            userId: $('#userId').val(),
+            name: $('#routeName').val(),
+            description: $('#routeDescription').val(),
+            markers: getMarkersDatas(),
+            image: base64Image
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: `/mypage/updateroute/${routeId}`,
+            data: JSON.stringify(routeData),
+            contentType: 'application/json',
+            success: function(response) {
+                alert("경로 데이터와 이미지가 수정되었습니다.");
+                window.location.href = '/mypage/routedetail/' + routeId;
+            },
+            error: function(data) {
+                alert("오류 발생!");
+                console.error("Error saving route data and image:", data);
+            }
+        });
+
+        if (currentLocationMarker) {
+            currentLocationMarker.addTo(map);
+        }
+    });
+}
+
+function getMarkersDatas() {
+    return markers.map(markerInfo => ({
+        longitude: markerInfo.coordinates[0],
+        latitude: markerInfo.coordinates[1]
+    }));
+}
+
+// 경로 삭제
+function deleteMyRoute() {
+    const routeId = $('#routeId').val();
+
+    if(confirm('정말로 해당 코스를 삭제하시겠습니까?')){
+        $.ajax({
+            type: 'DELETE',
+            url: `/mypage/delroute/${routeId}`,
+            success: function(response) {
+                alert("코스가 삭제되었습니다.");
+                window.location.href = '/mypage/routelist';
+            },
+            error: function(data) {
+                alert("오류 발생!");
+                console.error("Error deleting route:", data);
+            }
+        });
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.aniwhere.domain.user.mypage.service;
 
+import com.aniwhere.domain.route.dto.MarkerDTO;
 import com.aniwhere.domain.route.dto.RouteDTO;
+import com.aniwhere.domain.route.mapper.RouteMapper;
 import com.aniwhere.domain.user.mapper.UserMapper;
 import com.aniwhere.domain.user.mypage.domain.UserDetail;
 import com.aniwhere.domain.user.mypage.dto.UpdateDetailDTO;
@@ -17,6 +19,7 @@ import java.util.List;
 public class MyService {
 
     private final UserMapper userMapper;
+    private final RouteMapper routeMapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserDetail getUserDetailByUserId(String userId) {
@@ -99,8 +102,27 @@ public class MyService {
         return userMapper.countUserRoutes(userId);
     }
 
-    public List<RouteDTO> selectRoutesWithMarkersByUserId(String userId) {
-        return userMapper.selectRoutesWithMarkersByUserId(userId);
+    public RouteDTO getRouteDetailById(Long id) {
+        RouteDTO route = routeMapper.selectRouteById(id);
+        if (route != null) {
+            List<MarkerDTO> markers = routeMapper.selectMarkersByRouteId(id);
+            route.setMarkers(markers);
+        }
+        return route;
+    }
+
+    public void updateRoute(RouteDTO routeDTO) {
+        routeMapper.updateRoute(routeDTO.getId(), routeDTO);
+        routeMapper.deleteMarkersByRouteId(routeDTO.getId());
+
+        for (MarkerDTO marker : routeDTO.getMarkers()) {
+            marker.setRouteId(routeDTO.getId());
+            userMapper.insertMarker(marker);
+        }
+    }
+
+    public void deleteRoute(long id){
+        userMapper.deleteRoute(id);
     }
 
 

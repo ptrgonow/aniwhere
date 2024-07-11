@@ -1,6 +1,7 @@
 package com.aniwhere.domain.user.mapper;
 
 import com.aniwhere.domain.route.domain.Route;
+import com.aniwhere.domain.route.dto.MarkerDTO;
 import com.aniwhere.domain.route.dto.RouteDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.user.loginSession.dto.LoginDTO;
@@ -44,13 +45,12 @@ public interface UserMapper {
      @Select("SELECT COUNT(*) FROM route WHERE user_id = #{userId}")
      int countUserRoutes(@Param("userId") String userId);
 
-     @Select("SELECT r.id, r.name, r.description, r.created_at AS createdAt, r.user_id AS userId, r.image, " +
-             "m.id AS markerId, m.route_id AS routeId, m.longitude, m.latitude " +
-             "FROM route r " +
-             "LEFT JOIN marker m ON r.id = m.route_id " +
-             "WHERE r.user_id = #{userId} " +
-             "ORDER BY r.created_at DESC")
-     List<RouteDTO> selectRoutesWithMarkersByUserId(@Param("userId") String userId);
+     @Insert("INSERT INTO marker (route_id, longitude, latitude) VALUES (#{routeId}, #{longitude}, #{latitude})")
+     void insertMarker(MarkerDTO marker);
+
+     @Delete("DELETE FROM route WHERE id = #{id}")
+     void deleteRoute(long id);
+
 
 }
 
