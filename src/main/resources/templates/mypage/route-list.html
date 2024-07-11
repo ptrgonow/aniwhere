@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<div th:replace="~{include/header :: header}"></div>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/route-list.css">
+<input type="hidden" th:value="${authenticatedUserName}">
+<body>
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>내 코스 목록</p>
+                    <h1>AniWhere</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <section class="card-container">
+        <h4 class="no-route" th:if="${#lists.isEmpty(userRoutes)}">등록한 코스 내역이 없습니다</h4>
+            <div class="card-main" th:each="userRoute : ${userRoutes}">
+                <a class="card-link" th:href="@{/mypage/routedetail/{id}}"></a>
+                <div class="card-img">
+                    <img th:src="${userRoute.image}" alt="Route Image"/>
+                </div>
+                    <div class="card-content">
+                        <h3 th:text="${userRoute.name}"></h3>
+                        <h5 th:text="${userRoute.userName}"></h5>
+                        <p th:text="${userRoute.description}"></p>
+                        <div class="card-date">
+                            <span th:text="${#temporals.format(userRoute.createdAt, 'yyyy-MM-dd HH:mm:ss')}">등록시간</span>
+                        </div>
+                    </div>
+            </div>
+
+        <div class="page" th:if="${totalPages > 1}">
+            <a th:href="@{/mypage/routelist(offset=${offset - limit < 0 ? 0 : offset - limit}, limit=${limit})}" th:if="${currentPage > 1}">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+                <a th:href="@{/mypage/routelist(offset=${(i - 1) * limit}, limit=${limit})}" th:text="${i}" th:classappend="${i == currentPage} ? 'current' : ''"></a>
+            </span>
+            <a th:href="@{/mypage/routelist(offset=${offset + limit}, limit=${limit})}" th:if="${currentPage < totalPages}">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+
+    </section>
+    
+</div>
+</body>
+
+
+
+
+<div th:replace="~{include/footer :: footer}"></div>
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
+

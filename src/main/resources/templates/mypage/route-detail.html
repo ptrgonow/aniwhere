@@ -5,12 +5,13 @@
 <input type="hidden" id="userId" th:value="${userId}">
 <body>
 
+<!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <p>함께 달려요</p>
+                    <p>코스 상세보기</p>
                     <h1>AniWhere</h1>
                 </div>
             </div>
@@ -34,15 +35,15 @@
                 
                 <div class="form-group">
                     <label for="routeName">경로 이름</label>
-                    <input type="text" class="form-control" id="routeName" placeholder="경로 이름을 입력하세요" required>
+                    <input type="text" class="form-control" id="routeName" placeholder="경로 이름을 입력하세요">
                 </div>
                 <div class="form-group">
                     <label for="routeDescription">경로 설명</label>
-                    <textarea class="form-control" id="routeDescription" rows="3" placeholder="경로 설명을 입력하세요" required></textarea>
+                    <textarea class="form-control" id="routeDescription" rows="3" placeholder="경로 설명을 입력하세요"></textarea>
                 </div>
-                <button id="createRoute" class="btn btn-primary">경로 생성</button>
-                <button id="reset" class="btn btn-warning">초기화</button>
-                <button id="previous-step" class="btn btn-danger">이전 단계</button>
+                <button id="createRoute" class="btn btn-primary">경로 수정</button>
+                <button id="reset" class="btn btn-warning">코스 목록</button>
+                <button id="routeDel" class="btn btn-danger">삭제</button>
             </div>
         </div>
     </div>

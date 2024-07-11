@@ -11,7 +11,7 @@ $(document).ready(function() {
 
         $("#walk_add_btn").stop().animate({
             "top": newPosition
-        }, 500);
+        }, 50);
     }).scroll();
 
 });

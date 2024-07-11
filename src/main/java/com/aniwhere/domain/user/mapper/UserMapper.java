@@ -1,11 +1,14 @@
 package com.aniwhere.domain.user.mapper;
 
+import com.aniwhere.domain.route.domain.Route;
+import com.aniwhere.domain.route.dto.RouteDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.user.loginSession.dto.LoginDTO;
+import com.aniwhere.domain.user.mypage.dto.UpdateDetailDTO;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 
 @Mapper
@@ -28,7 +31,26 @@ public interface UserMapper {
 
      @Select("SELECT user_id AS userId, user_pwd AS userPwd, user_name AS userName, email, address, detail_address AS detailAddress, zip_code AS zipCode, phone " +
              "FROM user WHERE user_id = #{userId}")
-     UserDetailDTO detailByUserId(String userId);
+     UserDetailDTO detailByUserId(@Param("userId") String userId);
+
+     @Update("UPDATE user SET user_id = #{userId}, user_pwd = #{userPwd}, user_name = #{userName}, address = #{address}, detail_address = #{detailAddress}, zip_code = #{zipCode}, phone = #{phone} " +
+             "WHERE user_id = #{userId}")
+     boolean updateUser(UpdateDetailDTO updateDetail);
+
+     @Select("SELECT id, name, description, created_at AS createdAt, user_id AS userId, image " +
+             "FROM route WHERE user_id = #{userId} ORDER BY created_at DESC LIMIT #{limit} OFFSET #{offset}")
+     List<RouteDTO> selectRouteByUserIdWithPaging(@Param("userId") String userId, @Param("limit") int limit, @Param("offset") int offset);
+
+     @Select("SELECT COUNT(*) FROM route WHERE user_id = #{userId}")
+     int countUserRoutes(@Param("userId") String userId);
+
+     @Select("SELECT r.id, r.name, r.description, r.created_at AS createdAt, r.user_id AS userId, r.image, " +
+             "m.id AS markerId, m.route_id AS routeId, m.longitude, m.latitude " +
+             "FROM route r " +
+             "LEFT JOIN marker m ON r.id = m.route_id " +
+             "WHERE r.user_id = #{userId} " +
+             "ORDER BY r.created_at DESC")
+     List<RouteDTO> selectRoutesWithMarkersByUserId(@Param("userId") String userId);
 
 }
 

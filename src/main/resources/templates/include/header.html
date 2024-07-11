@@ -79,7 +79,12 @@
                                     <span sec:authorize="isAuthenticated()">
                                         <input type="hidden" id="userId" th:value="${userId}">
                                         <a><span class="text-white" th:text="${name}"></span></a>
-                                        <a class="mypage" th:href="@{/mypage/detail}">mypage</a>
+                                        <ul class="sub-menu">
+                                                <li><a href="/mypage/detail">내 정보</a></li>
+                                                <li><a href="/shop/cart">장바구니</a></li>
+                                                <li><a href="/shop/checkout">주문하기</a></li>
+                                                <li><a href="/mypage/routelist">코스 목록</a></li>
+                                        </ul>
                                         <a class="mobile-hide search-bar-icon" href="/logout">로그아웃</a>
                                     </span>
                                 </div>

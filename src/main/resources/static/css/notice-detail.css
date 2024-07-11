@@ -99,7 +99,7 @@ span:hover:before, span:hover:after {
 }
 
 .detail_content {
-    height: 300px;
+    height: 100%;
 }
 
 .detail_content p {

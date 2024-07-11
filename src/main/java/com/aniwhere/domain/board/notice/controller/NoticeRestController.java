@@ -53,6 +53,13 @@ public class NoticeRestController {
         }
     }
 
+    // 공지사항 검색
+    @GetMapping("/search")
+    public ResponseEntity<List<NoticeDTO>> searchNotices(@RequestParam("query") String query) {
+        List<NoticeDTO> notices = noticeService.searchNotices(query);
+        return ResponseEntity.ok(notices);
+    }
+
 
 
 }

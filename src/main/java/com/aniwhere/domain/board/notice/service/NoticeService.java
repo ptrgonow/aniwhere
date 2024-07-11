@@ -38,5 +38,11 @@ public class NoticeService {
         noticeMapper.deleteNotice(id);
     }
 
+    // 검색
+
+    public List<NoticeDTO> searchNotices(String query) {
+        return noticeMapper.searchNotices(query);
+    }
+
 
 }
