@@ -2,6 +2,7 @@
 <div th:replace="~{include/header :: header}"></div>
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/route-list.css">
+<input type="hidden" th:value="${name}">
 <body>
 
 <!-- breadcrumb-section -->
@@ -21,7 +22,7 @@
 <div class="container">
     <section class="card-container">
         <div class="card-main" th:each="route : ${routes}">
-            <a class="card-link" th:href="@{/route/${route.id}/markers}"></a>
+            <a class="card-link" th:href="@{/route/detail/{id}(id=${route.id})}"></a>
             <div class="card-img">
                 <img th:src="${route.image}" alt="Route Image"/>
             </div>
