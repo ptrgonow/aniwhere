@@ -2,6 +2,7 @@ package com.aniwhere.domain.board.api;
 
 import com.aniwhere.domain.board.notice.dto.NoticeDTO;
 import com.aniwhere.domain.board.notice.service.NoticeService;
+import com.aniwhere.domain.user.loginSession.service.HomeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/board")
 public class BoardViewController {
+
 
     private final NoticeService noticeService;
 
