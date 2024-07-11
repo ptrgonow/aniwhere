@@ -3,6 +3,7 @@ package com.aniwhere.domain.user.mypage.service;
 import com.aniwhere.domain.route.dto.MarkerDTO;
 import com.aniwhere.domain.route.dto.RouteDTO;
 import com.aniwhere.domain.route.mapper.RouteMapper;
+import com.aniwhere.domain.route.service.RouteService;
 import com.aniwhere.domain.user.mapper.UserMapper;
 import com.aniwhere.domain.user.mypage.domain.UserDetail;
 import com.aniwhere.domain.user.mypage.dto.UpdateDetailDTO;
@@ -12,6 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -111,7 +115,9 @@ public class MyService {
         return route;
     }
 
+    @Transactional
     public void updateRoute(RouteDTO routeDTO) {
+
         routeMapper.updateRoute(routeDTO.getId(), routeDTO);
         routeMapper.deleteMarkersByRouteId(routeDTO.getId());
 
@@ -119,11 +125,28 @@ public class MyService {
             marker.setRouteId(routeDTO.getId());
             userMapper.insertMarker(marker);
         }
+
     }
 
-    public void deleteRoute(long id){
-        userMapper.deleteRoute(id);
-    }
 
+    @Transactional
+    public void deleteRoute(Long routeId) {
+        // 마커 삭제
+        routeMapper.deleteMarkersByRouteId(routeId);
+
+        // 이미지 파일 삭제 로직 추가
+        String imagePath = userMapper.findImageByRouteId(routeId);
+        if (imagePath != null && !imagePath.isEmpty()) {
+            try {
+                Files.deleteIfExists(Paths.get("src/main/resources/static" + imagePath));
+            } catch (IOException e) {
+                System.out.println("Error deleting image file: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+
+        // 경로 삭제
+        userMapper.deleteRoute(routeId);
+    }
 
 }

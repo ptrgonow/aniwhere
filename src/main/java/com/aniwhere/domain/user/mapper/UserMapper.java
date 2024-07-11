@@ -49,7 +49,10 @@ public interface UserMapper {
      void insertMarker(MarkerDTO marker);
 
      @Delete("DELETE FROM route WHERE id = #{id}")
-     void deleteRoute(long id);
+     void deleteRoute(Long id);
+
+     @Select("SELECT image FROM route WHERE id = #{id}")
+     String findImageByRouteId(@Param("id") Long id);
 
 
 }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -45,6 +46,17 @@ public class RouteViewController {
         model.addAttribute("userId", homeService.getAuthenticatedUserId());
 
         return "aniwhere/route/list";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String routeDetail(@PathVariable("id") Long id, Model model) {
+
+        RouteDTO route = routeService.getRouteById(id);
+        model.addAttribute("route", route);
+        model.addAttribute("name", homeService.getAuthenticatedUserName());
+        model.addAttribute("userId", homeService.getAuthenticatedUserId());
+
+        return "/aniwhere/route/detail";
     }
 
 
