@@ -28,28 +28,12 @@ public class MyController {
     private final HomeService homeService;
     private final RouteService routeService;
 
-    // 스프링 프레임워크로 해당 유저ID 가져오는 로직
-    private String getAuthenticatedUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                return ((UserDetails) principal).getUsername();
-            } else if (principal instanceof OAuth2User) {
-                OAuth2User oauthUser = (OAuth2User) principal;
-                return  oauthUser.getAttribute("userId");
-            }
-        }
-        return null;
-    }
 
     @GetMapping("/detail")
     public String my(Model model) {
 
-        String userId = getAuthenticatedUserId();
-
+        String userId = homeService.getAuthenticatedUserId();
         UserDetail userDetail = myService.getUserDetailByUserId(userId);
-
         model.addAttribute("detail", userDetail);
 
         return "/mypage/modify";
@@ -83,7 +67,7 @@ public class MyController {
         model.addAttribute("offset", offset);
 
         model.addAttribute("userRouteList", userRouteList);
-        model.addAttribute("authenticatedUserName", homeService.getAuthenticatedUserName());
+        model.addAttribute("name", homeService.getAuthenticatedUserName());
 
         return "/mypage/route-list";
     }
