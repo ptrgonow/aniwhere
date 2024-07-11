@@ -31,7 +31,7 @@ public class MyController {
     public String my(Model model) {
       
         String userName = homeService.getAuthenticatedUserName();
-        UserDetail userDetail = myservice.getUserDetailByUserId(userName);
+        UserDetail userDetail = myService.getUserDetailByUserId(userName);
 
         model.addAttribute("detail", userDetail);
         model.addAttribute("name", userName);

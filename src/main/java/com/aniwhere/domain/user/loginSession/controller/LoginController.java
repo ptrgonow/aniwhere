@@ -1,7 +1,6 @@
 package com.aniwhere.domain.user.loginSession.controller;
 
 import com.aniwhere.domain.user.loginSession.dto.LoginDTO;
-import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.loginSession.service.LoginService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
