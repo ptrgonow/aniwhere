@@ -2,9 +2,12 @@ package com.aniwhere.domain.shop.api;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.cart.service.CartService;
+import com.aniwhere.domain.shop.mapper.OrderMapper;
+import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.service.ProductService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
+import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import jakarta.servlet.Filter;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +32,8 @@ public class ShopViewController {
     private final HomeService homeService;
     private final ProductService productService;
     private final CartService cartService;
+    private final OrderMapper orderMapper;
+    private final OrderService orderService;
 
     private String getAuthenticatedUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -103,7 +108,18 @@ public class ShopViewController {
     }
 
     @GetMapping("/checkout")
-    public String checkout(){
+    public String checkout(Model model){
+        String userId = getAuthenticatedUserId();
+        UserDetailDTO user = orderMapper.detailByUserId(userId);
+        List<Cart> checkedItems = orderService.getCheckedCartItems(userId);
+        int totalProductPrice = checkedItems.stream()
+                .mapToInt(Cart::getTotalPrice)
+                .sum();
+
+        model.addAttribute("orderItems", checkedItems);
+        model.addAttribute("totalProductPrice", totalProductPrice);
+
+        model.addAttribute("userinfo", user);
         return "animall/shop-checkout";
     }
 
