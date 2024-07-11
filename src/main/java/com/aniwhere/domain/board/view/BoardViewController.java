@@ -1,4 +1,4 @@
-package com.aniwhere.domain.board.api;
+package com.aniwhere.domain.board.view;
 
 import com.aniwhere.domain.board.notice.dto.NoticeDTO;
 import com.aniwhere.domain.board.notice.service.NoticeService;

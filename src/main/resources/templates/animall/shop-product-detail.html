@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2 text-center">
 				<div class="breadcrumb-text">
-					<p>반려동물 용품</p>
+					<p>우리 뽀뽀 사주고 싶다!</p>
 					<h1>AniMall</h1>
 				</div>
 			</div>
@@ -16,16 +16,16 @@
 	</div>
 </div>
 <!-- single product -->
-<div class="single-product mt-150 mb-150">
+<div class="single-product mt-150">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
 				<div class="single-product-img">
-					<img th:src="${details.image}" alt="hi1">
+					<img th:src="${details.image}" alt="썸네일">
 				</div>
 			</div>
 			<div class="col-md-7">
-				<div class="single-product-content">
+				<div class="info single-product-content">
 					<h3 th:text="${details.name.replaceAll('<[^>]*>', '')}">상 품 이 름</h3>
 					<div class="product-price">
 					<p class="single-product-pricing" th:text="${details.price}"></p>원
@@ -33,7 +33,6 @@
 					<div class="single-product-form">
 
 						<form action="#">
-
 							<input type="number" id="quantity" placeholder="수량을 입력하세요" min="1">
 							<div class="size-selector">
 								<select id="size">
@@ -44,79 +43,107 @@
 								</select>
 							</div>
 						</form>
-						<p>Total Price: $<span id="total-price" th:text="${price}">50</span></p>
 						<div class="button-group">
 							<a href="#" class="purch-btn"><i class="fas fa-bolt"></i>  바로 구매  </a>
-							<a href="#" class="wish-btn"><i class="fas fa-heart"></i> 관심 상품 </a>
-							<a href="#" class="cart-btn cart-btn-emphasis-orange"><i class="fas fa-shopping-cart"></i> 장바구니 </a>
+							<a href="#" class="cart-btn cart-btn-emphasis-orange"><i class="fas fa-shopping-cart"></i>장바구니</a>
 						</div>
 
-						<strong class="category-container">Categories:
+						<div class="category-container">Categories:
 							<p th:text="${details.category3}"></p>
-						</strong>
+						</div>
 					</div>
 
 				</div>
 
 			</div>
-			<hr>
-			<div class="single-product-content">
-				<img th:src="${details.detail_url}">
+	
+			<div id="product-detail" class="single-product-content product-detail">
+                <img th:src="${details.detail_url}" alt="제품 상세">
 			</div>
-		</div>
+            <div class="more d-flex justify-content-center align-content-center">
+                <button id="toggle-button" class="more-btn"><i class="fas fa-chevron-down"></i></button>
+            </div>
+        </div>
 	</div>
 </div>
 <!-- end single product -->
 
-<!-- more products -->
-<div class="more-products mb-150">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 offset-lg-2 text-center">
-				<div class="section-title">
-					<h3><span class="orange-text">아마 이것도..</span> 나쁘진 않을껄요?</h3>
-					<p>아래 또 다른 상품들이 슬라이드 지나가듯이 지나가게 하는건 어떨런지..?</p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-4 col-md-6 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="shop-product-detail.html"><img src="#" alt="추천상품1"></a>
-					</div>
-					<h3>Strawberry</h3>
-					<p class="product-price"><span>Per Kg</span> 85$ </p>
-					<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="shop-product-detail.html"><img src="#" alt="추천상품2"></a>
-					</div>
-					<h3>Berry</h3>
-					<p class="product-price"><span>Per Kg</span> 70$ </p>
-					<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="shop-product-detail.html"><img src="#" alt="추천상품3"></a>
-					</div>
-					<h3>Lemon</h3>
-					<p class="product-price"><span>Per Kg</span> 35$ </p>
-					<a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
+<!-- Review -->
+<div class="review-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h2>Review</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 mb-100">
+                <div class="review-box">
+                    <div class="review-img">
+                        <img src="/img/avaters/avatar1.png" alt="">
+                    </div>
+                    <div class="review-content">
+                        <h5>John Doe</h5>
+                        <div class ="star_rating">
+                            <span class="star on" th:value="1"> </span>
+                            <span class="star" th:value="2"> </span>
+                            <span class="star" th:value="3"> </span>
+                            <span class="star" th:value="4"> </span>
+                            <span class="star" th:value="5"> </span>
+                        </div>
+                        <p>A great product, I love it. I would recommend it to anyone.</p>
+                        <p>5 days ago</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- end more products -->
+<!-- Review form -->
+
+
+
+<!-- end Review form -->
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="reviewerName" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="reviewerName">
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewContent" class="col-form-label">Review:</label>
+                        <textarea class="form-control" id="reviewContent"></textarea>
+                    </div>
+                    <div class ="star_rating">
+                        <span class="star on" th:value="1"> </span>
+                        <span class="star" th:value="2"> </span>
+                        <span class="star" th:value="3"> </span>
+                        <span class="star" th:value="4"> </span>
+                        <span class="star" th:value="5"> </span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div th:replace="~{include/footer :: footer}"></div>
-
-<script src="/js/shop-main.js"></script>
-
+<script src="/js/shop-product-detail.js"></script>
 </body>

@@ -1,4 +1,4 @@
-package com.aniwhere.domain.shop.api;
+package com.aniwhere.domain.shop.view;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.cart.service.CartService;
@@ -8,8 +8,6 @@ import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.service.ProductService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
-import jakarta.servlet.Filter;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
