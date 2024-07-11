@@ -1,7 +1,9 @@
 package com.aniwhere.domain.shop.mapper;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
+import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
+import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import org.apache.ibatis.annotations.*;
 
@@ -24,5 +26,12 @@ public interface OrderMapper {
             "FROM cart c JOIN product p ON c.product_id = p.product_id " +
             "WHERE c.user_id = #{userId} AND c.checked = 'Y'")
     List<Cart> getCheckedCartItemsByUserId(String userId);
+    @Insert("INSERT INTO `order` (order_id, user_id, total_price, order_status, order_date, recipient_email, recipient_name, recipient_phone, order_request) " +
+            "VALUES (#{orderId}, #{userId}, #{totalPrice}, #{orderStatus}, curdate() , #{recipientEmail}, #{recipientName}, #{recipientPhone}, #{orderResquest})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void insertOrder(OrderHistory orderHistory);
 
+    @Insert("INSERT INTO order_detail (order_id, product_id, quantity, price) " +
+            "VALUES (#{orderId}, #{productId}, #{quantity}, #{price})")
+    void insertOrderItem(OrderDetailDTO orderItem);
 }
