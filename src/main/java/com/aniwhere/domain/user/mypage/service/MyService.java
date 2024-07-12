@@ -28,6 +28,7 @@ public class MyService {
 
     public UserDetail getUserDetailByUserId(String userId) {
         UserDetailDTO userDetail = userMapper.detailByUserId(userId);
+
         return convertToDomain(userDetail);
     }
 
@@ -58,21 +59,7 @@ public class MyService {
     @Transactional
     public boolean updateUser(UpdateDetailDTO userDetailDTO) {
 
-        System.out.println("Update Request for User ID: " + userDetailDTO.getUserId());
-
-        // 입력된 UserDetailDTO에서 userId가 null인지 확인
-        if (userDetailDTO.getUserId() == null || userDetailDTO.getUserId().isEmpty()) {
-            System.out.println("User ID is null or empty.");
-            return false;
-        }
-
         UserDetailDTO currentUserDetail = userMapper.detailByUserId(userDetailDTO.getUserId());
-
-        // userId가 null인지 확인
-        if (currentUserDetail == null) {
-            System.out.println("No user found with the given User ID.");
-            return false;
-        }
 
         UpdateDetailDTO updateDetail = new UpdateDetailDTO();
         updateDetail.setUserId(userDetailDTO.getUserId());
@@ -92,8 +79,6 @@ public class MyService {
             // 기존 비밀번호를 유지
             updateDetail.setUserPwd(currentUserDetail.getUserPwd());
         }
-
-        System.out.println("Updating user with ID: " + updateDetail.getUserId());
 
         return userMapper.updateUser(updateDetail);
     }
