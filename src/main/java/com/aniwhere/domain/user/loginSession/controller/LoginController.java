@@ -2,7 +2,6 @@ package com.aniwhere.domain.user.loginSession.controller;
 
 import com.aniwhere.domain.user.loginSession.dto.LoginDTO;
 import com.aniwhere.domain.user.loginSession.service.LoginService;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +20,6 @@ public class LoginController {
         LoginDTO login = new LoginDTO();
         login.setUserId(userId);
         login.setUserPwd(userPwd);
-
 
         if (loginService.authenticateUser(login)) {
             return "redirect:/";

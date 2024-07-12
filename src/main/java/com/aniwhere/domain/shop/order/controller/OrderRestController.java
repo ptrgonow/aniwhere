@@ -1,7 +1,9 @@
 package com.aniwhere.domain.shop.order.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
+import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
+import com.aniwhere.domain.shop.order.dto.OrderHistoryDTO;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -57,5 +59,18 @@ public class OrderRestController {
         response.put("orderItems", checkedItems); // orderItems로 변경
         response.put("totalProductPrice", totalProductPrice);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/success/payment")
+    public String handlePaymentSuccess(@RequestParam("orderId") String orderId,
+                                       @RequestParam("customerEmail") String customerEmail,
+                                       @RequestParam("customerName") String customerName,
+                                       @RequestParam("customerMobilePhone") String customerMobilePhone,
+                                       @RequestParam("totalPrice") int totalPrice) {
+
+        String userId = getAuthenticatedUserId();
+        orderService.saveOrder(orderId, userId, customerEmail, customerName, customerMobilePhone, totalPrice);
+
+        return "redirect:/shop/cart";
     }
 }

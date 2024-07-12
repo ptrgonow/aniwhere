@@ -7,9 +7,6 @@ $(document).ready(function() {
     $('#back').on('click', function() {
         window.location.href = '/mypage/routelist';
     });
-    $('#allRouteList').on('click', function (){
-       window.location.href = '/route/list';
-    });
     $('#routeDel').on('click', deleteMyRoute);
 
     // 페이지가 로드될 때 마커 데이터를 로드
