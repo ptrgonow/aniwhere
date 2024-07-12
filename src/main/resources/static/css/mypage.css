@@ -59,13 +59,16 @@
     color: #E74C3C;
     margin-left: 15px;
     padding-left: 16px;
+    background-color: white;
+    margin-right: 16px;
 }
 
 .pwd-con{
-    margin-left: auto;
-    color: #FFFFFF;
-    background-color: #07212e;
-    border: none;
+    margin-left: 10px;
+    color: #07212e;
+    background-color: #FFFFFF;
+    border: 1px solid #07212e;
+    padding: 5px;
 }
 
 .address-inputs {
@@ -124,9 +127,9 @@
 }
 
 #check-icon{
-    background-color: #07212e;
     color: #0ea78b;
     display: flex;
     align-items: center;
     font-size: 2rem;
+    border: none;
 }
