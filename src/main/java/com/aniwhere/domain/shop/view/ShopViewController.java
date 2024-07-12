@@ -112,7 +112,11 @@ public class ShopViewController {
 
     @GetMapping("/summary")
     public String summary(){
-        return "animall/shop-summary";
+        return "animall/shop-order-summary";
+    }
+    @GetMapping("/search")
+    public String search(){
+        return "animall/shop-order-search";
     }
 
 }

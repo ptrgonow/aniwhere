@@ -47,6 +47,7 @@ public class OrderRestController {
     public OrderDTO getOrderById(@PathVariable String orderId) {
         return orderService.findOrderById(orderId);
     }
+
     @GetMapping("/items") // 엔드포인트 변경
     public ResponseEntity<Map<String, Object>> getCheckedItems(Authentication authentication) {
         String userId = getAuthenticatedUserId();

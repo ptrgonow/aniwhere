@@ -1,16 +1,20 @@
 package com.aniwhere.domain.shop.order.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderDTO {
     private String orderId;
-    private LocalDateTime orderDateTime;
+    private LocalDateTime orderDateTime;    // LocalDateTime
     private String orderStatus;
-    private double totalAmount;
+    private BigDecimal totalAmount;
     private int userId;
     private String customerName;
     private String customerId;
@@ -28,11 +32,11 @@ public class OrderDTO {
     private String productColor;
     private String productSize;
     private int productQuantity;
-    private double productUnitPrice;
-    private double productDiscountedPrice;
+    private BigDecimal productUnitPrice;
+    private BigDecimal productDiscountedPrice;
     private String paymentMethod;
     private LocalDateTime paymentDateTime;
-    private double paymentAmount;
+    private BigDecimal paymentAmount;
     private String bankName;
     private String accountHolder;
     private String accountNumber;
