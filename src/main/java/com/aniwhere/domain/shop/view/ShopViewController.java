@@ -120,19 +120,13 @@ public class ShopViewController {
         return "animall/shop-checkout";
     }
 
-    @GetMapping("/detail")
-    public String detail(){
-        return "animall/shop-product-detail";
-    }
-
-    @GetMapping("/search")
-        public String search(){
-            return "animall/shop-order-search";
-        }
-
     @GetMapping("/summary")
     public String summary(){
         return "animall/shop-order-summary";
+    }
+    @GetMapping("/search")
+    public String search(){
+        return "animall/shop-order-search";
     }
 
 }
