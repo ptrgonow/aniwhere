@@ -72,8 +72,8 @@ public class ReviewService {
          `anyMatch` : 주어진 조건에 맞는 요소가 하나라도 있는지 확인
          </p>
      */
-    public List<ReviewDTO> getAllReview() {
-        List<Review> reviews = reviewMapper.selectAllReview();
+    public List<ReviewDTO> getAllReview(int productId) {
+        List<Review> reviews = reviewMapper.selectAllReview(productId);
         // stream 생성
         return reviews.stream()
                 // 중간 연산 : Review -> ReviewDTO로 변환

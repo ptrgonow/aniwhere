@@ -57,9 +57,9 @@ public class ReviewController {
         `@PostMapping("/insert")` : "/review/insert" URL로 POST 메서드가 처리한다.
         </p>
      */
-    @GetMapping("/list")
-    public List<ReviewDTO> getAllReview() {
-        return reviewService.getAllReview();
+    @GetMapping("/list/{productId}")
+    public List<ReviewDTO> getAllReview(@PathVariable int productId) {
+        return reviewService.getAllReview(productId);
     }
 
     @GetMapping("/{reviewId}")

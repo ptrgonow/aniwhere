@@ -94,16 +94,6 @@ public class ShopViewController {
         return "animall/shop-cart";
     }
 
-    @GetMapping("/review")
-    public String review(){
-        return "animall/shop-review";
-    }
-
-    @GetMapping("/review-single")
-    public String reviewSingle(){
-        return "animall/shop-review-single";
-    }
-
     @GetMapping("/checkout")
     public String checkout(Model model){
         String userId = getAuthenticatedUserId();

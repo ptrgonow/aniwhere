@@ -22,6 +22,7 @@ public class Review {
     private int reviewId;
     private int productId;
     private String userId;
+    private String userName;
     private String reviewContent;
     private int reviewStar;
     private String reviewImg;
@@ -35,6 +36,7 @@ public class Review {
         review.setReviewId(dto.getReviewId());
         review.setProductId(dto.getProductId());
         review.setUserId(dto.getUserId());
+        review.setUserName(dto.getUserName());
         review.setReviewContent(dto.getReviewContent());
         review.setReviewStar(dto.getReviewRating());
         review.setReviewImg(dto.getReviewImg());
@@ -48,6 +50,7 @@ public class Review {
         dto.setReviewId(this.reviewId);
         dto.setProductId(this.productId);
         dto.setUserId(this.userId);
+        dto.setUserName(this.userName);
         dto.setReviewContent(this.reviewContent);
         dto.setReviewRating(this.reviewStar);
         dto.setReviewImg(this.reviewImg);

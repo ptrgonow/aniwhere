@@ -20,6 +20,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
+                <input type="hidden" id="product-id" th:value="${details.productId}">
 				<div class="single-product-img">
 					<img th:src="${details.image}" alt="썸네일">
 				</div>
@@ -81,33 +82,16 @@
         </div>
         <div class="row">
             <div class="col-lg-8 offset-lg-2 mb-100">
-                <div class="review-box">
-                    <div class="review-img">
-                        <img src="/img/avaters/avatar1.png" alt="">
-                    </div>
-                    <div class="review-content">
-                        <h5>John Doe</h5>
-                        <div class ="star_rating">
-                            <span class="star on" th:value="1"> </span>
-                            <span class="star" th:value="2"> </span>
-                            <span class="star" th:value="3"> </span>
-                            <span class="star" th:value="4"> </span>
-                            <span class="star" th:value="5"> </span>
-                        </div>
-                        <p>A great product, I love it. I would recommend it to anyone.</p>
-                        <p>5 days ago</p>
-                    </div>
+                <div id="reviews-container">
+                    <!-- 리뷰가 동적으로 추가될 곳 -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Review form -->
+<!-- end Review -->
 
-
-
-<!-- end Review form -->
-<!-- Review Modal -->
+<!-- Review input Modal -->
 <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

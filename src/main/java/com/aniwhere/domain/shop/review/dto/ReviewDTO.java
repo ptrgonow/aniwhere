@@ -23,6 +23,7 @@ public class ReviewDTO {
     private int reviewId;
     private int productId;
     private String userId;
+    private String userName;
     private String reviewContent;
     private int reviewRating;
     private String reviewImg;

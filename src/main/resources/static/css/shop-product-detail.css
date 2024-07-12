@@ -390,7 +390,7 @@ ul.product-share li a {
   width: 90%;
 }
 
-.star_rating {
+.review-rating {
   width: 100%;
   box-sizing: border-box;
   display: inline-flex;
@@ -398,7 +398,7 @@ ul.product-share li a {
   flex-direction: row;
   justify-content: flex-start;
 }
-.star_rating .star {
+.review-rating .star {
   width: 25px;
   height: 25px;
   margin-right: 10px;
@@ -408,7 +408,7 @@ ul.product-share li a {
   box-sizing: border-box;
   cursor: pointer;
 }
-.star_rating .star.on {
+.review-rating .star.on {
   width: 25px;
   height: 25px;
   margin-right: 10px;
