@@ -99,13 +99,23 @@ span:hover:before, span:hover:after {
 }
 
 .detail_content {
+    width: 100%; /* 본문 부분의 너비를 조정합니다 */
     height: 100%;
+    margin: 0 auto; /* 가운데 정렬을 합니다 */
+    padding: 30px; /* 내용 주변에 여백을 추가합니다 */
+    line-height: 1.8; /* 텍스트 라인 간격을 넓힙니다 */
+    font-size: 16px; /* 기본 글자 크기를 설정합니다 */
+    color: #333; /* 글자 색상을 설정합니다 */
+    background-color: #f8f8f8; /* 배경색을 설정합니다 */
+    border-radius: 8px; /* 모서리를 둥글게 만듭니다 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 그림자 효과를 추가합니다 */
+    min-height: 500px;
 }
 
 .detail_content p {
-    margin-top: 18px;
-    font-size: 18px;
+    margin-bottom: 20px; /* 단락 사이의 간격을 설정합니다 */
 }
+
 
 .detail_select {
     margin-top: 50px;

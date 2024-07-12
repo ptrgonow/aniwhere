@@ -1,4 +1,4 @@
-package com.aniwhere.domain.route.api;
+package com.aniwhere.domain.route.view;
 
 import com.aniwhere.domain.route.dto.RouteDTO;
 import com.aniwhere.domain.route.service.RouteService;

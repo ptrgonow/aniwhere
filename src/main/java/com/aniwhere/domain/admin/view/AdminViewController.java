@@ -1,4 +1,4 @@
-package com.aniwhere.domain.admin.api;
+package com.aniwhere.domain.admin.view;
 
 import com.aniwhere.domain.admin.service.AdminService;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
