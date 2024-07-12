@@ -8,7 +8,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 1rem;
@@ -46,32 +45,40 @@ li {
 .notice_title hr {
     margin: 0 auto 10px auto;
     width: 7%;
-    color: lightgray;
+    color: #f28123;
 }
+
 .notice_content {
     min-height: 500px;
 }
+
 .notice_content table {
     margin: 60px auto;
     width: 70%; /* 테이블 너비 조정 */
     border-left: none;
     font-size: 16px;
+    border-collapse: collapse; /* 테이블의 경계선을 겹치지 않게 처리 */
 }
 
 .notice_content table, th, td {
-    border-collapse: collapse;
     border: 1px solid darkgray;
     border-right-style: none;
     border-left-style: none;
+    box-sizing: border-box; /* 박스 크기 조정 */
+}
+
+.notice_content table th, .notice_content table td {
+    padding: 10px;
+    box-sizing: border-box; /* 박스 크기 조정 */
 }
 
 .notice_content table th {
     background-color: #3f4e59;
     border-top: 2px solid darkgray;
     color: #ffffff;
+    text-align: center;
     padding: 15px;
     cursor: text;
-    text-align: center;
 }
 
 .notice_content table th:nth-child(2) {
@@ -88,7 +95,7 @@ li {
 }
 
 .notice_content table td:nth-child(3) {
-    text-align: center; /* "작성일" 부분 가운데 정렬 */
+    text-align: center; /* 작성일 열 가운데 정렬 */
 }
 
 .notice_content table tr:hover {
@@ -140,7 +147,6 @@ li {
     display: flex;
     justify-content: end;
     width: 85%;
-
 }
 
 .notice_write_btn a {
@@ -152,7 +158,6 @@ li {
 }
 
 .notice_write_btn a:hover {
-
     background-color: #ffd0af;
     color: #ffffff;
 }
@@ -171,7 +176,6 @@ li {
 .page_area {
     text-align: center;
     margin-top: 20px;
-
 }
 
 .page_form {
@@ -186,6 +190,7 @@ li {
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
+    border: 1px solid #ddd; /* Added border */
 }
 
 .page_form a:hover {
@@ -196,6 +201,7 @@ li {
 .page_form .active {
     background-color: #f28123;
     color: white;
+    border: 1px solid #f28123; /* Border for active state */
 }
 
 /* 테이블 스타일 보장 */
@@ -237,4 +243,3 @@ li {
     background-color: #e2e2e1;
     cursor: pointer;
 }
-

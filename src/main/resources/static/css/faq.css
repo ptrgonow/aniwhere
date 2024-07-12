@@ -57,14 +57,14 @@ body {
 }
 
 .menu.active {
-    background-color: #3f4e59; /* 클릭된 상태의 배경색 */
+    background-color: #f28123; /* 클릭된 상태의 배경색 */
     color: white; /* 클릭된 상태의 글자색 */
 }
 
 /* 아코디언 */
 .accordion-button:not(.collapsed) {
-    background-color: #07212e !important; /* 변경하고 싶은 배경색 */
-    color: white !important;
+    background-color: #ffd0af !important; /* 변경하고 싶은 배경색 */
+    color: black !important;
     border-color: white !important;
 }
 
@@ -106,6 +106,6 @@ body {
 .FAQ_title hr {
     margin: 0 auto 10px auto;
     width: 7%;
-    color: lightgray;
+    color: #f28123;
 }
 
