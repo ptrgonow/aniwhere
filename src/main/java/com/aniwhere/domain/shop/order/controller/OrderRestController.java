@@ -1,11 +1,10 @@
 package com.aniwhere.domain.shop.order.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
+import com.aniwhere.domain.shop.order.dto.OrderHistoryDTO;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -18,32 +17,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("/orders")
 @AllArgsConstructor
 public class OrderRestController {
 
-    @Autowired
-    private OrderService orderService;
-
-    private String getAuthenticatedUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                return ((UserDetails) principal).getUsername();
-            } else if (principal instanceof OAuth2User) {
-                OAuth2User oauthUser = (OAuth2User) principal;
-                return  oauthUser.getAttribute("userId");
-            }
-        }
-        return null;
-    }
-/*
-
     private final OrderService orderService;
     private final HomeService homeService;
 
+    private String getAuthenticatedUserId() {
+        return homeService.getAuthenticatedUserId();
+    }
 
     @GetMapping
     public List<OrderDTO> getOrdersByDateRange(@RequestParam String startDate, @RequestParam String endDate) {
@@ -54,7 +39,7 @@ public class OrderRestController {
     public OrderDTO getOrderById(@PathVariable String orderId) {
         return orderService.findOrderById(orderId);
     }
-*/
+
     @GetMapping("/items") // 엔드포인트 변경
     public ResponseEntity<Map<String, Object>> getCheckedItems() {
         String userId = homeService.getAuthenticatedUserId();
@@ -69,16 +54,18 @@ public class OrderRestController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/success/payment")
-    public String handlePaymentSuccess(@RequestParam("orderId") String orderId,
-                                       @RequestParam("customerEmail") String customerEmail,
-                                       @RequestParam("customerName") String customerName,
-                                       @RequestParam("customerMobilePhone") String customerMobilePhone,
-                                       @RequestParam("totalPrice") int totalPrice) {
-
-        String userId = homeService.getAuthenticatedUserId();
-        orderService.saveOrder(orderId, userId, customerEmail, customerName, customerMobilePhone, totalPrice);
-
-        return "redirect:/shop/cart";
+    @PostMapping("/success")
+    public ResponseEntity<String> saveOrder(@RequestBody OrderHistoryDTO orderHistory) {
+        try {
+            orderService.saveOrder(
+                    orderHistory.getOrderDTO(),
+                    orderHistory.getOrderItems()
+            );
+            return ResponseEntity.ok("주문 정보 저장 성공");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("주문 정보 저장 실패: " + e.getMessage());
+        }
     }
+
 }
+
