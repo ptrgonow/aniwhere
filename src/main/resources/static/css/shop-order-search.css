@@ -63,19 +63,6 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.order-list li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.order-list li a {
-    text-decoration: none;
-    color: #051922;
-    font-weight: bold;
-}
 
 #order-results {
     list-style: none;
@@ -85,4 +72,57 @@ button:hover {
 #order-results li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
+}
+
+/* 아코디언 */
+.accordion-button:not(.collapsed) {
+    background-color: #ffd0af !important; /* 변경하고 싶은 배경색 */
+    color: black !important;
+    border-color: white !important;
+}
+
+.accordion-button {
+    background-color: #fff !important;
+    color: #000 !important;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.accordion-button div {
+    flex: 1; /* 모든 div가 동일한 너비를 가지도록 설정 */
+    text-align: center; /* 중앙 정렬 */
+}
+
+.detail-item {
+    margin-bottom: 10px;
+}
+/* 아코디언 내용 */
+.accordion-body {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.paragraph1, .paragraph2 {
+    width: 50%;
+    text-align: left;
+}
+
+.paragraph1 .detail-item, .paragraph2 .detail-item {
+    margin-left: 0;
+}
+
+.paragraph3 img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.more-info{
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
 }

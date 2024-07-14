@@ -1,9 +1,6 @@
 package com.aniwhere.domain.shop.order.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
-import com.aniwhere.domain.shop.order.domain.OrderHistory;
-import com.aniwhere.domain.shop.order.dto.OrderDTO;
-import com.aniwhere.domain.shop.order.dto.OrderHistoryDTO;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
@@ -26,8 +23,27 @@ import java.util.Map;
 @AllArgsConstructor
 public class OrderRestController {
 
+    @Autowired
+    private OrderService orderService;
+
+    private String getAuthenticatedUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserDetails) {
+                return ((UserDetails) principal).getUsername();
+            } else if (principal instanceof OAuth2User) {
+                OAuth2User oauthUser = (OAuth2User) principal;
+                return  oauthUser.getAttribute("userId");
+            }
+        }
+        return null;
+    }
+/*
+
     private final OrderService orderService;
     private final HomeService homeService;
+
 
     @GetMapping
     public List<OrderDTO> getOrdersByDateRange(@RequestParam String startDate, @RequestParam String endDate) {
@@ -38,7 +54,7 @@ public class OrderRestController {
     public OrderDTO getOrderById(@PathVariable String orderId) {
         return orderService.findOrderById(orderId);
     }
-
+*/
     @GetMapping("/items") // 엔드포인트 변경
     public ResponseEntity<Map<String, Object>> getCheckedItems() {
         String userId = homeService.getAuthenticatedUserId();
