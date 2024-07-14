@@ -144,21 +144,87 @@ async function toss() {
 
         const customerEmail = document.querySelector('input[name="email"]').value;
         const customerName = document.querySelector('input[name="userName"]').value;
-        const customerMobilePhone = document.querySelector('input[name="phone"]').value;
-        const cleanedMobilePhone = customerMobilePhone.replace(/-/g, '');
-        const onlyNumbers = cleanedMobilePhone.replace(/[^0-9]/g, '');
-        const orderId = `${year}${month}${day}A001`;
-        const successUrl = `${window.location.origin}/shop/success/payment?&customerEmail=${customerEmail}&customerName=${customerName}&customerMobilePhone=${onlyNumbers}&totalPrice=${totalPrice}`;
+        const customerMobilePhone = document.querySelector('input[name="phone"]').value.replace(/-/g, '');
+        const recipientAddress = document.querySelector('#address').value;
+        const recipientDetailAddress = document.querySelector('#detailAddress').value;
+        const recipientZipCode = document.querySelector('#zipCode').value;
+        const orderRequest = document.querySelector('#require-content').value;
 
+        const randomString = Math.random().toString(36).substr(2, 4).toUpperCase();
 
-        await widgets.requestPayment({
-            orderId: orderId,
-            orderName: "토스 티셔츠 외 2건",
-            successUrl: successUrl,
-            failUrl: window.location.origin + "/fail.html",
-            customerEmail: customerEmail,
-            customerName: customerName,
-            customerMobilePhone: onlyNumbers,
+        const orderId = `${year}${month}${day}${randomString}`;
+
+        const orderItems = [];
+        const orderDetailRows = document.querySelectorAll('.order-details-body tr');
+        orderDetailRows.forEach(row => {
+            const productId = row.querySelector('#productId').value;
+            const priceText = row.querySelector('#each-product-price').innerText;
+            const price = parseInt(priceText.replace(/[^0-9]/g, ''), 10);
+            const quantity = parseInt(row.querySelector('#single-product-quantity').innerText, 10);
+
+            orderItems.push({
+                orderId : orderId,
+                productId: productId,
+                price: price,
+                quantity: quantity,
+            });
         });
+
+        const orderDetails = {
+            orderId: orderId,
+            amount: totalPrice,
+            recipientEmail: customerEmail,
+            recipientName: customerName,
+            recipientPhone: customerMobilePhone,
+            shippingAddress1 : recipientAddress,
+            shippingAddress2 : recipientDetailAddress,
+            shippingAddress3 : recipientZipCode,
+            orderRequest: orderRequest
+        }
+
+        const order={
+            orderDTO : orderDetails,
+            orderItems: orderItems
+        }
+
+        try {
+            console.log("상품정보", order)
+            // 1. 서버에 주문 정보 저장 요청
+            $.ajax({
+                type: "POST",
+                url: "/orders/success",
+                contentType: "application/json",
+                data: JSON.stringify(order),
+                success: function(response) {
+                    alert("상품추가성공");
+
+                },
+                error: function(error) {
+                    console.error('상품추가실패:', error);
+
+                }
+            });
+
+
+
+            await widgets.requestPayment({
+                orderId: orderId,
+                orderName: "토스 티셔츠 외 2건",
+                successUrl: `${window.location.origin}/shop/success?customerEmail=${customerEmail}&customerMobilePhone=${customerMobilePhone}&customerName=${customerName}`,
+                failUrl: window.location.origin + "/fail.html",
+                customerEmail: customerEmail,
+                customerName: customerName,
+                customerMobilePhone: customerMobilePhone,
+            });
+
+
+
+        } catch (error) {
+            // 주문 정보 저장 실패, 결제 실패 또는 서버 응답 오류 처리
+            console.error("결제 처리 중 오류 발생:", error);
+            alert("결제 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
+        }
     });
+
+
 }

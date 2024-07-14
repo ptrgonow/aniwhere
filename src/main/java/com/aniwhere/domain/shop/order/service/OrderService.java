@@ -21,23 +21,14 @@ public class OrderService {
     private OrderMapper orderMapper;
     private HomeService homeService;
 
-    private String getAuthenticatedUserId() {
-
-        return homeService.getAuthenticatedUserId();
-    }
-  
-    public List<OrderDTO> findOrdersByDateRange(String startDate, String endDate) {
+   /* public List<OrderDTO> findOrdersByDateRange(String startDate, String endDate) {
         return orderMapper.findOrdersByDateRange(startDate, endDate);
     }
 
     public OrderDTO findOrderById(String orderId) {
         return orderMapper.findOrderById(orderId);
-    }
+    }*/
 
-    public UserDetailDTO getUserDetailByUserId(String userId) {
-
-        return orderMapper.detailByUserId(userId);
-    }
     public List<Cart> getCheckedCartItems(String userId) {
         return orderMapper.getCheckedCartItemsByUserId(userId);
     }
@@ -45,7 +36,7 @@ public class OrderService {
     @Transactional
     public void saveOrder(OrderDTO orderDTO, List<OrderDetailDTO> products) {
 
-        String userId = getAuthenticatedUserId();
+        String userId = homeService.getAuthenticatedUserId();
 
         orderDTO.setUserId(userId);
         orderMapper.insertOrder(orderDTO);

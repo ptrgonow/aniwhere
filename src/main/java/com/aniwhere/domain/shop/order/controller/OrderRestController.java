@@ -1,6 +1,7 @@
 package com.aniwhere.domain.shop.order.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
+import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.order.dto.OrderHistoryDTO;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
@@ -26,11 +27,7 @@ public class OrderRestController {
     private final OrderService orderService;
     private final HomeService homeService;
 
-    private String getAuthenticatedUserId() {
-        return homeService.getAuthenticatedUserId();
-    }
-
-    @GetMapping
+/*    @GetMapping
     public List<OrderDTO> getOrdersByDateRange(@RequestParam String startDate, @RequestParam String endDate) {
         return orderService.findOrdersByDateRange(startDate, endDate);
     }
@@ -38,7 +35,7 @@ public class OrderRestController {
     @GetMapping("/{orderId}")
     public OrderDTO getOrderById(@PathVariable String orderId) {
         return orderService.findOrderById(orderId);
-    }
+    }*/
 
     @GetMapping("/items") // 엔드포인트 변경
     public ResponseEntity<Map<String, Object>> getCheckedItems() {
