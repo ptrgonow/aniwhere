@@ -57,6 +57,7 @@ function searchOrders() {
         if (!result.hjOrderDTOList || result.hjOrderDTOList.length === 0) {
             alert('검색 결과가 없습니다.');
         } else {
+            const $acoList = $('#aco-list'); // 여기서 변수 정의
             $acoList.empty(); // 기존 내용을 지움
 
             let content = '';
