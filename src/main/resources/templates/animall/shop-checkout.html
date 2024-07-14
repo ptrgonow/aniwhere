@@ -108,12 +108,11 @@
                      </thead>
                      <tbody class="order-details-body">
                      <tr th:each="item : ${orderItems}">
-                        <input type="hidden" th:value="${item.productId}" id="productId">
-                        <td th:text="${item.name}" id="single-product-name"></td>
+                        <td th:text="${item.name}"></td>
                         <td th:text="${item.price} + '원'"></td>
 
-                        <td th:text="${item.quantity}" id="single-product-quantity"></td>
-                        <td th:text="${#numbers.formatInteger(item.totalPrice, 0, 'COMMA')} + '원'" id="each-product-price"></td>
+                        <td th:text="${item.quantity}"></td>
+                        <td th:text="${#numbers.formatInteger(item.totalPrice, 0, 'COMMA')} + '원'"></td>
                      </tr>
                      </tbody>
                   </table>

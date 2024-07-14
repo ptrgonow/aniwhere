@@ -26,10 +26,10 @@ public interface OrderMapper {
             "FROM cart c JOIN product p ON c.product_id = p.product_id " +
             "WHERE c.user_id = #{userId} AND c.checked = 'Y'")
     List<Cart> getCheckedCartItemsByUserId(String userId);
-
-    @Insert("INSERT INTO `order` (order_id, user_id, shipping_address1, shipping_address2, shipping_address3, amount, recipient_email, recipient_name, recipient_phone, order_request) " +
-            "VALUES (#{orderId}, #{userId}, #{shippingAddress1},#{shippingAddress2},#{shippingAddress3}, #{amount}, #{recipientEmail}, #{recipientName}, #{recipientPhone}, #{orderRequest}) ")
-    void insertOrder(OrderDTO orderDTO);
+    @Insert("INSERT INTO `order` (order_id, user_id, total_price, order_status, order_date, recipient_email, recipient_name, recipient_phone, order_request) " +
+            "VALUES (#{orderId}, #{userId}, #{totalPrice}, #{orderStatus}, curdate() , #{recipientEmail}, #{recipientName}, #{recipientPhone}, #{orderResquest})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void insertOrder(OrderHistory orderHistory);
 
     @Insert("INSERT INTO order_detail (order_id, product_id, quantity, price) " +
             "VALUES (#{orderId}, #{productId}, #{quantity}, #{price})")

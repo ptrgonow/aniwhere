@@ -1,11 +1,14 @@
 package com.aniwhere.domain.shop.order.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
+import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.order.dto.OrderHistoryDTO;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -13,10 +16,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 @RestController
 @RequestMapping("/orders")
@@ -25,10 +28,6 @@ public class OrderRestController {
 
     private final OrderService orderService;
     private final HomeService homeService;
-
-    private String getAuthenticatedUserId() {
-        return homeService.getAuthenticatedUserId();
-    }
 
     @GetMapping
     public List<OrderDTO> getOrdersByDateRange(@RequestParam String startDate, @RequestParam String endDate) {
@@ -54,23 +53,16 @@ public class OrderRestController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/success")
-    public ResponseEntity<String> saveOrder(@RequestBody OrderHistoryDTO orderHistory) {
-        try {
-            orderService.saveOrder(
-                    orderHistory.getOrderDTO(),
-                    orderHistory.getOrderItems()
-            );
-            return ResponseEntity.ok("주문 정보 저장 성공");
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("주문 정보 저장 실패: " + e.getMessage());
-        }
-    }
+    @GetMapping("/success/payment")
+    public String handlePaymentSuccess(@RequestParam("orderId") String orderId,
+                                       @RequestParam("customerEmail") String customerEmail,
+                                       @RequestParam("customerName") String customerName,
+                                       @RequestParam("customerMobilePhone") String customerMobilePhone,
+                                       @RequestParam("totalPrice") int totalPrice) {
 
-}
         String userId = homeService.getAuthenticatedUserId();
         orderService.saveOrder(orderId, userId, customerEmail, customerName, customerMobilePhone, totalPrice);
+
         return "redirect:/shop/cart";
     }
 }
-
