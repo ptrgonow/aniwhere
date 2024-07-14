@@ -29,14 +29,17 @@ public class MyController {
 
     @GetMapping("/detail")
     public String my(Model model) {
-      
-        String userName = homeService.getAuthenticatedUserName();
-        UserDetail userDetail = myService.getUserDetailByUserId(userName);
+
+        String userId = homeService.getAuthenticatedUserId();
+
+        UserDetail userDetail = myService.getUserDetailByUserId(userId);
 
         model.addAttribute("detail", userDetail);
-        model.addAttribute("name", userName);
+        model.addAttribute("name", userDetail.getUserName());
+        model.addAttribute("userId", userId);
 
         return "/mypage/modify";
+
     }
 
     @GetMapping("/routedetail/{id}")

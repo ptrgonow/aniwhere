@@ -20,6 +20,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
+                <input type="hidden" id="product-id" th:value="${details.productId}">
 				<div class="single-product-img">
 					<img th:src="${details.image}" alt="썸네일">
 				</div>
@@ -49,7 +50,7 @@
 						</div>
 
 						<div class="category-container">Categories:
-							<p th:text="${details.category3}"></p>
+							<p th:text="${details.category}"></p>
 						</div>
 					</div>
 
@@ -79,70 +80,36 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 mb-100">
-                <div class="review-box">
-                    <div class="review-img">
-                        <img src="/img/avaters/avatar1.png" alt="">
-                    </div>
-                    <div class="review-content">
-                        <h5>John Doe</h5>
-                        <div class ="star_rating">
+        <div class="row mb-80">
+            <div class="col-lg-8 offset-lg-2">
+                <div id="reviews-container">
+                    <!-- 리뷰가 동적으로 추가될 곳 -->
+                </div>
+            </div>
+        </div>
+        <div class="row mb-80">
+            <div class="col-lg-8 offset-lg-2 d-flex justify-content-center align-content-center">
+                <div id="review-input" class="form-group">
+                    <form id="review-form" class="form-group">
+                        <input type="hidden" id="review-product-id" th:value="${details.productId}">
+                        <div class ="review-rating">
                             <span class="star on" th:value="1"> </span>
                             <span class="star" th:value="2"> </span>
                             <span class="star" th:value="3"> </span>
                             <span class="star" th:value="4"> </span>
                             <span class="star" th:value="5"> </span>
                         </div>
-                        <p>A great product, I love it. I would recommend it to anyone.</p>
-                        <p>5 days ago</p>
-                    </div>
+                        <input class="form-control" type="text" id="review-writer" th:value="${name}" readonly>
+                        <textarea class="form-control" id="review-content" placeholder="리뷰를 작성해주세요"></textarea>
+                        <input type="file" id="review-image" accept="image/*">
+                        <button id="review-submit" class="btn btn-primary">리뷰 작성</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Review form -->
-
-
-
-<!-- end Review form -->
-<!-- Review Modal -->
-<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="reviewModalLabel">Review</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="reviewerName" class="col-form-label">Name:</label>
-                        <input type="text" class="form-control" id="reviewerName">
-                    </div>
-                    <div class="form-group">
-                        <label for="reviewContent" class="col-form-label">Review:</label>
-                        <textarea class="form-control" id="reviewContent"></textarea>
-                    </div>
-                    <div class ="star_rating">
-                        <span class="star on" th:value="1"> </span>
-                        <span class="star" th:value="2"> </span>
-                        <span class="star" th:value="3"> </span>
-                        <span class="star" th:value="4"> </span>
-                        <span class="star" th:value="5"> </span>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- end Review -->
 
 <div th:replace="~{include/footer :: footer}"></div>
 <script src="/js/shop-product-detail.js"></script>

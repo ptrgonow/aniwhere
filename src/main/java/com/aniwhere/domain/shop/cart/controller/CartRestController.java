@@ -19,12 +19,11 @@ public class CartRestController {
 
     private String getAuthenticatedUserId() {
       return homeService.getAuthenticatedUserId();
-    }
 
     @PostMapping("/add/{productId}")
     public ResponseEntity<?> addProductToCart(@PathVariable Integer productId,
                                               @RequestParam Integer quantity) {
-        String userId = getAuthenticatedUserId();
+        String userId = homeService.getAuthenticatedUserId();
         cartService.addProductToCart(userId, productId, quantity);
         return ResponseEntity.ok("Product added to cart successfully.");
     }

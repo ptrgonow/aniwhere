@@ -72,8 +72,8 @@ public class ReviewService {
          `anyMatch` : 주어진 조건에 맞는 요소가 하나라도 있는지 확인
          </p>
      */
-    public List<ReviewDTO> getAllReview() {
-        List<Review> reviews = reviewMapper.selectAllReview();
+    public List<ReviewDTO> getAllReview(int productId) {
+        List<Review> reviews = reviewMapper.selectAllReview(productId);
         // stream 생성
         return reviews.stream()
                 // 중간 연산 : Review -> ReviewDTO로 변환
@@ -135,4 +135,14 @@ public class ReviewService {
     public void increaseLikeCount(int reviewId) {
         reviewMapper.increaseLikeCount(reviewId);
     }
+
+    /**
+        주어진 리뷰 ID에 해당하는 리뷰의 좋아요 수를 1 감소시킵니다.
+
+        @param reviewId 좋아요 수를 감소시킬 리뷰의 ID
+     */
+    public void decreaseLikeCount(int reviewId) {
+        reviewMapper.decreaseLikeCount(reviewId);
+    }
+
 }

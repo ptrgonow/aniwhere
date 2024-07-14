@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <div th:replace="~{include/header :: header}"></div>
 <link rel="stylesheet" href="/css/mypage.css">
+<input type="hidden" id="hiddenUserId" th:value="${userId}">
+<input type="hidden" id="hiddenUserPwd" th:value="${detail.userPwd}">
 
 <body>
 <!-- breadcrumb-section -->
@@ -25,44 +27,44 @@
                 <div class="modi-form">
                     <div class="form-input">
                         <label for="userId" class="reg-form">아이디</label>
-                        <input type="text" id="userId" name="userId" class="in-text" th:field="${detail.userId}" required>
+                        <input type="text" id="userId" name="userId" class="in-text" th:value="${detail.userId}" required>
                     </div>
                     <div class="form-input" id="pwdForm">
                         <label for="userPwd" class="reg-form" id="nowPwd">현재 비밀번호</label>
-                        <input type="password" id="userPwd" name="userPwd" class="in-text" th:field="${detail.userPwd}">
+                        <input type="password" id="userPwd" name="userPwd" class="in-text">
                         <button type="button" class="pwd-con" id="checkButton">확인</button>
                     </div>
-                    <p class="pwd-info">* 정보 수정을 원하실 경우 현재 비밀번호를 입력하세요</p>
-                    <div class="form-input" >
+                    <p class="pwd-info">* 비밀번호를 변경하실 경우 현재 비밀번호를 입력하세요</p>
+                    <div class="form-input">
                         <label for="userPwd" class="reg-form" id="newPwd">변경할 비밀번호</label>
-                        <input type="password" id="userNewPwd" name="userPwd" class="in-text" th:field="${detail.userPwd}">
+                        <input type="password" id="userNewPwd" name="userPwd" class="in-text">
                     </div>
                     <div class="form-input" >
                         <label for="userPwd" class="reg-form" id="confirmPwd">변경할 비밀번호<br/> 확인</label>
-                        <input type="password" id="confirmNewPwd" name="userPwd" class="in-text" th:field="${detail.userPwd}">
+                        <input type="password" id="confirmNewPwd" name="userPwd" class="in-text">
                     </div>
                     <div class="form-input">
                         <label for="userName" class="reg-form">이름</label>
-                        <input type="text" id="userName" name="userName" class="in-text" th:field="${detail.userName}" required>
+                        <input type="text" id="userName" name="userName" class="in-text" th:value="${detail.userName}" required>
                     </div>
                     <div class="form-input">
                         <label for="email" class="reg-form">이메일</label>
-                        <input type="text" id="email" name="email" class="in-text" th:field="${detail.email}" readonly>
+                        <input type="text" id="email" name="email" class="in-text" th:value="${detail.email}" readonly>
                     </div>
                     <div class="form-input">
                         <label for="address" class="reg-form">주소</label>
                         <div class="address-inputs">
-                            <input type="text" id="address" name="address" class="in-text" th:field="${detail.address}">
-                            <input type="text" id="detailAddress" name="detailAddress" class="in-text" th:field="${detail.detailAddress}">
-                            <input type="text" id="zipCode" name="zipCode" class="in-text" th:field="${detail.zipCode}" required>
+                            <input type="text" id="address" name="address" class="in-text" th:value="${detail.address}">
+                            <input type="text" id="detailAddress" name="detailAddress" class="in-text" th:value="${detail.detailAddress}">
+                            <input type="text" id="zipCode" name="zipCode" class="in-text" th:value="${detail.zipCode}" required>
                         </div>
                         <div class="address-buttons">
-                            <button type="button" id="searchAddress">주소검색</button>
+                            <button type="button" id="searchAddress" onclick="searchAdd()">주소검색</button>
                         </div>
                     </div>
                     <div class="form-input">
                         <label for="phone" class="reg-form">휴대폰</label>
-                        <input type="text" id="phone" name="phone" class="in-text" th:field="${detail.phone}" required>
+                        <input type="text" id="phone" name="phone" class="in-text" th:value="${detail.phone}" required>
                     </div>
                     <div class="mypage-btn">
                         <button id="modi-btn" type="button" class="modi">수정완료</button>
@@ -76,4 +78,5 @@
 </body>
 
 <div th:replace="~{include/footer :: footer}"></div>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/mypage.js"></script>

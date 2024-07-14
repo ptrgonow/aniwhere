@@ -5,7 +5,6 @@ import com.aniwhere.domain.user.mypage.dto.PwdCheckDTO;
 import com.aniwhere.domain.user.mypage.dto.UpdateDetailDTO;
 import com.aniwhere.domain.user.mypage.service.MyService;
 import lombok.AllArgsConstructor;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

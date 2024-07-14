@@ -8,7 +8,9 @@ import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import lombok.AllArgsConstructor;
+
 import org.apache.ibatis.annotations.Insert;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -33,9 +35,10 @@ public class OrderService {
     private HomeService homeService;
 
     private String getAuthenticatedUserId() {
-
+    private final OrderMapper orderMapper;
         return homeService.getAuthenticatedUserId();
     }
+  
     public List<OrderDTO> findOrdersByDateRange(String startDate, String endDate) {
         return orderMapper.findOrdersByDateRange(startDate, endDate);
     }
@@ -63,9 +66,5 @@ public class OrderService {
         for(OrderDetailDTO product : products){
             orderMapper.insertOrderItem(product);
         }
-
-
     }
-
-
 }

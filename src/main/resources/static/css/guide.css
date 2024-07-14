@@ -124,7 +124,7 @@ span:hover:before, span:hover:after {
     margin-bottom: 2rem;
 }
 
-/* 채워지는 효과 */
+/* Create a Course 코스 등록 버튼 채워지는 효과 */
 .lastBtn {
     border-radius: 20px;
     padding: 30px;
@@ -134,7 +134,9 @@ span:hover:before, span:hover:after {
     transition: background-color 0.4s, color 0.4s;
     overflow: hidden;
     z-index: 1;
-    color: #8b8e91;
+    color: #f28123;
+    font-weight: 1000; /* 글씨를 굵게 만듦 */
+    border: 2px solid #f28123; /* 기본 테두리 추가 */
 
 }
 
@@ -143,7 +145,7 @@ span:hover:before, span:hover:after {
 }
 
 .lastBtn:hover {
-    background-color: #8b8e91;
+    background-color: #f28123;
     color: #fff;
 }
 
@@ -169,5 +171,12 @@ span:hover:before, span:hover:after {
 .notice_title hr {
     margin: 0 auto 10px auto;
     width: 7%;
-    color: lightgray;
+    color: #f28123;
+}
+
+/* 커서 색깔 변경 */
+.color-change {
+    width: 70px;
+    height: 70px;
+    filter: sepia(1) saturate(5000%) hue-rotate(25deg) brightness(5);
 }

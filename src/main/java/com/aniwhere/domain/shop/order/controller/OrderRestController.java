@@ -19,15 +19,14 @@ import java.util.Map;
 
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/orders")
+@AllArgsConstructor
 public class OrderRestController {
 
     private final OrderService orderService;
     private final HomeService homeService;
 
     private String getAuthenticatedUserId() {
-
         return homeService.getAuthenticatedUserId();
     }
 
@@ -40,9 +39,10 @@ public class OrderRestController {
     public OrderDTO getOrderById(@PathVariable String orderId) {
         return orderService.findOrderById(orderId);
     }
+
     @GetMapping("/items") // 엔드포인트 변경
-    public ResponseEntity<Map<String, Object>> getCheckedItems(Authentication authentication) {
-        String userId = getAuthenticatedUserId();
+    public ResponseEntity<Map<String, Object>> getCheckedItems() {
+        String userId = homeService.getAuthenticatedUserId();
         List<Cart> checkedItems = orderService.getCheckedCartItems(userId);
         int totalProductPrice = checkedItems.stream()
                 .mapToInt(Cart::getTotalPrice)
@@ -61,12 +61,16 @@ public class OrderRestController {
                     orderHistory.getOrderDTO(),
                     orderHistory.getOrderItems()
             );
-
             return ResponseEntity.ok("주문 정보 저장 성공");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("주문 정보 저장 실패: " + e.getMessage());
         }
     }
 
-
 }
+        String userId = homeService.getAuthenticatedUserId();
+        orderService.saveOrder(orderId, userId, customerEmail, customerName, customerMobilePhone, totalPrice);
+        return "redirect:/shop/cart";
+    }
+}
+

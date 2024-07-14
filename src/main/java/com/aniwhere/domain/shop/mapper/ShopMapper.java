@@ -3,10 +3,8 @@ package com.aniwhere.domain.shop.mapper;
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.shop.product.domain.Product;
-import lombok.Data;
 import org.apache.ibatis.annotations.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Mapper
@@ -27,7 +25,7 @@ public interface ShopMapper {
     @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category NOT LIKE '%강아지%' AND category NOT LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findOtherProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT * FROM product WHERE product_id = #{productId}")
+    @Select("SELECT product_id AS productId, name AS name, image AS image, price AS price, detail_url AS detail_url, category AS category FROM product WHERE product_id = #{productId}")
     Product findProductById(Integer productId);
 
     @Insert("INSERT IGNORE INTO product(name, image, price, category) " +
