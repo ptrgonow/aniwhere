@@ -35,7 +35,7 @@ public class OrderService {
     private HomeService homeService;
 
     private String getAuthenticatedUserId() {
-    private final OrderMapper orderMapper;
+
         return homeService.getAuthenticatedUserId();
     }
   

@@ -68,9 +68,4 @@ public class OrderRestController {
     }
 
 }
-        String userId = homeService.getAuthenticatedUserId();
-        orderService.saveOrder(orderId, userId, customerEmail, customerName, customerMobilePhone, totalPrice);
-        return "redirect:/shop/cart";
-    }
-}
 
