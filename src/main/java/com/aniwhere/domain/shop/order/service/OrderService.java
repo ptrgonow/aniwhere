@@ -5,6 +5,7 @@ import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class OrderService {
 
-    @Autowired
-    private OrderMapper orderMapper;
 
+    private final OrderMapper orderMapper;
 
     public List<OrderDTO> findOrdersByDateRange(String startDate, String endDate) {
         return orderMapper.findOrdersByDateRange(startDate, endDate);

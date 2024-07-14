@@ -135,4 +135,14 @@ public class ReviewService {
     public void increaseLikeCount(int reviewId) {
         reviewMapper.increaseLikeCount(reviewId);
     }
+
+    /**
+        주어진 리뷰 ID에 해당하는 리뷰의 좋아요 수를 1 감소시킵니다.
+
+        @param reviewId 좋아요 수를 감소시킬 리뷰의 ID
+     */
+    public void decreaseLikeCount(int reviewId) {
+        reviewMapper.decreaseLikeCount(reviewId);
+    }
+
 }

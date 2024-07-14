@@ -2,6 +2,7 @@ package com.aniwhere.domain.shop.cart.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.cart.service.CartService;
+import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.mypage.service.MyService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,26 +19,12 @@ import org.springframework.web.bind.annotation.*;
 public class CartRestController {
 
     private final CartService cartService;
-
-    // 스프링 프레임워크로 해당 유저ID 가져오는 로직
-    private String getAuthenticatedUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                return ((UserDetails) principal).getUsername();
-            } else if (principal instanceof OAuth2User) {
-                OAuth2User oauthUser = (OAuth2User) principal;
-                return  oauthUser.getAttribute("userId");
-            }
-        }
-        return null;
-    }
+    private final HomeService homeService;
 
     @PostMapping("/add/{productId}")
     public ResponseEntity<?> addProductToCart(@PathVariable Integer productId,
                                               @RequestParam Integer quantity) {
-        String userId = getAuthenticatedUserId();
+        String userId = homeService.getAuthenticatedUserId();
         cartService.addProductToCart(userId, productId, quantity);
         return ResponseEntity.ok("Product added to cart successfully.");
     }
