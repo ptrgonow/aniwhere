@@ -2,7 +2,10 @@ package com.aniwhere.domain.shop.order.service;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.order.domain.OrderHistory;
+import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
+import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
+import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +18,14 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderService {
 
+    private OrderMapper orderMapper;
+    private HomeService homeService;
 
+    private String getAuthenticatedUserId() {
 
-    /*
-    private final OrderMapper orderMapper;
-
-
+        return homeService.getAuthenticatedUserId();
+    }
+  
     public List<OrderDTO> findOrdersByDateRange(String startDate, String endDate) {
         return orderMapper.findOrdersByDateRange(startDate, endDate);
     }
@@ -28,7 +33,6 @@ public class OrderService {
     public OrderDTO findOrderById(String orderId) {
         return orderMapper.findOrderById(orderId);
     }
-     */
 
     public UserDetailDTO getUserDetailByUserId(String userId) {
 
@@ -39,20 +43,15 @@ public class OrderService {
     }
 
     @Transactional
-    public void saveOrder(String orderId, String userId, String customerEmail, String customerName, String customerMobilePhone, int totalPrice) {
+    public void saveOrder(OrderDTO orderDTO, List<OrderDetailDTO> products) {
 
-        OrderHistory orderHistory = new OrderHistory();
-        orderHistory.setOrderId(orderId);
-        orderHistory.setUserId(userId);
-        orderHistory.setTotalPrice(totalPrice);
-        orderHistory.setOrderStatus("결제 완료");
-        orderHistory.setRecipientEmail(customerEmail);
-        orderHistory.setRecipientName(customerName);
-        orderHistory.setRecipientPhone(customerMobilePhone);
-        orderHistory.setOrderRequest("gg");
-        orderMapper.insertOrder(orderHistory);
+        String userId = getAuthenticatedUserId();
 
+        orderDTO.setUserId(userId);
+        orderMapper.insertOrder(orderDTO);
+
+        for(OrderDetailDTO product : products){
+            orderMapper.insertOrderItem(product);
+        }
     }
-
-
 }
