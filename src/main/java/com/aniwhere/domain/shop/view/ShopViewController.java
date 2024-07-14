@@ -106,11 +106,6 @@ public class ShopViewController {
         return "animall/shop-order-search";
     }
 
-    @GetMapping("/success")
-    public String success(){
-        return "animall/shop-checkout-success";
-    }
-
 }
 
 

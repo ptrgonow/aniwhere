@@ -3,10 +3,14 @@ package com.aniwhere.domain.shop.cart.controller;
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.cart.service.CartService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
+import com.aniwhere.domain.user.mypage.service.MyService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,9 +20,6 @@ public class CartRestController {
 
     private final CartService cartService;
     private final HomeService homeService;
-
-    private String getAuthenticatedUserId() {
-      return homeService.getAuthenticatedUserId();
 
     @PostMapping("/add/{productId}")
     public ResponseEntity<?> addProductToCart(@PathVariable Integer productId,

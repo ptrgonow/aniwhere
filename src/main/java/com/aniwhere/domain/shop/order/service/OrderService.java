@@ -4,41 +4,21 @@ import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
-import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
-import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import lombok.AllArgsConstructor;
-
-import org.apache.ibatis.annotations.Insert;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import org.json.simple.JSONObject;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.net.HttpURLConnection;
-import java.util.*;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class OrderService {
 
-    private OrderMapper orderMapper;
-    private HomeService homeService;
 
-    private String getAuthenticatedUserId() {
     private final OrderMapper orderMapper;
-        return homeService.getAuthenticatedUserId();
-    }
-  
+
     public List<OrderDTO> findOrdersByDateRange(String startDate, String endDate) {
         return orderMapper.findOrdersByDateRange(startDate, endDate);
     }
@@ -56,15 +36,20 @@ public class OrderService {
     }
 
     @Transactional
-    public void saveOrder(OrderDTO orderDTO, List<OrderDetailDTO> products) {
+    public void saveOrder(String orderId, String userId, String customerEmail, String customerName, String customerMobilePhone, int totalPrice) {
 
-        String userId = getAuthenticatedUserId();
+        OrderHistory orderHistory = new OrderHistory();
+        orderHistory.setOrderId(orderId);
+        orderHistory.setUserId(userId);
+        orderHistory.setTotalPrice(totalPrice);
+        orderHistory.setOrderStatus("결제 완료");
+        orderHistory.setRecipientEmail(customerEmail);
+        orderHistory.setRecipientName(customerName);
+        orderHistory.setRecipientPhone(customerMobilePhone);
+        orderHistory.setOrderRequest("gg");
+        orderMapper.insertOrder(orderHistory);
 
-        orderDTO.setUserId(userId);
-        orderMapper.insertOrder(orderDTO);
-
-        for(OrderDetailDTO product : products){
-            orderMapper.insertOrderItem(product);
-        }
     }
+
+
 }
