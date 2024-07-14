@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
@@ -24,6 +23,9 @@ public class HjOrderDTO {
     private String order_request;
     private String payment_type;
     private String payment_key;
+    private String product_image;
+    private int quantity;
+    private Double price;
 
     public enum OrderStatus {
         결제_전,

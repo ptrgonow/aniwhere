@@ -32,4 +32,15 @@ public class HjRestController {
         map.put("hjOrderDTOList", hjOrderDTOList);
         return map;
     }
+
+    @GetMapping("/order-images")
+    public Map<String, List<HjOrderDTO>> orderImagesApi(
+            @RequestParam(defaultValue = "1990-01-01") String startDate,
+            @RequestParam(defaultValue = "2050-01-01") String endDate) {
+        List<HjOrderDTO> hjOrderDTOList = hjOrderService.getImagesByStartEndDates(startDate, endDate);
+
+        Map<String, List<HjOrderDTO>> map = new HashMap<>();
+        map.put("hjOrderDTOList", hjOrderDTOList);
+        return map;
+    }
 }
