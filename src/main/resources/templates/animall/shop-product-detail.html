@@ -21,6 +21,7 @@
 		<div class="row">
 			<div class="col-md-5">
                 <input type="hidden" id="product-id" th:value="${details.productId}">
+                <input type="hidden" id="userId" th:value="${userId}">
 				<div class="single-product-img">
 					<img th:src="${details.image}" alt="썸네일">
 				</div>
@@ -88,8 +89,8 @@
             </div>
         </div>
         <div class="row mb-80">
-            <div class="col-lg-8 offset-lg-2 d-flex justify-content-center align-content-center">
-                <div id="review-input" class="form-group">
+            <div class="d-flex justify-content-center align-content-center">
+                <div id="review-input" class="col-lg-8 col-8">
                     <form id="review-form" class="form-group">
                         <input type="hidden" id="review-product-id" th:value="${details.productId}">
                         <div class ="review-rating">

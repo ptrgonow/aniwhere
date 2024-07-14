@@ -55,6 +55,8 @@ public class Review {
         dto.setReviewRating(this.reviewRating);
         dto.setReviewImg(this.reviewImg);
         dto.setReviewLike(this.reviewLike);
+        dto.setCreatedAt(this.reviewCreatedAt.toString());
+        dto.setUpdatedAt(this.reviewUpdatedAt.toString());
         return dto;
     }
 }

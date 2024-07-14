@@ -28,4 +28,6 @@ public class ReviewDTO {
     private int reviewRating;
     private String reviewImg;
     private int reviewLike;
+    private String createdAt;
+    private String updatedAt;
 }

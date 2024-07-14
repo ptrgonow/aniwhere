@@ -145,4 +145,15 @@ public class ReviewService {
         reviewMapper.decreaseLikeCount(reviewId);
     }
 
+    /**
+        주어진 사용자 ID와 상품 ID에 해당하는 리뷰가 존재하는지 확인합니다.
+
+        @param userId 사용자 ID
+        @param productId 상품 ID
+        @return 리뷰가 존재하는지 여부
+     */
+    public boolean existReview(String userId, int productId) {
+        return reviewMapper.existReview(userId, productId);
+    }
+
 }

@@ -65,9 +65,11 @@ public class ShopViewController {
     @GetMapping("/detail")
     public String detail(Model model, @RequestParam("id") Integer id)  {
         String userName = homeService.getAuthenticatedUserName();
+        String userId = homeService.getAuthenticatedUserId();
         Product detail = productService.findProductById(id);
         model.addAttribute("details", detail);
         model.addAttribute("name", userName);
+        model.addAttribute("userId", userId);
 
         return "animall/shop-product-detail";
     }

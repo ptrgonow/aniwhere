@@ -3,8 +3,11 @@ package com.aniwhere.domain.shop.review.controller;
 import com.aniwhere.domain.shop.review.dto.ReviewDTO;
 import com.aniwhere.domain.shop.review.service.ReviewService;
 import lombok.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -68,8 +71,9 @@ public class ReviewController {
     }
 
     @PostMapping("/insert")
-    public void insertReview(@RequestBody ReviewDTO reviewDTO) {
+    public ResponseEntity<?> insertReview(@RequestBody ReviewDTO reviewDTO) {
         reviewService.insertReview(reviewDTO);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/update")
@@ -85,6 +89,12 @@ public class ReviewController {
     @PostMapping("/like/{reviewId}")
     public void increaseLikeCount(@PathVariable int reviewId) {
         reviewService.increaseLikeCount(reviewId);
+    }
+
+    // 리뷰 존재하는지 체크 후 결과 반환 (/review/check/' + userId + '/' + productId)
+    @GetMapping("/check/{userId}/{productId}")
+    public ResponseEntity<Boolean> existReview(@PathVariable String userId, @PathVariable int productId) {
+        return new ResponseEntity<>(reviewService.existReview(userId, productId), HttpStatus.OK);
     }
 
 }

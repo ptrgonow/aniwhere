@@ -26,7 +26,7 @@ public interface ReviewMapper {
     @Select("SELECT COUNT(*) FROM review WHERE user_id = #{userId} AND product_id = #{productId}")
     boolean existReview(String userId, int productId);
 
-    @Select("SELECT r.review_id AS reviewId, r.user_id AS userId, u.user_name AS userName, r.product_id AS productId, r.review_content AS reviewContent, r.review_rating AS reviewRating, r.review_img AS reviewImg, r.review_like AS reviewLike, r.created_at AS createdAt " +
+    @Select("SELECT r.review_id AS reviewId, r.user_id AS userId, u.user_name AS userName, r.product_id AS productId, r.review_content AS reviewContent, r.review_rating AS reviewRating, r.review_img AS reviewImg, r.review_like AS reviewLike, r.created_at AS reviewCreatedAt, r.updated_at AS reviewUpdatedAt " +
             "FROM review r " +
             "JOIN user u ON r.user_id = u.user_id " +
             "WHERE r.product_id = #{productId}")
@@ -38,7 +38,7 @@ public interface ReviewMapper {
             "WHERE r.review_id = #{reviewId}")
     Review selectReview(int reviewId);
 
-    @Insert("INSERT INTO review (user_id, product_id, review_content, review_rating, review_img, review_like) VALUES (#{userId}, #{productId}, #{reviewContent}, #{reviewRating}, #{reviewImg}, #{reviewLike})")
+    @Insert("INSERT INTO review (user_id, product_id, review_content, review_rating, review_img, review_like, user_name) VALUES (#{userId}, #{productId}, #{reviewContent}, #{reviewRating}, #{reviewImg}, #{reviewLike}, #{userName})")
     void insertReview(Review review);
 
     @Update("UPDATE review SET review_content = #{reviewContent}, review_rating = #{reviewRating}, review_img = #{reviewImg}, review_like = #{reviewLike} WHERE review_id = #{reviewId}")

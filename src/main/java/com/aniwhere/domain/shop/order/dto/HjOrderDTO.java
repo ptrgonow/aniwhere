@@ -21,12 +21,11 @@ public class HjOrderDTO {
     private String recipient_email;
     private String recipient_phone;
     private String order_request;
-    private String payment_type;
-    private String payment_key;
     private String product_image;
     private int quantity;
     private Double price;
 
+    // TODO : 의도 물어보기
     public enum OrderStatus {
         결제_전,
         결제_완료,

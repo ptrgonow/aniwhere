@@ -15,7 +15,7 @@ public interface HjOrderMapper {
 
     @Select("SELECT o.order_id, o.user_id, o.shipping_address1, o.shipping_address2, o.shipping_address3, " +
             "o.amount, o.order_status, o.order_date, o.recipient_name, o.recipient_email, o.recipient_phone, " +
-            "o.order_request, o.payment_type, o.payment_key, p.image AS product_image, " +
+            "o.order_request, p.image AS product_image, " +
             "od.quantity, od.price " +
             "FROM `order` o " +
             "JOIN order_detail od ON o.order_id = od.order_id " +
