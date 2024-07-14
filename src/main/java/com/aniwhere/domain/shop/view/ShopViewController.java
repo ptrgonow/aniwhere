@@ -32,19 +32,6 @@ public class ShopViewController {
     private final OrderMapper orderMapper;
     private final OrderService orderService;
 
-    private String getAuthenticatedUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                return ((UserDetails) principal).getUsername();
-            } else if (principal instanceof OAuth2User) {
-                OAuth2User oauthUser = (OAuth2User) principal;
-                return  oauthUser.getAttribute("userId");
-            }
-        }
-        return null;
-    }
     @GetMapping("/main")
     public String shopMain(Model model,@RequestParam(defaultValue = "1") int page,
                            @RequestParam(defaultValue = "9") int size)  {
@@ -77,17 +64,17 @@ public class ShopViewController {
 
     @GetMapping("/detail")
     public String detail(Model model, @RequestParam("id") Integer id)  {
-
+        String userName = homeService.getAuthenticatedUserName();
         Product detail = productService.findProductById(id);
-
         model.addAttribute("details", detail);
+        model.addAttribute("name", userName);
 
         return "animall/shop-product-detail";
     }
 
     @GetMapping("/cart")
     public String cart(Model model)  {
-        String userId = getAuthenticatedUserId();
+        String userId = homeService.getAuthenticatedUserId();
         List<Cart> cart = cartService.getCartItems(userId);
         model.addAttribute("cart", cart);
 
@@ -96,7 +83,7 @@ public class ShopViewController {
 
     @GetMapping("/checkout")
     public String checkout(Model model){
-        String userId = getAuthenticatedUserId();
+        String userId = homeService.getAuthenticatedUserId();
         UserDetailDTO user = orderMapper.detailByUserId(userId);
         List<Cart> checkedItems = orderService.getCheckedCartItems(userId);
         int totalProductPrice = checkedItems.stream()

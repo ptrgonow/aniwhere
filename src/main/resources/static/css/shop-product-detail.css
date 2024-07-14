@@ -53,6 +53,10 @@ h6, .h6 {
   color: #051922;
 }
 
+textarea{
+    resize: none;
+}
+
 .mt-150 {
   margin-top: 150px;
 }
@@ -419,3 +423,23 @@ ul.product-share li a {
   cursor: pointer;
 }
 
+.form-group {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group input {
+  outline: none;
+}
+
+.btn-primary {
+  background-color: #f19b53;
+  border: none;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #F28123;
+}

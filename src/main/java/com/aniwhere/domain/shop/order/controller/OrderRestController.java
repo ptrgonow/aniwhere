@@ -2,6 +2,10 @@ package com.aniwhere.domain.shop.order.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.order.service.OrderService;
+import com.aniwhere.domain.user.loginSession.service.HomeService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -16,6 +20,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/orders")
+@AllArgsConstructor
 public class OrderRestController {
 
     @Autowired
@@ -35,6 +40,11 @@ public class OrderRestController {
         return null;
     }
 /*
+
+    private final OrderService orderService;
+    private final HomeService homeService;
+
+
     @GetMapping
     public List<OrderDTO> getOrdersByDateRange(@RequestParam String startDate, @RequestParam String endDate) {
         return orderService.findOrdersByDateRange(startDate, endDate);
@@ -46,8 +56,8 @@ public class OrderRestController {
     }
 */
     @GetMapping("/items") // 엔드포인트 변경
-    public ResponseEntity<Map<String, Object>> getCheckedItems(Authentication authentication) {
-        String userId = getAuthenticatedUserId();
+    public ResponseEntity<Map<String, Object>> getCheckedItems() {
+        String userId = homeService.getAuthenticatedUserId();
         List<Cart> checkedItems = orderService.getCheckedCartItems(userId);
         int totalProductPrice = checkedItems.stream()
                 .mapToInt(Cart::getTotalPrice)
@@ -66,7 +76,7 @@ public class OrderRestController {
                                        @RequestParam("customerMobilePhone") String customerMobilePhone,
                                        @RequestParam("totalPrice") int totalPrice) {
 
-        String userId = getAuthenticatedUserId();
+        String userId = homeService.getAuthenticatedUserId();
         orderService.saveOrder(orderId, userId, customerEmail, customerName, customerMobilePhone, totalPrice);
 
         return "redirect:/shop/cart";
