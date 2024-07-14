@@ -2,14 +2,11 @@ package com.aniwhere.domain.shop.cart.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.cart.service.CartService;
-import com.aniwhere.domain.user.mypage.service.MyService;
+import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,20 +15,10 @@ import org.springframework.web.bind.annotation.*;
 public class CartRestController {
 
     private final CartService cartService;
+    private final HomeService homeService;
 
-    // 스프링 프레임워크로 해당 유저ID 가져오는 로직
     private String getAuthenticatedUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                return ((UserDetails) principal).getUsername();
-            } else if (principal instanceof OAuth2User) {
-                OAuth2User oauthUser = (OAuth2User) principal;
-                return  oauthUser.getAttribute("userId");
-            }
-        }
-        return null;
+      return homeService.getAuthenticatedUserId();
     }
 
     @PostMapping("/add/{productId}")

@@ -15,28 +15,28 @@ public interface ShopMapper {
     @Select("SELECT COUNT(*) FROM product")
     int getTotalProductCount();
 
-    @Select("SELECT product_id as productId, name, image, category3, price FROM product LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price FROM product LIMIT #{limit} OFFSET #{offset}")
     List<Product> findAllProductsWithLimit(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category3, price FROM product WHERE category3 LIKE '%강아지%' and category3 not like '%고양이%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category LIKE '%강아지%' and category not like '%고양이%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findDogProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category3, price FROM product WHERE category3 LIKE '%고양이%' and category3 not like '%강아지%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category LIKE '%고양이%' and category not like '%강아지%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findCatProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category3, price FROM product WHERE category3 NOT LIKE '%강아지%' AND category3 NOT LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category NOT LIKE '%강아지%' AND category NOT LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findOtherProducts(@Param("limit") int limit, @Param("offset") int offset);
 
     @Select("SELECT * FROM product WHERE product_id = #{productId}")
     Product findProductById(Integer productId);
 
-    @Insert("INSERT IGNORE INTO product(name, image, price, category3) " +
+    @Insert("INSERT IGNORE INTO product(name, image, price, category) " +
             "VALUES (#{name}, #{image}, #{price}, #{category3})")
     @Options(useGeneratedKeys = true, keyProperty = "productId")
     void saveProduct(ProductDTO product);
 
     @Update("UPDATE product SET name = #{name}, image = #{image}, price = #{price}, " +
-            "category3 = #{category3} WHERE product_id = #{productId}")
+            "category = #{category3} WHERE product_id = #{productId}")
     void updateProduct(ProductDTO product);
 
     @Delete("DELETE FROM product WHERE product_id = #{productId}")

@@ -125,6 +125,11 @@ public class ShopViewController {
         return "animall/shop-summary";
     }
 
+    @GetMapping("/success")
+    public String success(){
+        return "animall/shop-checkout-success";
+    }
+
 }
 
 

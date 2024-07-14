@@ -11,10 +11,12 @@ public class OrderHistory {
 
     private String orderId;
     private String userId;
+    private String paymentType;
+    private String paymentKey;
     private String shippingAddress1;
     private String shippingAddress2;
     private String shippingAddress3;
-    private int totalPrice;
+    private int amount;
     private String orderStatus;
     private Date orderDate;
     private String recipientName;
