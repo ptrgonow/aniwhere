@@ -6,6 +6,7 @@ $(document).ready(function() {
     const emailDomainCustomInput = $("#email-domain-custom");
     const phoneInput = $("#phone");
     const joinBtn = $("#join-btn");
+    const emailMessage = $("#email-message");
 
     emailDomainSelect.change(function() {
         emailDomainCustomInput.toggle(this.value === "");
@@ -17,6 +18,8 @@ $(document).ready(function() {
         const domainPart = emailDomainSelect.val() === "" ? emailDomainCustomInput.val() : emailDomainSelect.val();
         return localPart + "@" + domainPart;
     };
+
+
 
     const checkField = (type, inputElement, validator) => {
         const value = type === "email" ? getEmail() : inputElement.val();
@@ -97,10 +100,10 @@ $(document).ready(function() {
         const email = getEmail();
 
         if (!isValidEmail(email)) {
-            emailLocalInput.next('.duplicate-message').text('올바른 이메일 형식이 아닙니다.').css('color', 'red');
+            emailMessage.text('올바른 이메일 형식이 아닙니다.').css('color', 'red');
         } else {
-            emailLocalInput.next('.duplicate-message').text('');
-            checkDuplicate("email", email, emailLocalInput.next('.duplicate-message'));
+            emailMessage.text('');
+            checkDuplicate("email", email, emailMessage);
         }
     }
 

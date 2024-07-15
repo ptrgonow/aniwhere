@@ -1,38 +1,8 @@
 $(document).ready(function() {
 
-    // // 페이지 로드 시 카카오 로그인 및 사용자 정보 가져오기
-    // Kakao.Auth.login({
-    //     success: function(authObj) {
-    //         fetchUserInfo();
-    //     },
-    //     fail: function(err) {
-    //         console.log(err);
-    //     }
-    // });
-    //
-    // function fetchUserInfo() {
-    //     Kakao.API.request({
-    //         url: '/v2/user/me',
-    //         data: {
-    //             property_keys: ['kakao_account.email', ' kakao_account.profile.nickname'],
-    //         },
-    //         success: function(response) {
-    //             console.log(response);
-    //             $('#userName').val(response.kakao_account.profile.nickname);
-    //             $('#email').val(response.kakao_account.email);
-    //         },
-    //         fail: function(error) {
-    //             console.log(error);
-    //         }
-    //     });
-    // }
-
     // 소셜 로그인 여부 확인 및 비밀번호 필드 비활성화
     const isSocial = $('#hiddenSocial').val();
     if (isSocial === 'true') {
-        $('#userPwd').val('소셜로그인 회원입니다.').prop('disabled', true).addClass('disabled-input');
-        $('#userNewPwd').val('소셜로그인 회원입니다.').prop('disabled', true).addClass('disabled-input');
-        $('#confirmNewPwd').val('소셜로그인 회원입니다.').prop('disabled', true).addClass('disabled-input');
         $('#checkButton').prop('hidden', true).addClass('hidden');
         $('.pwd-info').text('* 소셜로그인 회원으로 비밀번호를 변경할 수 없습니다.');
     }

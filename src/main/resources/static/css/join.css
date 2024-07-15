@@ -124,3 +124,16 @@ body {
     font-size: 1.1rem;
     margin-left: 9px;
 }
+
+.email-code{
+    color: #FFFFFF;
+    background-color: #F28123;
+    border: none;
+    width: 95px;
+    font-size: 1.1rem;
+    margin-left: 9px;
+}
+
+#auth-code-section{
+    display: none;
+}

@@ -39,10 +39,10 @@
                     <button type="button" class="email-check" onclick="sendAuthCode()">인증하기</button>
                     <span id="email-message" class="duplicate-message"></span>
                 </div>
-                <div class="form-input" id="auth-code-section" style="display: none;">
+                <div class="form-input" id="auth-code-section">
                     <label for="auth-code" class="reg-form">인증 코드</label>
                     <input type="text" id="auth-code" name="auth-code" class="in-text">
-                    <button type="button" onclick="verifyAuthCode()">인증 코드 확인</button>
+                    <button type="button" class="email-code" onclick="verifyAuthCode()">인증 코드 확인</button>
                     <span id="auth-code-message" class="duplicate-message"></span>
                 </div>
                 <div class="form-input">
