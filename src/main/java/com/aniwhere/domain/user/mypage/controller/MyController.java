@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -31,12 +33,13 @@ public class MyController {
     public String my(Model model) {
 
         String userId = homeService.getAuthenticatedUserId();
-
         UserDetail userDetail = myService.getUserDetailByUserId(userId);
+        boolean isSocial = myService.isSocialUser(userId);
 
         model.addAttribute("detail", userDetail);
         model.addAttribute("name", userDetail.getUserName());
         model.addAttribute("userId", userId);
+        model.addAttribute("isSocial", isSocial);
 
         return "/mypage/modify";
 
