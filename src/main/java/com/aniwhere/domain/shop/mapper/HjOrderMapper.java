@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface HjOrderMapper {
 
-    @Select("SELECT * FROM `order` " +
+    @Select("SELECT * FROM `order_success` " +
             "WHERE order_date >= #{startDate} AND order_date <= #{endDate}")
     List<HjOrderDTO> findOrderByDates(@Param("startDate") String startDate, @Param("endDate") String endDate);
 
@@ -17,7 +17,7 @@ public interface HjOrderMapper {
             "o.amount, o.order_status, o.order_date, o.recipient_name, o.recipient_email, o.recipient_phone, " +
             "o.order_request, p.image AS product_image, p.name AS product_name, " +
             "od.quantity, od.price, od.product_id " +
-            "FROM `order` o " +
+            "FROM `order_success` o " +
             "JOIN order_detail od ON o.order_id = od.order_id " +
             "JOIN product p ON od.product_id = p.product_id " +
             "WHERE o.order_date BETWEEN #{startDate} AND #{endDate}")
