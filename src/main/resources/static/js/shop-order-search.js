@@ -1,6 +1,6 @@
 $(document).ready(function () {
     initializeDateRangePicker();
-    bindSearchButtonClick();
+    //bindSearchButtonClick();
 });
 
 function initializeDateRangePicker() {
@@ -74,35 +74,34 @@ function searchOrders() {
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false">
                                 <div class="order-id">주문 ID: ${order.order_id}</div>
-                                <div class="order-status">상태: ${order.order_status}</div>
-                                <div class="order-date">주문 날짜: ${orderDate}</div>
+                                <div class="order-date"><strong>주문 날짜:</strong> ${orderDate}</div>
+                                
                             </button>
                         </h2>
                         <div class="accordion-collapse collapse">
                             <div class="accordion-body">
-                                <div class="paragraph1">
-                                    <div class="detail-item"><strong>수령인 이름:</strong> ${order.recipient_name}</div>
-                                    <div class="detail-item"><strong>수령인 이메일:</strong> ${order.recipient_email}</div>
-                                    <div class="detail-item"><strong>수령인 전화번호:</strong> ${order.recipient_phone}</div>
-                                </div>
-                                <div class="paragraph2">
-                                    <div class="detail-item"><strong>수량:</strong> ${order.quantity}</div>
-                                    <div class="detail-item"><strong>가격:</strong> ${order.price}</div>
-                                    
-                                    <button type="button" class="btn btn-link more-info-button">더 보기</button>
-                                    
-                                </div>
-                                <div class="paragraph3">
-                                    <img src="${order.product_image}" alt="상품 이미지">
-                                </div>
                                 
+                                    <div class="accordion-body-more-info">
+                                        <div class="paragraph1">
+                                            <div class="product-name">제품명: ${order.product_name}</div>
+                                            <div class="product-id"><strong>제품 아이디:</strong>${order.product_id}</div>
+                                            
+                                        </div>
+                                        <div class="paragraph2">
+                                            <div class="order-status"><strong>상태:</strong> ${order.order_status}</div>
+                                            
+                                            <div class="order-quantity"><strong>수량:</strong> ${order.quantity}</div>
+                                            <div class="order-price"><strong>가격:</strong> ${order.price}</div>
+                                            
+                                            <button type="button" class="btn btn-link more-info-button">더 보기</button>
+                                            
+                                        </div>
+                                        <div class="paragraph3">
+                                            <img src="${order.product_image}" alt="상품 이미지">
+                                        </div>
+                                    </div>
                                 <div class="more-info">
-                                    <div class="paragraph4">
-                                        <div class="detail-item"><strong>배송 주소 1:</strong> ${order.shipping_address1}</div>
-                                    </div>
-                                    <div class="paragraph5">
-                                        <div class="detail-item"><strong>배송 주소 2:</strong> ${order.shipping_address2}</div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -133,8 +132,47 @@ function initializeAccordionItems() {
 
 function bindMoreInfoButtons() {
     $(document).on('click', '.more-info-button', function() {
-        const $accordionBody = $(this).closest('.accordion-body');
+
+        const $button = $(this);
+        const order_id = $button.data('order-id');
+
+        const $accordionBody = $button.closest('.accordion-body');
         const $moreInfo = $accordionBody.find('.more-info');
+
+        if ($moreInfo.is(':empty')) {
+            ajaxGet('/api/order-details?order_id=' + order_id, function (result){
+                if(result && result.length > 0) {
+                    let moreInfoContent = '';
+                    $.each(result, function (index, detail) {
+                        moreInfoContent += `
+                            <div class="accordion-body-more-info">
+                                <div class="paragraph1">
+                                    <div class="product-id"><strong>제품 아이디:</strong>${order.product_id}</div>
+                                    <div class="recipient-name"><strong>수령인 이름:</strong> ${order.recipient_name}</div>
+                                    <div class="recipient-email"><strong>수령인 이메일:</strong> ${order.recipient_email}</div>
+                                    <div class="recipient-phone"><strong>수령인 전화번호:</strong> ${order.recipient_phone}</div>
+                                </div>
+                                <div class="paragraph2">
+                                    <div class="order-status"><strong>상태:</strong> ${order.order_status}</div>
+                                    
+                                    <div class="order-quantity"><strong>수량:</strong> ${order.quantity}</div>
+                                    <div class="order-price"><strong>가격:</strong> ${order.price}</div>
+                                    
+                                    <button type="button" class="btn btn-link more-info-button">더 보기</button>
+                                    
+                                </div>
+                                <div class="paragraph3">
+                                    <img src="${order.product_image}" alt="상품 이미지">
+                                </div>
+                            </div>`;
+                    });
+                    $moreInfo.html(moreInfoContent);
+                }else{
+                    $moreInfo.html('<div>추가 정보가 없습니다.</div>');
+                }
+            });
+        }
+
         $moreInfo.toggle();
     });
 }
