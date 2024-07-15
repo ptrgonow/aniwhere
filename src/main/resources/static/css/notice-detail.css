@@ -181,7 +181,7 @@ span:hover:before, span:hover:after {
 /* 공통 버튼 스타일 */
 .button {
     padding: 10px 20px;
-    background-color: #8b8e91;
+    background-color: #f28123;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -190,7 +190,7 @@ span:hover:before, span:hover:after {
 }
 
 .button:hover {
-    background-color: #3f4e59;
+    background-color: #ffd0af;
     color: #ffffff;
 }
 
