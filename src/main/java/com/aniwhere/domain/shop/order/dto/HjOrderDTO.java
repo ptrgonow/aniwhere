@@ -24,6 +24,8 @@ public class HjOrderDTO {
     private String product_image;
     private int quantity;
     private Double price;
+    private String product_name;
+    private String product_id;
 
     // TODO : 의도 물어보기
     public enum OrderStatus {

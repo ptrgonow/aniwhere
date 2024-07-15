@@ -15,13 +15,17 @@ public interface HjOrderMapper {
 
     @Select("SELECT o.order_id, o.user_id, o.shipping_address1, o.shipping_address2, o.shipping_address3, " +
             "o.amount, o.order_status, o.order_date, o.recipient_name, o.recipient_email, o.recipient_phone, " +
-            "o.order_request, p.image AS product_image, " +
-            "od.quantity, od.price " +
+            "o.order_request, p.image AS product_image, p.name AS product_name, " +
+            "od.quantity, od.price, od.product_id " +
             "FROM `order` o " +
             "JOIN order_detail od ON o.order_id = od.order_id " +
             "JOIN product p ON od.product_id = p.product_id " +
             "WHERE o.order_date BETWEEN #{startDate} AND #{endDate}")
     List<HjOrderDTO> findImagesByDates(@Param("startDate") String startDate, @Param("endDate") String endDate);
 
+    @Select("SELECT product_id, quantity, price " +
+            "FROM order_detail " +
+            "WHERE order_id = #{orderId}")
+    List<HjOrderDTO> findOrderDetailsByOrderId(@Param("orderId") String orderId);
 }
 

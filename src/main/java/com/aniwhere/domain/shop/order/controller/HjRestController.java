@@ -43,4 +43,9 @@ public class HjRestController {
         map.put("hjOrderDTOList", hjOrderDTOList);
         return map;
     }
+
+    @GetMapping("/order-details")
+    public List<HjOrderDTO> orderDetailsApi(@RequestParam String order_id) {
+        return hjOrderService.getOrderDetailsByOrderId(order_id);
+    }
 }

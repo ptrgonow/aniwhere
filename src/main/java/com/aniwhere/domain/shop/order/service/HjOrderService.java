@@ -24,4 +24,9 @@ public class HjOrderService {
         String endDateStr = endDate + " 23:59:59";
         return hjOrderMapper.findImagesByDates(startDateStr, endDateStr);
     }
+
+    // order-details 엔드포인트를 위한 메소드 추가
+    public List<HjOrderDTO> getOrderDetailsByOrderId(String orderId) {
+        return hjOrderMapper.findOrderDetailsByOrderId(orderId);
+    }
 }

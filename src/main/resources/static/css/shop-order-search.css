@@ -91,7 +91,16 @@ button:hover {
 
 .accordion-button div {
     flex: 1; /* 모든 div가 동일한 너비를 가지도록 설정 */
-    text-align: center; /* 중앙 정렬 */
+
+}
+.order-id {
+    text-align: left;
+    margin-left: 50px;
+}
+
+.order-date{
+    text-align: left;
+    margin-left: -150px;
 }
 
 .detail-item {
@@ -104,13 +113,10 @@ button:hover {
     gap: 20px;
 }
 
-.paragraph1, .paragraph2 {
+.paragraph .paragraph1, .paragraph2 {
     width: 50%;
     text-align: left;
-}
-
-.paragraph1 .detail-item, .paragraph2 .detail-item {
-    margin-left: 0;
+    margin-left: 50px;
 }
 
 .paragraph3 img {
