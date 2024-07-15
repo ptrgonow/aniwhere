@@ -1,6 +1,7 @@
 package com.aniwhere.domain.shop.mapper;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
+import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
@@ -26,6 +27,12 @@ public interface OrderMapper {
             "FROM cart c JOIN product p ON c.product_id = p.product_id " +
             "WHERE c.user_id = #{userId} AND c.checked = 'Y'")
     List<Cart> getCheckedCartItemsByUserId(String userId);
+
+    @Select("SELECT op.order_id as orderId, op.amount, op.user_id as userId, od.product_id as prodcutId, od.quantity, od.price, " +
+            "p.name " +
+            "FROM order_pre op JOIN order_detail od ON op.order_id = od.order_id join product p on od.product_id = p.product_id " +
+            "WHERE op.user_id = #{userId} AND od.order_id = #{orderId}")
+    List<OrderDTO> getOrderItemsByUserId(@Param("userId") String userId, @Param("orderId") String orderId);
 
     @Insert("INSERT INTO order_pre (order_id, amount, user_id) VALUES (#{orderId}, #{amount}, #{userId})")
     void insertOrderPre(OrderPreDTO orderPreDTO);

@@ -87,7 +87,7 @@
 					</table>
 					<div class="cart-buttons">
 						<a href="/shop/main" class="boxed-btn">계속 쇼핑하기</a>
-						<a href="/shop/checkout" class="boxed-btn black" id="order">주문하기</a>
+						<a class="boxed-btn black" id="order">주문하기</a>
 					</div>
 				</div>
 			</div>
@@ -259,7 +259,7 @@
 				contentType: "application/json",
 				data: JSON.stringify(order),
 				success: function (response) {
-					alert("Order placed successfully!");
+					window.location.href = "/shop/checkout?orderId=" + orderId;
 
 				},
 				error: function (error) {
