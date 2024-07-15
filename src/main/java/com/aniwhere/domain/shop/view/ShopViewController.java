@@ -87,13 +87,8 @@ public class ShopViewController {
     public String checkout(Model model){
         String userId = homeService.getAuthenticatedUserId();
         UserDetailDTO user = orderMapper.detailByUserId(userId);
-        List<Cart> checkedItems = orderService.getCheckedCartItems(userId);
-        int totalProductPrice = checkedItems.stream()
-                .mapToInt(Cart::getTotalPrice)
-                .sum();
 
-        model.addAttribute("orderItems", checkedItems);
-        model.addAttribute("totalProductPrice", totalProductPrice);
+
 
         model.addAttribute("userinfo", user);
         return "animall/shop-checkout";

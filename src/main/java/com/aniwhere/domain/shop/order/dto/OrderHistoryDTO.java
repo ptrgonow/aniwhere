@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 public class OrderHistoryDTO {
 
-    private OrderDTO orderDTO;
+    private OrderPreDTO orderPreDTO;
     private List<OrderDetailDTO> orderItems;
 }

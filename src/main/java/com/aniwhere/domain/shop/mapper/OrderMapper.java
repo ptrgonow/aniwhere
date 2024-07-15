@@ -4,6 +4,7 @@ import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
+import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import org.apache.ibatis.annotations.*;
 
@@ -27,6 +28,13 @@ public interface OrderMapper {
             "WHERE c.user_id = #{userId} AND c.checked = 'Y'")
     List<Cart> getCheckedCartItemsByUserId(String userId);
 
+    @Select("SELECT op.order_id as orderId, op.amount, op.user_id as userId, od.product_id, od.quantity, od.price, " +
+            "p.name " +
+            "FROM order_pre op JOIN order_detail od ON op.order_id = od.order_id join product p on od.product_id = p.product_id " +
+            "where user_id = #{userId}")
+
+    @Insert("INSERT INTO order_pre (order_id, amount, user_id) VALUES (#{orderId}, #{amount}, #{userId})")
+    void insertOrderPre(OrderPreDTO orderPreDTO);
 
     @Insert("INSERT INTO `order` (order_id, user_id, shipping_address1, shipping_address2, shipping_address3, amount, recipient_email, recipient_name, recipient_phone, order_request) " +
             "VALUES (#{orderId}, #{userId}, #{shippingAddress1},#{shippingAddress2},#{shippingAddress3}, #{amount}, #{recipientEmail}, #{recipientName}, #{recipientPhone}, #{orderRequest}) ")
