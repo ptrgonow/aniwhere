@@ -1,7 +1,6 @@
 package com.aniwhere.domain.user.join.controller;
 
 import com.aniwhere.domain.user.join.domain.Join;
-import com.aniwhere.domain.user.join.dto.JoinResponseDTO;
 import com.aniwhere.domain.user.join.service.JoinService;
 
 import com.aniwhere.domain.user.join.service.MailService;
@@ -41,7 +40,13 @@ public class JoinController {
 
     @PostMapping("/sendemail")
     public String sendAuthCode(@RequestParam String email) {
-        return mailService.sendAuthCode(email);
+        try {
+            int num = mailService.sendEmail(email);
+            return "인증코드 발급 : " + num;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "이메일 전송 실패: " + e.getMessage();
+        }
     }
 
 }
