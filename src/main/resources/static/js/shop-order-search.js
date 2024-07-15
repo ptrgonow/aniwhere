@@ -88,6 +88,10 @@ function searchOrders() {
                 if(orders.length > 1){
                     content += `
                         <button type="button" class="btn btn-link more-info-button" data-order-id="${order.order_id}">더 보기</button>`;
+                }else{
+                    content += `</div>
+                            </div>
+                        </div>`;
                 }
 
                 // 각 주문에 연결된 product_id를 표시
