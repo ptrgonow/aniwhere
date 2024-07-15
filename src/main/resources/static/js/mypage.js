@@ -3,6 +3,7 @@ $(document).ready(function() {
     // 소셜 로그인 여부 확인 및 비밀번호 필드 비활성화
     const isSocial = $('#hiddenSocial').val();
     if (isSocial === 'true') {
+        $('#userPwd').prop('readonly', true);
         $('#checkButton').prop('hidden', true).addClass('hidden');
         $('.pwd-info').text('* 소셜로그인 회원으로 비밀번호를 변경할 수 없습니다.');
     }
@@ -97,6 +98,19 @@ $(document).ready(function() {
                 }
             });
         }
+
+        function autoHyphen(phone) {
+            // 숫자만 남기고 모든 문자 제거
+            var phoneNumber = input.value.replace(/[^\d]/g, "");
+
+            // 전화번호 형식에 맞게 하이푼 추가
+            if (phoneNumber.length >= 4 && phoneNumber.length <= 7) {
+                input.value = phoneNumber.slice(0, 3) + "-" + phoneNumber.slice(3);
+            } else if (phoneNumber.length >= 8) {
+                input.value = phoneNumber.slice(0, 3) + "-" + phoneNumber.slice(3, 7) + "-" + phoneNumber.slice(7);
+            }
+        }
+
 
         if (field === "phone") {
             if (!/^\d{11}$/.test(phone)) {
@@ -294,3 +308,4 @@ function searchAdd() {
         }
     }).open();
 }
+

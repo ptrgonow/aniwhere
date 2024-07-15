@@ -27,6 +27,7 @@ public interface OrderMapper {
             "WHERE c.user_id = #{userId} AND c.checked = 'Y'")
     List<Cart> getCheckedCartItemsByUserId(String userId);
 
+
     @Insert("INSERT INTO order_pre (order_id, amount, user_id) VALUES (#{orderId}, #{amount}, #{userId})")
     void insertOrderPre(OrderPreDTO orderPreDTO);
 
