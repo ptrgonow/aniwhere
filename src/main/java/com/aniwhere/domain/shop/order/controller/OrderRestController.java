@@ -55,7 +55,7 @@ public class OrderRestController {
     public ResponseEntity<String> saveOrder(@RequestBody OrderHistoryDTO orderHistory) {
         try {
             orderService.saveOrder(
-                    orderHistory.getOrderDTO(),
+                    orderHistory.getOrderPreDTO(),
                     orderHistory.getOrderItems()
             );
             return ResponseEntity.ok("주문 정보 저장 성공");

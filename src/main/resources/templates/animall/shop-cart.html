@@ -41,9 +41,11 @@
 						<tbody>
 						<tr class="table-body-row" th:each="carts : ${cart}">
 							<input type="hidden" th:value="${carts.cartId}" id="cartId">
+							<input type="hidden" th:value="${carts.productId}" id="productId">
 							<td class="product-check">
 								<input type="checkbox" class="item-checkbox" th:checked="${carts.checked == 'Y'}">
 							</td>
+
 							<td class="product-image"><img th:src="${carts.image}" alt=""></td>
 							<td class="product-name" th:text="${carts.name.replaceAll('<[^>]*>', '')}">Strawberry</td>
 							<td class="product-price" th:text="${carts.price}">$85</td>
@@ -85,7 +87,7 @@
 					</table>
 					<div class="cart-buttons">
 						<a href="/shop/main" class="boxed-btn">계속 쇼핑하기</a>
-						<a href="/shop/checkout" class="boxed-btn black">주문하기</a>
+						<a href="/shop/checkout" class="boxed-btn black" id="order">주문하기</a>
 					</div>
 				</div>
 			</div>
@@ -125,7 +127,6 @@
 <div th:replace="~{include/footer :: footer}"></div>
 <script th:inline="javascript">
 	$(document).ready(function() {
-		// 페이지 로드 시 총 주문 금액 가져오기
 		updateTotalOrderPrice();
 
 		$(".product-quantity input").on("change", function() {
@@ -203,7 +204,7 @@
 				url: "/cart/total-price",
 				type: "GET",
 				success: function(totalProductPrice) {
-					const shippingFee = 2500; // 배송비
+					const shippingFee = 2500;
 					const totalPrice = totalProductPrice + shippingFee;
 
 					$("#totalProductPrice").text(totalProductPrice.toLocaleString() + "원"); // 상품 가격 업데이트
@@ -214,5 +215,58 @@
 				}
 			});
 		}
+
+		$("#order").on("click", function() {
+			const today = new Date();
+			const year = today.getFullYear();
+			const month = String(today.getMonth() + 1).padStart(2, '0');
+			const day = String(today.getDate()).padStart(2, '0');
+			const randomString = Math.random().toString(36).substr(2, 4).toUpperCase();
+			const orderId = `${year}${month}${day}${randomString}`;
+
+			// Get selected items:
+			const orderItems = [];
+			$(".cart-table tbody tr").each(function () {
+				const isChecked = $(this).find(".item-checkbox").is(":checked");
+				if (isChecked) {
+					const productId = $(this).find("#productId").val();
+					const price = parseInt($(this).find(".product-price").text().replace(/[^0-9]/g, ''), 10);
+					const quantity = parseInt($(this).find(".product-quantity input").val(), 10);
+
+					orderItems.push({
+						orderId: orderId,
+						productId: productId,
+						price: price,
+						quantity: quantity,
+					});
+				}
+			});
+
+			const orderDetails = {
+				orderId: orderId,
+				amount: parseInt($("#totalPrice").text().replace(/[^0-9]/g, ''), 10)
+			};
+
+			const order = {
+				orderPreDTO: orderDetails,
+				orderItems: orderItems,
+
+			};
+			console.log(order)
+			$.ajax({
+				type: "POST",
+				url: "/orders/success",
+				contentType: "application/json",
+				data: JSON.stringify(order),
+				success: function (response) {
+					alert("Order placed successfully!");
+
+				},
+				error: function (error) {
+					alert("Error placing order: " + error.responseText);
+				}
+			});
+		});
+
 	});
 </script>

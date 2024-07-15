@@ -206,7 +206,6 @@ async function toss() {
             });
 
 
-
             await widgets.requestPayment({
                 orderId: orderId,
                 orderName: "토스 티셔츠 외 2건",

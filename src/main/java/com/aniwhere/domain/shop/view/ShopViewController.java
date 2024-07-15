@@ -91,13 +91,8 @@ public class ShopViewController {
         String userId = homeService.getAuthenticatedUserId();
         String userName = homeService.getAuthenticatedUserName();
         UserDetailDTO user = orderMapper.detailByUserId(userId);
-        List<Cart> checkedItems = orderService.getCheckedCartItems(userId);
-        int totalProductPrice = checkedItems.stream()
-                .mapToInt(Cart::getTotalPrice)
-                .sum();
 
-        model.addAttribute("orderItems", checkedItems);
-        model.addAttribute("totalProductPrice", totalProductPrice);
+
 
         model.addAttribute("name", userName);
         model.addAttribute("userinfo", user);

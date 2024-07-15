@@ -6,15 +6,13 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class HjOrderDTO {
     private String order_id;
     private String user_id;
     private String shipping_address1;
     private String shipping_address2;
     private String shipping_address3;
-    private Double amount;
+    private int amount;
     private String order_status;
     private Timestamp order_date;
     private String recipient_name;
@@ -27,10 +25,4 @@ public class HjOrderDTO {
     private String product_name;
     private String product_id;
 
-    // TODO : 의도 물어보기
-    public enum OrderStatus {
-        결제_전,
-        결제_완료,
-        결제_취소
-    }
 }

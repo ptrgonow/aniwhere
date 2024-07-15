@@ -5,6 +5,7 @@ import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
+import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import lombok.AllArgsConstructor;
@@ -34,12 +35,12 @@ public class OrderService {
     }
 
     @Transactional
-    public void saveOrder(OrderDTO orderDTO, List<OrderDetailDTO> products) {
+    public void saveOrder(OrderPreDTO orderPreDTO, List<OrderDetailDTO> products) {
 
         String userId = homeService.getAuthenticatedUserId();
 
-        orderDTO.setUserId(userId);
-        orderMapper.insertOrder(orderDTO);
+        orderPreDTO.setUserId(userId);
+        orderMapper.insertOrderPre(orderPreDTO);
 
         for(OrderDetailDTO product : products){
             orderMapper.insertOrderItem(product);
