@@ -175,49 +175,16 @@ p:last-child {
     width: 50px;
 }
 
-.circle {
-    width: 8vmax;
-    height: 8vmax;
-    border-right: 4px solid #000;
-    border-radius: 50%;
-    -webkit-animation: spinRight 800ms linear infinite;
-    animation: spinRight 800ms linear infinite;
+nav.main-menu ul ul.sub-menu li a.logout {
+    color: #ff3535;
 }
 
-.circle:before {
-    content: '';
-    width: 6vmax;
-    height: 6vmax;
-    display: block;
-    position: absolute;
-    top: calc(50% - 3vmax);
-    left: calc(50% - 3vmax);
-    border-left: 3px solid #F28123;
-    border-radius: 100%;
-    -webkit-animation: spinLeft 800ms linear infinite;
-    animation: spinLeft 800ms linear infinite;
+nav.main-menu ul ul.sub-menu li a.logout:hover {
+    color: red;
 }
 
-.circle:after {
-    content: '';
-    width: 6vmax;
-    height: 6vmax;
-    display: block;
-    position: absolute;
-    top: calc(50% - 3vmax);
-    left: calc(50% - 3vmax);
-    border-left: 3px solid #F28123;
-    border-radius: 100%;
-    -webkit-animation: spinLeft 800ms linear infinite;
-    animation: spinLeft 800ms linear infinite;
-    width: 4vmax;
-    height: 4vmax;
-    top: calc(50% - 2vmax);
-    left: calc(50% - 2vmax);
-    border: 0;
-    border-right: 2px solid #000;
-    -webkit-animation: none;
-    animation: none;
+.owl-nav, .owl-dots {
+    display: none;
 }
 
 @-webkit-keyframes spinLeft {
@@ -501,4 +468,85 @@ a.boxed-btn, a.bordered-btn, a.cart-btn {
 
 .mypage a{
     color: #FFFFFF;
+}
+
+.feature-bg:after {
+    background-image: url(../img/about_01.jpg);
+    position: absolute;
+    right: 2%;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    content: "";
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 5px;
+    box-shadow: 0 0 20px #cacaca;
+    border-bottom-left-radius: 5px;
+}
+
+.material-symbols-sharp{
+    display: block;
+    font-size: 24px;
+    margin-right: 15px;
+    color: #F28123;
+    width: 65px;
+    height: 65px;
+    text-align: center;
+    line-height: 60px;
+    border: 2px #F28123 dotted;
+    border-radius: 999px;
+}
+
+.shop-banner {
+    position: relative;
+    background-color: #f5f5f5;
+    background-image: url(../img/about_06.jpg);
+    background-size: cover;
+    padding: 110px 0px 115px;
+}
+
+.di-text{
+    color: #FFFFFF;
+}
+
+.section-title {
+    margin-bottom: 0;
+}
+
+/* 삭제 예정 */
+.team-bg-1 {
+    background-image: url("../img/toy_04.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.team-bg-2 {
+    background-image: url("../img/toy_02.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.team-bg-3 {
+    background-image: url("../img/toy_03.png");
+}
+
+.team-bg-4 {
+    background-image: url("../img/toy_01.jpg");
+}
+
+.team-bg-5 {
+    background-image: url("../img/toy_05.jpeg");
+}
+
+.team-bg{
+    border: 1px solid #6c757d;
+    width: 100%;
+    height: 300px;
+}
+
+.owl-stage{
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
 }

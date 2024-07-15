@@ -50,19 +50,9 @@
                                     <li><a href="/route/list">코스목록</a></li>
                                 </ul>
                             </li>
-
-                            <li><a href="#">AniMall</a>
-                                <ul class="sub-menu">
-                                    <li><a href="/shop/main">쇼핑몰</a></li>
-                                    <li><a href="/shop/checkout">주문하기</a></li>
-                                    <li><a href="/shop/search">주문 내역 검색</a></li>
-                                    <li><a href="/">상품 상세보기</a></li>
-                                    <li><a href="/shop/review">상품 리뷰</a></li>
-                                    <li><a href="/shop/cart">장바구니</a></li>
-                                </ul>
-
-
-                            </li>
+               
+                            <li><a href="/shop/main">AniMall</a></li>
+                            
                             <li><a href="#">AniTalk</a>
                                 <ul class="sub-menu">
                                     <li><a href="/board/guide">이용방법</a></li>
@@ -70,26 +60,31 @@
                                     <li><a href="/board/faq">FAQ</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            <li sec:authorize="isAnonymous()">
                                 <div class="header-icons">
-                                    <span sec:authorize="isAnonymous()">
+                                    <span>
                                         <a href="/login">로그인</a>
                                         <a href="/join">회원가입</a>
                                     </span>
-
-                                    <span sec:authorize="isAuthenticated()">
-                                        <input type="hidden" id="userId" th:value="${userId}">
-                                        <a><span class="text-white" th:text="${name}"></span></a>
-                                        <ul class="sub-menu">
-                                                <li><a th:href="@{/mypage/detail}">내 정보</a></li>
-                                                <li><a href="/shop/cart">장바구니</a></li>
-                                                <li><a href="/shop/checkout">주문하기</a></li>
-                                                <li><a href="/mypage/routelist">코스 목록</a></li>
-                                        </ul>
-                                        <a class="mobile-hide search-bar-icon" href="/logout">로그아웃</a>
-                                    </span>
+                                
                                 </div>
                             </li>
+                            <li sec:authorize="isAuthenticated()">
+                                <div class="header-icons">
+                                    <a><span class="text-white" th:text="${name}"></span></a>
+                                    <ul class="sub-menu">
+                                        <li><a th:href="@{/mypage/detail}">내 정보</a></li>
+                                        <li><a href="/shop/cart">장바구니</a></li>
+                                        <li><a href="/shop/checkout">주문하기</a></li>
+                                        <li><a href="/mypage/routelist">코스 목록</a></li>
+                                        <li>
+                                            <a class="mobile-hide search-bar-icon logout" href="/logout">로그아웃</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        
+                        
                         </ul>
                     </nav>
                     <a class="mobile-show search-bar-icon" href="/logout"><i class="fas fa-arrow-left-long"></i></a>

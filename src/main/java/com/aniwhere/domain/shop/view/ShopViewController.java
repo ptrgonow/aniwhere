@@ -58,6 +58,7 @@ public class ShopViewController {
         model.addAttribute("other", others);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
+        model.addAttribute("name", userName);
 
         return "animall/shop-main";
     }
@@ -77,8 +78,10 @@ public class ShopViewController {
     @GetMapping("/cart")
     public String cart(Model model)  {
         String userId = homeService.getAuthenticatedUserId();
+        String userName = homeService.getAuthenticatedUserName();
         List<Cart> cart = cartService.getCartItems(userId);
         model.addAttribute("cart", cart);
+        model.addAttribute("name", userName);
 
         return "animall/shop-cart";
     }
@@ -86,6 +89,7 @@ public class ShopViewController {
     @GetMapping("/checkout")
     public String checkout(Model model){
         String userId = homeService.getAuthenticatedUserId();
+        String userName = homeService.getAuthenticatedUserName();
         UserDetailDTO user = orderMapper.detailByUserId(userId);
         List<Cart> checkedItems = orderService.getCheckedCartItems(userId);
         int totalProductPrice = checkedItems.stream()
@@ -95,6 +99,7 @@ public class ShopViewController {
         model.addAttribute("orderItems", checkedItems);
         model.addAttribute("totalProductPrice", totalProductPrice);
 
+        model.addAttribute("name", userName);
         model.addAttribute("userinfo", user);
         return "animall/shop-checkout";
     }

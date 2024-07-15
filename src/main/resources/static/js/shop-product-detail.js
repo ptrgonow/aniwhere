@@ -113,6 +113,7 @@ async function saveReview(productId) {
     const reviewExists = await checkReview(userId, productId);
     if (reviewExists) {
         alert('이미 리뷰를 작성하셨습니다.');
+        reviewContent.val('');
         return;
     }
 

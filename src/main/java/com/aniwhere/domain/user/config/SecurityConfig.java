@@ -32,7 +32,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/login", "/loginProc", "/joinProc", "/join").permitAll()
+                        .requestMatchers("/", "/login", "/loginProc", "/joinProc", "/join", "/user/exists", "/user/joinProc", "/user/sendemail").permitAll()
                         .requestMatchers("/resources/**", "/css/**", "/js/**", "/static/**", "/img/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
@@ -103,4 +103,5 @@ public class SecurityConfig {
             return new RequestEntity<>(formParameters, headers, HttpMethod.POST, URI.create(authorizationCodeGrantRequest.getClientRegistration().getProviderDetails().getTokenUri()));
         }
     }
+
 }

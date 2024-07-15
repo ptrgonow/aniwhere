@@ -70,9 +70,9 @@ public class HomeService {
                     if (attributes.containsKey("response")) { // Naver
                         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
                         userId = (String) response.get("id");
-                    } else if (attributes.containsKey("kakao_account")) { // Kakao
-                        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
-                        userId = (String) kakaoAccount.get("email");
+                    } else if (attributes.containsKey("kakao_account")) {// Kakao
+                        Map<String, Object> kkoAttributes = oauthUser.getAttributes();
+                        userId = String.valueOf(kkoAttributes.get("id"));
                     } else { // Other providers
                         userId = oauthUser.getAttribute("sub");
                     }

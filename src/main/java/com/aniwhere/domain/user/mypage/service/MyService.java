@@ -3,7 +3,6 @@ package com.aniwhere.domain.user.mypage.service;
 import com.aniwhere.domain.route.dto.MarkerDTO;
 import com.aniwhere.domain.route.dto.RouteDTO;
 import com.aniwhere.domain.route.mapper.RouteMapper;
-import com.aniwhere.domain.route.service.RouteService;
 import com.aniwhere.domain.user.mapper.UserMapper;
 import com.aniwhere.domain.user.mypage.domain.UserDetail;
 import com.aniwhere.domain.user.mypage.dto.UpdateDetailDTO;
@@ -28,14 +27,12 @@ public class MyService {
 
     public UserDetail getUserDetailByUserId(String userId) {
         UserDetailDTO userDetail = userMapper.detailByUserId(userId);
-
         return convertToDomain(userDetail);
     }
 
     public UserDetail convertToDomain(UserDetailDTO userDetail){
 
         UserDetail detailDto = new UserDetail();
-        detailDto.setId(userDetail.getId());
         detailDto.setUserId(userDetail.getUserId());
         detailDto.setUserPwd(passwordEncoder.encode(userDetail.getUserPwd()));
         detailDto.setUserName(userDetail.getUserName());
@@ -48,6 +45,12 @@ public class MyService {
         return detailDto;
     }
 
+    // 로그인 방식(소셜) 확인
+    public boolean isSocialUser(String userId) {
+        Integer isSocial = userMapper.getIsSocialByUserId(userId);
+        return isSocial != null && isSocial == 1;
+    }
+
     public boolean checkPassword(String userId, String userPwd) {
         UserDetailDTO userDetailDTO = userMapper.detailByUserId(userId);
         if (userDetailDTO != null) {
@@ -58,8 +61,16 @@ public class MyService {
 
     @Transactional
     public boolean updateUser(UpdateDetailDTO userDetailDTO) {
-
         UserDetailDTO currentUserDetail = userMapper.detailByUserId(userDetailDTO.getUserId());
+
+        // 새로운 비밀번호가 입력되었는지 확인
+        if (userDetailDTO.getNewUserPwd() != null && !userDetailDTO.getNewUserPwd().isEmpty()) {
+            String encodedPassword = passwordEncoder.encode(userDetailDTO.getNewUserPwd());
+            userDetailDTO.setUserPwd(encodedPassword);
+        } else {
+            // 기존 비밀번호를 유지
+            userDetailDTO.setUserPwd(currentUserDetail.getUserPwd());
+        }
 
         UpdateDetailDTO updateDetail = new UpdateDetailDTO();
         updateDetail.setUserId(userDetailDTO.getUserId());
@@ -71,16 +82,24 @@ public class MyService {
         updateDetail.setZipCode(userDetailDTO.getZipCode());
         updateDetail.setPhone(userDetailDTO.getPhone());
 
-        // 새로운 비밀번호가 입력되었는지 확인
-        if (updateDetail.getNewUserPwd() != null && !updateDetail.getNewUserPwd().isEmpty()) {
-            String encodedPassword = passwordEncoder.encode(updateDetail.getNewUserPwd());
-            updateDetail.setUserPwd(encodedPassword);
-        } else {
-            // 기존 비밀번호를 유지
-            updateDetail.setUserPwd(currentUserDetail.getUserPwd());
-        }
+        return userMapper.updateUser(updateDetail) > 0;
+    }
 
-        return userMapper.updateUser(updateDetail);
+    // 이름, 핸드폰 중복 체크 로직
+    public boolean existsByName(String userName, String userId) {
+        return userMapper.existsByName(userName, userId);
+    }
+
+    public boolean existsByPhone(String phone, String userId){
+        return userMapper.existsByUserPhone(phone, userId);
+    }
+
+    public String getUserPhone(String userId) {
+        return userMapper.getUserPhone(userId);
+    }
+
+    public void deleteUser(String userId){
+        userMapper.deleteUser(userId);
     }
 
     public List<RouteDTO> selectRouteByUserId(String userId, int limit, int offset) {
