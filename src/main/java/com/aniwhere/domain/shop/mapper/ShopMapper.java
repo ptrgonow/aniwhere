@@ -22,19 +22,19 @@ public interface ShopMapper {
     @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category LIKE '%고양이%' and category not like '%강아지%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findCatProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category NOT LIKE '%강아지%' AND category NOT LIKE '%고양이%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category LIKE '%공용%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findOtherProducts(@Param("limit") int limit, @Param("offset") int offset);
 
     @Select("SELECT product_id AS productId, name AS name, image AS image, price AS price, detail_url AS detail_url, category AS category FROM product WHERE product_id = #{productId}")
     Product findProductById(Integer productId);
 
     @Insert("INSERT IGNORE INTO product(name, image, price, category) " +
-            "VALUES (#{name}, #{image}, #{price}, #{category3})")
+            "VALUES (#{name}, #{image}, #{price}, #{category})")
     @Options(useGeneratedKeys = true, keyProperty = "productId")
     void saveProduct(ProductDTO product);
 
     @Update("UPDATE product SET name = #{name}, image = #{image}, price = #{price}, " +
-            "category = #{category3} WHERE product_id = #{productId}")
+            "category = #{category} WHERE product_id = #{productId}")
     void updateProduct(ProductDTO product);
 
     @Delete("DELETE FROM product WHERE product_id = #{productId}")
@@ -47,7 +47,7 @@ public interface ShopMapper {
     String getProductPriceById(Integer productId);
 
     @Insert("INSERT INTO cart (user_id, product_id, quantity, total_price) VALUES (#{userId}, #{productId}, #{quantity}, #{totalPrice})")
-    void insertCartItem(Cart cart); // 새로운 메소드 추가
+    void insertCartItem(Cart cart);
 
     @Select("SELECT SUM(total_price) FROM cart WHERE user_id = #{userId} AND checked = 'Y'")
     Integer getTotalOrderPrice(String userId);
