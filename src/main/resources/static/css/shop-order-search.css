@@ -53,6 +53,7 @@ button:hover {
 
 /* Order List */
 .order-list {
+    color: #051922;
     text-align: center;
     margin-top: 20px;
 }
@@ -62,7 +63,6 @@ button:hover {
     font-size: 22px;
     margin-bottom: 20px;
 }
-
 
 #order-results {
     list-style: none;
@@ -109,26 +109,51 @@ button:hover {
 /* 아코디언 내용 */
 .accordion-body {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     gap: 20px;
+    position: relative;
 }
 
-.paragraph .paragraph1, .paragraph2 {
-    width: 50%;
+.paragraph1, .paragraph2 {
     text-align: left;
     margin-left: 50px;
 }
 
 .paragraph3 img {
-    max-width: 100%;
     height: auto;
     display: block;
     margin: auto;
 }
 
-.more-info{
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.left-column {
+    flex: 1;
+}
+
+.right-column {
+    flex: 1;
+    text-align: center;
+}
+
+.right-column img {
+    max-width: 100%;
+    height: auto;
+}
+
+.more-info {
     display: none;
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
+}
+
+.more-info-button {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
 }

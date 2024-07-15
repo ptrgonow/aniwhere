@@ -1,6 +1,6 @@
 $(document).ready(function () {
     initializeDateRangePicker();
-    //bindSearchButtonClick();
+    bindSearchButtonClick();
 });
 
 function initializeDateRangePicker() {
@@ -53,16 +53,20 @@ function searchOrders() {
     formData.append('startDate', startDate);
     formData.append('endDate', endDate);
 
-    ajaxGet('/api/order-images?' + formData.toString(), function(result){
+    ajaxGet('/api/order-images?' + formData.toString(), function(result) {
         if (!result.hjOrderDTOList || result.hjOrderDTOList.length === 0) {
             alert('검색 결과가 없습니다.');
         } else {
-            const $acoList = $('#aco-list'); // 여기서 변수 정의
-            $acoList.empty(); // 기존 내용을 지움
+            const $acoList = $('#aco-list');
+            $acoList.empty();
+
+            // 주문 목록을 order_id를 기준으로 그룹화
+            let groupedOrders = groupOrdersByOrderId(result.hjOrderDTOList);
 
             let content = '';
 
-            $.each(result.hjOrderDTOList, function(index, order) {
+            $.each(groupedOrders, function(orderId, orders) {
+                const order = orders[0]; // 같은 주문 ID는 동일한 정보를 가지므로 첫 번째 항목을 사용
                 const orderDate = new Date(order.order_date).toLocaleDateString('ko-KR', {
                     year: 'numeric',
                     month: 'long',
@@ -73,46 +77,63 @@ function searchOrders() {
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false">
-                                <div class="order-id">주문 ID: ${order.order_id}</div>
+                                <div class="order-id"><strong>주문 ID:</strong> ${order.order_id}</div>
                                 <div class="order-date"><strong>주문 날짜:</strong> ${orderDate}</div>
-                                
                             </button>
                         </h2>
                         <div class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                
-                                    <div class="accordion-body-more-info">
-                                        <div class="paragraph1">
-                                            <div class="product-name">제품명: ${order.product_name}</div>
-                                            <div class="product-id"><strong>제품 아이디:</strong>${order.product_id}</div>
-                                            
-                                        </div>
-                                        <div class="paragraph2">
-                                            <div class="order-status"><strong>상태:</strong> ${order.order_status}</div>
-                                            
-                                            <div class="order-quantity"><strong>수량:</strong> ${order.quantity}</div>
-                                            <div class="order-price"><strong>가격:</strong> ${order.price}</div>
-                                            
-                                            <button type="button" class="btn btn-link more-info-button">더 보기</button>
-                                            
-                                        </div>
-                                        <div class="paragraph3">
-                                            <img src="${order.product_image}" alt="상품 이미지">
-                                        </div>
-                                    </div>
-                                <div class="more-info">
-                                    
-                                </div>
+                            <div class="accordion-body">`;
+
+                // "더 보기" 버튼 추가 조건
+                if(orders.length > 1){
+                    content += `
+                        <button type="button" class="btn btn-link more-info-button" data-order-id="${order.order_id}">더 보기</button>`;
+                }else{
+                    content += `</div>
                             </div>
+                        </div>`;
+                }
+
+                // 각 주문에 연결된 product_id를 표시
+                $.each(orders, function(index, product) {
+                    content += `
+                        <div class="accordion-body-more-info">
+                            <div class="paragraph1">
+                                <div class="product-name">제품명: ${product.product_name}</div>
+                            </div>
+                            <div class="paragraph2">
+                                <div class="product-id"><strong>제품 아이디:</strong>${product.product_id}</div>
+                                <div class="order-status"><strong>상태:</strong> ${product.order_status}</div>
+                                <div class="order-quantity"><strong>수량:</strong> ${product.quantity}</div>
+                                <div class="order-price"><strong>가격:</strong> ${product.price}</div>
+                            </div>
+                            <div class="paragraph3">
+                                <img src="${product.product_image}" alt="상품 이미지">
+                            </div>
+                        </div>`;
+                });
+
+
+                content += `</div>
                         </div>
                     </div>`;
             });
 
-            $acoList.html(content); // 모든 항목을 한 번에 추가
-            initializeAccordionItems(); // 새로운 아코디언 항목 초기화
-            bindMoreInfoButtons(); // 더 보기 버튼에 이벤트 바인딩
+            $acoList.html(content);
+            initializeAccordionItems();
+            bindMoreInfoButtons(); // "더 보기" 버튼에 이벤트 바인딩
         }
     });
+}
+
+function groupOrdersByOrderId(orders) {
+    return orders.reduce((acc, order) => {
+        if (!acc[order.order_id]) {
+            acc[order.order_id] = [];
+        }
+        acc[order.order_id].push(order);
+        return acc;
+    }, {});
 }
 
 function initializeAccordionItems() {
@@ -120,10 +141,7 @@ function initializeAccordionItems() {
         const $button = $(item).find('.accordion-button');
         const $collapseDiv = $(item).find('.accordion-collapse');
 
-        // 고유한 id 생성
         const collapseId = `dynamicCollapse${index + 1}`;
-
-        // button과 collapseDiv에 id 및 data-bs-target 설정
         $button.attr('data-bs-target', `#${collapseId}`);
         $button.attr('aria-controls', collapseId);
         $collapseDiv.attr('id', collapseId);
@@ -131,43 +149,34 @@ function initializeAccordionItems() {
 }
 
 function bindMoreInfoButtons() {
-    $(document).on('click', '.more-info-button', function() {
-
+    $(document).on('click', '.more-info-button', function () {
         const $button = $(this);
-        const order_id = $button.data('order-id');
+        const order_id = $button.data('.order-id');
 
         const $accordionBody = $button.closest('.accordion-body');
         const $moreInfo = $accordionBody.find('.more-info');
 
         if ($moreInfo.is(':empty')) {
-            ajaxGet('/api/order-details?order_id=' + order_id, function (result){
-                if(result && result.length > 0) {
+            ajaxGet('/api/order-details?order_id=' + order_id, function(result) {
+                if (result && result.length > 0) {
                     let moreInfoContent = '';
-                    $.each(result, function (index, detail) {
+                    $.each(result, function(index, detail) {
                         moreInfoContent += `
                             <div class="accordion-body-more-info">
-                                <div class="paragraph1">
-                                    <div class="product-id"><strong>제품 아이디:</strong>${order.product_id}</div>
-                                    <div class="recipient-name"><strong>수령인 이름:</strong> ${order.recipient_name}</div>
-                                    <div class="recipient-email"><strong>수령인 이메일:</strong> ${order.recipient_email}</div>
-                                    <div class="recipient-phone"><strong>수령인 전화번호:</strong> ${order.recipient_phone}</div>
-                                </div>
+                            
                                 <div class="paragraph2">
-                                    <div class="order-status"><strong>상태:</strong> ${order.order_status}</div>
-                                    
-                                    <div class="order-quantity"><strong>수량:</strong> ${order.quantity}</div>
-                                    <div class="order-price"><strong>가격:</strong> ${order.price}</div>
-                                    
-                                    <button type="button" class="btn btn-link more-info-button">더 보기</button>
-                                    
+                                    <div class="product-id"><strong>제품 아이디:</strong>${product.product_id}</div>
+                                    <div class="order-status"><strong>상태:</strong> ${product.order_status}</div>
+                                    <div class="order-quantity"><strong>수량:</strong> ${product.quantity}</div>
+                                    <div class="order-price"><strong>가격:</strong> ${product.price}</div>
                                 </div>
                                 <div class="paragraph3">
-                                    <img src="${order.product_image}" alt="상품 이미지">
+                                    <img src="${product.product_image}" alt="상품 이미지">
                                 </div>
                             </div>`;
                     });
                     $moreInfo.html(moreInfoContent);
-                }else{
+                } else {
                     $moreInfo.html('<div>추가 정보가 없습니다.</div>');
                 }
             });
