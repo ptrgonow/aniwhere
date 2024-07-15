@@ -42,7 +42,6 @@
     cursor: pointer;
     top: 50%; /* 수직 중앙 정렬 */
     transform: translateY(-50%);
-    z-index: 1000;
     font-size: 1rem;
 }
 

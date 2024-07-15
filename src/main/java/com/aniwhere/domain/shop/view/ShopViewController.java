@@ -3,6 +3,7 @@ package com.aniwhere.domain.shop.view;
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.cart.service.CartService;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
+import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.service.ProductService;
@@ -87,16 +88,26 @@ public class ShopViewController {
     }
 
     @GetMapping("/checkout")
-    public String checkout(Model model){
-        String userId = homeService.getAuthenticatedUserId();
-        String userName = homeService.getAuthenticatedUserName();
-        UserDetailDTO user = orderMapper.detailByUserId(userId);
+    public String checkout(Model model, @RequestParam("orderId") String orderId){
+        try {
+            String userId = homeService.getAuthenticatedUserId();
+            String userName = homeService.getAuthenticatedUserName();
+            UserDetailDTO user = orderMapper.detailByUserId(userId);
 
+            List<OrderDTO> orderList = orderService.getOrderItemsById(userId, orderId);
 
+            model.addAttribute("name", userName);
+            model.addAttribute("userinfo", user);
+            model.addAttribute("orders", orderList);
 
-        model.addAttribute("name", userName);
-        model.addAttribute("userinfo", user);
-        return "animall/shop-checkout";
+            return "animall/shop-checkout";
+        } catch (Exception e) {
+            return "error/404-error";
+        }
+    }
+    @GetMapping("/success")
+    public String success(){
+        return "animall/shop-checkout-success";
     }
 
     @GetMapping("/summary")

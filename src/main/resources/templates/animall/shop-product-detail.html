@@ -4,69 +4,58 @@
 <link rel="stylesheet" href="/css/shop-product-detail.css">
 <body>
 <div class="breadcrumb-section breadcrumb-bg">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 offset-lg-2 text-center">
-				<div class="breadcrumb-text">
-					<p>우리 뽀뽀 사주고 싶다!</p>
-					<h1>AniMall</h1>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>우리 뽀뽀 사주고 싶다!</p>
+                    <h1>AniMall</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- single product -->
 <div class="single-product mt-150">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
                 <input type="hidden" id="product-id" th:value="${details.productId}">
                 <input type="hidden" id="userId" th:value="${userId}">
-				<div class="single-product-img">
-					<img th:src="${details.image}" alt="썸네일">
-				</div>
-			</div>
-			<div class="col-md-7">
-				<div class="info single-product-content">
-					<h3 th:text="${details.name.replaceAll('<[^>]*>', '')}">상 품 이 름</h3>
-					<div class="product-price">
-					<p class="single-product-pricing" th:text="${details.price}"></p>원
-					</div>
-					<div class="single-product-form">
-
-						<form action="#">
-							<input type="number" id="quantity" placeholder="수량을 입력하세요" min="1">
-							<div class="size-selector">
-								<select id="size">
-									<option value="" disabled selected>[필수] 옵션을 선택해 주세요</option>
-									<option value="S">Small</option>
-									<option value="M">Medium</option>
-									<option value="L">Large</option>
-								</select>
-							</div>
-						</form>
-						<div class="button-group">
-							<a href="#" class="purch-btn"><i class="fas fa-bolt"></i>  바로 구매  </a>
-							<a href="#" class="cart-btn cart-btn-emphasis-orange"><i class="fas fa-shopping-cart"></i>장바구니</a>
-						</div>
-
-						<div class="category-container">Categories:
-							<p th:text="${details.category}"></p>
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-	
-			<div id="product-detail" class="single-product-content product-detail">
+                <div class="single-product-img">
+                    <img th:src="${details.image}" alt="썸네일">
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="info single-product-content">
+                    <h3 th:text="${details.name.replaceAll('<[^>]*>', '')}">상 품 이 름</h3>
+                    <div class="product-price">
+                        <p class="single-product-pricing" th:text="${details.price}"></p>원
+                    </div>
+                    <div class="single-product-form">
+                        <input type="number" id="quantity" placeholder="수량을 입력하세요" min="1">
+                        <div class="button-group">
+                            <a href="#" class="purch-btn"><i class="fas fa-bolt"></i>  바로 구매  </a>
+                            <a href="#" id="add-cart" class="cart-btn cart-btn-emphasis-orange"><i class="fas fa-shopping-cart"></i>장바구니</a>
+                        </div>
+                        
+                        <div class="category-container">Categories:
+                            <p th:text="${details.category}"></p>
+                        </div>
+                    </div>
+                
+                </div>
+            
+            </div>
+            
+            <div id="product-detail" class="single-product-content product-detail">
                 <img th:src="${details.detail_url}" alt="제품 상세">
-			</div>
+            </div>
             <div class="more d-flex justify-content-center align-content-center">
                 <button id="toggle-button" class="more-btn"><i class="fas fa-chevron-down"></i></button>
             </div>
         </div>
-	</div>
+    </div>
 </div>
 <!-- end single product -->
 

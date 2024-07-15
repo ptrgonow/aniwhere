@@ -12,6 +12,13 @@ $(document).ready(function() {
         e.preventDefault();
         await saveReview(productId);
     });
+
+    $('#add-cart').on('click', function(e) {
+        e.preventDefault();
+        const quantity = $('#quantity').val();
+        addCart(productId, quantity);
+
+    });
 });
 
 function toggleDetails() {
@@ -67,8 +74,8 @@ function getAllReviews(productId) {
             }
 
             const reviewContent = $('<div class="review-content"></div>');
-            const userName = $('<h5 class="userName"></h5>').text(review.userName);
             const reviewRating = $('<div class="review-rating"></div>');
+            const userName = $('<h5 class="userName"></h5>').text(review.userName);
 
             for (let i = 1; i <= 5; i++) {
                 const star = $('<span class="star"></span>').attr('data-value', i);
@@ -91,7 +98,7 @@ function getAllReviews(productId) {
                 toggleEditState(reviewDiv, review, updateButton);
             });
 
-            reviewContent.append(reviewId, userName, reviewRating, reviewText, reviewCreatedAt);
+            reviewContent.append(reviewId, reviewRating, userName, reviewText, reviewCreatedAt);
 
             reviewDiv.append(reviewImg, reviewContent);
             reviewContainer.append(reviewDiv);
@@ -229,5 +236,17 @@ function checkReview(userId, productId) {
             console.log("Error checking review: ", error);
             reject(error);
         });
+    });
+}
+
+function addCart(productId, quantity) {
+    const url = "/cart/add/" + productId + "?quantity=" + quantity
+    callAjax(url, 'POST', null, function(data) {
+        alert('장바구니에 추가되었습니다.');
+        $('#quantity').val('');
+    }, function(error) {
+        alert('이미 장바구니에 추가된 상품입니다.');
+        window.location.href = '/shop/cart';
+
     });
 }

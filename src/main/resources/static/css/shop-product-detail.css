@@ -380,10 +380,16 @@ ul.product-share li a {
   display: flex;
   align-items: center;
   gap: 3rem;
+  margin-top: 25px;
+  border-bottom: 1px solid lightgray;
 }
 
 .review-img {
     width: 10%;
+}
+
+p.createAt {
+  margin-bottom: 15px;
 }
 
 .review-img img {
@@ -401,6 +407,7 @@ ul.product-share li a {
   float: left;
   flex-direction: row;
   justify-content: flex-start;
+  margin-bottom: 15px;
 }
 .review-rating .star {
   width: 25px;
