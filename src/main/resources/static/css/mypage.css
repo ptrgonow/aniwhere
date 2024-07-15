@@ -27,7 +27,7 @@
 .form-input{
     display: flex;
     width: 370px;
-    padding: 16px;
+    padding: 20px;
     border-radius: 7px;
     border: 0;
     margin: 15px;
@@ -37,6 +37,7 @@
     background: rgba(255, 255, 255, .95);
     color: #F28123;
     align-items: center;
+    position: relative;
 }
 
 .reg-form{
@@ -132,4 +133,41 @@
     align-items: center;
     font-size: 2rem;
     border: none;
+}
+
+.pwd-message{
+    display: none;
+    font-size: 0.7em;
+    margin-top: 5px;
+    position: absolute;
+    top: 70%;
+    left: 5%;
+}
+
+.name-message{
+    font-size: 0.7em;
+    margin-top: 5px;
+    position: absolute;
+    top: 65%;
+    left: 5%;
+}
+
+.phone-message{
+    font-size: 0.7em;
+    margin-top: 5px;
+    position: absolute;
+    top: 65%;
+    left: 5%;
+}
+
+.success{
+    color: green;
+}
+
+.error{
+    color: red;
+}
+
+.disabled-input {
+    color: lightgrey;
 }

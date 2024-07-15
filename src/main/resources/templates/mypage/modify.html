@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <div th:replace="~{include/header :: header}"></div>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet" href="/css/mypage.css">
 <input type="hidden" id="hiddenUserId" th:value="${userId}">
-<input type="hidden" id="hiddenUserPwd" th:value="${detail.userPwd}">
+<input type="hidden" id="hiddenUserName" th:value="${detail.userName}">
+<input type="hidden" id="hiddenUserPhone" th:value="${detail.phone}">
+<input type="hidden" id="hiddenSocial" th:value="${isSocial}">
+
 
 <body>
 <!-- breadcrumb-section -->
@@ -25,27 +29,25 @@
             <form id="joinForm" method="post" th:action="@{/mypage/update}">
                 <h3 class="reg-text"><span class="material-symbols-outlined">person_edit</span>내 정보 수정</h3>
                 <div class="modi-form">
-                    <div class="form-input">
-                        <label for="userId" class="reg-form">아이디</label>
-                        <input type="text" id="userId" name="userId" class="in-text" th:value="${detail.userId}" required>
-                    </div>
                     <div class="form-input" id="pwdForm">
                         <label for="userPwd" class="reg-form" id="nowPwd">현재 비밀번호</label>
                         <input type="password" id="userPwd" name="userPwd" class="in-text">
                         <button type="button" class="pwd-con" id="checkButton">확인</button>
                     </div>
-                    <p class="pwd-info">* 비밀번호를 변경하실 경우 현재 비밀번호를 입력하세요</p>
-                    <div class="form-input">
+                    <p class="pwd-info">* 내 정보를 변경하실 경우 현재 비밀번호를 입력하세요</p>
+                    <div class="form-input" th:if="${!isSocial}">
                         <label for="userPwd" class="reg-form" id="newPwd">변경할 비밀번호</label>
                         <input type="password" id="userNewPwd" name="userPwd" class="in-text">
                     </div>
-                    <div class="form-input" >
+                    <div class="form-input" th:if="${!isSocial}">
                         <label for="userPwd" class="reg-form" id="confirmPwd">변경할 비밀번호<br/> 확인</label>
                         <input type="password" id="confirmNewPwd" name="userPwd" class="in-text">
+                        <div id="pwd-message" class="pwd-message"></div>
                     </div>
                     <div class="form-input">
                         <label for="userName" class="reg-form">이름</label>
-                        <input type="text" id="userName" name="userName" class="in-text" th:value="${detail.userName}" required>
+                        <input type="text" id="userName" name="userName" class="in-text" th:value="${isSocial ? name : detail.userName}" required>
+                        <div id="name-message" class="name-message"></div>
                     </div>
                     <div class="form-input">
                         <label for="email" class="reg-form">이메일</label>
@@ -65,6 +67,7 @@
                     <div class="form-input">
                         <label for="phone" class="reg-form">휴대폰</label>
                         <input type="text" id="phone" name="phone" class="in-text" th:value="${detail.phone}" required>
+                        <div id="phone-message" class="phone-message"></div>
                     </div>
                     <div class="mypage-btn">
                         <button id="modi-btn" type="button" class="modi">수정완료</button>

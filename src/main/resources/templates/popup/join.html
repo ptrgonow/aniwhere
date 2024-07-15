@@ -36,8 +36,14 @@
                         </select>
                         <input type="text" id="email-domain-custom" name="email-domain-custom" class="in-text" style="display: none;">
                     </div>
-                    <button type="button" class="email-check">인증하기</button>
+                    <button type="button" class="email-check" onclick="sendAuthCode()">인증하기</button>
                     <span id="email-message" class="duplicate-message"></span>
+                </div>
+                <div class="form-input" id="auth-code-section" style="display: none;">
+                    <label for="auth-code" class="reg-form">인증 코드</label>
+                    <input type="text" id="auth-code" name="auth-code" class="in-text">
+                    <button type="button" onclick="verifyAuthCode()">인증 코드 확인</button>
+                    <span id="auth-code-message" class="duplicate-message"></span>
                 </div>
                 <div class="form-input">
                     <label for="address" class="reg-form">주소</label>
@@ -47,7 +53,7 @@
                         <input type="text" id="zipCode" name="zipCode" class="in-text" required>
                     </div>
                     <div class="address-buttons">
-                        <button type="button" id="searchAddress">주소검색</button>
+                        <button type="button" id="searchAddress" onclick="searchAdd()">주소검색</button>
                     </div>
                 </div>
                 <div class="form-input">
@@ -66,4 +72,5 @@
 </div>
 </body>
 <div th:replace="~{include/footer :: footer}"></div>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/join.js"></script>
