@@ -105,6 +105,10 @@ public class ShopViewController {
             return "error";
         }
     }
+    @GetMapping("/success")
+    public String success(){
+        return "animall/shop-checkout-success";
+    }
 
     @GetMapping("/summary")
     public String summary(){
