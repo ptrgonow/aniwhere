@@ -1,0 +1,16 @@
+.left-sidebar{
+    top: 70px;
+}
+
+ul.logout {
+    padding: 15px;
+}
+
+.logout a {
+    background: #CBD1EE;
+    border-radius: 10px;
+}
+
+.top-header-area{
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+}

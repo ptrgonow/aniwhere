@@ -1,0 +1,245 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f4f4f4;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+li {
+    list-style: none;
+}
+
+/* 공지사항 */
+.notice_box {
+    margin-top: 80px;
+    width: 100%;
+}
+
+.notice_title {
+    font-weight: normal;
+}
+
+/* 공지사항 타이틀 글씨 크기 조절 */
+.notice_title h2 {
+    text-align: center;
+    margin: 10px 10px;
+    font-size: 30px;
+}
+
+.notice_title hr {
+    margin: 0 auto 10px auto;
+    width: 7%;
+    color: #f28123;
+}
+
+.notice_content {
+    min-height: 500px;
+}
+
+.notice_content table {
+    margin: 60px auto;
+    width: 70%; /* 테이블 너비 조정 */
+    border-left: none;
+    font-size: 16px;
+    border-collapse: collapse; /* 테이블의 경계선을 겹치지 않게 처리 */
+}
+
+.notice_content table, th, td {
+    border: 1px solid darkgray;
+    border-right-style: none;
+    border-left-style: none;
+    box-sizing: border-box; /* 박스 크기 조정 */
+}
+
+.notice_content table th, .notice_content table td {
+    padding: 10px;
+    box-sizing: border-box; /* 박스 크기 조정 */
+}
+
+.notice_content table th {
+    background-color: #3f4e59;
+    border-top: 2px solid darkgray;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    cursor: text;
+}
+
+.notice_content table th:nth-child(2) {
+    width: 50%; /* 제목 열의 너비 조정 */
+}
+
+.notice_content table th:nth-child(3) {
+    width: 15%; /* 작성일 열의 너비 조정 */
+}
+
+.notice_content table td {
+    text-align: center;
+    padding: 20px;
+}
+
+.notice_content table td:nth-child(3) {
+    text-align: center; /* 작성일 열 가운데 정렬 */
+}
+
+.notice_content table tr:hover {
+    background-color: #e2e2e1;
+    cursor: pointer;
+}
+
+/* 검색 처리 */
+.search_area {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.search_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin-left: 5rem;
+    margin-top: 5rem;
+}
+
+.search_form input {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search_form button {
+    width: 70px;
+    height: 30px;
+    border: none;
+    background-color: #f28123;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search_form button:hover {
+    background-color: #ffd0af;
+}
+
+/* 글쓰기 버튼 */
+.notice_write_btn {
+    text-align: center;
+    display: flex;
+    justify-content: end;
+    width: 85%;
+}
+
+.notice_write_btn a {
+    padding: 10px 20px;
+    background-color: #f28123;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.notice_write_btn a:hover {
+    background-color: #ffd0af;
+    color: #ffffff;
+}
+
+/* a태그 제목 색상 검정으로 */
+.notice_content table td a {
+    color: black;
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.notice_content table td a:hover {
+    color: gray; /* 마우스 오버 시 색상 변경 */
+}
+
+/* 페이징 */
+.page_area {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.page_form {
+    display: inline-block;
+}
+
+.page_form a, .page_form span {
+    color: black;
+    margin: 0 5px;
+    padding: 10px 15px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #ddd; /* Added border */
+}
+
+.page_form a:hover {
+    background-color: #ffd0af;
+    color: white;
+}
+
+.page_form .active {
+    background-color: #f28123;
+    color: white;
+    border: 1px solid #f28123; /* Border for active state */
+}
+
+/* 테이블 스타일 보장 */
+.notice_content table {
+    margin: 60px auto;
+    width: 70%; /* 테이블 너비 조정 */
+    border-collapse: collapse; /* 테이블의 경계선을 겹치지 않게 처리 */
+}
+
+.notice_content table, th, td {
+    border: 1px solid darkgray;
+    border-right-style: none;
+    border-left-style: none;
+    box-sizing: border-box; /* 박스 크기 조정 */
+}
+
+.notice_content table th, .notice_content table td {
+    padding: 10px;
+    box-sizing: border-box; /* 박스 크기 조정 */
+}
+
+.notice_content table th {
+    background-color: #f28123;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* 헤더와 내용 셀 스타일 */
+.notice_content table td {
+    text-align: center; /* 기본 셀 텍스트 가운데 정렬 */
+}
+
+.notice_content table td:nth-child(3) {
+    text-align: center; /* 작성일 열 가운데 정렬 */
+}
+
+/* 강조 처리 */
+.notice_content table tr:hover {
+    background-color: #e2e2e1;
+    cursor: pointer;
+}

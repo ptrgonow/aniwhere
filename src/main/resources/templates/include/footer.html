@@ -1,42 +1,69 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="ko" th:fragment="footer">
 
-<footer class="footer">
-    <div class="footer_container">
-        <div class="footer_cont">
-            <p>LOGO img</p>
-            <p class="footer_info">상호 : 석민이와 아이들</p>
-            <p class="footer_info">대표 : 강석민</p>
-            <p class="footer_info">이메일 : aniwhere@naver.com</p>
-        </div>
-        <div class="footer_content">
-            <h4>ANIWHERE</h4>
-            <ul>
-                <li><a href="/route/cor">코스 등록</a></li>
-                <li><a href="/route/cor-list">코스 목록</a></li>
-                <li><a href="/route/runner">러너 목록</a></li>
-            </ul>
-        </div>
-        <div class="footer_content">
-            <h4 class="content_mall"><a href="#">ANIMALL</a></h4>
-        </div>
-        <div class="footer_content">
-            <h4>ANITALK</h4>
-            <ul>
-                <li><a href="/board/notice">공지사항</a></li>
-                <li><a href="/board/faq">FAQ</a></li>
-                <li><a href="/board/guide">이용안내</a></li>
-            </ul>
+<div class="footer">
+    <!-- footer -->
+    <div class="footer-area">
+        <div class="container">
+            <div class="row foot">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box about-widget">
+
+                        <h2 class="widget-title">About us</h2>
+                        <p>반려동물의 천국, 애니웨어(AniWhere)에 오신 것을 환영합니다! 애니웨어는 반려동물이 단순한 동물이 아닌, 소중한 가족 구성원이라고 믿습니다. 우리는 반려동물의 삶을 향상시키기 위해 최고의 제품과 탁월한 서비스를 제공하는 것을 사명으로 삼고 있습니다.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box get-in-touch">
+                        <h2 class="widget-title">Get in Touch</h2>
+                        <ul>
+                            <li>서울특별시 구로구 시흥대로 163길 33</li>
+                            <li>주호타워</li>
+                            <li>구트아카데미 2층, 3층</li>
+                            <li>Tel: 000-0000-0000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box pages">
+                        <h2 class="widget-title">Pages</h2>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/board/notice">Notice</a></li>
+                            <li><a href="/shop/main">Shop</a></li>
+                            <li><a href="/board/faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <p class="footer_copy"><i class="fa-regular fa-copyright"></i>2024 goott co.</p>
-</footer>
+    <!-- end footer -->
 
+    <!-- copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <p>Copyrights &copy; 2024 - <a href="/">SAMGANG</a>,  All Rights Reserved.</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- end copyright -->
+    
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.0.4/jquery.countdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/paginationjs@2.6.0/dist/pagination.min.js"></script>
+<script src="/js/jquery.meanmenu.min.js"></script>
+<!-- main js -->
+<script src="/js/main.js"></script>
 
-</body>
 </html>

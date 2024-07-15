@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<div th:replace="~{include/header :: header}"></div>
+<link rel="stylesheet" href="/css/shop-main.css">
+<input type="hidden" id="currentPage" th:value="${currentPage}">
+<input type="hidden" id="totalPages" th:value="${totalPages}">
+
+<body>
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>반려 동물 용품</p>
+                    <h1>AniMall</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- products -->
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+
+        <!-- 새로운 div 내의 독립적 버튼들 -->
+        <div class="col-md-12">
+            <div class="product-filters">
+                <ul>
+                    <li data-category="all">전체</li>
+                    <li data-category="dog">강아지</li>
+                    <li data-category="cat">고양이</li>
+                    <li data-category="others">공용</li>
+                </ul>
+            </div>
+        </div>
+        <div class="all category-container">
+            <div id="product-container" class="row product-lists">
+                <div th:each="product : ${products}" class="col-lg-4 col-md-6 text-center">
+
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a th:href="@{/shop/detail(id=${product.productId})}"><img th:src="${product.image}" alt="외부 이미지"></a>
+                        </div>
+                        <div class="product-details">
+                            <h3 th:text="${product.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
+                            <input type="hidden" class="productId" th:value="${product.productId}">
+                            <div class="product-price">
+                                <p th:text="${product.price}"></p>원
+                            </div>
+                        </div>
+                        <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div id="pagination-container-all" class="pagination-container"></div>
+        </div>
+        <div class="dog category-container">
+            <div id="product-container-dog" class="row dogs-lists">
+                <div th:each="dogs : ${dog}" class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a th:href="@{/shop/detail(id=${dogs.productId})}"><img th:src="${dogs.image}" alt="외부 이미지"></a>
+                        </div>
+                        <div class="product-details">
+                            <input type="hidden" class="productId" th:value="${dogs.productId}">
+                            <h3 th:text="${dogs.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
+                            <div class="product-price">
+                                <p th:text="${dogs.price}"></p>원
+                            </div>
+                        </div>
+                        <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div id="pagination-container-dog" class="pagination-container"></div>
+        </div>
+        <div class="cat category-container">
+            <div id="product-container-cat" class="row cat-lists">
+                <div th:each="cats : ${cat}" class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a th:href="@{/shop/detail(id=${cats.productId})}"><img th:src="${cats.image}" alt="외부 이미지"></a>
+                        </div>
+                        <div class="product-details">
+                            <input type="hidden" class="productId" th:value="${cats.productId}">
+                            <h3 th:text="${cats.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
+                            <div class="product-price">
+                                <p th:text="${cats.price}"></p>원
+                            </div>
+                        </div>
+                        <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div id="pagination-container-cat" class="pagination-container"></div>
+        </div>
+        <div class="others category-container">
+            <div id="product-container-other" class="row product-lists">
+                <div th:each="others : ${other}" class="col-lg-4 col-md-6 text-center">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a><img th:src="${others.image}" alt="외부 이미지"></a>
+                        </div>
+                        <div class="product-details">
+                            <input type="hidden" class="productId" th:value="${others.productId}">
+                            <h3 th:text="${others.name.replaceAll('<[^>]*>', '')}">상품 이름</h3>
+                            <div class="product-price">
+                                <p th:text="${others.price}"></p>원
+                            </div>
+                        </div>
+                        <a class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div id="pagination-container-other" class="pagination-container"></div>
+        </div>
+    </div>
+</div>
+
+<div class="scroll-buttons">
+    <button id="scroll-up" onclick="scrollToTop()">▲</button>
+    <button id="scroll-down" onclick="scrollToBottom()">▼</button>
+</div>
+
+<div th:replace="~{include/footer :: footer}"></div>
+<script src="/js/shop-main.js"></script>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        $(".cart-btn").click(function(event) {
+            event.preventDefault();
+
+            const $productItem = $(this).closest(".single-product-item");
+            const productId = $productItem.find(".product-details .productId").val(); // product-details 안의 #productId 선택
+
+            const quantity = 1;
+
+            $.ajax({
+                url: "/cart/add/" + productId + "?quantity=" + quantity,
+                type: "POST",
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(xhr, status, error) {
+                    alert("이미 장바구니에 존재하는 상품입니다");
+                }
+            });
+        });
+    });
+</script>
+
+

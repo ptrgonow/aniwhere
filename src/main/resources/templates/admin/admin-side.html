@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" th:fragment="side" >
+<!-- Sidebar Start -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav">
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">홈</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/admin/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                        <span class="hide-menu">대시보드</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">자세히보기</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/admin/products" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                        <span class="hide-menu">전체 상품</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/admin/orders" aria-expanded="false">
+                <span>
+                  <i class="ti ti-typography"></i>
+                </span>
+                        <span class="hide-menu">최근 판매내역</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/admin/member" aria-expanded="false">
+                <span>
+                  <i class="ti ti-user-plus"></i>
+                </span>
+                        <span class="hide-menu">회원관리</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/admin/mail" aria-expanded="false">
+                <span>
+                  <i class="ti ti-mail"></i>
+                </span>
+                        <span class="hide-menu">회원 메일 보내기</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="position-relative justify-content-end">
+            <ul class="goback">
+                <li>
+                    <a href="/" class="logout-link">
+                        <span>AniWhere로 돌아가기</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="logout">
+                <li>
+                    <a href="#" class="logout-link">
+                        <span>로그아웃</span>
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </nav>
+    </div>
+</aside>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<div th:replace="~{include/header :: header}"></div>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/route-list.css">
+<input type="hidden" th:value="${name}">
+<body>
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>함께 달려요</p>
+                    <h1>AniWhere</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <section class="card-container">
+        <div class="card-main" th:each="route : ${routes}">
+            <a class="card-link" th:href="@{/route/detail/{id}(id=${route.id})}"></a>
+            <div class="card-img">
+                <img th:src="${route.image}" alt="Route Image"/>
+            </div>
+            <div class="card-content">
+                <h3 th:text="${route.name}"></h3>
+                <h5 th:text="${route.userName}"></h5>
+                <p th:text="${route.description}"></p>
+                <div class="card-date">
+                    <span th:text="${#temporals.format(route.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <a th:href="@{/route/list(offset=${offset - limit < 0 ? 0 : offset - limit}, limit=${limit})}" th:if="${currentPage > 1}"><i class="fa fa-angle-left"></i></a>
+            <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{/route/list(offset=${(i - 1) * limit}, limit=${limit})}" th:text="${i}" th:classappend="${i == currentPage} ? 'current' : ''"></a>
+        </span>
+            <a th:href="@{/route/list(offset=${offset + limit}, limit=${limit})}" th:if="${currentPage < totalPages}"><i class="fa fa-angle-right"></i></a>
+        </div>
+    </section>
+    
+</div>
+</body>
+
+
+
+
+<div th:replace="~{include/footer :: footer}"></div>
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
+

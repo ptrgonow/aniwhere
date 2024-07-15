@@ -1,0 +1,173 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+.page-wrapper{
+    margin-bottom: 85px;
+}
+
+.reg-text{
+    justify-content: center;
+    gap: 7px;
+    align-items: center;
+    display: flex;
+    margin-left: 15px;
+    color: #07212e;
+}
+
+.material-symbols-outlined {
+    font-size: 4rem;
+    color: #07212e;
+}
+
+.modi-form{
+    border: 2px solid #F28123;
+    padding-bottom: 20px;
+}
+
+.form-input{
+    display: flex;
+    width: 370px;
+    padding: 20px;
+    border-radius: 7px;
+    border: 0;
+    margin: 15px;
+    font-size: 1rem;
+    height: auto;
+    outline-color: rgba(0, 0, 0, 0);
+    background: rgba(255, 255, 255, .95);
+    color: #F28123;
+    align-items: center;
+    position: relative;
+}
+
+.reg-form{
+    width: 110px;
+    display: inline-block;
+}
+
+.in-text{
+    border: none;
+    background-color: #e2e2e1;
+}
+
+#pwdForm{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.pwd-info{
+    font-size: 0.7rem;
+    color: #E74C3C;
+    margin-left: 15px;
+    padding-left: 16px;
+    background-color: white;
+    margin-right: 16px;
+}
+
+.pwd-con{
+    margin-left: 10px;
+    color: #07212e;
+    background-color: #FFFFFF;
+    border: 1px solid #07212e;
+    padding: 5px;
+}
+
+.address-inputs {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.address-inputs .in-text {
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.address-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.address-buttons button {
+    height: calc(3 * 54px / 3);
+    white-space: nowrap;
+    color: #FFFFFF;
+    background-color: #07212e;
+    border: none;
+    font-size: 1rem;
+}
+
+.form-input-address{
+    height: auto;
+}
+
+#modi-btn, #del-btn{
+    justify-content: center;
+    background-color: #07212e;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+#del-btn{
+    background-color: #E74C3C;
+}
+
+.mypage-btn{
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+}
+
+#nowPwd, #newPwd, #confirmPwd{
+    font-size: 1rem;
+}
+
+#check-icon{
+    color: #0ea78b;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    border: none;
+}
+
+.pwd-message{
+    display: none;
+    font-size: 0.7em;
+    margin-top: 5px;
+    position: absolute;
+    top: 70%;
+    left: 5%;
+}
+
+.name-message{
+    font-size: 0.7em;
+    margin-top: 5px;
+    position: absolute;
+    top: 65%;
+    left: 5%;
+}
+
+.phone-message{
+    font-size: 0.7em;
+    margin-top: 5px;
+    position: absolute;
+    top: 65%;
+    left: 5%;
+}
+
+.success{
+    color: green;
+}
+
+.error{
+    color: red;
+}
+
+.disabled-input {
+    color: lightgrey;
+}

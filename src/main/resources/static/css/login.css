@@ -1,0 +1,112 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+
+
+[class*="entypo-"]:before {
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+}
+
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+h2 {
+    color: #F28123;
+    margin-left:12px;
+}
+
+body {
+    background-image: url(../img/d6.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+
+}
+
+.join {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form {
+    position:relative;
+    width: 380px;
+    height: 25%;
+}
+
+.user, .pass {
+    padding: 16px;
+    border-radius:7px;
+    border:0;
+    display: block;
+    margin: 15px;
+    width: 300px;
+    font-size:18px;
+    height: 54px;
+    outline-color: rgba(0,0,0,0);
+    background: rgba(255,255,255,.95);
+    color: #F28123;
+}
+
+.submit {
+    float:right;
+    height: 121px;
+    width: 50px;
+    border: 0;
+    background: #F28123;
+    border-radius:7px;
+    padding: 10px;
+    color:white;
+    font-size:22px;
+}
+
+.inputUserIcon {
+    position:absolute;
+    top:68px;
+    right: 80px;
+    color: #F28123;
+}
+
+.inputPassIcon {
+    position:absolute;
+    top:136px;
+    right: 80px;
+    color: #F28123;
+}
+
+.user:focus::-webkit-input-placeholder,
+.pass:focus::-webkit-input-placeholder {
+    color: #F28123;
+}
+
+.social-login {
+    width: 380px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn-social-login {
+    transition: all .2s;
+    outline: 0;
+    border: 1px solid transparent;
+    padding: .5rem !important;
+    border-radius: 50%;
+    color: #fff;
+}
+.btn-social-login:focus {
+    box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+.text-dark {
+    color: #343a40!important;
+    display: flex;
+}

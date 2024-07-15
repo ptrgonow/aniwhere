@@ -1,0 +1,182 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+li {
+    list-style: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+h2 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+span {
+    position: static; /* 기본 값으로 초기화, 필요에 따라 수정 */
+}
+
+span:before, span:after {
+    content: none; /* 가상 요소 제거 */
+    position: static; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    height: auto; /* 기본 값으로 초기화 */
+    bottom: auto; /* 기본 값으로 초기화 */
+    margin-top: 0; /* 기본 값으로 초기화 */
+    background: none; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+span:hover:before, span:hover:after {
+    background: none; /* 기본 값으로 초기화 */
+    width: auto; /* 기본 값으로 초기화 */
+    transition: none; /* 기본 값으로 초기화 */
+}
+
+.guide-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 5rem auto;
+
+}
+
+.image-container {
+    position: relative;
+    width: 70%;
+    border-radius: 10px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    display: flex;
+}
+
+.tc {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.tc.n1, .tc.n3, .tc.n5 {
+    color: #8b8e91;
+}
+
+.image-container.p1 img,
+.image-container.p2 img,
+.image-container.p3 img,
+.image-container.p4 img {
+    opacity: 0.6;
+    transition: opacity 1s;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* 이미지에 호버 시 페이드인 효과 적용 */
+.image-container.p1:hover img,
+.image-container.p2:hover img,
+.image-container.p3:hover img,
+.image-container.p4:hover img {
+    opacity: 1; /* 불투명 */
+}
+
+/* 스크롤 코스 추가 버튼 */
+.walk_add img {
+    width: 70px;
+    height: 70px;
+}
+
+#walk_add_btn {
+    right: 2%;
+    position: absolute;
+    top: 85%;
+    z-index: 10;
+    border-radius: 20px;
+
+}
+
+.tc.n7 {
+    margin-bottom: 2rem;
+}
+
+/* Create a Course 코스 등록 버튼 채워지는 효과 */
+.lastBtn {
+    border-radius: 20px;
+    padding: 30px;
+    background: transparent;
+    text-transform: uppercase;
+    position: relative;
+    transition: background-color 0.4s, color 0.4s;
+    overflow: hidden;
+    z-index: 1;
+    color: #f28123;
+    font-weight: 1000; /* 글씨를 굵게 만듦 */
+    border: 2px solid #f28123; /* 기본 테두리 추가 */
+
+}
+
+.lastBtn:focus {
+    outline: none;
+}
+
+.lastBtn:hover {
+    background-color: #f28123;
+    color: #fff;
+}
+
+
+
+/* 이용안내 */
+
+.notice_box {
+    width: 100%;
+}
+
+.notice_title {
+    margin-top: 80px;
+    font-weight: normal;
+}
+
+.notice_title h2 {
+    text-align: center;
+    margin: 10px 10px;
+    font-size: 30px;
+}
+
+.notice_title hr {
+    margin: 0 auto 10px auto;
+    width: 7%;
+    color: #f28123;
+}
+
+/* 커서 색깔 변경 */
+.color-change {
+    width: 70px;
+    height: 70px;
+    filter: sepia(1) saturate(5000%) hue-rotate(25deg) brightness(5);
+}

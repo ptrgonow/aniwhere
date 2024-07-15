@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<div th:replace="~{include/header :: header}"></div>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/route-create.css">
+<input type="hidden" id="routeId" th:value="${routeDetail.id}">
+<input type="hidden" id="userId" th:value="${id}">
+<body>
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>코스 상세보기</p>
+                    <h1>AniWhere</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div class="container">
+    
+    <div class="container">
+        <form id="routeForm" method="post" th:action="@{/mypage/updateroute/{id}(id=${routeDetail.id})}">
+            <div class="route-main col-lg-12">
+                <div class="col-lg-8">
+                    <div id="map"></div>
+                </div>
+                <div class="route-input col-lg-4">
+                    <div class="d-info">
+                        <div class="total-d"></div>
+                        <div class="directions-info"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="routeName">경로 이름</label>
+                        <input type="text" class="form-control" id="routeName" placeholder="경로 이름을 입력하세요" th:value="${routeDetail.name}">
+                    </div>
+                    <div class="form-group">
+                        <label for="routeDescription">경로 설명</label>
+                        <textarea class="form-control" id="routeDescription" rows="3" placeholder="경로 설명을 입력하세요" th:text="${routeDetail.description}"></textarea>
+                    </div>
+                    <button id="modiRoute" type="button" class="btn btn-primary">수정 완료</button>
+                    <button id="previous-step" type="button" class="btn btn-success">이전 경로 삭제</button>
+                    <button id="back" type="button" class="btn btn-warning">코스 전체 보기</button>
+                    <button id="routeDel" type="button" class="btn btn-danger">코스 삭제</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<div th:replace="~{include/footer :: footer}"></div>
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/route-create.js"></script>
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<div th:replace="~{include/header :: header}"></div>
+<link rel="stylesheet" href="/css/notice-detail.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="role" th:content="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+<body>
+
+
+
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>AniTalk</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- 공지사항 상세 내용 -->
+<div class="detail_area">
+
+    <hr class="area_hr" />
+    <div class="detail_container">
+        <div class="detail_title">
+            <!-- 제목 -->
+            <h3 th:text="${notice.title}">공지사항 제목</h3>
+            <div class="detail_info">
+                <!-- 작성일 -->
+                <p class="info_head">작성일</p>
+                <p class="info_body" th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}">2024-07-08</p>
+                <!-- 조회수 -->
+                <p class="info_head">조회수</p>
+                <p class="info_body" th:text="${notice.hit}">0</p>
+            </div>
+            <hr />
+        </div>
+        <!-- 상세 내용 -->
+        <div class="detail_content">
+            <p th:utext="${notice.content}">공지사항 내용</p>
+        </div>
+        <hr>
+        <!-- 수정 삭제 목록 버튼-->
+        <div class="button_container">
+            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                <a th:href="@{/board/notice-update(id=${notice.noticeId})}" class="button">수정</a>
+            </div>
+
+            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                <a href="#" id="delete-button" th:attr="data-id=${notice.noticeId}" class="button">삭제</a>
+            </div>
+
+            <div class="back_button">
+                <a th:href="@{/board/notice}" class="button">목록</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="~{include/footer :: footer}"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/notice-detail.js"></script> <!-- 여기에서 'notice.js'를 포함시키세요. -->
+</body>
+</html>
