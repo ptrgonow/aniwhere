@@ -34,6 +34,10 @@ public class OrderService {
         return orderMapper.getCheckedCartItemsByUserId(userId);
     }
 
+    public List<OrderDTO> getOrderItemsById(String userId, String orderId){
+        return orderMapper.getOrderItemsByUserId(userId, orderId);
+    }
+
     @Transactional
     public void saveOrder(OrderPreDTO orderPreDTO, List<OrderDetailDTO> products) {
 
