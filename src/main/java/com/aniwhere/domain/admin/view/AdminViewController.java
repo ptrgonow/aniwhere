@@ -52,4 +52,12 @@ public class AdminViewController {
 
         return "admin/admin-member";
     }
+
+    @GetMapping("/mail")
+    public String mail(Model model) {
+        String userName = homeService.getAuthenticatedUserName();
+        model.addAttribute("name", userName);
+        return "admin/admin-mail";
+    }
+
 }

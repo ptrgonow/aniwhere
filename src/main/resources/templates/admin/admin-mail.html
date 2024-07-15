@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="/css/admin-mail.css">
+    <meta charset="UTF-8">
+    <title>회원 메일 보내기</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<!-- CKEditor 4 CDN -->
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<body>
+
+<div th:replace="~{admin/admin-side :: side}"></div>
+
+<div class="main-wrapper">
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="NtWrite">
+                <h3>회원 메일 보내기</h3>
+            </div>
+
+            <div class="card-body-inner">
+                <form id="mail-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="title-input" placeholder="제목을 입력하세요" name="title" required>
+                    </div>
+
+                    <div id="editor-container">
+                        <textarea name="content" id="editor" required></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="NtBtn1">등록</button>
+                        <a href="/admin/dashboard" class="NtBtn2">목록</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/dashboard.js"></script>
+<script src="/js/admin-mail.js"></script>
+</body>
+</html>

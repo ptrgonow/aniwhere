@@ -31,12 +31,24 @@ document.addEventListener('DOMContentLoaded', function () {
             const row = tableBody.insertRow();
             const rowNumber = (noticeData.length - (start + index)); // 역순 번호 계산
             row.innerHTML = `
-                <td>${rowNumber}</td>
-                <td><a href="/board/notice-detail?id=${item.noticeId}">${item.title}</a></td>
-                <td class="date">${formatDate(item.createdAt)}</td>
-                <td>${item.hit}</td>
-            `;
+        <td>${rowNumber}</td>
+        <td><a href="/board/notice-detail?id=${item.noticeId}">${item.title}</a></td>
+        <td class="date">${formatDate(item.createdAt)}</td>
+        <td>${item.hit}</td>
+    `;
+
+            // 행 클릭 이벤트 추가
+            row.addEventListener('click', () => {
+                window.location.href = `/board/notice-detail?id=${item.noticeId}`;
+            });
+
+            // 링크에 클릭 이벤트 버블링 막기
+            const link = row.querySelector('a');
+            link.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
         }
+
     }
 
     function setupPagination(noticeData) {
