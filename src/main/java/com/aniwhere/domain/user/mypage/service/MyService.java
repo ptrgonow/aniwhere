@@ -27,14 +27,12 @@ public class MyService {
 
     public UserDetail getUserDetailByUserId(String userId) {
         UserDetailDTO userDetail = userMapper.detailByUserId(userId);
-
         return convertToDomain(userDetail);
     }
 
     public UserDetail convertToDomain(UserDetailDTO userDetail){
 
         UserDetail detailDto = new UserDetail();
-        detailDto.setId(userDetail.getId());
         detailDto.setUserId(userDetail.getUserId());
         detailDto.setUserPwd(passwordEncoder.encode(userDetail.getUserPwd()));
         detailDto.setUserName(userDetail.getUserName());

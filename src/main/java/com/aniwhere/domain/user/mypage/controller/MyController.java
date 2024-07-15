@@ -33,6 +33,7 @@ public class MyController {
     public String my(Model model) {
 
         String userId = homeService.getAuthenticatedUserId();
+        System.out.println("userId: " + userId);
         UserDetail userDetail = myService.getUserDetailByUserId(userId);
         boolean isSocial = myService.isSocialUser(userId);
 

@@ -45,7 +45,7 @@ public interface UserMapper {
      @Select("SELECT is_social FROM user WHERE user_id = #{userId}")
      Integer getIsSocialByUserId(String userId);
 
-     @Select("SELECT id, user_id AS userId, user_pwd AS userPwd, user_name AS userName, email, address, detail_address AS detailAddress, zip_code AS zipCode, phone " +
+     @Select("SELECT user_id AS userId, user_pwd AS userPwd, user_name AS userName, email, address, detail_address AS detailAddress, zip_code AS zipCode, phone " +
              "FROM user WHERE user_id = #{userId}")
      UserDetailDTO detailByUserId(@Param("userId") String userId);
 

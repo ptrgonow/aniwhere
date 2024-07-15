@@ -175,49 +175,16 @@ p:last-child {
     width: 50px;
 }
 
-.circle {
-    width: 8vmax;
-    height: 8vmax;
-    border-right: 4px solid #000;
-    border-radius: 50%;
-    -webkit-animation: spinRight 800ms linear infinite;
-    animation: spinRight 800ms linear infinite;
+nav.main-menu ul ul.sub-menu li a.logout {
+    color: #ff3535;
 }
 
-.circle:before {
-    content: '';
-    width: 6vmax;
-    height: 6vmax;
-    display: block;
-    position: absolute;
-    top: calc(50% - 3vmax);
-    left: calc(50% - 3vmax);
-    border-left: 3px solid #F28123;
-    border-radius: 100%;
-    -webkit-animation: spinLeft 800ms linear infinite;
-    animation: spinLeft 800ms linear infinite;
+nav.main-menu ul ul.sub-menu li a.logout:hover {
+    color: red;
 }
 
-.circle:after {
-    content: '';
-    width: 6vmax;
-    height: 6vmax;
-    display: block;
-    position: absolute;
-    top: calc(50% - 3vmax);
-    left: calc(50% - 3vmax);
-    border-left: 3px solid #F28123;
-    border-radius: 100%;
-    -webkit-animation: spinLeft 800ms linear infinite;
-    animation: spinLeft 800ms linear infinite;
-    width: 4vmax;
-    height: 4vmax;
-    top: calc(50% - 2vmax);
-    left: calc(50% - 2vmax);
-    border: 0;
-    border-right: 2px solid #000;
-    -webkit-animation: none;
-    animation: none;
+.owl-nav, .owl-dots {
+    display: none;
 }
 
 @-webkit-keyframes spinLeft {
