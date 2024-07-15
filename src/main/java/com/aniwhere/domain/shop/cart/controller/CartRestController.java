@@ -26,7 +26,7 @@ public class CartRestController {
                                               @RequestParam Integer quantity) {
         String userId = homeService.getAuthenticatedUserId();
         cartService.addProductToCart(userId, productId, quantity);
-        return ResponseEntity.ok("Product added to cart successfully.");
+        return ResponseEntity.ok("장바구니에 상품이 추가되었습니다.");
     }
 
     @PostMapping("/update/{cartId}")
@@ -39,20 +39,20 @@ public class CartRestController {
     }
 
     @GetMapping("/total-price")
-    public ResponseEntity<Integer> getTotalOrderPrice(Authentication authentication) {
-        String userId = authentication.getName();
+    public ResponseEntity<Integer> getTotalOrderPrice() {
+        String userId = homeService.getAuthenticatedUserId();
         Integer totalOrderPrice = cartService.getTotalOrderPrice(userId);
         return ResponseEntity.ok(totalOrderPrice);
     }
 
     @PostMapping("/update/{cartId}/checked")
-    public ResponseEntity<?> updateCartItemChecked(@PathVariable Integer cartId, @RequestBody Cart cart) { // @RequestParam 대신 @RequestBody 사용
+    public ResponseEntity<?> updateCartItemChecked(@PathVariable Integer cartId, @RequestBody Cart cart) {
         try {
             cartService.updateCartItemChecked(cartId, cart.getChecked());
             return ResponseEntity.ok(cartService.getCartItemById(cartId));
         } catch (Exception e) {
 
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update cart item checked status.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("장바구니 상품 체크 상태 변경에 실패했습니다.");
         }
     }
 
@@ -62,7 +62,7 @@ public class CartRestController {
             cartService.deleteCartItem(cartId);
             return ResponseEntity.ok("Cart item deleted successfully.");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete cart item.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("장바구니 상품 삭제에 실패했습니다.");
         }
     }
 }

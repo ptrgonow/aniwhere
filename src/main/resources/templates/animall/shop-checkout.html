@@ -40,9 +40,9 @@
                                     <p><input type="text" th:value="${userinfo.userName}" name="userName" readonly required></p>
                                     <p><input type="email" th:value="${userinfo.email}" name="email" readonly required></p>
                                     <p><input type="tel" th:value="${userinfo.phone}" name="phone" readonly required></p>
-                                    <p><input type="text" th:value="${userinfo.address}" name="address" readonly required></p>
-                                    <p><input type="text" th:value="${userinfo.detailAddress}" name="detailAddress" readonly required></p>
-                                    <p><input type="text" th:value="${userinfo.zipCode}" name="zipCode" readonly required></p>
+                                    <p><input type="text" th:value="${userinfo.address}" name="address" placeholder="우편번호" readonly required></p>
+                                    <p><input type="text" th:value="${userinfo.detailAddress}" name="detailAddress" placeholder="주소" readonly required></p>
+                                    <p><input type="text" th:value="${userinfo.zipCode}" name="zipCode" placeholder="상세주소" readonly required></p>
                                  </form>
                               </div>
                            </div>

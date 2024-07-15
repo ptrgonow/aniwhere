@@ -242,10 +242,11 @@ function checkReview(userId, productId) {
 function addCart(productId, quantity) {
     const url = "/cart/add/" + productId + "?quantity=" + quantity
     callAjax(url, 'POST', null, function(data) {
-        console.log("Added to cart: ", data);
         alert('장바구니에 추가되었습니다.');
         $('#quantity').val('');
     }, function(error) {
-        console.log("Error adding to cart: ", error);
+        alert('이미 장바구니에 추가된 상품입니다.');
+        window.location.href = '/shop/cart';
+
     });
 }

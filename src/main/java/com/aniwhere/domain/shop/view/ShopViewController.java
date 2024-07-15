@@ -102,7 +102,7 @@ public class ShopViewController {
 
             return "animall/shop-checkout";
         } catch (Exception e) {
-            return "error";
+            return "error/404-error";
         }
     }
 
