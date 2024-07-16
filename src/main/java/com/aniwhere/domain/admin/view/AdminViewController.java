@@ -5,7 +5,6 @@ import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,6 +72,12 @@ public class AdminViewController {
 
         return "admin/admin-member";
     }
+
+    @GetMapping("/admin-list")
+    public String adminList(Model model) {
+        return "admin/admin-admin-list";
+    }
+
 
     @GetMapping("/mail")
     public String mail(Model model) {
