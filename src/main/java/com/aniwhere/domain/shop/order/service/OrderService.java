@@ -1,16 +1,12 @@
 package com.aniwhere.domain.shop.order.service;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
-import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
-import com.aniwhere.domain.shop.order.dto.OrderTest;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
-import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,7 +60,9 @@ public class OrderService {
         orderMapper.updateOrderStatus(orderId, newStatus);
     }
 
-    public List<OrderDTO> lastOrder(String orderId) {
-        return orderMapper.getOrderHistory(orderId);
+    public void deleteFromCart(String userId){
+        orderMapper.deleteFromCart(userId);
     }
+
+
 }

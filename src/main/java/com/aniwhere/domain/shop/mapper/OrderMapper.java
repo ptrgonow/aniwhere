@@ -1,11 +1,9 @@
 package com.aniwhere.domain.shop.mapper;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
-import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
-import com.aniwhere.domain.shop.order.dto.OrderTest;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import org.apache.ibatis.annotations.*;
 
@@ -52,12 +50,7 @@ public interface OrderMapper {
             "VALUES (#{orderId}, #{productId}, #{quantity}, #{price})")
     void insertOrderItem(OrderDetailDTO orderItem);
 
-    @Select("SELECT os.order_id AS orderId, os.amount, os.order_date AS orderDate, os.recipient_name AS recipientName, " +
-            "od.product_id AS productId, od.quantity, od.price, p.name " +
-            "FROM order_success os " +
-            "JOIN order_detail od ON od.order_id = os.order_id " +
-            "JOIN product p ON od.product_id = p.product_id " +
-            "WHERE os.order_id = #{orderId}")
-    List<OrderDTO> getOrderHistory(@Param("orderId") String orderId);
+    @Delete("DELETE from cart where user_id = #{userId}")
+    void deleteFromCart(@Param("userId") String userId);
 
 }
