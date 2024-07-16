@@ -5,6 +5,7 @@ import com.aniwhere.domain.shop.order.domain.OrderHistory;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
+import com.aniwhere.domain.shop.order.dto.OrderTest;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import org.apache.ibatis.annotations.*;
 
@@ -41,7 +42,22 @@ public interface OrderMapper {
             "VALUES (#{orderId}, #{userId}, #{shippingAddress1},#{shippingAddress2},#{shippingAddress3}, #{amount}, #{recipientEmail}, #{recipientName}, #{recipientPhone}, #{orderRequest}) ")
     void insertOrder(OrderDTO orderDTO);
 
+    @Delete("DELETE FROM orders where order_id = #{orderId}")
+    void deleteOrder(OrderDTO orderDTO);
+
+    @Update("UPDATE order_success SET order_status = #{newStatus} WHERE order_id = #{orderId}")
+    void updateOrderStatus(@Param("orderId") String orderId, @Param("newStatus") String newStatus);
+
     @Insert("INSERT INTO order_detail (order_id, product_id, quantity, price) " +
             "VALUES (#{orderId}, #{productId}, #{quantity}, #{price})")
     void insertOrderItem(OrderDetailDTO orderItem);
+
+    @Select("SELECT os.order_id AS orderId, os.amount, os.order_date AS orderDate, os.recipient_name AS recipientName, " +
+            "od.product_id AS productId, od.quantity, od.price, p.name " +
+            "FROM order_success os " +
+            "JOIN order_detail od ON od.order_id = os.order_id " +
+            "JOIN product p ON od.product_id = p.product_id " +
+            "WHERE os.order_id = #{orderId}")
+    List<OrderDTO> getOrderHistory(@Param("orderId") String orderId);
+
 }

@@ -254,7 +254,7 @@
 			console.log(order)
 			$.ajax({
 				type: "POST",
-				url: "/orders/success",
+				url: "/orders/order",
 				contentType: "application/json",
 				data: JSON.stringify(order),
 				success: function (response) {
