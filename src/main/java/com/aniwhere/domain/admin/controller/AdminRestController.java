@@ -30,7 +30,6 @@ public class AdminRestController {
     }
 
 
-
     @PostMapping("/submit-mail")
     public Map<String, String> submitMail(@RequestBody MailDTO mailDTO) {
         Map<String, String> response = new HashMap<>();
@@ -44,15 +43,16 @@ public class AdminRestController {
         }
         return response;
     }
+
     @GetMapping("/member-empty")
     public ResponseEntity<Map<String, Object>> emptyMember(@RequestParam String type,
-                                           @RequestParam(defaultValue = "10") int limit,
-                                           @RequestParam(defaultValue = "0") int offset){
+                                                           @RequestParam(defaultValue = "10") int limit,
+                                                           @RequestParam(defaultValue = "0") int offset) {
         List<JoinDTO> members;
         int totalMember;
 
-        switch (type){
-            case "all" :
+        switch (type) {
+            case "all":
             default:
                 members = adminService.allMembers(limit, offset);
                 totalMember = adminService.memberCount();
@@ -78,7 +78,7 @@ public class AdminRestController {
 
         return ResponseEntity.ok(response);
     }
-}
+
 
     @GetMapping("/list/{orderId}")
     public ResponseEntity<?> getOrderDetails(@PathVariable String orderId) {
