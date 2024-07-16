@@ -1,6 +1,7 @@
 package com.aniwhere.domain.shop.mapper;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
+import com.aniwhere.domain.shop.order.dto.OrderSearchDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
@@ -47,6 +48,24 @@ public interface OrderMapper {
     @Delete("DELETE from cart where user_id = #{userId}")
     void deleteFromCart(@Param("userId") String userId);
 
+    @Select("SELECT os.order_id AS orderId, " +
+            "os.user_id AS userId, " +
+            "od.product_id AS productId, " +
+            "SUM(os.amount) AS totalAmount, " +
+            "SUM(od.quantity) AS totalQuantity, " +
+            "p.name AS productName, " +
+            "p.image AS image, " +
+            "os.order_status AS orderStatus, " +
+            "os.order_date AS orderDate " +
+            "FROM order_success os " +
+            "JOIN order_detail od ON os.order_id = od.order_id " +
+            "JOIN product p ON od.product_id = p.product_id " +
+            "WHERE os.user_id = #{userId} " +
+            "AND DATE(os.order_date) BETWEEN #{startDate} AND #{endDate} " +
+            "AND os.order_status = '결제 완료' " +
+            "GROUP BY os.order_id, os.user_id, od.product_id, p.name, os.order_status, os.order_date " +
+            "ORDER BY os.order_date DESC")
+    List<OrderSearchDTO> getOrderItemsByUserIdForDate(@Param("userId") String userId, @Param("startDate") String startDate, @Param("endDate") String endDate);
 
 
 }

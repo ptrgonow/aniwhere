@@ -1,6 +1,7 @@
 package com.aniwhere.domain.shop.order.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
+import com.aniwhere.domain.shop.order.dto.OrderSearchDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.shop.order.dto.OrderHistoryDTO;
 import com.aniwhere.domain.shop.order.service.OrderService;
@@ -60,6 +61,12 @@ public class OrderRestController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("주문 정보 저장 실패: " + e.getMessage());
         }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<OrderSearchDTO>> getOrderItemsById(@RequestParam String userId, @RequestParam String startDate, @RequestParam String endDate) {
+        List<OrderSearchDTO> searchItems = orderService.getOrderItemsByUserIdForDate(userId, startDate, endDate);
+        return ResponseEntity.ok(searchItems);
     }
 
 }

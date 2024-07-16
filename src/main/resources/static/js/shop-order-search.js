@@ -97,7 +97,7 @@ function searchOrders() {
                 // "더 보기" 버튼 추가 조건
                 if (orders.length > 1) {
                     content += `
-                        <div class="more-info" style="display: none">`;
+                        <div class="more-info">`;
 
                     // 나머지 제품 정보는 숨김 상태로 추가
                     for (let i = 1; i < orders.length; i++) {
@@ -126,7 +126,7 @@ function getProductContent(product) {
     return `
         <div class="accordion-body-more-info">
             <div class="paragraph1">
-                <div class="product-name">제품명: ${product.product_name}</div>
+                <div class="product-name">${product.product_name}</div>
             </div>
             <div class="paragraph2">
                 <div class="product-id"><strong>제품 아이디:</strong> ${product.product_id}</div>
@@ -163,27 +163,33 @@ function initializeAccordionItems() {
 }
 
 function bindMoreInfoButtons() {
-    $(document).on('click', '.more-info-button', function () {
+    $(document).on('click', '.more-info-button', function (e) {
+        e.stopPropagation(); // 이벤트 전파 중단
         const $button = $(this);
         const $moreInfo = $button.siblings('.more-info');
 
         if ($button.text() === '더 보기') {
-            $moreInfo.fadeToggle();
+            $moreInfo.css('height', 'auto'); // 콘텐츠 높이를 자동으로 설정
+            let autoHeight = $moreInfo.height(); // auto 높이를 계산
+            $moreInfo.height(0); // 높이를 0으로 설정
+            $moreInfo.stop().animate({ height: autoHeight }, 300); // 높이를 애니메이션으로 조정
             $button.text('접기');
         } else {
-            $moreInfo.fadeToggle();
+            $moreInfo.stop().animate({ height: 0 }, 300, function() {
+                $moreInfo.css('height', 'auto'); // 애니메이션 후 높이를 auto로 되돌림
+            });
             $button.text('더 보기');
         }
     });
 
-    // 아코디언 헤더를 클릭할 때, 첫 번째 제품만 표시
+    // 아코디언 헤더를 클릭할 때, 더 보기 상태인지 확인
     $(document).on('click', '.accordion-button', function () {
         const $accordionBody = $(this).closest('.accordion-item').find('.accordion-body');
         const $moreInfo = $accordionBody.find('.more-info');
 
         // 아코디언을 열 때, 더 보기 상태인지 확인
-        if (!$moreInfo.is(':visible')) {
-            $moreInfo.hide();
+        if ($moreInfo.is(':visible')) {
+            $moreInfo.css('height', '0');
             $(this).closest('.accordion-item').find('.more-info-button').text('더 보기');
         }
     });
