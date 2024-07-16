@@ -1,6 +1,7 @@
 package com.aniwhere.domain.admin.view;
 
 import com.aniwhere.domain.admin.service.AdminService;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
@@ -36,9 +37,20 @@ public class AdminViewController {
     }
 
     @GetMapping("/orders")
-    public String orders(Model model) {
+    public String orders(@RequestParam(defaultValue = "9") int limit, @RequestParam(defaultValue = "0") int offset, Model model) {
         String userName = homeService.getAuthenticatedUserName();
+        int totalRoutes = adminService.countOrders();
+        int currentPage = offset / limit + 1;
+        int totalPages = (int) Math.ceil((double) totalRoutes / limit);
+        List<OrderSucDTO> orders = adminService.allOrders(limit, offset);
+
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("limit", limit);
+        model.addAttribute("offset", offset);
         model.addAttribute("name", userName);
+        model.addAttribute("orders", orders);
+
         return "admin/admin-orders";
     }
 
@@ -68,5 +80,4 @@ public class AdminViewController {
         model.addAttribute("name", userName);
         return "admin/admin-mail";
     }
-
 }

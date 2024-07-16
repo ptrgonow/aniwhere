@@ -1,9 +1,10 @@
 package com.aniwhere.domain.admin.controller;
 
 import com.aniwhere.domain.admin.dto.MailDTO;
-
 import com.aniwhere.domain.admin.service.AdminService;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
+import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,26 +12,38 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController("adminRestController")
+@RequestMapping("/admin/dash")
 public class AdminRestController {
 
+    // private final AdminService adminService; - AdminService 클래스의 인스턴스를 주입받아 필드에 저장합니다.
+    // final로 선언되어 있어 변경할 수 없습니다.
+    //public AdminRestController(AdminService adminService) - 생성자를 통해 AdminService 인스턴스를 주입받습니다.
+    // 생성자 주입 방식은 Spring에서 의존성 주입을 할 때 일반적으로 사용하는 방식입니다.
     private final AdminService adminService;
 
     public AdminRestController(AdminService adminService) {
         this.adminService = adminService;
     }
 
+
+
     @PostMapping("/submit-mail")
-    public String submitMail(@RequestBody MailDTO mailDTO) {
+    public Map<String, String> submitMail(@RequestBody MailDTO mailDTO) {
+        Map<String, String> response = new HashMap<>();
         try {
-            adminService.saveMail(mailDTO); // 수정: adminService 인스턴스를 사용하여 메서드 호출
-            return "success"; // 성공 응답
+            adminService.saveMailAndSendToAllUsers(mailDTO);
+            response.put("status", "success");
         } catch (Exception e) {
             e.printStackTrace();
-            return "error"; // 오류 응답
+            response.put("status", "error");
+            response.put("message", e.getMessage());
         }
+        return response;
     }
-
     @GetMapping("/member-empty")
     public ResponseEntity<Map<String, Object>> emptyMember(@RequestParam String type,
                                            @RequestParam(defaultValue = "10") int limit,
@@ -67,4 +80,17 @@ public class AdminRestController {
     }
 }
 
+    @GetMapping("/list/{orderId}")
+    public ResponseEntity<?> getOrderDetails(@PathVariable String orderId) {
 
+        OrderSucDTO orderDTO = adminService.findOrderById(orderId);
+
+        List<OrderDetailDTO> orderDetailDTOs = adminService.findDetailsById(orderId);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("order", orderDTO);
+        response.put("orderDetails", orderDetailDTOs);
+
+        return ResponseEntity.ok(response);
+    }
+}
