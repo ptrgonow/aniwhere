@@ -89,7 +89,7 @@ $(document).ready(function() {
 
     const isValidUserId = () => /^[a-z0-9]{5,}$/.test(userIdInput.val());
     const isValidEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
-    const isValidPhone = (phone) => /^\d{11}$/.test(phone);
+    const isValidPhone = (phone) => /^\d{3}-\d{3,4}-\d{4}$/.test(phone);
     const isValidUserName = () => /^[가-힣]{2,}$/.test(userNameInput.val());
 
     const checkAllValid = () => {
@@ -107,6 +107,21 @@ $(document).ready(function() {
         }
     }
 
+    function formatPhoneNumber(phoneNumber) {
+        const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+        const match = cleaned.match(/^(\d{3})(\d{3,4})(\d{4})$/);
+        if (match) {
+            return match[1] + '-' + match[2] + '-' + match[3];
+        }
+        return phoneNumber;
+    }
+
+    phoneInput.on('input', function() {
+        const formattedPhoneNumber = formatPhoneNumber(phoneInput.val());
+        phoneInput.val(formattedPhoneNumber);
+        checkField("phone", phoneInput, isValidPhone);
+    });
+
     userIdInput.on("keyup", function() { checkField("userId", userIdInput, isValidUserId); });
     emailLocalInput.on("keyup", checkEmail);
     emailDomainSelect.on("change", checkEmail);
@@ -115,7 +130,7 @@ $(document).ready(function() {
     userNameInput.on("keyup", function() { checkField("userName", userNameInput, isValidUserName); });
 
     joinBtn.on('click', function() {
-        if (!checkAllValid()) {
+        if (!checkAllValid() || $('#auth-code-message').text() !== "인증 성공") {
             let errorMessage = "다시 입력해주세요.";
 
             if (!isValidUserId()) {
@@ -123,9 +138,11 @@ $(document).ready(function() {
             } else if (!isValidEmail(getEmail())) {
                 errorMessage = "올바른 이메일 형식이 아닙니다.";
             } else if (!isValidPhone(phoneInput.val())) {
-                errorMessage = "'-'를 제외한 숫자만 입력해주세요.";
+                errorMessage = "올바른 휴대폰 번호 형식이 아닙니다.";
             } else if (!isValidUserName()) {
                 errorMessage = "이름은 한글로 2글자 이상 입력해야 합니다.";
+            } else if ($('#auth-code-message').text() !== "인증 성공"){
+                errorMessage = "인증 확인 후 다시 시도해주시기 바랍니다.";
             }
 
             alert(errorMessage);
@@ -142,8 +159,6 @@ $(document).ready(function() {
             zipCode: $('#zipCode').val(),
             phone: phoneInput.val()
         };
-
-        console.log("Join data to be sent:", join); // 로그 추가
 
         $.ajax({
             type: 'POST',
@@ -212,7 +227,8 @@ function searchAdd() {
 }
 
 // 이메일 인증 코드 발송
-let sentAuthCode = "";
+let userEmail = "";
+let sentAuthCode = "";  // 서버로부터 받은 인증 코드를 저장할 변수
 
 function sendAuthCode() {
     const emailLocal = $('#email-local').val();
@@ -222,11 +238,13 @@ function sendAuthCode() {
     $.ajax({
         type: 'POST',
         url: '/user/sendemail',
-        data: { email: email },
-        success: function(authCode) {
+        contentType: 'application/json',
+        data: JSON.stringify({ email: email }),
+        success: function(response) {
             alert('인증 코드가 발송되었습니다.');
-            sentAuthCode = authCode; // 전송된 인증 코드를 저장
-            $('#auth-code-section').show(); // 인증 코드 입력 필드 표시
+            userEmail = email;
+            sentAuthCode = response;  // 서버로부터 받은 인증 코드를 저장
+            $('#auth-code-section').show();
         },
         error: function(error) {
             console.error('Error:', error);
@@ -237,11 +255,34 @@ function sendAuthCode() {
 
 function verifyAuthCode() {
     const inputAuthCode = $('#auth-code').val();
-    if (inputAuthCode === sentAuthCode) {
-        alert('인증이 성공적으로 완료되었습니다.');
-        $('#auth-code-message').text("인증 완료");
-    } else {
+
+    // 클라이언트 측 검증 로직 추가
+    if (inputAuthCode !== sentAuthCode) {
         alert('인증 코드가 올바르지 않습니다.');
         $('#auth-code-message').text("인증 실패");
+        return;
     }
+
+    $.ajax({
+        type: 'POST',
+        url: '/user/verifycode',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            email: userEmail,
+            authCode: inputAuthCode
+        }),
+        success: function(response) {
+            if (response) {
+                alert('인증이 성공적으로 완료되었습니다.');
+                $('#auth-code-message').text("인증 성공");
+            } else {
+                alert('인증 코드가 올바르지 않습니다.');
+                $('#auth-code-message').text("인증 실패");
+            }
+        },
+        error: function(error) {
+            console.error('Error:', error);
+            alert('인증 코드 확인에 실패했습니다.');
+        }
+    });
 }

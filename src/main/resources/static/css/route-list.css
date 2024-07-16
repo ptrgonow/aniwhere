@@ -27,6 +27,7 @@ body {
     height: 100%;
     background-color: #f5f5f5;
     gap: 1rem;
+    text-align: center;
 }
 
 .card-main {
@@ -136,4 +137,22 @@ body {
 
 .page a i.fa-angle-right {
     margin-left: 10px;
+}
+
+.route-cre-page{
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: #F28123;
+    text-align: center;
+    border: 1px solid #F28123;
+}
+
+.route-cre-page:hover{
+    color: #F28123;
+    background-color: #FFFFFF;
+    border: 1px solid #F28123;
+}
+
+.no-route{
+    margin-bottom: 40px;
 }
