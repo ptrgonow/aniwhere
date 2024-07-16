@@ -3,7 +3,7 @@ package com.aniwhere.domain.shop.view;
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.cart.service.CartService;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
-import com.aniwhere.domain.shop.order.dto.OrderDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.service.ProductService;
@@ -90,7 +90,7 @@ public class ShopViewController {
             String userName = homeService.getAuthenticatedUserName();
             UserDetailDTO user = orderMapper.detailByUserId(userId);
 
-            List<OrderDTO> orderList = orderService.getOrderItemsById(userId, orderId);
+            List<OrderSucDTO> orderList = orderService.getOrderItemsById(userId, orderId);
 
             model.addAttribute("name", userName);
             model.addAttribute("userinfo", user);

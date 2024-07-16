@@ -116,8 +116,6 @@ async function toss() {
     const widgets = tossPayments.widgets({
         customerKey,
     });
-    // 비회원 결제
-    // const widgets = tossPayments.widgets({ customerKey: TossPayments.ANONYMOUS });
 
     //주문의 결제 금액 설정
     await widgets.setAmount({
@@ -169,7 +167,7 @@ async function toss() {
                 success: function(response) {
                     widgets.requestPayment({
                         orderId: orderId,
-                        orderName: "토스 티셔츠 외 2건",
+                        orderName: "AniMall " + orderId,
                         successUrl: `${window.location.origin}/shop/success?customerEmail=${encodeURIComponent(customerEmail)}&customerMobilePhone=${encodeURIComponent(customerMobilePhone)}&customerName=${encodeURIComponent(customerName)}`,
                         failUrl: window.location.origin + "/fail.html",
                         customerEmail: customerEmail,

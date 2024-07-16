@@ -81,6 +81,25 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
 
+    $(".cart-btn").click(function(event) {
+        event.preventDefault();
+
+        const $productItem = $(this).closest(".single-product-item");
+        const productId = $productItem.find(".product-details .productId").val(); // product-details 안의 #productId 선택
+
+        const quantity = 1;
+
+        $.ajax({
+            url: "/cart/add/" + productId + "?quantity=" + quantity,
+            type: "POST",
+            success: function(response) {
+                alert(response);
+            },
+            error: function(xhr, status, error) {
+                alert("이미 장바구니에 존재하는 상품입니다");
+            }
+        });
+    });
 
 });
 
