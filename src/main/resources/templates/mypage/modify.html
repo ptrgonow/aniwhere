@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-input">
                         <label for="userName" class="reg-form">이름</label>
-                        <input type="text" id="userName" name="userName" class="in-text" th:value="${isSocial ? name : detail.userName}" required>
+                        <input type="text" id="userName" name="userName" maxlength="8" class="in-text" th:value="${isSocial ? name : detail.userName}" required>
                         <div id="name-message" class="name-message"></div>
                     </div>
                     <div class="form-input">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="form-input">
                         <label for="phone" class="reg-form">휴대폰</label>
-                        <input type="text" id="phone" name="phone" class="in-text" th:value="${detail.phone}" required>
+                        <input type="text" id="phone" name="phone" class="in-text" maxlength="13" th:value="${detail.phone}" required>
                         <div id="phone-message" class="phone-message"></div>
                     </div>
                     <div class="mypage-btn">

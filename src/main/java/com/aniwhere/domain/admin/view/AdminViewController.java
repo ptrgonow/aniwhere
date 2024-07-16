@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -42,13 +43,21 @@ public class AdminViewController {
     }
 
     @GetMapping("/member")
-    public String member(Model model) {
+    public String member(Model model, @RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "0") int offset) {
 
-        List<JoinDTO> members = adminService.allMembers();
+        List<JoinDTO> members = adminService.allMembers(limit, offset);
         String userName = homeService.getAuthenticatedUserName();
+
+        int totalRoutes = adminService.memberCount();
+        int currentPage = offset / limit + 1;
+        int totalPages = (int) Math.ceil((double) totalRoutes / limit);
 
         model.addAttribute("name", userName);
         model.addAttribute("members", members);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("limit", limit);
+        model.addAttribute("offset", offset);
 
         return "admin/admin-member";
     }

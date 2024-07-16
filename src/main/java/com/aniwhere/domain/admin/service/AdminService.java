@@ -48,8 +48,28 @@ public class AdminService {
         }
     }
 
-    public List<JoinDTO> allMembers() {
-        return List.of();
+    public List<JoinDTO> allMembers(int limit, int offset) {
+        return adminMapper.selectAllUsers(limit, offset);
+    }
+
+    public int memberCount(){
+        return adminMapper.userCount();
+    }
+
+    public List<JoinDTO> emptyAdressUsers(int limit, int offset){
+        return adminMapper.emptyAdressUsers(limit, offset);
+    }
+
+    public List<JoinDTO> emptyPhoneUsers(int limit, int offset){
+        return adminMapper.emptyPhoneUsers(limit, offset);
+    }
+
+    public int countAddUsers(){
+        return adminMapper.countEmptyAddressUsers();
+    }
+
+    public int countPhoneUsers(){
+        return adminMapper.countEmptyPhoneUsers();
     }
 
 
