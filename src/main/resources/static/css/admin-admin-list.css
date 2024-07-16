@@ -1,0 +1,98 @@
+.row {
+    --bs-gutter-x: 24px;
+    --bs-gutter-y: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-0.5 * var(--bs-gutter-x));
+    margin-left: calc(-0.5 * var(--bs-gutter-x))
+}
+
+.row>* {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    margin-top: var(--bs-gutter-y)
+}
+
+.join {
+    flex-direction: column;
+    align-items: center;
+}
+
+.reg-text {
+    align-items: center;
+    display: flex;
+    margin-left: 15px;
+    color: #F28123;
+}
+
+.form-input {
+    display: flex;
+    width: 470px;
+    padding: 16px;
+    border-radius: 7px;
+    border: 0;
+    margin: 15px;
+    font-size: 18px;
+    height: auto;
+    outline-color: rgba(0, 0, 0, 0);
+    background: rgba(255, 255, 255, .95);
+    color: #F28123;
+    align-items: center;
+    position: relative;
+    padding-bottom: 30px; /* Space for message */
+}
+
+.reg-form {
+    width: 80px;
+    display: inline-block;
+}
+
+.in-text {
+    border: none;
+    background-color: #e2e2e1;
+}
+
+
+.address-inputs {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 320px;
+}
+
+.address-inputs .in-text {
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.duplicate-message {
+    display: block;
+    font-size: 13px;
+    color: red;
+    margin-top: 5px;
+    position: absolute; /* Set to absolute positioning */
+    bottom: 0; /* Adjust to fit bottom padding */
+}
+
+#userId, #userPwd, #email, #phone, #userName, #email-local {
+    width: 320px;
+}
+
+.email-code {
+    color: #FFFFFF;
+    background-color: #F28123;
+    border: none;
+    width: 95px;
+    font-size: 1.1rem;
+    margin-left: 9px;
+}
