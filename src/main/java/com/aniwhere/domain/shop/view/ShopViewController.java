@@ -106,8 +106,8 @@ public class ShopViewController {
         }
     }
     @GetMapping("/success")
-    public String success(@RequestParam("userId") String userId){
-
+    public String success(){
+        String userId = homeService.getAuthenticatedUserId();
         orderService.deleteFromCart(userId);
 
         return "animall/shop-order-search";
