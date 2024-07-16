@@ -1,6 +1,7 @@
 package com.aniwhere.domain.user.join.controller;
 
 import com.aniwhere.domain.user.join.domain.Join;
+import com.aniwhere.domain.user.join.dto.MailCodeCheckDTO;
 import com.aniwhere.domain.user.join.service.JoinService;
 
 import com.aniwhere.domain.user.join.service.MailService;
@@ -8,6 +9,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 @RestController
@@ -17,6 +22,7 @@ public class JoinController {
 
     private final JoinService joinService;
     private final MailService mailService;
+    private final Map<String, String> authCodeStorage = new ConcurrentHashMap<>();
 
     @PostMapping("/joinProc")
     public ResponseEntity<String> joinProc(@RequestBody Join join) {
@@ -39,14 +45,17 @@ public class JoinController {
     }
 
     @PostMapping("/sendemail")
-    public String sendAuthCode(@RequestParam String email) {
-        try {
-            int num = mailService.sendEmail(email);
-            return "인증코드 발급 : " + num;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "이메일 전송 실패: " + e.getMessage();
-        }
+    public ResponseEntity<String> sendEmail(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String authCode = mailService.sendEmail(email);
+        return ResponseEntity.ok(authCode);
+    }
+
+    // 인증코드 확인
+    @PostMapping("/verifycode")
+    public ResponseEntity<Boolean> confirmEmail(@RequestBody MailCodeCheckDTO mailCodeCheckDTO) {
+        boolean result = mailService.confirmEmail(mailCodeCheckDTO);
+        return ResponseEntity.ok(result);
     }
 
 }
