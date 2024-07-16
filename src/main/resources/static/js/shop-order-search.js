@@ -63,9 +63,16 @@ function searchOrders() {
             // 주문 목록을 order_id를 기준으로 그룹화
             let groupedOrders = groupOrdersByOrderId(result.hjOrderDTOList);
 
+            // 주문 목록을 날짜 기준으로 정렬 (최근 날짜가 먼저)
+            groupedOrders = Object.entries(groupedOrders).sort((a, b) => {
+                const dateA = new Date(a[1][0].order_date);
+                const dateB = new Date(b[1][0].order_date);
+                return dateB - dateA; // 최근 날짜가 먼저 오도록 정렬
+            });
+
             let content = '';
 
-            $.each(groupedOrders, function(orderId, orders) {
+            $.each(groupedOrders, function(_, [orderId, orders]) {
                 const order = orders[0]; // 같은 주문 ID는 동일한 정보를 가지므로 첫 번째 항목을 사용
                 const orderDate = new Date(order.order_date).toLocaleDateString('ko-KR', {
                     year: 'numeric',
@@ -84,35 +91,52 @@ function searchOrders() {
                         <div class="accordion-collapse collapse">
                             <div class="accordion-body">`;
 
+                // 각 주문에 대해 첫 번째 제품 정보만 표시
+                const firstProduct = orders[0];
+                content += `
+                    <div class="accordion-body-more-info">
+                        <div class="paragraph1">
+                            <div class="product-name">제품명: ${firstProduct.product_name}</div>
+                        </div>
+                        <div class="paragraph2">
+                            <div class="product-id"><strong>제품 아이디:</strong> ${firstProduct.product_id}</div>
+                            <div class="order-status"><strong>상태:</strong> ${firstProduct.order_status}</div>
+                            <div class="order-quantity"><strong>수량:</strong> ${firstProduct.quantity}</div>
+                            <div class="order-price"><strong>가격:</strong> ${firstProduct.price}</div>
+                        </div>
+                        <div class="paragraph3">
+                            <img src="${firstProduct.product_image}" alt="상품 이미지">
+                        </div>
+                    </div>`;
+
                 // "더 보기" 버튼 추가 조건
-                if(orders.length > 1){
+                if (orders.length > 1) {
                     content += `
-                        <button type="button" class="btn btn-link more-info-button" data-order-id="${order.order_id}">더 보기</button>`;
-                }else{
-                    content += `</div>
-                            </div>
-                        </div>`;
+                        <button type="button" class="btn btn-link more-info-button" data-order-id="${order.order_id}">더 보기</button>
+                        <div class="more-info" style="display: none">`;
+
+                    // 나머지 제품 정보는 숨김 상태로 추가
+                    for (let i = 1; i < orders.length; i++) {
+                        const product = orders[i];
+                        content += `
+                            <div class="accordion-body-more-info">
+                                <div class="paragraph1">
+                                    <div class="product-name">제품명: ${product.product_name}</div>
+                                </div>
+                                <div class="paragraph2">
+                                    <div class="product-id"><strong>제품 아이디:</strong> ${product.product_id}</div>
+                                    <div class="order-status"><strong>상태:</strong> ${product.order_status}</div>
+                                    <div class="order-quantity"><strong>수량:</strong> ${product.quantity}</div>
+                                    <div class="order-price"><strong>가격:</strong> ${product.price}</div>
+                                </div>
+                                <div class="paragraph3">
+                                    <img src="${product.product_image}" alt="상품 이미지">
+                                </div>
+                            </div>`;
+                    }
+
+                    content += `</div>`; // .more-info 끝
                 }
-
-                // 각 주문에 연결된 product_id를 표시
-                $.each(orders, function(index, product) {
-                    content += `
-                        <div class="accordion-body-more-info">
-                            <div class="paragraph1">
-                                <div class="product-name">제품명: ${product.product_name}</div>
-                            </div>
-                            <div class="paragraph2">
-                                <div class="product-id"><strong>제품 아이디:</strong>${product.product_id}</div>
-                                <div class="order-status"><strong>상태:</strong> ${product.order_status}</div>
-                                <div class="order-quantity"><strong>수량:</strong> ${product.quantity}</div>
-                                <div class="order-price"><strong>가격:</strong> ${product.price}</div>
-                            </div>
-                            <div class="paragraph3">
-                                <img src="${product.product_image}" alt="상품 이미지">
-                            </div>
-                        </div>`;
-                });
-
 
                 content += `</div>
                         </div>
@@ -151,38 +175,27 @@ function initializeAccordionItems() {
 function bindMoreInfoButtons() {
     $(document).on('click', '.more-info-button', function () {
         const $button = $(this);
-        const order_id = $button.data('.order-id');
+        const $moreInfo = $button.siblings('.more-info');
 
-        const $accordionBody = $button.closest('.accordion-body');
+        if ($button.text() === '더 보기') {
+            $moreInfo.fadeToggle();
+            console.log("val :" + ($button.text()));
+            $button.text('접기');
+        } else {
+            $button.text('더 보기');
+        }
+    });
+
+    // 아코디언 헤더를 클릭할 때, 첫 번째 제품만 표시
+    $(document).on('click', '.accordion-button', function () {
+        const $accordionBody = $(this).closest('.accordion-item').find('.accordion-body');
         const $moreInfo = $accordionBody.find('.more-info');
 
-        if ($moreInfo.is(':empty')) {
-            ajaxGet('/api/order-details?order_id=' + order_id, function(result) {
-                if (result && result.length > 0) {
-                    let moreInfoContent = '';
-                    $.each(result, function(index, detail) {
-                        moreInfoContent += `
-                            <div class="accordion-body-more-info">
-                            
-                                <div class="paragraph2">
-                                    <div class="product-id"><strong>제품 아이디:</strong>${product.product_id}</div>
-                                    <div class="order-status"><strong>상태:</strong> ${product.order_status}</div>
-                                    <div class="order-quantity"><strong>수량:</strong> ${product.quantity}</div>
-                                    <div class="order-price"><strong>가격:</strong> ${product.price}</div>
-                                </div>
-                                <div class="paragraph3">
-                                    <img src="${product.product_image}" alt="상품 이미지">
-                                </div>
-                            </div>`;
-                    });
-                    $moreInfo.html(moreInfoContent);
-                } else {
-                    $moreInfo.html('<div>추가 정보가 없습니다.</div>');
-                }
-            });
+        // 아코디언을 열 때, 더 보기 상태인지 확인
+        if (!$moreInfo.is(':visible')) {
+            $moreInfo.hide();
+            $(this).closest('.accordion-item').find('.more-info-button').text('더 보기');
         }
-
-        $moreInfo.toggle();
     });
 }
 
