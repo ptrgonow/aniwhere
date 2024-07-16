@@ -106,7 +106,7 @@ public class ShopViewController {
         String userId = homeService.getAuthenticatedUserId();
         orderService.deleteFromCart(userId);
 
-        return "animall/shop-order-search";
+        return "animall/shop-checkout-success";
     }
 
     @GetMapping("/search")
