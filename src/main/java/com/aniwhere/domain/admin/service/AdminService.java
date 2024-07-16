@@ -2,6 +2,8 @@ package com.aniwhere.domain.admin.service;
 
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
+import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -52,5 +54,21 @@ public class AdminService {
         return List.of();
     }
 
+    public List<OrderSucDTO> allOrders(int limit, int offset){
+       return adminMapper.selectAllOrders(limit, offset);
+    }
 
+    public OrderSucDTO findOrderById(String orderId) {
+
+        return adminMapper.selectOrderById(orderId);
+    }
+
+    public int countOrders(){
+        return adminMapper.countOrders();
+    }
+
+    public List<OrderDetailDTO> findDetailsById(String orderId){
+
+        return adminMapper.selectOrderDetailByOrderId(orderId);
+    }
 }
