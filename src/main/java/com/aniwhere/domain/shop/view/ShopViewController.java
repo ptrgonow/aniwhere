@@ -15,8 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/shop")
@@ -30,32 +33,42 @@ public class ShopViewController {
     private final OrderService orderService;
 
     @GetMapping("/main")
-    public String shopMain(Model model,@RequestParam(defaultValue = "1") int page,
-                           @RequestParam(defaultValue = "9") int size)  {
-
+    public String shopMain(Model model, @RequestParam(defaultValue = "1") int page,
+                           @RequestParam(defaultValue = "9") int size,
+                           @RequestParam(defaultValue = "all") String category)  {
 
         String userName = homeService.getAuthenticatedUserName();
         if (userName == null) {
             return "redirect:/login";
         }
 
-        int totalProducts = productService.getTotal();
+        int totalProducts;
+        List<Product> products = switch (category) {
+            case "dog" -> {
+                totalProducts = productService.getTotalDogProducts();
+                yield productService.findDog(size, (page - 1) * size);
+            }
+            case "cat" -> {
+                totalProducts = productService.getTotalCatProducts();
+                yield productService.findCat(size, (page - 1) * size);
+            }
+            case "other" -> {
+                totalProducts = productService.getTotalOtherProducts();
+                yield productService.findOthers(size, (page - 1) * size);
+            }
+            default -> {
+                totalProducts = productService.getTotal();
+                yield productService.findAllProductsWithLimit(size, (page - 1) * size);
+            }
+        };
+
         int totalPages = (int) Math.ceil((double) totalProducts / size);
 
-        int offset = (page - 1) * size;
-
-        List<Product> products = productService.findAllProductsWithLimit(size, offset);
-        List<Product> dogs = productService.findDog(size, offset);
-        List<Product> cats = productService.findCat(size, offset);
-        List<Product> others = productService.findOthers(size, offset);
-
         model.addAttribute("products", products);
-        model.addAttribute("dog", dogs);
-        model.addAttribute("cat", cats);
-        model.addAttribute("other", others);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("name", userName);
+        model.addAttribute("category", category);
 
         return "animall/shop-main";
     }
@@ -101,12 +114,32 @@ public class ShopViewController {
             return "error/404-error";
         }
     }
+
     @GetMapping("/success")
     public String success(){
         String userId = homeService.getAuthenticatedUserId();
         orderService.deleteFromCart(userId);
 
         return "animall/shop-checkout-success";
+    }
+
+    @GetMapping("/product")
+    @ResponseBody
+    public Map<String, Object> searchProducts(@RequestParam("keyword") String keyword,
+                                              @RequestParam(defaultValue = "1") int page,
+                                              @RequestParam(defaultValue = "9") int size) {
+        int offset = (page - 1) * size;
+        List<Product> products = productService.searchProducts(keyword, size, offset);
+        int totalProducts = productService.getTotalSearchResults(keyword);
+        int totalPages = (int) Math.ceil((double) totalProducts / size);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("products", products);
+        response.put("currentPage", page);
+        response.put("totalPages", totalPages);
+        response.put("totalProducts", totalProducts);
+
+        return response;
     }
 
     @GetMapping("/search")

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <div th:replace="~{include/header :: header}"></div>
 <link rel="stylesheet" href="/css/shop-order-search.css">
-<link rel="stylesheet" href="https://unpkg.com/air-datepicker/air-datepicker.css">
 <body>
 
 
@@ -27,13 +26,12 @@
         <div class="row">
             <div class="col-lg-12 mb-5 mb-lg-0">
                 <div class="form-title">
-                    결제가 완료되었습니다!
+                    <h2>결제 완료!</h2>
                 </div>
-
-                <div class="order-list">
+                
+                <div class="order-list text-center">
                     <h3>주문 내역을 확인해보세요</h3>
-                        <a href="/shop/search">보러가기</a>
-                    </div>
+                    <a href="/shop/search">보러가기</a>
                 </div>
             </div>
         </div>
@@ -42,6 +40,7 @@
 <!-- end search form -->
 
 <div th:replace="~{include/footer :: footer}"></div>
+
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const paymentKey = urlParams.get("paymentKey");
@@ -50,7 +49,7 @@
     const customerName = urlParams.get("customerName");
     const customerPhone = urlParams.get("customerPhone");
     const customerEmail = urlParams.get("customerEmail");
-
+    
     async function confirm() {
         const requestData = {
             paymentKey: paymentKey,
@@ -60,7 +59,7 @@
             customerEmail : customerEmail,
             customerPhone : customerPhone
         };
-
+        
         const response = await fetch("/confirm", {
             method: "POST",
             headers: {
@@ -68,28 +67,28 @@
             },
             body: JSON.stringify(requestData),
         });
-
+        
         const json = await response.json();
-
+        
         if (!response.ok) {
             // 결제 실패 비즈니스 로직을 구현하세요.
             console.log(json);
             window.location.href = `/fail?message=${json.message}&code=${json.code}`;
         }
-
-
-
+        
+        
+        
         console.log(json);
     }
     confirm();
-
+    
     const paymentKeyElement = document.getElementById("paymentKey");
     const orderIdElement = document.getElementById("orderId");
     const amountElement = document.getElementById("amount");
     const customerNameElement = document.getElementById("customerName")
     const customerEmailElement = document.getElementById("customerEmail")
     const customerPhoneElement = document.getElementById("customerPhone")
-
+    
     orderIdElement.textContent = "주문번호: " + orderId;
     amountElement.textContent = "결제 금액: " + amount;
     paymentKeyElement.textContent = "paymentKey: " + paymentKey;
@@ -99,4 +98,4 @@
 
 </script>
 </body>
-</html>
+
