@@ -17,7 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const titleInput = document.querySelector('input[name="title"]');
         const title = titleInput ? titleInput.value.trim() : '';
-        const editorValue = CKEDITOR.instances.editor.getData().trim();
+        let editorValue = CKEDITOR.instances.editor.getData().trim();
+
+        // 불필요한 HTML 태그와 &nbsp; 제거
+        editorValue = editorValue.replace(/&nbsp;/g, ' ')
+            .replace(/<p><\/p>/g, '')
+            .replace(/<[^>]+>/g, '');
 
         let errorMessages = [];
 
@@ -49,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())  // 서버 응답을 JSON으로 처리
                 .then(result => {
                     if (result.status === 'success') {  // 서버 응답이 'success'인 경우
+                        alert('메일 전송 완료');
                         // 성공 시 대시보드로 리디렉션
                         window.location.href = '/admin/dashboard';
                     } else {
