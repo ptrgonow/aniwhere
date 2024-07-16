@@ -3,11 +3,17 @@ package com.aniwhere.domain.admin.controller;
 import com.aniwhere.domain.admin.dto.MailDTO;
 
 import com.aniwhere.domain.admin.service.AdminService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController("adminRestController")
+@RequestMapping("/admin/dash")
 public class AdminRestController {
 
     private final AdminService adminService;
@@ -25,6 +31,20 @@ public class AdminRestController {
             e.printStackTrace();
             return "error"; // 오류 응답
         }
+    }
+
+    @GetMapping("/list/{orderId}")
+    public ResponseEntity<?> getOrderDetails(@PathVariable String orderId) {
+
+        OrderSucDTO orderDTO = adminService.findOrderById(orderId);
+
+        List<OrderDetailDTO> orderDetailDTOs = adminService.findDetailsById(orderId);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("order", orderDTO);
+        response.put("orderDetails", orderDetailDTOs);
+
+        return ResponseEntity.ok(response);
     }
 }
 
