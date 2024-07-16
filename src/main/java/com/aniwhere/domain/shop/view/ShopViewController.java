@@ -10,10 +10,6 @@ import com.aniwhere.domain.shop.product.service.ProductService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -113,12 +109,13 @@ public class ShopViewController {
         return "animall/shop-order-search";
     }
 
-    @GetMapping("/summary")
-    public String summary(){
-        return "animall/shop-order-summary";
-    }
     @GetMapping("/search")
-    public String search(){
+    public String search(Model model){
+        String userId = homeService.getAuthenticatedUserId();
+        String userName = homeService.getAuthenticatedUserName();
+
+        model.addAttribute("name", userName);
+        model.addAttribute("userId", userId);
         return "animall/shop-order-search";
     }
 
