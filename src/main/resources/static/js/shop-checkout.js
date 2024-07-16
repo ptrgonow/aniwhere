@@ -167,7 +167,6 @@ async function toss() {
                 contentType: "application/json",
                 data: JSON.stringify(orderDetails),
                 success: function(response) {
-                    alert("상품추가성공");
                     widgets.requestPayment({
                         orderId: orderId,
                         orderName: "토스 티셔츠 외 2건",

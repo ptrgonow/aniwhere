@@ -3,16 +3,10 @@ package com.aniwhere.domain.shop.order.controller;
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.order.dto.OrderHistoryDTO;
-import com.aniwhere.domain.shop.order.dto.OrderTest;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
