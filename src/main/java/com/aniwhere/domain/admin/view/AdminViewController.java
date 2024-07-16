@@ -56,13 +56,10 @@ public class AdminViewController {
 
     @GetMapping("/member")
     public String member(Model model) {
-
         List<JoinDTO> members = adminService.allMembers();
         String userName = homeService.getAuthenticatedUserName();
-
         model.addAttribute("name", userName);
         model.addAttribute("members", members);
-
         return "admin/admin-member";
     }
 
@@ -72,5 +69,4 @@ public class AdminViewController {
         model.addAttribute("name", userName);
         return "admin/admin-mail";
     }
-
 }
