@@ -169,7 +169,7 @@ async function toss() {
                 success: function(response) {
                     widgets.requestPayment({
                         orderId: orderId,
-                        orderName: "토스 티셔츠 외 2건",
+                        orderName: "AniMall " + orderId,
                         successUrl: `${window.location.origin}/shop/success?customerEmail=${encodeURIComponent(customerEmail)}&customerMobilePhone=${encodeURIComponent(customerMobilePhone)}&customerName=${encodeURIComponent(customerName)}`,
                         failUrl: window.location.origin + "/fail.html",
                         customerEmail: customerEmail,

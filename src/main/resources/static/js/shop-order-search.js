@@ -92,53 +92,25 @@ function searchOrders() {
                             <div class="accordion-body">`;
 
                 // 각 주문에 대해 첫 번째 제품 정보만 표시
-                const firstProduct = orders[0];
-                content += `
-                    <div class="accordion-body-more-info">
-                        <div class="paragraph1">
-                            <div class="product-name">제품명: ${firstProduct.product_name}</div>
-                        </div>
-                        <div class="paragraph2">
-                            <div class="product-id"><strong>제품 아이디:</strong> ${firstProduct.product_id}</div>
-                            <div class="order-status"><strong>상태:</strong> ${firstProduct.order_status}</div>
-                            <div class="order-quantity"><strong>수량:</strong> ${firstProduct.quantity}</div>
-                            <div class="order-price"><strong>가격:</strong> ${firstProduct.price}</div>
-                        </div>
-                        <div class="paragraph3">
-                            <img src="${firstProduct.product_image}" alt="상품 이미지">
-                        </div>
-                    </div>`;
+                content += getProductContent(orders[0]);
 
                 // "더 보기" 버튼 추가 조건
                 if (orders.length > 1) {
                     content += `
-                        <button type="button" class="btn btn-link more-info-button" data-order-id="${order.order_id}">더 보기</button>
                         <div class="more-info" style="display: none">`;
 
                     // 나머지 제품 정보는 숨김 상태로 추가
                     for (let i = 1; i < orders.length; i++) {
-                        const product = orders[i];
-                        content += `
-                            <div class="accordion-body-more-info">
-                                <div class="paragraph1">
-                                    <div class="product-name">제품명: ${product.product_name}</div>
-                                </div>
-                                <div class="paragraph2">
-                                    <div class="product-id"><strong>제품 아이디:</strong> ${product.product_id}</div>
-                                    <div class="order-status"><strong>상태:</strong> ${product.order_status}</div>
-                                    <div class="order-quantity"><strong>수량:</strong> ${product.quantity}</div>
-                                    <div class="order-price"><strong>가격:</strong> ${product.price}</div>
-                                </div>
-                                <div class="paragraph3">
-                                    <img src="${product.product_image}" alt="상품 이미지">
-                                </div>
-                            </div>`;
+                        content += getProductContent(orders[i]);
                     }
 
-                    content += `</div>`; // .more-info 끝
+                    content += `
+                        </div>
+                        <button type="button" class="btn btn-link more-info-button" data-order-id="${order.order_id}">더 보기</button>`;
                 }
 
-                content += `</div>
+                content += `
+                            </div>
                         </div>
                     </div>`;
             });
@@ -148,6 +120,24 @@ function searchOrders() {
             bindMoreInfoButtons(); // "더 보기" 버튼에 이벤트 바인딩
         }
     });
+}
+
+function getProductContent(product) {
+    return `
+        <div class="accordion-body-more-info">
+            <div class="paragraph1">
+                <div class="product-name">제품명: ${product.product_name}</div>
+            </div>
+            <div class="paragraph2">
+                <div class="product-id"><strong>제품 아이디:</strong> ${product.product_id}</div>
+                <div class="order-status"><strong>상태:</strong> ${product.order_status}</div>
+                <div class="order-quantity"><strong>수량:</strong> ${product.quantity}</div>
+                <div class="order-price"><strong>가격:</strong> ${product.price}</div>
+            </div>
+            <div class="paragraph3">
+                <img src="${product.product_image}" alt="상품 이미지">
+            </div>
+        </div>`;
 }
 
 function groupOrdersByOrderId(orders) {
@@ -179,9 +169,9 @@ function bindMoreInfoButtons() {
 
         if ($button.text() === '더 보기') {
             $moreInfo.fadeToggle();
-            console.log("val :" + ($button.text()));
             $button.text('접기');
         } else {
+            $moreInfo.fadeToggle();
             $button.text('더 보기');
         }
     });

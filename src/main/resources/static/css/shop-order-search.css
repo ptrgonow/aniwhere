@@ -108,8 +108,7 @@ button:hover {
 }
 /* 아코디언 내용 */
 .accordion-body {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
     gap: 20px;
     position: relative;
 }
@@ -119,10 +118,13 @@ button:hover {
     margin-left: 50px;
 }
 
+.paragraph3 {
+    width: 300px;
+}
+
 .paragraph3 img {
-    height: auto;
+    width: 100%;
     display: block;
-    margin: auto;
 }
 
 .more-info {
@@ -140,4 +142,11 @@ button:hover {
 
 .hidden {
     display: none;
+}
+
+.accordion-body-more-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
 }

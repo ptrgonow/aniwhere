@@ -27,7 +27,6 @@ public class HjRestController {
                 = hjOrderService.getHjOrderListByStartEndDates(startDate, endDate);
 
         Map<String, List<HjOrderDTO>> map = new HashMap<>();
-        System.out.println(hjOrderDTOList.get(0).getOrder_id());
         map.put("hjOrderDTOList", hjOrderDTOList);
         return map;
     }

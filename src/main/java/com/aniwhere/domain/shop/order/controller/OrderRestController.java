@@ -1,7 +1,7 @@
 package com.aniwhere.domain.shop.order.controller;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
-import com.aniwhere.domain.shop.order.dto.OrderDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.shop.order.dto.OrderHistoryDTO;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
@@ -21,16 +21,6 @@ public class OrderRestController {
 
     private final OrderService orderService;
     private final HomeService homeService;
-
-/*    @GetMapping
-    public List<OrderDTO> getOrdersByDateRange(@RequestParam String startDate, @RequestParam String endDate) {
-        return orderService.findOrdersByDateRange(startDate, endDate);
-    }
-
-    @GetMapping("/{orderId}")
-    public OrderDTO getOrderById(@PathVariable String orderId) {
-        return orderService.findOrderById(orderId);
-    }*/
 
     @GetMapping("/items") // 엔드포인트 변경
     public ResponseEntity<Map<String, Object>> getCheckedItems() {
@@ -59,12 +49,12 @@ public class OrderRestController {
         }
     }
     @PostMapping("/success")
-    public ResponseEntity<String> saveOrder(@RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<String> saveOrder(@RequestBody OrderSucDTO orderSucDTO) {
         try {
             String userId = homeService.getAuthenticatedUserId();
-            orderDTO.setUserId(userId);
+            orderSucDTO.setUserId(userId);
 
-            orderService.makeOrder(orderDTO);
+            orderService.makeOrder(orderSucDTO);
 
             return ResponseEntity.ok("주문 정보 저장 성공");
         } catch (Exception e) {

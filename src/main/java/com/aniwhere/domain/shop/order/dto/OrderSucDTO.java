@@ -3,7 +3,8 @@ package com.aniwhere.domain.shop.order.dto;
 import lombok.Data;
 
 @Data
-public class OrderDTO {
+public class OrderSucDTO {
+
     private String orderId;
     private String userId;
     private String shippingAddress1;

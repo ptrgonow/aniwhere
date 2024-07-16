@@ -1,7 +1,7 @@
 package com.aniwhere.domain.shop.order.service;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
-import com.aniwhere.domain.shop.order.dto.OrderDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
@@ -19,11 +19,11 @@ public class OrderService {
     private OrderMapper orderMapper;
     private HomeService homeService;
 
-   /* public List<OrderDTO> findOrdersByDateRange(String startDate, String endDate) {
+   /* public List<OrderSucDTO> findOrdersByDateRange(String startDate, String endDate) {
         return orderMapper.findOrdersByDateRange(startDate, endDate);
     }
 
-    public OrderDTO findOrderById(String orderId) {
+    public OrderSucDTO findOrderById(String orderId) {
         return orderMapper.findOrderById(orderId);
     }*/
 
@@ -31,7 +31,7 @@ public class OrderService {
         return orderMapper.getCheckedCartItemsByUserId(userId);
     }
 
-    public List<OrderDTO> getOrderItemsById(String userId, String orderId){
+    public List<OrderSucDTO> getOrderItemsById(String userId, String orderId){
         return orderMapper.getOrderItemsByUserId(userId, orderId);
     }
 
@@ -48,12 +48,12 @@ public class OrderService {
         }
     }
     @Transactional
-    public void makeOrder(OrderDTO orderDTO) {
+    public void makeOrder(OrderSucDTO orderSucDTO) {
 
         String userId = homeService.getAuthenticatedUserId();
 
-        orderDTO.setUserId(userId);
-        orderMapper.insertOrder(orderDTO);
+        orderSucDTO.setUserId(userId);
+        orderMapper.insertOrder(orderSucDTO);
     }
 
     public void updateOrderStatus(String orderId, String newStatus) {
