@@ -1,5 +1,7 @@
 package com.aniwhere.domain.shop.view;
 
+import com.aniwhere.domain.shop.order.service.OrderService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,10 +24,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 @Controller
+@AllArgsConstructor
 public class OrderConfirmController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
+    private OrderService orderService;
     @RequestMapping("/confirm")
     public ResponseEntity<JSONObject> confirmPayment(@RequestBody String jsonBody) throws Exception {
 
@@ -80,6 +83,7 @@ public class OrderConfirmController {
         // 결제 성공 및 실패 비즈니스 로직을 구현하세요.
         Reader reader = new InputStreamReader(responseStream, StandardCharsets.UTF_8);
         JSONObject jsonObject = (JSONObject) parser.parse(reader);
+        orderService.updateOrderStatus(orderId, "결제 완료");
         responseStream.close();
 
         return ResponseEntity.status(code).body(jsonObject);

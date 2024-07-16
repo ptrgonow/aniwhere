@@ -3,6 +3,7 @@ package com.aniwhere.domain.shop.order.controller;
 import com.aniwhere.domain.shop.cart.domain.Cart;
 import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.order.dto.OrderHistoryDTO;
+import com.aniwhere.domain.shop.order.dto.OrderTest;
 import com.aniwhere.domain.shop.order.service.OrderService;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
@@ -51,13 +52,26 @@ public class OrderRestController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/success")
-    public ResponseEntity<String> saveOrder(@RequestBody OrderHistoryDTO orderHistory) {
+    @PostMapping("/order")
+    public ResponseEntity<String> saveOrderBeforeCheckOut(@RequestBody OrderHistoryDTO orderHistory) {
         try {
             orderService.saveOrder(
                     orderHistory.getOrderPreDTO(),
                     orderHistory.getOrderItems()
             );
+            return ResponseEntity.ok("주문 정보 저장 성공");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("주문 정보 저장 실패: " + e.getMessage());
+        }
+    }
+    @PostMapping("/success")
+    public ResponseEntity<String> saveOrder(@RequestBody OrderDTO orderDTO) {
+        try {
+            String userId = homeService.getAuthenticatedUserId();
+            orderDTO.setUserId(userId);
+
+            orderService.makeOrder(orderDTO);
+
             return ResponseEntity.ok("주문 정보 저장 성공");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("주문 정보 저장 실패: " + e.getMessage());

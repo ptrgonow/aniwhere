@@ -106,7 +106,12 @@ public class ShopViewController {
         }
     }
     @GetMapping("/success")
-    public String success(){
+    public String success(Model model, @RequestParam("orderId") String orderId){
+
+        List<OrderDTO> myOrder = orderService.lastOrder(orderId);
+
+        model.addAttribute("order", myOrder);
+
         return "animall/shop-checkout-success";
     }
 

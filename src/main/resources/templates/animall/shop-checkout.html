@@ -108,6 +108,7 @@
                      </thead>
                      <tbody class="order-details-body">
                      <tr th:each="item : ${orders}">
+                        <input type="hidden" th:value="${item.orderId}" id="orderId">
                         <input type="hidden" th:value="${item.productId}" id="productId">
                         <td th:text="${item.name}" id="single-product-name"></td>
                         <td th:text="${item.price} + '원'"></td>

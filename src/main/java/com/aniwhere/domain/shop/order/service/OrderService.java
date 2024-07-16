@@ -6,6 +6,7 @@ import com.aniwhere.domain.shop.order.dto.OrderDTO;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
+import com.aniwhere.domain.shop.order.dto.OrderTest;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import lombok.AllArgsConstructor;
@@ -49,5 +50,21 @@ public class OrderService {
         for(OrderDetailDTO product : products){
             orderMapper.insertOrderItem(product);
         }
+    }
+    @Transactional
+    public void makeOrder(OrderDTO orderDTO) {
+
+        String userId = homeService.getAuthenticatedUserId();
+
+        orderDTO.setUserId(userId);
+        orderMapper.insertOrder(orderDTO);
+    }
+
+    public void updateOrderStatus(String orderId, String newStatus) {
+        orderMapper.updateOrderStatus(orderId, newStatus);
+    }
+
+    public List<OrderDTO> lastOrder(String orderId) {
+        return orderMapper.getOrderHistory(orderId);
     }
 }
