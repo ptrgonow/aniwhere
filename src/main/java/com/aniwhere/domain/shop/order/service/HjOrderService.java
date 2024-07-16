@@ -15,7 +15,6 @@ public class HjOrderService {
     public List<HjOrderDTO> getHjOrderListByStartEndDates(String startDate, String endDate) {
         String startDateStr = startDate + " 00:00:00";
         String endDateStr = endDate + " 23:59:59";
-        System.out.println(startDateStr + " sql " + endDateStr);
         return hjOrderMapper.findOrderByDates(startDateStr, endDateStr);
     }
 

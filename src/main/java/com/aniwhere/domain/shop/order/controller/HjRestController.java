@@ -2,7 +2,6 @@ package com.aniwhere.domain.shop.order.controller;
 
 import com.aniwhere.domain.shop.order.dto.HjOrderDTO;
 import com.aniwhere.domain.shop.order.service.HjOrderService;
-import com.aniwhere.domain.shop.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
