@@ -74,6 +74,33 @@ public class AdminService {
         }
     }
 
+  // AdminMapper를 사용하여 모든 사용자 정보를 조회하여 반환합니다.
+    // 이 클래스는 기본적으로 이메일 전송과 사용자 조회 기능을 제공합니다.
+    // 이메일 전송 시 HTML 형식을 지원하기 위해 MimeMessage와 MimeMessageHelper를 사용합니다.
+    // 예외 처리를 통해 오류 발생 시 디버깅을 용이하게 합니다.
+    public List<JoinDTO> allMembers(int limit, int offset) {
+        return adminMapper.selectAllUsers(limit, offset);
+    }
+
+    public int memberCount(){
+        return adminMapper.userCount();
+    }
+
+    public List<JoinDTO> emptyAdressUsers(int limit, int offset){
+        return adminMapper.emptyAdressUsers(limit, offset);
+    }
+
+    public List<JoinDTO> emptyPhoneUsers(int limit, int offset){
+        return adminMapper.emptyPhoneUsers(limit, offset);
+    }
+
+    public int countAddUsers(){
+        return adminMapper.countEmptyAddressUsers();
+    }
+
+    public int countPhoneUsers(){
+        return adminMapper.countEmptyPhoneUsers();
+
     private String cleanHtml(String content) {
         return content.replaceAll("<p></p>", ""); // 빈 <p></p> 태그 제거
     }
@@ -87,15 +114,18 @@ public class AdminService {
     }
 
 
-    // AdminMapper를 사용하여 모든 사용자 정보를 조회하여 반환합니다.
-    // 이 클래스는 기본적으로 이메일 전송과 사용자 조회 기능을 제공합니다.
-    // 이메일 전송 시 HTML 형식을 지원하기 위해 MimeMessage와 MimeMessageHelper를 사용합니다.
-    // 예외 처리를 통해 오류 발생 시 디버깅을 용이하게 합니다.
+ /* AdminMapper를 사용하여 모든 사용자 정보를 조회하여 반환합니다 
+    이 클래스는 기본적으로 이메일 전송과 사용자 조회 기능을 제공합니다.
+    이메일 전송 시 HTML 형식을 지원하기 위해 MimeMessage와 MimeMessageHelper를 사용합니다.
+    예외 처리를 통해 오류 발생 시 디버깅을 용이하게 합니다.
+      
     public List<JoinDTO> allMembers() {
         return adminMapper.selectAllUsers();
-
+*/
+      
     public int countOrders(){
         return adminMapper.countOrders();
+
     }
 
     public List<OrderDetailDTO> findDetailsById(String orderId){

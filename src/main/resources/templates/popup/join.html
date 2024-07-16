@@ -11,7 +11,8 @@
                 <h2 class="reg-text"><span class="material-symbols-outlined">how_to_reg</span>Sign Up</h2>
                 <div class="form-input">
                     <label for="userId" class="reg-form">아이디</label>
-                    <input type="text" id="userId" name="userId" class="in-text" pattern="[a-z0-9]{5,}" title="5자 이상, 영어 소문자와 숫자만 입력 가능합니다." required>
+                    <input type="text" id="userId" name="userId" class="in-text" pattern="[a-z0-9]{5,}"
+                           maxlength="10" title="5자 이상, 영어 소문자와 숫자만 입력 가능합니다." required>
                     <span id="userId-message" class="duplicate-message"></span>
                 </div>
                 <div class="form-input">
@@ -20,7 +21,8 @@
                 </div>
                 <div class="form-input">
                     <label for="userName" class="reg-form">이름</label>
-                    <input type="text" id="userName" name="userName" class="in-text" pattern="[가-힣]{2,}" title="한글 2글자 이상 입력해주세요." required>
+                    <input type="text" id="userName" name="userName" class="in-text" pattern="[가-힣]{2,}"
+                           maxlength="8" title="한글 2글자 이상, 8글자 이하로 입력해주세요." required>
                     <span id="userName-message" class="duplicate-message"></span>
                 </div>
                 <div class="form-input">
@@ -58,7 +60,8 @@
                 </div>
                 <div class="form-input">
                     <label for="phone" class="reg-form">휴대폰</label>
-                    <input type="text" id="phone" name="phone" class="in-text" pattern="[0-9]+" title="숫자만 입력 가능합니다." required placeholder="ex)01012345678">
+                    <input type="text" id="phone" name="phone" class="in-text" pattern="[0-9]+"
+                           maxlength="13" title="숫자만 입력 가능합니다." required placeholder="ex)01012345678">
                     <span id="phone-message" class="duplicate-message"></span>
                 </div>
             </form>

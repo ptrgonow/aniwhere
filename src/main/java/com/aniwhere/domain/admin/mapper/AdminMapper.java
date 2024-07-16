@@ -19,8 +19,11 @@ public interface AdminMapper {
     // 이 쿼리는 userId를 기준으로 정렬하여 모든 사용자 정보를 조회합니다.
     //public List<JoinDTO> selectAllUsers(); - 쿼리 실행 결과를 JoinDTO 객체의 리스트로 반환합니다.
     @Select("SELECT id, user_id as userId, email, user_name as userName, address, detail_address as detailAddress, " +
-            "zip_code as zipCode, phone, created_at as createdAt from user order by userId")
-    public List<JoinDTO> selectAllUsers();
+            "zip_code as zipCode, phone, created_at as createdAt from user order by userId DESC LIMIT #{limit} OFFSET #{offset}")
+    List<JoinDTO> selectAllUsers(@Param("limit") int limit, @Param("offset") int offset);
+
+    @Select("SELECT COUNT(*) FROM user")
+    int userCount();
 
     // @Insert: 실행할 SQL INSERT 쿼리를 정의하는 어노테이션입니다.
     //"INSERT INTO user_mail (title, content) VALUES (#{title}, #{content})" - user_mail 테이블에 새로운 이메일 레코드를 삽입하는 SQL 쿼리입니다. MailDTO 객체의 title과 content 필드 값이 쿼리의 VALUES 부분에 삽입됩니다.
@@ -28,13 +31,26 @@ public interface AdminMapper {
     @Insert("INSERT INTO user_mail (title, content) VALUES (#{title}, #{content})")
     void insertMail(MailDTO mailDTO);
 
+    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
+            "FROM user WHERE (detail_address IS NULL OR detail_address = '') OR (address IS NULL OR address = '') " +
+            "ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
+    List<JoinDTO> emptyAdressUsers(@Param("limit") int limit, @Param("offset") int offset);
+
+    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
+            "FROM user WHERE phone IS NULL ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
+    List<JoinDTO> emptyPhoneUsers(@Param("limit") int limit, @Param("offset") int offset);
+
+    @Select("SELECT COUNT(*) FROM user WHERE (detail_address IS NULL OR detail_address = '') OR (address IS NULL OR address = '')")
+    int countEmptyAddressUsers();
+
     // @Select: 실행할 SQL SELECT 쿼리를 정의하는 어노테이션입니다.
     //"SELECT email FROM user" - user 테이블에서 모든 이메일 주소를 조회하는 SQL 쿼리입니다.
     //List<String> selectAllUserEmails(); - 쿼리 실행 결과를 String 타입의 리스트로 반환합니다. 즉, 모든 사용자 이메일 주소를 리스트 형태로 반환합니다.
     @Select("SELECT email FROM user")
     List<String> selectAllUserEmails();
-}
 
+    @Select("SELECT COUNT(*) FROM user WHERE phone IS NULL")
+    int countEmptyPhoneUsers();
 
     @Select("SELECT order_id as orderId, user_id as userId, shipping_address1 as shippingAddress1, " +
             "shipping_address2 as shippingAddress2, shipping_address3 as shippingAddress3, " +

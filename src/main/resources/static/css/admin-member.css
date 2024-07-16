@@ -7,9 +7,91 @@ body {
     max-width: 960px;
 }
 
+.container-fluid{
+    height: 390px;
+}
+
+.search_container{
+    text-align: center;
+}
+
+.search_input{
+    width: 200px;
+    padding: 12px 24px;
+    background-color: transparent;
+    font-size: 14px;
+    line-height: 18px;
+    color: #575756;
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 95% center;
+    border-radius: 50px;
+    border: 1px solid #575756;
+    transition: all 250ms ease-in-out;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.search_input:hover, .search_input:focus{
+    padding: 12px 0;
+    outline: 0;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #575756;
+    border-radius: 0;
+    background-position: 100% center;
+}
+
+.mem-view{
+    margin-bottom: 1rem;
+    display: flex;
+    float: right;
+    align-content: center;
+    align-items: center;
+}
+
+.empty-info{
+    padding: 3px;
+}
+
+.sel-text{
+    margin: 0 10px 0 0;
+}
+
+.table{
+   table-layout: fixed;
+}
+
+.table th:nth-child(1){
+    width: 5%;
+}
+
+.table th:nth-child(2){
+    width: 5%;
+}
+
+.table th:nth-child(3), th:nth-child(4){
+    width: 12%;
+}
+
+.table th:nth-child(5){
+    width: 19%;
+}
+
+.table th:nth-child(6){
+    width: 23%;
+}
+
+.table th:nth-child(7){
+    width: 13%;
+}
+
 .table th, .table td {
     vertical-align: middle;
     font-weight: 500; /* 글씨 굵기 조절 */
+}
+
+.fa.fa-angle-right, .fa.fa-angle-left{
+    color: #5d9ce0;
 }
 
 .table-primary th {
@@ -19,4 +101,39 @@ body {
 
 .shadow {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.page {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.page span {
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.page a {
+    background-color: #FFFFFF;
+    padding: 5px 10px;
+    color: #5d9ce0;
+}
+
+.page span a.current {
+    background-color: #5d9ce0;
+    padding: 5px 10px;
+    color: white;
+}
+
+.page a i.fa-angle-left {
+    margin-right: 10px;
+}
+
+.page a i.fa-angle-right {
+    margin-left: 10px;
+}
+
+.container-fluid.page{
+    height: 100px;
+    margin-top: 2rem;
 }

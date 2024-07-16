@@ -2,6 +2,7 @@ package com.aniwhere.domain.admin.controller;
 
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.service.AdminService;
+import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,41 @@ public class AdminRestController {
         }
         return response;
     }
+    @GetMapping("/member-empty")
+    public ResponseEntity<Map<String, Object>> emptyMember(@RequestParam String type,
+                                           @RequestParam(defaultValue = "10") int limit,
+                                           @RequestParam(defaultValue = "0") int offset){
+        List<JoinDTO> members;
+        int totalMember;
+
+        switch (type){
+            case "all" :
+            default:
+                members = adminService.allMembers(limit, offset);
+                totalMember = adminService.memberCount();
+                break;
+            case "address":
+                members = adminService.emptyAdressUsers(limit, offset);
+                totalMember = adminService.countAddUsers();
+                break;
+            case "phone":
+                members = adminService.emptyPhoneUsers(limit, offset);
+                totalMember = adminService.countPhoneUsers();
+                break;
+        }
+
+        int currentPage = offset / limit + 1;
+        int totalPages = (int) Math.ceil((double) totalMember / limit);
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("members", members);
+        response.put("currentPage", currentPage);
+        response.put("totalPages", totalPages);
+
+        return ResponseEntity.ok(response);
+    }
+}
 
     @GetMapping("/list/{orderId}")
     public ResponseEntity<?> getOrderDetails(@PathVariable String orderId) {
