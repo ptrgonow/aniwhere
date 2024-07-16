@@ -2,14 +2,20 @@ package com.aniwhere.domain.admin.controller;
 
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.service.AdminService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController("adminRestController")
+@RequestMapping("/admin/dash")
 public class AdminRestController {
 
     // private final AdminService adminService; - AdminService 클래스의 인스턴스를 주입받아 필드에 저장합니다.
@@ -36,5 +42,19 @@ public class AdminRestController {
             response.put("message", e.getMessage());
         }
         return response;
+    }
+
+    @GetMapping("/list/{orderId}")
+    public ResponseEntity<?> getOrderDetails(@PathVariable String orderId) {
+
+        OrderSucDTO orderDTO = adminService.findOrderById(orderId);
+
+        List<OrderDetailDTO> orderDetailDTOs = adminService.findDetailsById(orderId);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("order", orderDTO);
+        response.put("orderDetails", orderDetailDTOs);
+
+        return ResponseEntity.ok(response);
     }
 }

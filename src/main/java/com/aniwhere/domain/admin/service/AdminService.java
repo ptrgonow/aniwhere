@@ -2,6 +2,8 @@ package com.aniwhere.domain.admin.service;
 
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
+import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -76,6 +78,14 @@ public class AdminService {
         return content.replaceAll("<p></p>", ""); // 빈 <p></p> 태그 제거
     }
 
+    public List<OrderSucDTO> allOrders(int limit, int offset){
+       return adminMapper.selectAllOrders(limit, offset);
+    }
+
+    public OrderSucDTO findOrderById(String orderId) {
+        return adminMapper.selectOrderById(orderId);
+    }
+
 
     // AdminMapper를 사용하여 모든 사용자 정보를 조회하여 반환합니다.
     // 이 클래스는 기본적으로 이메일 전송과 사용자 조회 기능을 제공합니다.
@@ -83,5 +93,13 @@ public class AdminService {
     // 예외 처리를 통해 오류 발생 시 디버깅을 용이하게 합니다.
     public List<JoinDTO> allMembers() {
         return adminMapper.selectAllUsers();
+
+    public int countOrders(){
+        return adminMapper.countOrders();
+    }
+
+    public List<OrderDetailDTO> findDetailsById(String orderId){
+        return adminMapper.selectOrderDetailByOrderId(orderId);
+
     }
 }

@@ -9,6 +9,8 @@ public class OrderDetailDTO {
     private String orderId;
     private int productId;
     private int quantity;
-    private int price;
+    private String price;
+    private String name;
+    private String image;
 
 }

@@ -2,6 +2,8 @@ package com.aniwhere.domain.shop.order.dto;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 public class OrderSucDTO {
 
@@ -15,6 +17,9 @@ public class OrderSucDTO {
     private int price;
     private int quantity;
     private String name;
+    private int isSocial;
+    private String userName;
+    private Timestamp orderDate;
     private String orderStatus;
     private String recipientName;
     private String recipientEmail;
