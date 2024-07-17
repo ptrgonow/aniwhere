@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
             { name: 'styles', items: ['Format'] }
         ],
         language: 'ko',
-        height: 500
+        height: 500,
+        resize_enabled: false // CKEditor 4에서 리사이즈 비활성화
     });
 
     document.getElementById('mail-form').addEventListener('submit', function (e) {
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // 폼 데이터를 JSON으로 변환
             const formData = {
                 title: title,
-                content: editorValue
+                content: CKEDITOR.instances.editor.getData().trim() // 원래 HTML 형식의 데이터 전송
             };
 
             // AJAX 요청 보내기
