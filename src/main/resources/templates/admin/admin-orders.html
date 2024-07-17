@@ -1,17 +1,7 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel="stylesheet" href="/css/admin-orders.css">
-</head>
-
-<body>
-
+<!DOCTYPE html>
+<div th:replace="~{include/admin-header :: header}"></div>
 <div th:replace="~{admin/admin-side :: side}"></div>
+<body>
 <div class="body-wrapper">
     <div class="container-fluid">
         <!--  Row 1 -->
@@ -91,21 +81,6 @@
 
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js'></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.0.4/jquery.countdown.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
-<script>
-
-
-</script>
-<script src="/js/sidebarmenu.js"></script>
-<script src="/js/dashboard.js"></script>
+<div th:replace="~{include/admin-footer :: footer}"></div>
 <script src="/js/admin-order.js"></script>
 </body>
-
-</html>
