@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             // AJAX 요청 보내기
-            fetch('/submit-mail', {
+            fetch('/admin/dash/submit-mail', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
