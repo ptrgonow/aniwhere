@@ -21,7 +21,10 @@
 
 <div class="container">
     <section class="card-container">
-        <h4 class="no-route" th:if="${#lists.isEmpty(userRoutes)}">등록한 코스 내역이 없습니다</h4>
+        <div th:if="${#lists.isEmpty(userRoutes)}" class="route-empty-area">
+            <h4 class="no-route" >등록한 코스 내역이 없습니다</h4>
+            <a href="/route/cre" class="route-cre-page">내 코스를 등록해봐요!</a>
+        </div>
             <div class="card-main" th:each="userRoute : ${userRoutes}">
                 <a class="card-link" th:href="@{/mypage/routedetail/{id}(id=${userRoute.id})}"></a>
                 <div class="card-img">

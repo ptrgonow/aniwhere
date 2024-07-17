@@ -52,7 +52,7 @@
 							<td class="product-quantity"><input type="number" th:value="${carts.quantity}"></td>
 							<td class="product-total" th:text="${#numbers.formatInteger(carts.totalPrice, 0, 'COMMA')} + '원'"></td>
 							<td class="product-remove">
-								<a href="#" class="delete-btn" th:data-cart-id="${carts.cartId}"><i class="far fa-window-close"></i></a>
+								<a href="#" class="delete-btn" th:data-cart-id="${carts.cartId}"><i class="fas fa-trash-alt"></i></a>
 							</td>
 						</tr>
 
@@ -254,7 +254,7 @@
 			console.log(order)
 			$.ajax({
 				type: "POST",
-				url: "/orders/success",
+				url: "/orders/order",
 				contentType: "application/json",
 				data: JSON.stringify(order),
 				success: function (response) {

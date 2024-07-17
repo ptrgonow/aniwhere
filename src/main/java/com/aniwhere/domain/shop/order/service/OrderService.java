@@ -1,15 +1,14 @@
 package com.aniwhere.domain.shop.order.service;
 
 import com.aniwhere.domain.shop.cart.domain.Cart;
-import com.aniwhere.domain.shop.order.domain.OrderHistory;
-import com.aniwhere.domain.shop.order.dto.OrderDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSearchDTO;
+import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.shop.mapper.OrderMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderPreDTO;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
-import com.aniwhere.domain.user.mypage.dto.UserDetailDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,11 +21,11 @@ public class OrderService {
     private OrderMapper orderMapper;
     private HomeService homeService;
 
-   /* public List<OrderDTO> findOrdersByDateRange(String startDate, String endDate) {
+   /* public List<OrderSucDTO> findOrdersByDateRange(String startDate, String endDate) {
         return orderMapper.findOrdersByDateRange(startDate, endDate);
     }
 
-    public OrderDTO findOrderById(String orderId) {
+    public OrderSucDTO findOrderById(String orderId) {
         return orderMapper.findOrderById(orderId);
     }*/
 
@@ -34,7 +33,7 @@ public class OrderService {
         return orderMapper.getCheckedCartItemsByUserId(userId);
     }
 
-    public List<OrderDTO> getOrderItemsById(String userId, String orderId){
+    public List<OrderSucDTO> getOrderItemsById(String userId, String orderId){
         return orderMapper.getOrderItemsByUserId(userId, orderId);
     }
 
@@ -50,4 +49,25 @@ public class OrderService {
             orderMapper.insertOrderItem(product);
         }
     }
+    @Transactional
+    public void makeOrder(OrderSucDTO orderSucDTO) {
+
+        String userId = homeService.getAuthenticatedUserId();
+
+        orderSucDTO.setUserId(userId);
+        orderMapper.insertOrder(orderSucDTO);
+    }
+
+    public void updateOrderStatus(String orderId, String newStatus) {
+        orderMapper.updateOrderStatus(orderId, newStatus);
+    }
+
+    public void deleteFromCart(String userId){
+        orderMapper.deleteFromCart(userId);
+    }
+
+    public List<OrderSearchDTO> getOrderItemsByUserIdForDate(String userId, String startDate, String endDate) {
+        return orderMapper.getOrderItemsByUserIdForDate(userId, startDate, endDate);
+    }
+
 }

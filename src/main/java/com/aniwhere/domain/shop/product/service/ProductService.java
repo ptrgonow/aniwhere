@@ -18,6 +18,18 @@ public class ProductService {
         return shopMapper.getTotalProductCount();
     }
 
+    public int getTotalDogProducts() {
+        return shopMapper.getTotalDogProductCount();
+    }
+
+    public int getTotalCatProducts() {
+        return shopMapper.getTotalCatProductCount();
+    }
+
+    public int getTotalOtherProducts() {
+        return shopMapper.getTotalOtherProductCount();
+    }
+
     public List<Product> findAllProductsWithLimit(int limit, int offset) {
         return shopMapper.findAllProductsWithLimit(limit, offset);
     }
@@ -49,4 +61,13 @@ public class ProductService {
     public void deleteProduct(Integer productId) {
         shopMapper.deleteProduct(productId);
     }
+
+    public List<Product> searchProducts(String keyword, int limit, int offset) {
+        return shopMapper.searchProducts(keyword, limit, offset);
+    }
+
+    public int getTotalSearchResults(String keyword) {
+        return shopMapper.getTotalSearchResults(keyword);
+    }
+
 }

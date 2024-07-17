@@ -33,9 +33,9 @@
                         <p class="single-product-pricing" th:text="${details.price}"></p>원
                     </div>
                     <div class="single-product-form">
-                        <input type="number" id="quantity" placeholder="수량을 입력하세요" min="1">
+                        <input type="number" id="quantity" placeholder="수량을 입력하세요" min="1" max="100" value="1">
                         <div class="button-group">
-                            <a href="#" class="purch-btn"><i class="fas fa-bolt"></i>  바로 구매  </a>
+                            <a href="#" id="direct" class="purch-btn"><i class="fas fa-bolt"></i>바로 구매</a>
                             <a href="#" id="add-cart" class="cart-btn cart-btn-emphasis-orange"><i class="fas fa-shopping-cart"></i>장바구니</a>
                         </div>
                         

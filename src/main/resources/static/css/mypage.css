@@ -50,6 +50,10 @@
     background-color: #e2e2e1;
 }
 
+#email{
+    color: darkgray;
+}
+
 #pwdForm{
     margin-bottom: 0;
     padding-bottom: 0;

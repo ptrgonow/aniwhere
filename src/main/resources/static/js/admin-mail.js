@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
             { name: 'styles', items: ['Format'] }
         ],
         language: 'ko',
-        height: 500
+        height: 500,
+        resize_enabled: false // CKEditor 4에서 리사이즈 비활성화
     });
 
     document.getElementById('mail-form').addEventListener('submit', function (e) {
@@ -17,7 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const titleInput = document.querySelector('input[name="title"]');
         const title = titleInput ? titleInput.value.trim() : '';
-        const editorValue = CKEDITOR.instances.editor.getData().trim();
+        let editorValue = CKEDITOR.instances.editor.getData().trim();
+
+        // 불필요한 HTML 태그와 &nbsp; 제거
+        editorValue = editorValue.replace(/&nbsp;/g, ' ')
+            .replace(/<p><\/p>/g, '')
+            .replace(/<[^>]+>/g, '');
 
         let errorMessages = [];
 
@@ -35,11 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
             // 폼 데이터를 JSON으로 변환
             const formData = {
                 title: title,
-                content: editorValue
+                content: CKEDITOR.instances.editor.getData().trim() // 원래 HTML 형식의 데이터 전송
             };
 
             // AJAX 요청 보내기
-            fetch('/submit-mail', {
+            fetch('/admin/dash/submit-mail', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -49,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())  // 서버 응답을 JSON으로 처리
                 .then(result => {
                     if (result.status === 'success') {  // 서버 응답이 'success'인 경우
+                        alert('메일 전송 완료');
                         // 성공 시 대시보드로 리디렉션
                         window.location.href = '/admin/dashboard';
                     } else {

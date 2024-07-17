@@ -31,9 +31,9 @@ $(document).ready(function() {
                 alert(response);
                 if (response === "비밀번호가 일치합니다") {
                     $('#checkButton').html('<span class="material-symbols-outlined" id="check-icon">task_alt</span>');
-                    isPasswordChecked = true; // 비밀번호 확인 성공 시 플래그 설정
+                    isPasswordChecked = true; // 비밀번호 확인 성공 시 설정
                 } else {
-                    isPasswordChecked = false; // 비밀번호가 일치하지 않으면 플래그 초기화
+                    isPasswordChecked = false; // 비밀번호가 일치하지 않으면 초기화
                     alert('비밀번호가 일치하지 않습니다');
                 }
             },
@@ -99,21 +99,9 @@ $(document).ready(function() {
             });
         }
 
-        function autoHyphen(phone) {
-            // 숫자만 남기고 모든 문자 제거
-            var phoneNumber = input.value.replace(/[^\d]/g, "");
-
-            // 전화번호 형식에 맞게 하이푼 추가
-            if (phoneNumber.length >= 4 && phoneNumber.length <= 7) {
-                input.value = phoneNumber.slice(0, 3) + "-" + phoneNumber.slice(3);
-            } else if (phoneNumber.length >= 8) {
-                input.value = phoneNumber.slice(0, 3) + "-" + phoneNumber.slice(3, 7) + "-" + phoneNumber.slice(7);
-            }
-        }
-
-
         if (field === "phone") {
-            if (!/^\d{11}$/.test(phone)) {
+            const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/;
+            if (!phoneRegex.test(phone)) {
                 phoneMessage.text("휴대폰 형식에 맞게 입력하세요").removeClass("success").addClass("error");
                 return;
             }
@@ -139,11 +127,21 @@ $(document).ready(function() {
         }
     }
 
+    function formatPhoneNumber(phoneNumber) {
+        const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+        const match = cleaned.match(/^(\d{3})(\d{3,4})(\d{4})$/);
+        if (match) {
+            return match[1] + '-' + match[2] + '-' + match[3];
+        }
+        return phoneNumber;
+    }
+
     $("#userName").on("input", function () {
         checkDuplicateFields("userName");
     });
 
     $("#phone").on("input", function () {
+        this.value = formatPhoneNumber(this.value);
         checkDuplicateFields("phone");
     });
 
@@ -187,7 +185,7 @@ $(document).ready(function() {
             return;
         }
 
-        const phoneRegex = /^\d{11}$/;
+        const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/;
         if (phone === '') {
             alert('휴대폰 번호를 입력하세요');
             $("#phone").focus();
