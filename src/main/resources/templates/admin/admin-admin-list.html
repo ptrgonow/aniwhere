@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<div th:replace="~{include/admin-header :: header}"></div>
-<div th:replace="~{admin/admin-side :: side}"></div>
-<link rel="stylesheet" href="/css/admin-admin-list.css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 리스트</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/admin-admin-list.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/admin-admin-list.js"></script>
+</head>
 <body>
 <div th:replace="~{admin/admin-side :: side}"></div>
 
 <div class="admin-list-container">
+    <!--div class="user-info">
+        <p>인증된 사용자 이름: <span id="authUserName"></span></p>
+        <p>인증된 사용자 ID: <span id="authUserId"></span></p>
+    </div-->
+
     <div class="row">
         <!-- 관리자 리스트 -->
         <div class="admin-list-start col-md-4">
@@ -18,12 +29,7 @@
                 </tr>
                 </thead>
 
-                <tbody>
-                <tr th:each="admin : ${admins}">
-                    <td th:text="${admin.userId}" class="admin-id" onclick="showAdminDetails(this)"></td>
-                    <td th:text="${admin.userName}"></td>
-                    <td th:text="${admin.createdAt}"></td>
-                </tr>
+                <tbody id="adminList">
                 </tbody>
             </table>
         </div>
@@ -36,6 +42,5 @@
         </div>
     </div>
 </div>
-<div th:replace="~{include/admin-footer :: footer}"></div>
-<script src="/js/admin-admin-list.js"></script>
 </body>
+</html>

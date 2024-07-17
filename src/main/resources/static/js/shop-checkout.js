@@ -165,6 +165,7 @@ async function toss() {
                 contentType: "application/json",
                 data: JSON.stringify(orderDetails),
                 success: function(response) {
+                    console.log('주문 정보 저장 성공:', response);
                     widgets.requestPayment({
                         orderId: orderId,
                         orderName: "AniMall " + orderId,

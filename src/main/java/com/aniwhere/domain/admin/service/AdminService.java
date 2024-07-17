@@ -1,10 +1,12 @@
 package com.aniwhere.domain.admin.service;
 
+import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
+import com.aniwhere.domain.user.join.domain.Join;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -14,7 +16,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AdminService {
@@ -27,12 +31,7 @@ public class AdminService {
         this.adminMapper = adminMapper;
         this.javaMailSender = javaMailSender;
     }
-
-    // mailDTO 객체를 데이터베이스에 저장합니다.
-    // adminMapper를 사용하여 모든 사용자 이메일 주소를 조회합니다.
-    // 조회된 이메일 주소를 콘솔에 출력하여 확인합니다.
-    // 필요시 이메일 내용을 정리합니다 (cleanHtml 메서드 사용).
-    // 모든 사용자에게 이메일을 전송합니다 (sendEmail 메서드 사용).
+  
     public void saveMailAndSendToAllUsers(MailDTO mailDTO) {
         // Save mail to the database
         adminMapper.insertMail(mailDTO);
@@ -93,23 +92,48 @@ public class AdminService {
     public int countPhoneUsers( ) {
         return adminMapper.countEmptyPhoneUsers();
     }
+
+    // 회원아이디 검색 및 페이징 처리
+    public Map<String, Object> searchUser(String userId, int limit, int offset) {
+        List<JoinDTO> users;
+        int totalUsers;
+
+        if (userId == null || userId.isEmpty()) {
+            users = adminMapper.selectAllUsers(limit, offset);
+            totalUsers = adminMapper.userCount();
+        } else {
+            users = adminMapper.findUserByUserId(userId, limit, offset);
+            totalUsers = adminMapper.countByUserId(userId);
+        }
+
+        int totalPages = (int) Math.ceil((double) totalUsers / limit);
+        int currentPage = offset / limit + 1;
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("users", users);
+        response.put("totalPages", totalPages);
+        response.put("currentPage", currentPage);
+
+        return response;
+    }
+
     private String cleanHtml (String content){
         return content.replaceAll("<p></p>", ""); // 빈 <p></p> 태그 제거
     }
 
-    public List<OrderSucDTO> allOrders ( int limit, int offset){
+    public List<OrderSucDTO> allOrders(int limit, int offset) {
         return adminMapper.selectAllOrders(limit, offset);
     }
 
-    public OrderSucDTO findOrderById (String orderId) {
+    public OrderSucDTO findOrderById(String orderId) {
         return adminMapper.selectOrderById(orderId);
     }
 
-    public int countOrders() {
+    public int countOrders( ) {
         return adminMapper.countOrders();
     }
 
-    public List<OrderDetailDTO> findDetailsById(String orderId){
+    public List<OrderDetailDTO> findDetailsById(String orderId) {
         return adminMapper.selectOrderDetailByOrderId(orderId);
     }
 
@@ -119,6 +143,18 @@ public class AdminService {
 
     public List<ProductDTO> getAllProducts() {
        return adminMapper.selectAllProducts();
+    }
+
+    public List<ChartDTO> getYearChartData( ) {
+        return adminMapper.selectYearChartData();
+    }
+
+    public List<ChartDTO> getMonthChartData( ) {
+        return adminMapper.selectMonthChartData();
+    }
+
+    public List<ChartDTO> getYearOnYearChartData( ) {
+        return adminMapper.selectYearOnYearChartData();
     }
 
 }

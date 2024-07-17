@@ -4,15 +4,20 @@ body {
 }
 
 .container {
-    max-width: 960px;
+    max-width: 970px;
 }
 
 .container-fluid{
-    height: 390px;
+    height: 800px;
 }
 
 .search_container{
     text-align: center;
+}
+
+.search_wrapper {
+    position: relative;
+    display: inline-block;
 }
 
 .search_input{
@@ -25,6 +30,7 @@ body {
     background-repeat: no-repeat;
     background-size: 18px 18px;
     background-position: 95% center;
+    background-image: url("https://i.ibb.co/9NvzSL2/search.png");
     border-radius: 50px;
     border: 1px solid #575756;
     transition: all 250ms ease-in-out;
@@ -33,7 +39,7 @@ body {
 }
 
 .search_input:hover, .search_input:focus{
-    padding: 12px 0;
+    padding: 12px 24px;
     outline: 0;
     border: 1px solid transparent;
     border-bottom: 1px solid #575756;
@@ -70,7 +76,7 @@ body {
 }
 
 .table th:nth-child(3), th:nth-child(4){
-    width: 12%;
+    width: 11%;
 }
 
 .table th:nth-child(5){
@@ -82,7 +88,7 @@ body {
 }
 
 .table th:nth-child(7){
-    width: 13%;
+    width: 14%;
 }
 
 .table th, .table td {
@@ -133,7 +139,62 @@ body {
     margin-left: 10px;
 }
 
-.container-fluid.page{
+.container-fluid.page {
+    left: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
     height: 100px;
-    margin-top: 2rem;
+}
+
+.body-wrapper>.container-fluid{
+    top: 50px;
+}
+
+.pagination{
+    justify-content: center;
+    align-items: center;
+}
+
+.page-link.current{
+    background-color: #5d9ce0;
+    padding: 5px 10px;
+    color: white;
+}
+
+.mail-send{
+    font-size: 1rem;
+    margin-top: 10px;
+    float: right;
+    background-color: #FFFFFF;
+    border: 1px solid #5d9ce0;
+    padding: 5px;
+    color: #5d9ce0;
+    transition: all .3s;
+}
+
+.mail-send:hover{
+    background-color: #5d9ce0;
+    border: 1px solid #5d9ce0;
+    color: #FFFFFF;
+    transition: all .3s;
+}
+
+/* 메일 양식 받는사람 */
+.email-badge {
+    display: inline-block;
+    margin: 2px;
+    padding: 5px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    background-color: #f8f8f7;
+}
+.email-badge .remove-email {
+    color: #E74C3C;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.ck-editor__editable_inline {
+    z-index: 1051 !important;
 }
