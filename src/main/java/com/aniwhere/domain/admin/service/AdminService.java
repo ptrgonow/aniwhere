@@ -1,5 +1,6 @@
 package com.aniwhere.domain.admin.service;
 
+import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
@@ -124,19 +125,19 @@ public class AdminService {
         return content.replaceAll("<p></p>", ""); // 빈 <p></p> 태그 제거
     }
 
-    public List<OrderSucDTO> allOrders ( int limit, int offset){
+    public List<OrderSucDTO> allOrders(int limit, int offset) {
         return adminMapper.selectAllOrders(limit, offset);
     }
 
-    public OrderSucDTO findOrderById (String orderId) {
+    public OrderSucDTO findOrderById(String orderId) {
         return adminMapper.selectOrderById(orderId);
     }
 
-    public int countOrders() {
+    public int countOrders( ) {
         return adminMapper.countOrders();
     }
 
-    public List<OrderDetailDTO> findDetailsById(String orderId){
+    public List<OrderDetailDTO> findDetailsById(String orderId) {
         return adminMapper.selectOrderDetailByOrderId(orderId);
     }
 
@@ -144,4 +145,15 @@ public class AdminService {
         adminMapper.updateOrderStatus(orderId, newStatus);
     }
 
+    public List<ChartDTO> getYearChartData( ) {
+        return adminMapper.selectYearChartData();
+    }
+
+    public List<ChartDTO> getMonthChartData( ) {
+        return adminMapper.selectMonthChartData();
+    }
+
+    public List<ChartDTO> getYearOnYearChartData( ) {
+        return adminMapper.selectYearOnYearChartData();
+    }
 }

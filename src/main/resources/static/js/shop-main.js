@@ -13,8 +13,7 @@ $(document).ready(function () {
 function initializeCartButton() {
     $(document).on('click', '.cart-btn', function (event) {
         event.preventDefault();
-
-        const productId = $('#productId').val();
+        const productId = $(this).closest('.single-product-item').find('.product-image a').attr('href').split('=')[1];
         const quantity = 1;
 
         $.ajax({
