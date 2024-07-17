@@ -2,26 +2,26 @@ package com.aniwhere.domain.admin.service;
 
 import com.aniwhere.domain.admin.dto.AdminListDetailDTO;
 import com.aniwhere.domain.admin.mapper.AdminListDetailMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class AdminListDetailService {
 
-    @Autowired
-    private AdminListDetailMapper adminListDetailMapper;
+    private final AdminListDetailMapper adminListDetailMapper;
 
     public List<AdminListDetailDTO> getAllAdmins() {
-        return adminListDetailMapper.findAllAdmins();
+        return adminListDetailMapper.selectAllAdmins();
     }
 
-    public AdminListDetailDTO getAdminDetails(String userId) {
-        return adminListDetailMapper.findByUserId(userId);
+    public AdminListDetailDTO getAdminById(String userId) {
+        return adminListDetailMapper.selectAdminById(userId);
     }
 
-    public void updateAdmin(AdminListDetailDTO admin) {
-        adminListDetailMapper.updateAdmin(admin);
+    public boolean updateAdmin(AdminListDetailDTO admin) {
+        return adminListDetailMapper.updateAdmin(admin) > 0;
     }
 }
