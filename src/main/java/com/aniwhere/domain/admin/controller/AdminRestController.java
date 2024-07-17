@@ -5,6 +5,9 @@ import com.aniwhere.domain.admin.service.AdminService;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import com.aniwhere.domain.user.join.service.MailService;
+import jakarta.mail.MessagingException;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +27,7 @@ public class AdminRestController {
     //public AdminRestController(AdminService adminService) - 생성자를 통해 AdminService 인스턴스를 주입받습니다.
     // 생성자 주입 방식은 Spring에서 의존성 주입을 할 때 일반적으로 사용하는 방식입니다.
     private final AdminService adminService;
+    private MailService mailService;
 
     public AdminRestController(AdminService adminService) {
         this.adminService = adminService;
@@ -44,7 +48,7 @@ public class AdminRestController {
         return response;
     }
 
-    @GetMapping("/member-empty")
+    @GetMapping("/member/empty")
     public ResponseEntity<Map<String, Object>> emptyMember(@RequestParam String type,
                                                            @RequestParam(defaultValue = "10") int limit,
                                                            @RequestParam(defaultValue = "0") int offset) {
@@ -79,6 +83,24 @@ public class AdminRestController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/member/search")
+    public ResponseEntity<Map<String, Object>> searchUser(@RequestParam(required = false) String userId,
+                                                          @RequestParam(defaultValue = "10") int limit,
+                                                          @RequestParam(defaultValue = "0") int offset) {
+        Map<String, Object> response = adminService.searchUser(userId, limit, offset);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/member/mailsend")
+    public String sendMail(@RequestParam List<String> to, @RequestParam String subject, @RequestParam String body) {
+        try {
+            mailService.sendBulkHtmlMessage(to, subject, body);
+            return "이메일 전송 성공!";
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return "이메일 전송 실패";
+        }
+    }
 
     @GetMapping("/list/{orderId}")
     public ResponseEntity<?> getOrderDetails(@PathVariable String orderId) {
