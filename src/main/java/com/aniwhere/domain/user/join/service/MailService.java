@@ -1,12 +1,15 @@
 package com.aniwhere.domain.user.join.service;
 
 import com.aniwhere.domain.user.join.dto.MailCodeCheckDTO;
+import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Logger;
 
 
@@ -81,5 +84,24 @@ public class MailService {
     // 인증 코드 생성
     private String generateAuthCode() {
         return String.valueOf((int)(Math.random() * 900000) + 100000);
+    }
+
+
+    // 관리자 회원 관리 메일 발송
+    public void sendHtmlMessage(String to, String subject, String htmlBody) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText(htmlBody, true);  // true to indicate that the text is HTML
+
+        javaMailSender.send(message);
+    }
+
+    public void sendBulkHtmlMessage(List<String> toList, String subject, String htmlBody) throws MessagingException {
+        for (String to : toList) {
+            sendHtmlMessage(to, subject, htmlBody);
+        }
     }
 }

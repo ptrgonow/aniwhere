@@ -13,6 +13,13 @@ import java.util.List;
 @Mapper
 public interface AdminMapper {
 
+    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
+            "FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%') ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
+    List<JoinDTO> findUserByUserId(@Param("userId") String userId, @Param("limit") int limit, @Param("offset") int offset);
+
+    @Select("SELECT COUNT(*) FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%')")
+    int countByUserId(@Param("userId") String userId);
+
     // @Select: 실행할 SQL SELECT 쿼리를 정의하는 어노테이션입니다.
     //"SELECT id, user_id as userId, email, user_name as userName, ..." - user 테이블에서 데이터를 조회하는 SQL 쿼리입니다.
     // 이 쿼리는 userId를 기준으로 정렬하여 모든 사용자 정보를 조회합니다.
