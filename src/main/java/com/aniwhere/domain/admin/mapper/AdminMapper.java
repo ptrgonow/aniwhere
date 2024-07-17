@@ -42,8 +42,9 @@ public interface AdminMapper {
     @Select("SELECT COUNT(*) FROM user WHERE (detail_address IS NULL OR detail_address = '') OR (address IS NULL OR address = '')")
     int countEmptyAddressUsers( );
 
-    @Select("SELECT email FROM user")
-    List<String> selectAllUserEmails( );
+    // ROLE_USER 에게만 메일 보내짐
+    @Select("SELECT email FROM user WHERE role = 'ROLE_USER'")
+    List<String> selectAllUserEmails();
 
     @Select("SELECT COUNT(*) FROM user WHERE phone IS NULL")
     int countEmptyPhoneUsers( );
