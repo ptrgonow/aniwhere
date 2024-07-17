@@ -2,6 +2,9 @@ package com.aniwhere.domain.admin.view;
 
 import com.aniwhere.domain.admin.service.AdminService;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import com.aniwhere.domain.shop.product.domain.Product;
+import com.aniwhere.domain.shop.product.dto.ProductDTO;
+import com.aniwhere.domain.shop.product.service.ProductService;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.user.loginSession.service.HomeService;
 import lombok.AllArgsConstructor;
@@ -20,6 +23,7 @@ public class AdminViewController {
 
     private final AdminService adminService;
     private final HomeService homeService;
+    private final ProductService productService;
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
@@ -29,9 +33,40 @@ public class AdminViewController {
     }
 
     @GetMapping("/products")
-    public String products(Model model) {
+    public String products(Model model, @RequestParam(defaultValue = "1") int page,
+                           @RequestParam(defaultValue = "9") int size,
+                           @RequestParam(defaultValue = "all") String category) {
         String userName = homeService.getAuthenticatedUserName();
+
+
         model.addAttribute("name", userName);
+        int totalProducts;
+        List<Product> products = switch (category) {
+            case "dog" -> {
+                totalProducts = productService.getTotalDogProducts();
+                yield productService.findDog(size, (page - 1) * size);
+            }
+            case "cat" -> {
+                totalProducts = productService.getTotalCatProducts();
+                yield productService.findCat(size, (page - 1) * size);
+            }
+            case "other" -> {
+                totalProducts = productService.getTotalOtherProducts();
+                yield productService.findOthers(size, (page - 1) * size);
+            }
+            default -> {
+                totalProducts = productService.getTotal();
+                yield productService.findAllProductsWithLimit(size, (page - 1) * size);
+            }
+        };
+
+        int totalPages = (int) Math.ceil((double) totalProducts / size);
+
+        model.addAttribute("products", products);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("name", userName);
+        model.addAttribute("category", category);
         return "admin/admin-product";
     }
 
@@ -85,4 +120,6 @@ public class AdminViewController {
         model.addAttribute("name", userName);
         return "admin/admin-mail";
     }
+
+
 }

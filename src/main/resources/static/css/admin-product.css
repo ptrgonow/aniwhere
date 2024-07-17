@@ -1,0 +1,47 @@
+body img {
+    max-width: 100%;
+}
+.product-lists{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pagination-container {
+
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.page-link.disabled{
+    margin-right: 10px;
+}
+.pagination-container span {
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.pagination-container a {
+    color: black;
+
+}
+
+.pagination-container .page-link.current {
+
+        color: #5d9ce0;
+        text-decoration: underline;
+
+}
+
+.pagination-container a{
+    margin-right: 10px;
+}

@@ -20,10 +20,6 @@ import java.util.Map;
 @RequestMapping("/admin/dash")
 public class AdminRestController {
 
-    // private final AdminService adminService; - AdminService 클래스의 인스턴스를 주입받아 필드에 저장합니다.
-    // final로 선언되어 있어 변경할 수 없습니다.
-    //public AdminRestController(AdminService adminService) - 생성자를 통해 AdminService 인스턴스를 주입받습니다.
-    // 생성자 주입 방식은 Spring에서 의존성 주입을 할 때 일반적으로 사용하는 방식입니다.
     private final AdminService adminService;
     private MailService mailService;
 

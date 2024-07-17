@@ -2,7 +2,6 @@ $(document).ready(function() {
     const orderDetailTable = $("#orderDetail");
     let currentOrderData = null;
 
-    // 초기 주문 상세 정보 표시 함수
     function showfirstorderdetail() {
         const firstOrderId = $('.table.text-nowrap.mb-0.align-middle tbody tr:first-child').data('orderid');
         if (firstOrderId) {
@@ -97,35 +96,34 @@ $(document).ready(function() {
         `);
         statusRow.find('td').append(statusSelect, updateStatusButton);
         orderDetailTable.append(statusRow);
-
-        $(document).on('click', '.update-status-btn', function() {
-            const orderId = $(this).siblings('.order-status-select').data('orderId');
-            const newStatus = $(this).siblings('.order-status-select').val();
-            console.log(orderId)
-            $.ajax({
-                url: '/admin/dash/status/' + orderId,
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ newStatus: newStatus }),
-                success: function(response) {
-                    alert(response.message);
-                    window.location.reload();
-                },
-                error: function(xhr, status, error) {
-                    console.error('상태 변경 실패:', error);
-                    alert('상태 변경 중 오류가 발생했습니다.');
-                }
-            });
-        });
     }
-
-
-
 
     function displayErrorMessage(message) {
         orderDetailTable.empty();
         orderDetailTable.append(`<tr><td colspan="2">${message}</td></tr>`);
     }
+
+    // 이벤트 위임을 사용하여 상태 변경 버튼 클릭 이벤트 처리
+    $(document).on('click', '.update-status-btn', function() {
+        const orderId = $(this).siblings('.order-status-select').data('orderId');
+        const newStatus = $(this).siblings('.order-status-select').val();
+        console.log(orderId)
+        $.ajax({
+            url: '/admin/dash/status/' + orderId,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ newStatus: newStatus }),
+            success: function(response) {
+                alert(response.message);
+                window.location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error('상태 변경 실패:', error);
+                alert('상태 변경 중 오류가 발생했습니다.');
+            }
+        });
+    });
+
 
     $(document).on('click', '.table.text-nowrap.mb-0.align-middle tbody tr', function() {
         const orderId = $(this).data('orderid');

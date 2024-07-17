@@ -5,6 +5,7 @@ import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.user.join.domain.Join;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import jakarta.mail.MessagingException;
@@ -30,12 +31,7 @@ public class AdminService {
         this.adminMapper = adminMapper;
         this.javaMailSender = javaMailSender;
     }
-
-    // mailDTO 객체를 데이터베이스에 저장합니다.
-    // adminMapper를 사용하여 모든 사용자 이메일 주소를 조회합니다.
-    // 조회된 이메일 주소를 콘솔에 출력하여 확인합니다.
-    // 필요시 이메일 내용을 정리합니다 (cleanHtml 메서드 사용).
-    // 모든 사용자에게 이메일을 전송합니다 (sendEmail 메서드 사용).
+  
     public void saveMailAndSendToAllUsers(MailDTO mailDTO) {
         // Save mail to the database
         adminMapper.insertMail(mailDTO);
@@ -145,6 +141,10 @@ public class AdminService {
         adminMapper.updateOrderStatus(orderId, newStatus);
     }
 
+    public List<ProductDTO> getAllProducts() {
+       return adminMapper.selectAllProducts();
+    }
+
     public List<ChartDTO> getYearChartData( ) {
         return adminMapper.selectYearChartData();
     }
@@ -156,4 +156,5 @@ public class AdminService {
     public List<ChartDTO> getYearOnYearChartData( ) {
         return adminMapper.selectYearOnYearChartData();
     }
+
 }

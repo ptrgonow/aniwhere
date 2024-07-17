@@ -13,16 +13,16 @@ public interface ShopMapper {
     @Select("SELECT COUNT(*) FROM product")
     int getTotalProductCount();
 
-    @Select("SELECT product_id as productId, name, image, category, price FROM product LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price, quantity, created_at as createdAt FROM product LIMIT #{limit} OFFSET #{offset}")
     List<Product> findAllProductsWithLimit(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category LIKE '%강아지%' and category not like '%고양이%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price, quantity, created_at as createdAt FROM product WHERE category LIKE '%강아지%' and category not like '%고양이%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findDogProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category LIKE '%고양이%' and category not like '%강아지%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price, quantity, created_at as createdAt FROM product WHERE category LIKE '%고양이%' and category not like '%강아지%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findCatProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE category LIKE '%공용%' LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price, quantity, created_at as createdAt FROM product WHERE category LIKE '%공용%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findOtherProducts(@Param("limit") int limit, @Param("offset") int offset);
 
     @Select("SELECT product_id AS productId, name AS name, image AS image, price AS price, detail_url AS detail_url, category AS category FROM product WHERE product_id = #{productId}")
@@ -76,7 +76,7 @@ public interface ShopMapper {
     @Select("SELECT COUNT(*) FROM product WHERE category LIKE '%공용%'")
     int getTotalOtherProductCount( );
 
-    @Select("SELECT product_id as productId, name, image, category, price FROM product WHERE name LIKE CONCAT('%', #{keyword}, '%') LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT product_id as productId, name, image, category, price, created_at as createdAt, quantity FROM product WHERE name LIKE CONCAT('%', #{keyword}, '%') LIMIT #{limit} OFFSET #{offset}")
     List<Product>searchProducts(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
 
     @Select("SELECT COUNT(*) FROM product WHERE name LIKE CONCAT('%', #{keyword}, '%')")

@@ -51,6 +51,8 @@
                                                   th:classappend="${orders.orderStatus == '결제 전' ? 'bg-danger' : orders.orderStatus == '결제 완료' ? 'bg-primary' : orders.orderStatus == '결제 취소' ? 'bg-secondary' : orders.orderStatus == '배송 준비' ? 'bg-warning' : 'bg-success'}"
                                                   th:text="${orders.orderStatus}"></span>
                                         </div>
+
+
                                     </td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0 fs-4" th:text="${orders.amount} + 원"></h6>
@@ -58,7 +60,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                        
+
                         </div>
                         <div class="page">
                             <a th:href="@{/admin/orders(offset=${offset - limit < 0 ? 0 : offset - limit}, limit=${limit})}" th:if="${currentPage > 1}"><i class="fa fa-angle-left"></i></a>
