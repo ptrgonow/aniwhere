@@ -41,16 +41,15 @@ function filterYearData() {
     const filteredData = window.chartData.filter(item => item.date.startsWith(selectedYear));
     const amountData = filteredData.map(item => item.amount);
     const categories = filteredData.map(item => item.date);
-
-    const monthlyAmount = amountData.reduce((acc, cur) => acc + cur, 0);
-    $("#mom-sales").text(monthlyAmount.toLocaleString() + " 원");
-
     createBarChart('#year-chart', '금액', amountData, categories);
-}
 
+}
 function handleMonthChartData(data) {
+
     const amountData = data.chartData.map(item => item.amount);
     const categories = data.chartData.map(item => item.date);
+    const monthlyAmount = amountData.reduce((acc, cur) => acc + cur, 0);
+    $("#mom-sales").text(monthlyAmount.toLocaleString() + " 원");
 
     createAreaChart('#current-month-chart', '금액', amountData, categories);
 }
@@ -102,10 +101,12 @@ function createBarChart(element, seriesName, data, categories) {
         yaxis: {
             show: true,
             min: 0,
+            max: 1000000,
+            tickAmount: 10,
             labels: {
                 style: { cssClass: "grey--text lighten-2--text fill-color" },
                 formatter: function (value) {
-                    return value.toLocaleString() + " 원";
+                    return (value / 10000).toLocaleString() + " 만원";
                 }
             },
         },
@@ -161,6 +162,7 @@ function createAreaChart(element, seriesName, data, categories) {
                     return month + " 월 " + day + " 일";
                 }
             },
+            y: { formatter: function (value) { return value.toLocaleString() + " 원"; } }
         },
         xaxis: {
             type: "category",
@@ -205,6 +207,7 @@ function createDonutChart(element, seriesData, labels) {
         tooltip: {
             theme: "dark",
             fillSeriesColor: false,
+            y: { formatter: function (value) { return value.toLocaleString() + " 원"; } },
         },
     };
 
