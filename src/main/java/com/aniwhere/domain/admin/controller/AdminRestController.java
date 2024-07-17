@@ -93,4 +93,14 @@ public class AdminRestController {
 
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/status/{orderId}")
+    public ResponseEntity<Map<String, Object>> updateOrderStatus(
+            @PathVariable String orderId,
+            @RequestBody Map<String, String> requestBody) {
+
+        String newStatus = requestBody.get("newStatus");
+            adminService.updateOrderStatus(orderId, newStatus);
+            return ResponseEntity.ok(Map.of("success", true, "message", "주문 상태 업데이트 성공"));
+    }
 }

@@ -55,11 +55,6 @@ public class AdminService {
         }
     }
 
-    // MimeMessage 객체를 생성하여 이메일 메시지를 만듭니다.
-    // MimeMessageHelper를 사용하여 이메일 수신자, 제목, 내용을 설정합니다. 두 번째 인자를 true로 설정하여 HTML 형식으로 보냅니다.
-    // javaMailSender를 사용하여 이메일을 전송합니다.
-    // 전송된 이메일 주소를 콘솔에 출력하여 확인합니다.
-    // 예외가 발생할 경우 스택 트레이스를 출력합니다.
     private void sendEmail(String to, String subject, String content) {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
@@ -74,10 +69,6 @@ public class AdminService {
         }
     }
 
-    // AdminMapper를 사용하여 모든 사용자 정보를 조회하여 반환합니다.
-    // 이 클래스는 기본적으로 이메일 전송과 사용자 조회 기능을 제공합니다.
-    // 이메일 전송 시 HTML 형식을 지원하기 위해 MimeMessage와 MimeMessageHelper를 사용합니다.
-    // 예외 처리를 통해 오류 발생 시 디버깅을 용이하게 합니다.
     public List<JoinDTO> allMembers(int limit, int offset) {
         return adminMapper.selectAllUsers(limit, offset);
     }
@@ -120,4 +111,9 @@ public class AdminService {
     public List<OrderDetailDTO> findDetailsById(String orderId){
         return adminMapper.selectOrderDetailByOrderId(orderId);
     }
+
+    public void updateOrderStatus(String orderId, String newStatus) {
+        adminMapper.updateOrderStatus(orderId, newStatus);
+    }
+
 }

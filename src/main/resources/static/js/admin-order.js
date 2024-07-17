@@ -79,6 +79,44 @@ $(document).ready(function() {
         </tbody>
     `;
         orderDetailTable.append(productRow);
+        const statusSelect = $(`
+            <select class="form-select order-status-select" data-order-id="${order.orderId}">
+                <option value="결제 완료" ${order.orderStatus === '결제 완료' ? 'selected' : ''}>결제 완료</option>
+                <option value="배송 준비" ${order.orderStatus === '배송 준비' ? 'selected' : ''}>배송 준비</option>
+                <option value="배송 출발" ${order.orderStatus === '배송 출발' ? 'selected' : ''}>배송 출발</option>
+            </select>
+        `);
+
+        const updateStatusButton = $('<button class="btn btn-primary update-status-btn">상태 변경</button>');
+
+        const statusRow = $(`
+            <tr>
+                <th class="order-detail-th">주문 상태</th>
+                <td id="orderStatus"></td> 
+            </tr>
+        `);
+        statusRow.find('td').append(statusSelect, updateStatusButton);
+        orderDetailTable.append(statusRow);
+
+        $(document).on('click', '.update-status-btn', function() {
+            const orderId = $(this).siblings('.order-status-select').data('orderId');
+            const newStatus = $(this).siblings('.order-status-select').val();
+            console.log(orderId)
+            $.ajax({
+                url: '/admin/dash/status/' + orderId,
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ newStatus: newStatus }),
+                success: function(response) {
+                    alert(response.message);
+                    window.location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error('상태 변경 실패:', error);
+                    alert('상태 변경 중 오류가 발생했습니다.');
+                }
+            });
+        });
     }
 
 
