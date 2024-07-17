@@ -12,10 +12,6 @@ import java.util.List;
 @Mapper
 public interface AdminMapper {
 
-    // @Select: 실행할 SQL SELECT 쿼리를 정의하는 어노테이션입니다.
-    //"SELECT id, user_id as userId, email, user_name as userName, ..." - user 테이블에서 데이터를 조회하는 SQL 쿼리입니다.
-    // 이 쿼리는 userId를 기준으로 정렬하여 모든 사용자 정보를 조회합니다.
-    //public List<JoinDTO> selectAllUsers(); - 쿼리 실행 결과를 JoinDTO 객체의 리스트로 반환합니다.
     @Select("SELECT id, user_id as userId, email, user_name as userName, address, detail_address as detailAddress, " +
             "zip_code as zipCode, phone, created_at as createdAt from user order by userId DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> selectAllUsers(@Param("limit") int limit, @Param("offset") int offset);
@@ -23,9 +19,6 @@ public interface AdminMapper {
     @Select("SELECT COUNT(*) FROM user")
     int userCount( );
 
-    // @Insert: 실행할 SQL INSERT 쿼리를 정의하는 어노테이션입니다.
-    //"INSERT INTO user_mail (title, content) VALUES (#{title}, #{content})" - user_mail 테이블에 새로운 이메일 레코드를 삽입하는 SQL 쿼리입니다. MailDTO 객체의 title과 content 필드 값이 쿼리의 VALUES 부분에 삽입됩니다.
-    //void insertMail(MailDTO mailDTO); - MailDTO 객체를 인자로 받아서 SQL INSERT 쿼리를 실행합니다.
     @Insert("INSERT INTO user_mail (title, content) VALUES (#{title}, #{content})")
     void insertMail(MailDTO mailDTO);
 
@@ -83,6 +76,6 @@ public interface AdminMapper {
     void updateOrderStatus(@Param("orderId") String orderId, @Param("newStatus") String newStatus);
 
     @Select("SELECT product_id as prodcutId, name, image, price, detail_url as detailUrl, category, " +
-            "created_at as createdAt, updated_at as updatedAt, quantity FROM product")
+            "created_at as createdAt, updated_at as updatedAt, quantity FROM product limit 9")
     List<ProductDTO> selectAllProducts();
 }

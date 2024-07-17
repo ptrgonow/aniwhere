@@ -4,6 +4,7 @@ import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -114,6 +115,10 @@ public class AdminService {
 
     public void updateOrderStatus(String orderId, String newStatus) {
         adminMapper.updateOrderStatus(orderId, newStatus);
+    }
+
+    public List<ProductDTO> getAllProducts() {
+       return adminMapper.selectAllProducts();
     }
 
 }

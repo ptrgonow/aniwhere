@@ -10,6 +10,7 @@ public class Product {
     private String name;
     private String image;
     private String price;
+    private int quantity;
     private String detail_url;
     private String category;
     private LocalDateTime createdAt;
