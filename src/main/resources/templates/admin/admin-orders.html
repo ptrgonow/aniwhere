@@ -46,10 +46,11 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2">
-                                                <span class="badge rounded-3 fw-semibold"
-                                                      th:classappend="${orders.orderStatus == '결제 전' ? 'bg-danger' : 'bg-primary'}"
-                                                      th:text="${orders.orderStatus}"></span>
+    <span class="badge rounded-3 fw-semibold"
+          th:classappend="${orders.orderStatus == '결제 전' ? 'bg-danger' : orders.orderStatus == '결제 완료' ? 'bg-primary' : orders.orderStatus == '결제 취소' ? 'bg-secondary' : orders.orderStatus == '배송 준비' ? 'bg-warning' : 'bg-success'}"
+          th:text="${orders.orderStatus}"></span>
                                         </div>
+
 
                                     </td>
                                     <td class="border-bottom-0">

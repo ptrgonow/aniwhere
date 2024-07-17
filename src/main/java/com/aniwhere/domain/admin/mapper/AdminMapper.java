@@ -3,11 +3,9 @@ package com.aniwhere.domain.admin.mapper;
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -43,9 +41,6 @@ public interface AdminMapper {
     @Select("SELECT COUNT(*) FROM user WHERE (detail_address IS NULL OR detail_address = '') OR (address IS NULL OR address = '')")
     int countEmptyAddressUsers( );
 
-    // @Select: 실행할 SQL SELECT 쿼리를 정의하는 어노테이션입니다.
-    //"SELECT email FROM user" - user 테이블에서 모든 이메일 주소를 조회하는 SQL 쿼리입니다.
-    //List<String> selectAllUserEmails(); - 쿼리 실행 결과를 String 타입의 리스트로 반환합니다. 즉, 모든 사용자 이메일 주소를 리스트 형태로 반환합니다.
     @Select("SELECT email FROM user")
     List<String> selectAllUserEmails( );
 
@@ -84,4 +79,10 @@ public interface AdminMapper {
             "WHERE od.order_id = #{orderId}")
     List<OrderDetailDTO> selectOrderDetailByOrderId(@Param("orderId") String orderId);
 
+    @Update("UPDATE order_success SET order_status = #{newStatus} WHERE order_id = #{orderId}")
+    void updateOrderStatus(@Param("orderId") String orderId, @Param("newStatus") String newStatus);
+
+    @Select("SELECT product_id as prodcutId, name, image, price, detail_url as detailUrl, category, " +
+            "created_at as createdAt, updated_at as updatedAt, quantity FROM product")
+    List<ProductDTO> selectAllProducts();
 }
