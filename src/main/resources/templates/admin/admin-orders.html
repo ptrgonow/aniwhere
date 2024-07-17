@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <div th:replace="~{include/admin-header :: header}"></div>
 <div th:replace="~{admin/admin-side :: side}"></div>
+<link rel="stylesheet" href="/css/admin-orders.css" />
 <body>
 <div class="body-wrapper">
     <div class="container-fluid">
         <!--  Row 1 -->
         <div class="row">
-            <div class="col-lg-8 mb-20 d-flex">
+            <div class="col-lg-7 col-12 mb-20 d-flex">
                 <div class="card w-100">
                     <div class="card-body">
                         <div class="card-header">
@@ -46,12 +47,10 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2">
-    <span class="badge rounded-3 fw-semibold"
-          th:classappend="${orders.orderStatus == '결제 전' ? 'bg-danger' : orders.orderStatus == '결제 완료' ? 'bg-primary' : orders.orderStatus == '결제 취소' ? 'bg-secondary' : orders.orderStatus == '배송 준비' ? 'bg-warning' : 'bg-success'}"
-          th:text="${orders.orderStatus}"></span>
+                                            <span class="badge rounded-3 fw-semibold"
+                                                  th:classappend="${orders.orderStatus == '결제 전' ? 'bg-danger' : orders.orderStatus == '결제 완료' ? 'bg-primary' : orders.orderStatus == '결제 취소' ? 'bg-secondary' : orders.orderStatus == '배송 준비' ? 'bg-warning' : 'bg-success'}"
+                                                  th:text="${orders.orderStatus}"></span>
                                         </div>
-
-
                                     </td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0 fs-4" th:text="${orders.amount} + 원"></h6>
@@ -59,7 +58,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-
+                        
                         </div>
                         <div class="page">
                             <a th:href="@{/admin/orders(offset=${offset - limit < 0 ? 0 : offset - limit}, limit=${limit})}" th:if="${currentPage > 1}"><i class="fa fa-angle-left"></i></a>
@@ -71,14 +70,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 mb-20 d-flex">
-                <div class="card-body w-100">
-                    <table class="table mb-0 align-middle col-2" id="orderDetail">
-                    </table>
+            <div class="col-lg-5 col-12 mb-20 d-flex">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <div class="mb-3 mb-sm-0">
+                                <h5 class="card-title fw-semibold">상세 내역</h5>
+                            </div>
+                        </div>
+                        <div class="card-body w-100">
+                            <table class="table mb-0 align-middle col-2" id="orderDetail">
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <div th:replace="~{include/admin-footer :: footer}"></div>
