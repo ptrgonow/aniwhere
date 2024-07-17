@@ -3,6 +3,8 @@ $(document).ready(function(){
     fetchAuthenticatedUserInfo();
 });
 
+let currentOpenAdminId = null;
+
 function fetchAuthenticatedUserInfo() {
     $.ajax({
         url: '/auth/userinfo', // 인증된 사용자 정보를 가져오는 엔드포인트
@@ -12,7 +14,7 @@ function fetchAuthenticatedUserInfo() {
             $('#authUserId').text(response.userId);
         },
         error: function() {
-            alert('사용자 정보를 불러오는데 실패했습니다.');
+            alert('사용자 정보를 불러오는데 실패했습니다.=_=');
         }
     });
 }
@@ -26,8 +28,8 @@ function fetchAdminList() {
             adminList.empty();
             response.forEach(function(admin) {
                 adminList.append(`
-                    <tr>
-                        <td><a href="#" class="admin-id" onclick="showAdminDetails('${admin.userId}'); return false;">${admin.userId}</a></td>
+                    <tr onclick="toggleAdminDetails('${admin.userId}')">
+                        <td>${admin.userId}</td>
                         <td>${admin.userName}</td>
                         <td>${admin.createdAt}</td>
                     </tr>
@@ -38,6 +40,17 @@ function fetchAdminList() {
             alert('관리자 목록을 불러오는데 실패했습니다.');
         }
     });
+}
+
+function toggleAdminDetails(adminId) {
+    if (currentOpenAdminId === adminId) {
+        // 이미 열려 있는 경우 닫기
+        $('#admin-list-detail').empty();
+        currentOpenAdminId = null;
+    } else {
+        // 새로 열기
+        showAdminDetails(adminId);
+    }
 }
 
 function showAdminDetails(adminId) {
@@ -95,6 +108,7 @@ function showAdminDetails(adminId) {
                     </div>
                 </div>
             `);
+            currentOpenAdminId = adminId;
         },
         error: function() {
             alert('관리자 정보를 불러오는데 실패했습니다.');
