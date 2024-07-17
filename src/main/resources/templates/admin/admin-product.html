@@ -1,16 +1,7 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
-</head>
-
-<body>
+<!DOCTYPE html>
+<div th:replace="~{include/admin-header :: header}"></div>
 <div th:replace="~{admin/admin-side :: side}"></div>
-
+<body>
     <div class="body-wrapper">
         <div class="container-fluid">
             <!--  Row 1 -->
@@ -47,7 +38,7 @@
                                             </td>
                                             <td>10,000</td>
                                             <td>
-                                                <select name="select" id="status">
+                                                <select name="select">
                                                     <option value="">판매함</option>
                                                     <option value="">판매안함</option>
                                                 </select>
@@ -75,7 +66,7 @@
                                             </td>
                                             <td>10,000</td>
                                             <td>
-                                                <select name="select" id="status">
+                                                <select name="select">
                                                     <option value="">판매함</option>
                                                     <option value="">판매안함</option>
                                                 </select>
@@ -131,11 +122,5 @@
             </div>
         </div>
     </div>
-</div>
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/js/sidebarmenu.js"></script>
-<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-<script src="../assets/js/dashboard.js"></script>
+<div th:replace="~{include/admin-footer :: footer}"></div>
 </body>
-
-</html>

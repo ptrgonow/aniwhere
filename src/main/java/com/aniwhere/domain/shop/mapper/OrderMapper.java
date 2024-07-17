@@ -51,7 +51,7 @@ public interface OrderMapper {
     @Select("SELECT os.order_id AS orderId, " +
             "os.user_id AS userId, " +
             "od.product_id AS productId, " +
-            "SUM(os.amount) AS totalAmount, " +
+            "od.price, od.quantity, od.price * od.quantity AS totalAmount, " +
             "SUM(od.quantity) AS totalQuantity, " +
             "p.name AS productName, " +
             "p.image AS image, " +

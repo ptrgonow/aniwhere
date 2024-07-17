@@ -1,12 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>관리자 리스트</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel="stylesheet" href="/css/admin-admin-list.css">
-    <script src="/js/admin-admin-list.js"></script>
-</head>
+<div th:replace="~{include/admin-header :: header}"></div>
+<div th:replace="~{admin/admin-side :: side}"></div>
+<link rel="stylesheet" href="/css/admin-admin-list.css">
 <body>
 <div th:replace="~{admin/admin-side :: side}"></div>
 
@@ -41,6 +36,6 @@
         </div>
     </div>
 </div>
-
+<div th:replace="~{include/admin-footer :: footer}"></div>
+<script src="/js/admin-admin-list.js"></script>
 </body>
-</html>
