@@ -6,7 +6,8 @@ $(document).ready(function () {
     // 초기 페이지네이션 설정
     const initialCurrentPage = parseInt($('#initialCurrentPage').val());
     const initialTotalPages = parseInt($('#initialTotalPages').val());
-    initializePagination(initialCurrentPage, initialTotalPages);
+    const initialCategory = $('#initialCategory').val();
+    initializePagination(initialCurrentPage, initialTotalPages, initialCategory);
 });
 
 function initializeCartButton() {
@@ -29,7 +30,7 @@ function initializeCartButton() {
     });
 }
 
-function initializePagination(currentPage = 1, totalPages = 1, keyword = '') {
+function initializePagination(currentPage = 1, totalPages = 1, category = '', keyword = '') {
     const paginationContainer = $('#pagination-container');
 
     function createPagination(current, total, visiblePages) {
@@ -39,13 +40,13 @@ function initializePagination(currentPage = 1, totalPages = 1, keyword = '') {
         paginationContainer.empty();
 
         if (start > 1) {
-            paginationContainer.append(`<a class="page-link" href="#" data-page="${start - 1}" data-keyword="${keyword}"><i class="fa fa-angle-left"></i></a>`);
+            paginationContainer.append(`<a class="page-link" href="#" data-page="${start - 1}" data-category="${category}" data-keyword="${keyword}"><i class="fa fa-angle-left"></i></a>`);
         } else {
             paginationContainer.append(`<span class="page-link disabled"><i class="fa fa-angle-left"></i></span>`);
         }
 
         for (let i = start; i <= end; i++) {
-            let pageLink = $(`<a class="page-link" href="#" data-page="${i}" data-keyword="${keyword}">${i}</a>`);
+            let pageLink = $(`<a class="page-link" href="#" data-page="${i}" data-category="${category}" data-keyword="${keyword}">${i}</a>`);
             if (i === current) {
                 pageLink.addClass('current');
             }
@@ -53,7 +54,7 @@ function initializePagination(currentPage = 1, totalPages = 1, keyword = '') {
         }
 
         if (end < total) {
-            paginationContainer.append(`<a class="page-link" href="#" data-page="${end + 1}" data-keyword="${keyword}"><i class="fa fa-angle-right"></i></a>`);
+            paginationContainer.append(`<a class="page-link" href="#" data-page="${end + 1}" data-category="${category}" data-keyword="${keyword}"><i class="fa fa-angle-right"></i></a>`);
         } else {
             paginationContainer.append(`<span class="page-link disabled"><i class="fa fa-angle-right"></i></span>`);
         }
@@ -62,11 +63,13 @@ function initializePagination(currentPage = 1, totalPages = 1, keyword = '') {
         $('.page-link').on('click', function (event) {
             event.preventDefault();
             const page = $(this).data('page');
+            const category = $(this).data('category');
             const keyword = $(this).data('keyword');
+
             if (keyword) {
                 searchProducts(page, keyword);
             } else {
-                window.location.href = `/shop/main?page=${page}&size=9`;
+                window.location.href = `/shop/main?category=${category}&page=${page}&size=9`;
             }
         });
     }
@@ -102,7 +105,7 @@ function searchProducts(page = 1, keyword = '') {
         type: 'GET',
         success: function (response) {
             displaySearchResults(response.products);
-            initializePagination(response.currentPage, response.totalPages, keyword);
+            initializePagination(response.currentPage, response.totalPages, '', keyword);
         },
         error: function (xhr, status, error) {
             alert('검색 결과가 없습니다');
