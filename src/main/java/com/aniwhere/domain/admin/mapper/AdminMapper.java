@@ -1,5 +1,6 @@
 package com.aniwhere.domain.admin.mapper;
 
+import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
@@ -85,4 +86,21 @@ public interface AdminMapper {
     @Select("SELECT product_id as prodcutId, name, image, price, detail_url as detailUrl, category, " +
             "created_at as createdAt, updated_at as updatedAt, quantity FROM product")
     List<ProductDTO> selectAllProducts();
+
+    @Select("SELECT DATE_FORMAT(order_date, '%Y-%m') AS date, SUM(amount) AS amount " +
+            "FROM order_success " +
+            "GROUP BY DATE_FORMAT(order_date, '%Y-%m')")
+    List<ChartDTO> selectYearChartData();
+
+    @Select("SELECT DATE_FORMAT(order_date, '%Y-%m-%d') AS date, SUM(amount) AS amount " +
+            "FROM order_success " +
+            "WHERE DATE_FORMAT(order_date, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m') " +
+            "GROUP BY DATE_FORMAT(order_date, '%Y-%m-%d');")
+    List<ChartDTO> selectMonthChartData();
+
+    @Select("SELECT DATE_FORMAT(order_date, '%Y') AS date, SUM(amount) AS amount " +
+            "FROM order_success " +
+            "GROUP BY DATE_FORMAT(order_date, '%Y')")
+    List<ChartDTO> selectYearOnYearChartData();
+
 }

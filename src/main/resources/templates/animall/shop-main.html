@@ -42,7 +42,6 @@
             <div id="product-container" class="row product-lists">
                 <div th:each="product : ${products}" class="col-lg-4 col-md-6 text-center">
                     <div class="single-product-item">
-                        <input type="hidden" id="productId" class="productId" th:value="${product.productId}">
                         <div class="product-image">
                             <a th:href="@{/shop/detail(id=${product.productId})}">
                                 <img th:src="${product.image}" alt="제품 이미지">

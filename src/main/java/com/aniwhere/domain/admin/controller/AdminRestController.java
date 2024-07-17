@@ -1,5 +1,6 @@
 package com.aniwhere.domain.admin.controller;
 
+import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.service.AdminService;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
@@ -10,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController("adminRestController")
@@ -103,4 +101,36 @@ public class AdminRestController {
             adminService.updateOrderStatus(orderId, newStatus);
             return ResponseEntity.ok(Map.of("success", true, "message", "주문 상태 업데이트 성공"));
     }
+
+    @GetMapping("/chart")
+    public ResponseEntity<Map<String, Object>> getChartData() {
+        List<ChartDTO> chartData = adminService.getYearChartData();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("chartData", chartData);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/chart/month")
+    public ResponseEntity<Map<String, Object>> getMonthChartData() {
+        List<ChartDTO> chartData = adminService.getMonthChartData();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("chartData", chartData);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/chart/yoy")
+    public ResponseEntity<Map<String, Object>> getYearOnYearChartData() {
+        List<ChartDTO> chartData = adminService.getYearOnYearChartData();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("chartData", chartData);
+
+        return ResponseEntity.ok(response);
+    }
+
+
 }
