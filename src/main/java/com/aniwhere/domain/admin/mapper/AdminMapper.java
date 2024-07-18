@@ -24,30 +24,38 @@ public interface AdminMapper {
             "zip_code as zipCode, phone, created_at as createdAt from user order by userId DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> selectAllUsers(@Param("limit") int limit, @Param("offset") int offset);
 
+    @Select("SELECT id, user_id as userId, email, user_name as userName, address, detail_address as detailAddress, " +
+            "zip_code as zipCode, phone, created_at as createdAt, is_social AS isSocial from user " +
+            "WHERE role = 'ROLE_USER' order by userId DESC LIMIT #{limit} OFFSET #{offset}")
+    List<JoinDTO> selectAllShopUsers(@Param("limit") int limit, @Param("offset") int offset);
+
     @Select("SELECT COUNT(*) FROM user")
     int userCount( );
+
+    @Select("SELECT COUNT(*) FROM user WHERE role = 'ROLE_USER'")
+    int shopUserCount();
 
     @Insert("INSERT INTO user_mail (title, content) VALUES (#{title}, #{content})")
     void insertMail(MailDTO mailDTO);
 
     @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
-            "FROM user WHERE (detail_address IS NULL OR detail_address = '') OR (address IS NULL OR address = '') " +
+            "FROM user WHERE detail_address = '' AND role = 'ROLE_USER'" +
             "ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> emptyAdressUsers(@Param("limit") int limit, @Param("offset") int offset);
 
     @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
-            "FROM user WHERE phone IS NULL ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
+            "FROM user WHERE phone IS NULL AND role = 'ROLE_USER' ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> emptyPhoneUsers(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT COUNT(*) FROM user WHERE (detail_address IS NULL OR detail_address = '') OR (address IS NULL OR address = '')")
+    @Select("SELECT COUNT(*) FROM user WHERE detail_address = '' AND role = 'ROLE_USER'")
     int countEmptyAddressUsers( );
 
     // ROLE_USER 에게만 메일 보내짐
     @Select("SELECT email FROM user WHERE role = 'ROLE_USER'")
     List<String> selectAllUserEmails();
 
-    @Select("SELECT COUNT(*) FROM user WHERE phone IS NULL")
-    int countEmptyPhoneUsers( );
+    @Select("SELECT COUNT(*) FROM user WHERE phone IS NULL AND role = 'ROLE_USER'")
+    int countEmptyPhoneUsers();
 
     @Select("SELECT order_id as orderId, user_id as userId, shipping_address1 as shippingAddress1, " +
             "shipping_address2 as shippingAddress2, shipping_address3 as shippingAddress3, " +

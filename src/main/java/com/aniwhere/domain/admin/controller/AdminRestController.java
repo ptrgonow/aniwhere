@@ -63,8 +63,8 @@ public class AdminRestController {
         switch (type) {
             case "all":
             default:
-                members = adminService.allMembers(limit, offset);
-                totalMember = adminService.memberCount();
+                members = adminService.selectAllShopUsers(limit, offset);
+                totalMember = adminService.shopUserCount();
                 break;
             case "address":
                 members = adminService.emptyAdressUsers(limit, offset);
@@ -102,6 +102,7 @@ public class AdminRestController {
             UploadImgDTO uploadImgDTO = adminService.uploadFile(upload);
 
             JsonObject json = new JsonObject();
+            json.addProperty("uploaded", 1);
             json.addProperty("fileName", uploadImgDTO.getUrl());
             json.addProperty("url", uploadImgDTO.getUrl());
 
