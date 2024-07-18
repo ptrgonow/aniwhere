@@ -4,6 +4,7 @@ import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.dto.UploadImgDTO;
 import com.aniwhere.domain.admin.service.AdminService;
+import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
@@ -175,6 +176,33 @@ public class AdminRestController {
         response.put("chartData", chartData);
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/products/add")
+    public ResponseEntity<?> addProduct(@RequestBody ProductDTO productDTO) {
+
+        adminService.addProduct(productDTO);
+
+        return ResponseEntity.ok().build();
+
+    }
+    @PutMapping("/products/edit")
+    public ResponseEntity<?> editProduct(@RequestBody ProductDTO productDTO) {
+
+        adminService.editProduct(productDTO);
+
+        return ResponseEntity.ok().build();
+
+    }
+
+    @GetMapping("/products/{productId}")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Integer productId) {
+        ProductDTO productDTO = adminService.getProductById(productId);
+        if (productDTO != null) {
+            return ResponseEntity.ok(productDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

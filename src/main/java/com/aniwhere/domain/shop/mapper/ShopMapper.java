@@ -25,7 +25,7 @@ public interface ShopMapper {
     @Select("SELECT product_id as productId, name, image, category, price, quantity, created_at as createdAt FROM product WHERE category LIKE '%공용%' LIMIT #{limit} OFFSET #{offset}")
     List<Product> findOtherProducts(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT product_id AS productId, name AS name, image AS image, price AS price, detail_url AS detail_url, category AS category FROM product WHERE product_id = #{productId}")
+    @Select("SELECT product_id AS productId, name AS name, image AS image, price AS price, detail_url AS detailUrl, category AS category FROM product WHERE product_id = #{productId}")
     Product findProductById(Integer productId);
 
     @Insert("INSERT IGNORE INTO product(name, image, price, category) " +

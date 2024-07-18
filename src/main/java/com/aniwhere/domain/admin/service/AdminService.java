@@ -6,7 +6,9 @@ import com.aniwhere.domain.admin.dto.UploadImgDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
+import com.aniwhere.domain.shop.review.domain.Review;
 import com.aniwhere.domain.user.join.domain.Join;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.user.join.service.MailService;
@@ -195,4 +197,30 @@ public class AdminService {
         return adminMapper.selectYearOnYearChartData();
     }
 
+    public void addProduct(ProductDTO productDTO) {
+
+        Product product = Product.fromDTO(productDTO);
+
+        adminMapper.insertProduct(product);
+
+    }
+    public List<Product> searchProducts(String keyword, int limit, int offset) {
+        return adminMapper.searchProducts(keyword, limit, offset);
+    }
+
+    public int getTotalSearchResults(String keyword) {
+        return adminMapper.getTotalSearchResults(keyword);
+    }
+
+    public ProductDTO getProductById(Integer productId) {
+        return adminMapper.selectProductById(productId);
+    }
+
+    public void editProduct(ProductDTO productDTO) {
+
+        Product product = Product.fromDTO(productDTO);
+
+        adminMapper.updateProduct(product);
+
+    }
 }

@@ -4,6 +4,7 @@ import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import org.apache.ibatis.annotations.*;
@@ -104,4 +105,19 @@ public interface AdminMapper {
             "GROUP BY DATE_FORMAT(order_date, '%Y')")
     List<ChartDTO> selectYearOnYearChartData();
 
+    @Insert("INSERT INTO product (name, image, price, detail_url, category, quantity) VALUES " +
+            "(#{name}, #{image}, #{price}, #{detailUrl}, #{category}, #{quantity})")
+    void insertProduct(Product product);
+
+    @Select("SELECT product_id as productId, name, image, detail_url AS detailUrl, category, price, created_at as createdAt, quantity FROM product WHERE name LIKE CONCAT('%', #{keyword}, '%') LIMIT #{limit} OFFSET #{offset}")
+    List<Product>searchProducts(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
+
+    @Select("SELECT COUNT(*) FROM product WHERE name LIKE CONCAT('%', #{keyword}, '%')")
+    int getTotalSearchResults(@Param("keyword") String keyword);
+
+    @Select("SELECT * FROM product WHERE product_id = #{productId}")
+    ProductDTO selectProductById(@Param("productId") Integer productId);
+
+    @Update("UPDATE product SET name = #{name}, image = #{image}, price = #{price}, detail_url = #{detailUrl}, category = #{category}, quantity = #{quantity} WHERE product_id = #{productId}")
+    void updateProduct(Product product);
 }
