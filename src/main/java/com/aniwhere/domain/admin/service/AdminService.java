@@ -2,34 +2,44 @@ package com.aniwhere.domain.admin.service;
 
 import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
+import com.aniwhere.domain.admin.dto.UploadImgDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.user.join.domain.Join;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
+import com.aniwhere.domain.user.join.service.MailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.*;
 
 @Service
 public class AdminService {
 
     private final AdminMapper adminMapper;
     private final JavaMailSender javaMailSender;
+    private final MailService mailService;
 
     @Autowired
-    public AdminService(AdminMapper adminMapper, JavaMailSender javaMailSender) {
+    public AdminService(AdminMapper adminMapper, JavaMailSender javaMailSender, MailService mailService) {
         this.adminMapper = adminMapper;
         this.javaMailSender = javaMailSender;
+        this.mailService = mailService;
     }
   
     public void saveMailAndSendToAllUsers(MailDTO mailDTO) {
@@ -115,6 +125,34 @@ public class AdminService {
         response.put("currentPage", currentPage);
 
         return response;
+    }
+
+    // 이미지 업로드 메서드
+    public UploadImgDTO uploadFile(MultipartFile file) throws IOException {
+        if (file.isEmpty()) {
+            return null;
+        }
+
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if (fileName.contains("..")) {
+            throw new IOException("Invalid file path: " + fileName);
+        }
+
+        String uploadDir = "src/main/resources/static/images/";
+        String uniqueFileName = UUID.randomUUID().toString() + "_" + fileName;
+        Path copyLocation = Paths.get(uploadDir + File.separator + uniqueFileName);
+        Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
+
+        String fileDownloadUri = "/images/" + uniqueFileName;
+        UploadImgDTO response = new UploadImgDTO();
+        response.setUrl(fileDownloadUri);
+        return response;
+    }
+
+    // 이메일 전송 메서드
+    public void sendMailWithImage(String to, String subject, String body, String fileName) throws MessagingException {
+        String imageUrl = "http://localhost:8543/images/" + fileName;
+        mailService.sendEmailWithImage(to, subject, body, imageUrl);
     }
 
     private String cleanHtml (String content){

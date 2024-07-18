@@ -28,11 +28,14 @@ $(document).ready(function(){
 
     // 전송 메일 내용 틀
     CKEDITOR.replace('editor', {
+        extraPlugins: 'uploadimage',
+        filebrowserUploadUrl: '/admin/dash/image/upload',
+        filebrowserUploadMethod: 'form',
         toolbar: [
             { name: 'editing', items: ['Undo', 'Redo'] },
             { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline'] },
             { name: 'links', items: ['Link'] },
-            { name: 'insert', items: ['Image', 'Table'] },
+            { name: 'insert', items: ['Image', 'Table', 'UploadImage'] },
             { name: 'paragraph', items: ['NumberedList', 'BulletedList'] },
             { name: 'styles', items: ['Format'] }
         ],
@@ -40,14 +43,10 @@ $(document).ready(function(){
         height: 400
     });
 
-    // CKEditor 모달 열기 전에 Bootstrap 모달 닫기
-    CKEDITOR.on('dialogShow', function (evt) {
-        $('#mailSendModal').modal('hide');
-    });
-
-    // CKEditor 모달 닫을 때 Bootstrap 모달 다시 열기
-    CKEDITOR.on('dialogHide', function (evt) {
-        $('#mailSendModal').modal('show');
+    // CKEditor 모달에 포커스 주기
+    $('#mailSendModal').modal({
+       focus: false,
+       show: false
     });
 
     // 모달 초기화
@@ -56,8 +55,7 @@ $(document).ready(function(){
     // 모달 속 이메일 삭제 기능
     initializeRemoveEmail();
 
-    // 버튼 클릭 시 이메일 전송 기능
-    $('#sendMailButton').click(sendEmails);
+    $('#sendMailButton').click(validateAndSendEmail);
 
 });
 
@@ -192,10 +190,14 @@ function initializeRemoveEmail() {
 }
 
 // 이메일 전송
-function sendEmails() {
+function sendEmails(disableDuration) {
     var to = [];
+    var selectedCheckboxes = [];
     $('#recipient-container .email-badge').each(function(){
+        var email = $(this).data('email');  // email 변수를 여기에서 정의
         to.push($(this).data('email'));
+        var checkbox = $(`.mem-check[data-email="${email}"]`);
+        selectedCheckboxes.push(checkbox);
     });
 
     var subject = $('#recipient-title').val();
@@ -212,9 +214,45 @@ function sendEmails() {
         success: function(response) {
             alert(response);
             $('#mailSendModal').modal('hide');
+
+            // 체크박스를 주어진 시간 동안 비활성화
+            disableCheckboxes(selectedCheckboxes, disableDuration);
         },
         error: function() {
             alert('Error sending emails');
         }
     });
+}
+
+// 이메일 발송 회원 12시간 동안 비활성화
+function disableCheckboxes(checkboxes, duration) {
+    checkboxes.forEach(function(checkbox) {
+        checkbox.prop('disabled', true);
+    });
+
+    setTimeout(function() {
+        checkboxes.forEach(function(checkbox) {
+            checkbox.prop('disabled', false);
+        });
+    }, duration);
+}
+
+function validateAndSendEmail() {
+    var recipientCount = $('#recipient-container .email-badge').length;
+    var title = $('#recipient-title').val().trim();
+    var body = CKEDITOR.instances.editor.getData().trim();
+
+    if (recipientCount === 0) {
+        alert('받는 사람을 선택하세요.');
+        return;
+    }
+    if (title === '') {
+        alert('제목을 입력하세요.');
+        return;
+    }
+    if (body === '') {
+        alert('내용을 입력하세요.');
+        return;
+    }
+    sendEmails(30000);  // 30초 동안 비활성화
 }

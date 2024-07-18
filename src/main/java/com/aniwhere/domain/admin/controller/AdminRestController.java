@@ -2,29 +2,40 @@ package com.aniwhere.domain.admin.controller;
 
 import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
+import com.aniwhere.domain.admin.dto.UploadImgDTO;
 import com.aniwhere.domain.admin.service.AdminService;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.user.join.service.MailService;
+import com.nimbusds.jose.shaded.gson.JsonObject;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController("adminRestController")
 @RequestMapping("/admin/dash")
 public class AdminRestController {
 
     private final AdminService adminService;
-    private MailService mailService;
+    private final MailService mailService;
 
-    public AdminRestController(AdminService adminService) {
+    public AdminRestController(AdminService adminService, MailService mailService) {
         this.adminService = adminService;
+        this.mailService = mailService;
     }
 
 
@@ -83,6 +94,22 @@ public class AdminRestController {
                                                           @RequestParam(defaultValue = "0") int offset) {
         Map<String, Object> response = adminService.searchUser(userId, limit, offset);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/image/upload")
+    public ResponseEntity<?> uploadImage(@RequestParam("upload") MultipartFile upload) {
+        try {
+            UploadImgDTO uploadImgDTO = adminService.uploadFile(upload);
+
+            JsonObject json = new JsonObject();
+            json.addProperty("fileName", uploadImgDTO.getUrl());
+            json.addProperty("url", uploadImgDTO.getUrl());
+
+            return ResponseEntity.ok(json.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while uploading file");
+        }
     }
 
     @PostMapping("/member/mailsend")
