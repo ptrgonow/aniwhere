@@ -94,10 +94,10 @@ public class AdminViewController {
     @GetMapping("/member")
     public String member(Model model, @RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "0") int offset) {
 
-        List<JoinDTO> members = adminService.allMembers(limit, offset);
+        List<JoinDTO> members = adminService.selectAllShopUsers(limit, offset);
         String userName = homeService.getAuthenticatedUserName();
 
-        int totalRoutes = adminService.memberCount();
+        int totalRoutes = adminService.shopUserCount();
         int currentPage = offset / limit + 1;
         int totalPages = (int) Math.ceil((double) totalRoutes / limit);
 

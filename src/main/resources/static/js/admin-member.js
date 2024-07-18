@@ -83,13 +83,17 @@ function updateTable(members, offset) {
     tbody.empty();
 
     $.each(members, function(index, member) {
+        let socialImage = '';
+        if (member.isSocial == 1) {
+            socialImage = '<img src="/img/social-person.png" alt="social">';
+        }
         const row = `<tr>
             <td><input type="checkbox" class="mem-check" data-email="${member.email}"></td>
             <td>${offset + index + 1}</td>
             <td>${abbreviate(member.userId, 10)}</td>
-            <td>${member.userName}</td>
+            <td>${socialImage} ${member.userName}</td>
             <td>${member.email}</td>
-            <td>${member.address || ''} ${member.detailAddress || ''}</td>
+            <td>${member.detailAddress}</td>
             <td>${member.phone || ''}</td>
             <td>${member.createdAt.substring(0, 10)}</td>
         </tr>`;

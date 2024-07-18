@@ -85,8 +85,16 @@ public class AdminService {
         return adminMapper.selectAllUsers(limit, offset);
     }
 
+    public List<JoinDTO> selectAllShopUsers(int limit, int offset){
+        return adminMapper.selectAllShopUsers(limit, offset);
+    }
+
     public int memberCount( ) {
         return adminMapper.userCount();
+    }
+
+    public int shopUserCount(){
+        return adminMapper.shopUserCount();
     }
 
     public List<JoinDTO> emptyAdressUsers(int limit, int offset) {
