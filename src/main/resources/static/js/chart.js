@@ -101,8 +101,8 @@ function createBarChart(element, seriesName, data, categories) {
         yaxis: {
             show: true,
             min: 0,
-            max: 1000000,
-            tickAmount: 10,
+            max: 2000000,
+            tickAmount: 5,
             labels: {
                 style: { cssClass: "grey--text lighten-2--text fill-color" },
                 formatter: function (value) {

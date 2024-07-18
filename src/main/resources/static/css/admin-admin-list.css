@@ -1,7 +1,19 @@
+.admin-list-container {
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    width: 100%;
+    height: 100%;
+}
+
 .admin-list-start{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     align-items: center;
-    margin-top: 200px;
-    margin-left: 400px;
+    justify-content: center;
 }
 
 #adminDetails{
@@ -89,8 +101,8 @@
 
 .table-div {
     margin-top: 50px;
-    min-height: 500px;
-    max-height: 500px;
+    min-height: 400px;
+    max-height: 400px;
 }
 
 .table thead.admin-list-table-primary tr th {
@@ -149,7 +161,9 @@
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
-
+.page-wrapper {
+    margin: 0;
+}
 
 .slide-panel {
     position: fixed;
@@ -164,6 +178,7 @@
 }
 
 .slide-panel.open {
+    overflow-y: scroll;
     right: 0;
 }
 
