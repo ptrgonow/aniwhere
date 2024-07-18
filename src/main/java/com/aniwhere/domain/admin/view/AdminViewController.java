@@ -13,8 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -121,5 +124,23 @@ public class AdminViewController {
         return "admin/admin-mail";
     }
 
+    @GetMapping("/product")
+    @ResponseBody
+    public Map<String, Object> searchProducts(@RequestParam("keyword") String keyword,
+                                              @RequestParam(defaultValue = "1") int page,
+                                              @RequestParam(defaultValue = "9") int size) {
+        int offset = (page - 1) * size;
+        List<Product> products = adminService.searchProducts(keyword, size, offset);
+        int totalProducts = adminService.getTotalSearchResults(keyword);
+        int totalPages = (int) Math.ceil((double) totalProducts / size);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("products", products);
+        response.put("currentPage", page);
+        response.put("totalPages", totalPages);
+        response.put("totalProducts", totalProducts);
+
+        return response;
+    }
 
 }

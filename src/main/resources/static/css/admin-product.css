@@ -45,3 +45,9 @@ body img {
 .pagination-container a{
     margin-right: 10px;
 }
+.modal-content{
+    min-height: 600px;
+}
+.modal-body{
+    min-height: 500px;
+}
