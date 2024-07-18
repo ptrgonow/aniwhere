@@ -180,44 +180,52 @@ function showAdminDetails(adminId) {
         success: function(response) {
             var adminDetailsDiv = $('#admin-list-detail');
             adminDetailsDiv.html(`
-                <div class="form-input">
-                    <label class="reg-form">아이디</label>
-                    <p class="in-text">${response.userId}</p>
-                </div>
-                <div class="form-input">
-                    <label class="reg-form">이름</label>
-                    <input type="text" id="userName" value="${response.userName}" />
-                </div>
-                <div class="form-input">
-                    <label class="reg-form">이메일</label>
-                    <input type="email" id="email" value="${response.email}" />
-                </div>
-                <div class="form-input">
-                    <label class="reg-form">주소</label>
-                    <input type="text" id="address" value="${response.address}" />
-                </div>
-                <div class="form-input">
-                    <label class="reg-form">상세 주소</label>
-                    <input type="text" id="detailAddress" value="${response.detailAddress}" />
-                </div>
-                <div class="form-input">
-                    <label class="reg-form">우편번호</label>
-                    <input type="text" id="zipCode" value="${response.zipCode}" />
-                </div>
-                <div class="form-input">
-                    <label class="reg-form">휴대폰</label>
-                    <input type="text" id="phone" value="${response.phone}" />
-                </div>
-                <div class="form-input">
-                    <label class="reg-form">역할</label>
-                    <input type="checkbox" id="roleSwitch" ${response.role === 'ROLE_ADMIN' ? 'checked' : ''} data-toggle="switch" data-on-text="관리자" data-off-text="일반 회원" />
-                </div>
-                <div class="form-input">
-                    <label class="reg-form">시작 날짜</label>
-                    <p class="in-text">${response.createdAt}</p>
-                </div>
-                <div class="form-input">
-                    <button onclick="updateAdminDetails('${response.userId}')">수정</button>
+                <div class="page-wrapper">
+                    <div class="container d-flex justify-content-center">
+                        <div class="join col-xl-8 col-8 d-flex justify-content-center w-100 h-100">
+                            <div id="adminDetails" class="w-100">
+                                <div class="form-input">
+                                    <label class="reg-form">아이디</label>
+                                    <p class="in-text">${response.userId}</p>
+                                </div>
+                                <div class="form-input">
+                                    <label class="reg-form">이름</label>
+                                    <input type="text" id="userName" value="${response.userName}" />
+                                </div>
+                                <div class="form-input">
+                                    <label class="reg-form">이메일</label>
+                                    <input type="email" id="email" value="${response.email}" />
+                                </div>
+                                <div class="form-input">
+                                    <label class="reg-form">주소</label>
+                                    <input type="text" id="address" value="${response.address}" />
+                                </div>
+                                <div class="form-input">
+                                    <label class="reg-form">상세 주소</label>
+                                    <input type="text" id="detailAddress" value="${response.detailAddress}" />
+                                </div>
+                                <div class="form-input">
+                                    <label class="reg-form">우편번호</label>
+                                    <input type="text" id="zipCode" value="${response.zipCode}" />
+                                </div>
+                                <div class="form-input">
+                                    <label class="reg-form">휴대폰</label>
+                                    <input type="text" id="phone" value="${response.phone}" />
+                                </div>
+                                <div class="form-input">
+                                    <label class="reg-form">역할</label>
+                                    <input type="checkbox" id="roleSwitch" ${response.role === 'ROLE_ADMIN' ? 'checked' : ''} data-toggle="switch" data-on-text="관리자" data-off-text="일반 회원" />
+                                </div>
+                                <div class="form-input">
+                                    <label class="reg-form">시작 날짜</label>
+                                    <p class="in-text">${response.createdAt}</p>
+                                </div>
+                                <div class="form-input">
+                                    <button onclick="updateAdminDetails('${response.userId}')">수정</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             `);
             $("[data-toggle='switch']").bootstrapSwitch(); // 부트스트랩 스위치 초기화

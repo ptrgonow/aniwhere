@@ -164,21 +164,33 @@
     color: #F28123;
 }
 
+/* 드로어 패널 혹은 슬라이드 패널? */
 .form-input {
-    display: flex;
-    width: 470px;
-    padding: 16px;
-    border-radius: 7px;
-    border: 0;
-    margin: 15px;
-    font-size: 18px;
-    height: auto;
-    outline-color: rgba(0, 0, 0, 0);
-    background: rgba(255, 255, 255, .95);
-    color: #F28123;
-    align-items: center;
-    position: relative;
-    padding-bottom: 30px; /* Space for message */
+    margin-bottom: 10px;
+}
+
+.form-input label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-input input,
+.form-input p {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.form-input button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 .reg-form {
