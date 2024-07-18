@@ -2,7 +2,6 @@
 <div th:replace="~{include/admin-header :: header}"></div>
 <div th:replace="~{admin/admin-side :: side}"></div>
 <link rel="stylesheet" href="/css/admin-member.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <body>
 
 <div class="body-wrapper">
@@ -83,11 +82,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="recipient-title" class="col-form-label">제목:</label>
-                        <input type="text" class="form-control" id="recipient-title">
+                        <input type="text" class="form-control" id="recipient-title" required>
                     </div>
                     <div class="mb-3">
                         <label for="editor" class="col-form-label">내용:</label>
-                        <textarea class="form-control" id="editor"></textarea>
+                        <textarea class="form-control" name="editor" id="editor" required></textarea>
                     </div>
                 </form>
             </div>
@@ -99,6 +98,6 @@
     </div>
 </div>
 <div th:replace="~{include/admin-footer :: footer}"></div>
-<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
 <script src="/js/admin-member.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
 </body>

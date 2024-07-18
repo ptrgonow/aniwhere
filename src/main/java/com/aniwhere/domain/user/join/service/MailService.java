@@ -7,9 +7,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 
@@ -21,6 +27,7 @@ public class MailService {
     private static final String senderEmail= "aniwhere03@gmail.com";// 랜덤 인증 코드
     private final Logger logger = Logger.getLogger(MailService.class.getName());
     public static HashMap<String, String> codeStorage = new HashMap<>();
+    private static final String UPLOAD_DIR = "src/main/resources/static/images/";
 
 
     // 메일 양식
@@ -103,5 +110,11 @@ public class MailService {
         for (String to : toList) {
             sendHtmlMessage(to, subject, htmlBody);
         }
+    }
+
+    // 이미지 URL을 포함한 이메일 전송 메서드
+    public void sendEmailWithImage(String to, String subject, String body, String imageUrl) throws MessagingException {
+        String htmlBody = "<html><body>" + body + "<br><img src='" + imageUrl + "' alt='Image'></body></html>";
+        sendHtmlMessage(to, subject, htmlBody);
     }
 }

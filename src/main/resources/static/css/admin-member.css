@@ -1,6 +1,5 @@
 body {
     padding-top: 50px;
-
 }
 
 .container {
@@ -197,4 +196,8 @@ body {
 
 .ck-editor__editable_inline {
     z-index: 1051 !important;
+}
+
+.cke_dialog_ui_input_file{
+    height: 100px;
 }
