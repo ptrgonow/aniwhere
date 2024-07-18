@@ -1,23 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>관리자 리스트</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel="stylesheet" href="/css/admin-admin-list.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
-</head>
+<div th:replace="~{include/admin-header :: header}"></div>
+<link rel="stylesheet" href="/css/admin-admin-list.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css">
+
 <body>
 <div th:replace="~{admin/admin-side :: side}"></div>
 
 <div class="admin-list-container">
     <div class="row">
         <!-- 관리자 리스트 -->
-        <div class="admin-list-start col-md-4">
+        <div class="admin-list-start col-lg-6 text-center">
             <!-- 관리자 검색 -->
             <div class="search_container">
                 <p class="search_title">찾으시는 관리자의 아이디 또는 이름을 검색하세요</p>
@@ -31,19 +23,18 @@
                     <button id="searchButton" class="search_button">Search</button>
                 </div>
             </div>
-
-            <table class="table table-striped table-hover rounded-5 shadow">
-                <thead class="admin-list-table-primary">
-                <tr>
-                    <th>관리자 ID</th>
-                    <th>관리자 이름</th>
-                    <th>시작 날짜</th>
-                </tr>
-                </thead>
-
-                <tbody id="adminList">
-                </tbody>
-            </table>
+            <div class="table-div">
+                <table class="table table-striped table-hover rounded-5">
+                    <thead class="admin-list-table-primary">
+                    <tr>
+                        <th>관리자 ID</th>
+                        <th>관리자 이름</th>
+                        <th>등록일</th>
+                    </tr>
+                    </thead>
+                    <tbody id="adminList"></tbody>
+                </table>
+            </div>
             <div class="pagination-container">
                 <div class="pagination d-flex justify-content-center">
                     <a href="#" id="firstPage" class="page-link">처음</a>
@@ -54,19 +45,22 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- 슬라이드 패널 -->
         <div id="slidePanel" class="slide-panel">
-            <div class="slide-panel-header">
-                <button id="closePanel" class="close">&times;</button>
-                <h4>상세 정보</h4>
-            </div>
-            <div class="slide-panel-content" id="admin-list-detail">
-                <!-- 관리자 상세 정보 표시 자리 -->
+            <div class="w-100 h-100">
+                <div class="slide-panel-header">
+                    <h4>상세 정보</h4>
+                    <i id="closePanel" class="fa-solid fa-x close"></i>
+                </div>
+                <div class="slide-panel-content" id="admin-list-detail">
+                    <!-- 관리자 상세 정보 표시 자리 -->
+                </div>
             </div>
         </div>
     </div>
 </div>
+<div th:replace="~{include/admin-footer :: footer}"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
 <script src="/js/admin-admin-list.js"></script>
 </body>
-</html>
