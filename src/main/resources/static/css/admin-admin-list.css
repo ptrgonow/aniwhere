@@ -4,6 +4,154 @@
     margin-left: 400px;
 }
 
+#adminDetails{
+    margin-left: 600px;
+}
+.search_button {
+    padding: 10px 20px;
+    background-color: #5d9ce0;
+    border: none;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.search_button:hover {
+    background-color: #4a8ac2;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.admin-list-table th, .admin-list-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+/* 페이징 처리 */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.pagination button.disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.page-link {
+    display: block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.page-link.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.page-link.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    color: #ccc;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+
+
+.slide-panel {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s;
+    z-index: 1000;
+}
+
+.slide-panel.open {
+    right: 0;
+}
+
+.slide-panel-header {
+    padding: 10px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.slide-panel-content {
+    padding: 10px;
+}
+
+
+
 .join {
     flex-direction: column;
     align-items: center;
