@@ -267,8 +267,6 @@ function displaySearchResults(products) {
 
         const productHtml = `
         <tr>
-            <td><input type="checkbox" class="product-checkbox" value="${product.productId}"></td>
-
             <td class="product-image">
                  ${productImage}
             </td>
