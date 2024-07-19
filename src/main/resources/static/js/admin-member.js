@@ -1,10 +1,67 @@
+import {
+    ClassicEditor,
+    AccessibilityHelp,
+    AutoImage,
+    Autosave,
+    Base64UploadAdapter,
+    Bold,
+    Essentials,
+    ImageBlock,
+    ImageInline,
+    ImageInsert,
+    ImageInsertViaUrl,
+    ImageResize,
+    ImageStyle,
+    ImageToolbar,
+    ImageUpload,
+    Italic,
+    Paragraph,
+    SelectAll,
+    Undo
+} from 'ckeditor5';
+
+const editorConfig = {
+    toolbar: {
+        items: ['undo', 'redo', '|', 'selectAll', '|', 'bold', 'italic', '|', 'insertImage', '|', 'accessibilityHelp'],
+        shouldNotGroupWhenFull: false
+    },
+    plugins: [
+        AccessibilityHelp,
+        AutoImage,
+        Autosave,
+        Base64UploadAdapter,
+        Bold,
+        Essentials,
+        ImageBlock,
+        ImageInline,
+        ImageInsert,
+        ImageInsertViaUrl,
+        ImageResize,
+        ImageStyle,
+        ImageToolbar,
+        ImageUpload,
+        Italic,
+        Paragraph,
+        SelectAll,
+        Undo
+    ],
+    image: {
+        toolbar: ['imageTextAlternative', '|', 'imageStyle:inline', 'imageStyle:wrapText', 'imageStyle:breakText', '|', 'resizeImage']
+    },
+    language: 'ko',
+
+};
+
+
+let editorInstance = null;
+
 $(document).ready(function(){
     let limit = 10; // 페이지당 항목 수
     let offset = 0; // 시작점
-    let currentPage = 1;
 
-    // 초기 로드 시 전체 회원 조회
     fetchMembers('all', limit, offset);
+    initializeModal();
+    initializeCkEditor();
 
     $('#empty-info').change(function() {
         const selectedOption = $(this).val();
@@ -25,38 +82,8 @@ $(document).ready(function(){
 
     // 만약 개별 체크박스가 모두 선택되거나 해제되었을 때, 전체 선택 체크박스의 상태를 업데이트
     $('#member-tbody').on('change', '.mem-check', handleMemCheckChange);
-
-    // 전송 메일 내용 틀
-    CKEDITOR.replace('editor', {
-        extraPlugins: 'uploadimage',
-        filebrowserUploadUrl: '/admin/dash/image/upload',
-        filebrowserUploadMethod: 'form',
-        toolbar: [
-            { name: 'editing', items: ['Undo', 'Redo'] },
-            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline'] },
-            { name: 'links', items: ['Link'] },
-            { name: 'insert', items: ['Image', 'Table', 'UploadImage'] },
-            { name: 'paragraph', items: ['NumberedList', 'BulletedList'] },
-            { name: 'styles', items: ['Format'] }
-        ],
-        language: 'ko',
-        height: 400
-    });
-
-    // CKEditor 모달에 포커스 주기
-    $('#mailSendModal').modal({
-       focus: false,
-       show: false
-    });
-
-    // 모달 초기화
-    initializeModal();
-
-    // 모달 속 이메일 삭제 기능
-    initializeRemoveEmail();
-
-    $('#sendMailButton').click(validateAndSendEmail);
-
+    $('#remove-email').on('click', initializeRemoveEmail);
+    $('#sendMailButton').on('click', validateAndSendEmail);
 });
 
 function fetchMembers(type, limit, offset) {
@@ -84,7 +111,7 @@ function updateTable(members, offset) {
 
     $.each(members, function(index, member) {
         let socialImage = '';
-        if (member.isSocial == 1) {
+        if (member.isSocial === 1) {
             socialImage = '<img src="/img/social-person.png" alt="social">';
         }
         const row = `<tr>
@@ -180,17 +207,15 @@ function initializeModal() {
         const recipientContainer = $('#recipient-container');
         recipientContainer.empty();
         selectedEmails.forEach(email => {
-            recipientContainer.append(`<span class="email-badge" data-email="${email}">${email} <span class="remove-email" data-email="${email}">X</span></span>`);
+            recipientContainer.append(`<span class="email-badge" data-email="${email}">${email} <span id="remove-email" class="remove-email" data-email="${email}">X</span></span>`);
         });
     });
 }
 
 function initializeRemoveEmail() {
-    $('#recipient-container').on('click', '.remove-email', function() {
-        const email = $(this).data('email');
-        $(this).parent().remove();
-        $(`.mem-check[data-email="${email}"]`).prop('checked', false);
-    });
+    const email = $(this).data('email');
+    $(this).parent().remove();
+    $(`.mem-check[data-email="${email}"]`).prop('checked', false);
 }
 
 // 이메일 전송
@@ -205,7 +230,7 @@ function sendEmails(disableDuration) {
     });
 
     var subject = $('#recipient-title').val();
-    var body = CKEDITOR.instances.editor.getData();
+    var body = editorInstance.getData();
 
     $.ajax({
         url: '/admin/dash/member/mailsend',
@@ -218,7 +243,6 @@ function sendEmails(disableDuration) {
         success: function(response) {
             alert(response);
             $('#mailSendModal').modal('hide');
-
             // 체크박스를 주어진 시간 동안 비활성화
             disableCheckboxes(selectedCheckboxes, disableDuration);
         },
@@ -242,9 +266,9 @@ function disableCheckboxes(checkboxes, duration) {
 }
 
 function validateAndSendEmail() {
-    var recipientCount = $('#recipient-container .email-badge').length;
-    var title = $('#recipient-title').val().trim();
-    var body = CKEDITOR.instances.editor.getData().trim();
+    const recipientCount = $('#recipient-container .email-badge').length;
+    const title = $('#recipient-title').val().trim();
+    const body = editorInstance.getData();
 
     if (recipientCount === 0) {
         alert('받는 사람을 선택하세요.');
@@ -259,4 +283,18 @@ function validateAndSendEmail() {
         return;
     }
     sendEmails(30000);  // 30초 동안 비활성화
+}
+
+function initializeCkEditor() {
+
+    ClassicEditor.create(
+        document.querySelector('#editor'), editorConfig)
+        .then(editor => {
+            editorInstance = editor;
+        })
+        .catch(error => {
+                console.error(error);
+            }
+        )
+
 }

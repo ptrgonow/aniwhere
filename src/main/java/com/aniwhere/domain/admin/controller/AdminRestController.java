@@ -97,22 +97,6 @@ public class AdminRestController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/image/upload")
-    public ResponseEntity<?> uploadImage(@RequestParam("upload") MultipartFile upload) {
-        try {
-            UploadImgDTO uploadImgDTO = adminService.uploadFile(upload);
-
-            JsonObject json = new JsonObject();
-            json.addProperty("uploaded", 1);
-            json.addProperty("fileName", uploadImgDTO.getUrl());
-            json.addProperty("url", uploadImgDTO.getUrl());
-
-            return ResponseEntity.ok(json.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while uploading file");
-        }
-    }
 
     @PostMapping("/member/mailsend")
     public String sendMail(@RequestParam List<String> to, @RequestParam String subject, @RequestParam String body) {
@@ -120,7 +104,7 @@ public class AdminRestController {
             mailService.sendBulkHtmlMessage(to, subject, body);
             return "이메일 전송 성공!";
         } catch (MessagingException e) {
-            e.printStackTrace();
+            System.out.println("메일 전송 실패" + e.getMessage());
             return "이메일 전송 실패";
         }
     }
