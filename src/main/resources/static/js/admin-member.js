@@ -111,8 +111,10 @@ function updateTable(members, offset) {
 
     $.each(members, function(index, member) {
         let socialImage = '';
-        if (member.isSocial === 1) {
-            socialImage = '<img src="/img/social-person.png" alt="social">';
+        if (member.social === true) {
+            socialImage = '<img src="/img/social-person.png" alt="social" class="social-person">';
+        }else {
+            socialImage = '';
         }
         const row = `<tr>
             <td><input type="checkbox" class="mem-check" data-email="${member.email}"></td>
@@ -125,8 +127,8 @@ function updateTable(members, offset) {
             <td>${member.createdAt.substring(0, 10)}</td>
         </tr>`;
         tbody.append(row);
-        // 개별 체크박스가 변경될 때 all-check의 상태를 업데이트
     });
+    // 개별 체크박스가 변경될 때 all-check의 상태를 업데이트
     $('.mem-check').on('change', handleMemCheckChange);
 }
 

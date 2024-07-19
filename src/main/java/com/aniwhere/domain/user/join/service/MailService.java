@@ -7,15 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
+
 import java.util.logging.Logger;
 
 
@@ -101,7 +96,7 @@ public class MailService {
 
         helper.setTo(to);
         helper.setSubject(subject);
-        helper.setText(htmlBody, true);  // true to indicate that the text is HTML
+        helper.setText(htmlBody, true);
 
         javaMailSender.send(message);
     }
@@ -112,9 +107,15 @@ public class MailService {
         }
     }
 
-    // 이미지 URL을 포함한 이메일 전송 메서드
+    // 이미지 포함 메일 전송 메서드
     public void sendEmailWithImage(String to, String subject, String body, String imageUrl) throws MessagingException {
-        String htmlBody = "<html><body>" + body + "<br><img src='" + imageUrl + "' alt='Image'></body></html>";
-        sendHtmlMessage(to, subject, htmlBody);
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText("<html><body>" + body + "<br><img src='" + imageUrl + "' /></body></html>", true);
+
+        javaMailSender.send(message);
     }
 }
