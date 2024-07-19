@@ -117,6 +117,13 @@ public class AdminService {
     public List<OrderSucDTO> allOrders(int limit, int offset) {
         return adminMapper.selectAllOrders(limit, offset);
     }
+    public List<OrderSucDTO> selectRecentOrders(int limit) {
+        return adminMapper.selectRecentOrders(limit);
+    }
+
+    public List<ProductDTO> selectRowQuantityProducts(){
+        return adminMapper.selectRowQuantityProducts();
+    }
 
     public OrderSucDTO findOrderById(String orderId) {
         return adminMapper.selectOrderById(orderId);

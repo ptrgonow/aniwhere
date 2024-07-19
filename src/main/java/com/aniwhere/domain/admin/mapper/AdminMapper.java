@@ -65,6 +65,13 @@ public interface AdminMapper {
             " order_date desc LIMIT #{limit} OFFSET #{offset}")
     List<OrderSucDTO> selectAllOrders(@Param("limit") int limit, @Param("offset") int offset);
 
+    @Select("SELECT order_id as orderId, user_id as userId, shipping_address1 as shippingAddress1, " +
+            "shipping_address2 as shippingAddress2, shipping_address3 as shippingAddress3, " +
+            "amount, order_status as orderStatus, order_date as orderDate, recipient_name as recipientName, " +
+            "recipient_phone as recipientPhone, order_request as orderRequest from order_success order by" +
+            " order_date desc LIMIT #{limit}")
+    List<OrderSucDTO> selectRecentOrders(@Param("limit") int limit);
+
     @Select("SELECT os.order_id AS orderId, " +
             "       os.user_id AS userId, " +
             "       u.user_name as userName, " +
@@ -96,6 +103,10 @@ public interface AdminMapper {
     @Select("SELECT product_id as prodcutId, name, image, price, detail_url as detailUrl, category, " +
             "created_at as createdAt, updated_at as updatedAt, quantity FROM product limit 9")
     List<ProductDTO> selectAllProducts();
+
+    @Select("SELECT name, image, " +
+            "quantity FROM product order by quantity limit 4")
+    List<ProductDTO> selectRowQuantityProducts();
 
     @Select("SELECT DATE_FORMAT(order_date, '%Y-%m') AS date, SUM(amount) AS amount " +
             "FROM order_success " +

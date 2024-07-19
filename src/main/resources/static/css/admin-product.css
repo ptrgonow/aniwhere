@@ -51,3 +51,10 @@ body img {
 .modal-body{
     min-height: 500px;
 }
+
+aside.left-sidebar {
+    top: 0;
+    width: 170px;
+height: 160vh;
+}
+

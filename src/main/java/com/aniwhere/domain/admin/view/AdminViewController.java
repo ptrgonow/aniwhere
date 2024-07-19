@@ -31,7 +31,13 @@ public class AdminViewController {
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
         String userName = homeService.getAuthenticatedUserName();
+        int limit = 5;
+
+        List<OrderSucDTO> orders = adminService.selectRecentOrders(limit);
+        List<ProductDTO> products = adminService.selectRowQuantityProducts();
         model.addAttribute("name", userName);
+        model.addAttribute("orders", orders);
+        model.addAttribute("products", products);
         return "admin/admin-dashboard";
     }
 
@@ -40,7 +46,6 @@ public class AdminViewController {
                            @RequestParam(defaultValue = "9") int size,
                            @RequestParam(defaultValue = "all") String category) {
         String userName = homeService.getAuthenticatedUserName();
-
 
         model.addAttribute("name", userName);
         int totalProducts;

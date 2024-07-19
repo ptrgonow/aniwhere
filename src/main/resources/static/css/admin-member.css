@@ -1,3 +1,9 @@
+aside.left-sidebar {
+    top: 0;
+    width: 170px;
+    height: 112vh;
+}
+
 body {
     padding-top: 50px;
 }
