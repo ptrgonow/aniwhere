@@ -137,7 +137,7 @@ $(document).ready(function () {
         reader.readAsDataURL(imageInput);
     });
 });
-
+ㅈㅁ
 function submitProduct(formData) {
     const url = '/admin/dash/products/add';
 

@@ -44,7 +44,7 @@
                     <div class="single-product-item">
                         <div class="product-image">
                             <a th:href="@{/shop/detail(id=${product.productId})}">
-                                <img th:src="${product.image}" alt="제품 이미지">
+                                <img th:src="${#strings.startsWith(product.image, 'https://')} ? ${product.image} : ${'data:image/png;base64,' + product.image}" alt="상품 이미지">
                             </a>
                         </div>
                         <div class="product-details">

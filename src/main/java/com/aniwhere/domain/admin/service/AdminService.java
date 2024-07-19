@@ -141,10 +141,6 @@ public class AdminService {
         adminMapper.updateOrderStatus(orderId, newStatus);
     }
 
-    public List<ProductDTO> getAllProducts() {
-       return adminMapper.selectAllProducts();
-    }
-
     public List<ChartDTO> getYearChartData( ) {
         return adminMapper.selectYearChartData();
     }
