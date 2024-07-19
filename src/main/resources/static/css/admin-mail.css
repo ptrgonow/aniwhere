@@ -1,6 +1,14 @@
 @import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap";
 
+aside.left-sidebar {
+    top: 0;
+    width: 170px;
+    height: 111vh;
+}
+
+
+
 * {
     margin: 0;
     padding: 0;

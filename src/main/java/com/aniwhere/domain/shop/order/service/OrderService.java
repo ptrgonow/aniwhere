@@ -58,8 +58,10 @@ public class OrderService {
         orderMapper.insertOrder(orderSucDTO);
     }
 
+    @Transactional
     public void updateOrderStatus(String orderId, String newStatus) {
         orderMapper.updateOrderStatus(orderId, newStatus);
+        orderMapper.updateQuantity(orderId);
     }
 
     public void deleteFromCart(String userId){
