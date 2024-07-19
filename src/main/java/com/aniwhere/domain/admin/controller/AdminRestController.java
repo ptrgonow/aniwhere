@@ -129,8 +129,8 @@ public class AdminRestController {
             @RequestBody Map<String, String> requestBody) {
 
         String newStatus = requestBody.get("newStatus");
-            adminService.updateOrderStatus(orderId, newStatus);
-            return ResponseEntity.ok(Map.of("success", true, "message", "주문 상태 업데이트 성공"));
+        adminService.updateOrderStatus(orderId, newStatus);
+        return ResponseEntity.ok(Map.of("success", true, "message", "주문 상태 업데이트 성공"));
     }
 
     @GetMapping("/chart")
@@ -190,5 +190,12 @@ public class AdminRestController {
         }
     }
 
+    @DeleteMapping("/products/delete/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Integer productId) {
+
+        adminService.deleteProduct(productId);
+        return ResponseEntity.ok(Map.of("success", true, "message", "상품 삭제 성공"));
+
+    }
 
 }

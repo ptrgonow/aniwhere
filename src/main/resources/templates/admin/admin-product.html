@@ -39,7 +39,7 @@
                                         <th>수량</th>
                                         <th>상품분류</th>
                                         <th>상품 등록일</th>
-                                        <th>수정</th>
+                                        <th>수정/삭제</th>
                                     </tr>
                                     </thead>
                                     <tbody id="product-container">
@@ -62,9 +62,9 @@
                                         <td th:text="${#temporals.format(product.createdAt, 'yyyy-MM-dd')}"></td>
                                         <td>
                                             <div class="actions">
-                                                <button class="btn btn-outline-light-primary" th:data-product-id="${product.productId}"
+                                                <button class="btn btn-primary edit" th:data-product-id="${product.productId}"
                                                         data-bs-toggle="modal" data-bs-target="#new-staticBackdrop">수정</button>
-                                                <input type="button" class="btn btn-danger" value="삭제">
+                                                <button class="btn btn-danger delete-product-btn" th:data-product-id="${product.productId}">삭제</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -145,7 +145,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">등록</button>
+                    <button type="button" class="btn btn-light-primary insert">등록</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 </div>
             </form>
@@ -161,6 +161,7 @@
             </div>
             <form>
                 <div class="modal-body">
+                    <input type="hidden" id="product-id" value="">
                     <table class="table mb-0 align-middle">
                         <tr>
                             <th>상품명</th>
@@ -206,7 +207,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="update-product">수정</button>
+                    <button type="button" class="btn btn-primary submit" id="update-product">수정</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                 </div>
             </form>

@@ -197,4 +197,8 @@ public class AdminService {
         adminMapper.updateProduct(product);
 
     }
+
+    public void deleteProduct(Integer productId) {
+        adminMapper.deleteProduct(productId);
+    }
 }

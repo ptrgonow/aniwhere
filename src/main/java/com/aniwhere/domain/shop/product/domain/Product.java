@@ -22,6 +22,7 @@ public class Product {
     public static Product fromDTO(ProductDTO dto) {
         Product product= new Product();
 
+        product.setProductId(dto.getProductId());
         product.setName(dto.getName());
         product.setImage(dto.getImage());
         product.setPrice(dto.getPrice());
