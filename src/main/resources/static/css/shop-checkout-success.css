@@ -1,0 +1,115 @@
+/* shop-order-search.css */
+
+/* 공통 스타일 */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* breadcrumb-section */
+.breadcrumb-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/breadcrumb-bg.jpg') no-repeat center center/cover;
+    padding: 100px 0;
+    color: #fff;
+}
+
+.breadcrumb-text p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.breadcrumb-text h1 {
+    font-size: 42px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* search form section */
+.search-form-section {
+    background-color: #fff;
+    padding: 60px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 10;
+}
+
+.form-title h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #f28123;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.form-title h2::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background-color: #f28123;
+    display: block;
+    margin: 10px auto 0;
+}
+
+.order-list h3 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.order-list a {
+    display: inline-block;
+    padding: 12px 40px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #f28123;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-list a:hover {
+    background-color: #ffd0af;
+    transform: translateY(-3px);
+}
+
+.order-list a:active {
+    background-color: #f28123;
+}
+
+/* 결제 완료 정보 */
+#paymentKey, #orderId, #amount, #customerName, #customerEmail, #customerPhone {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+    background: #f1f1f1;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#paymentKey::before, #orderId::before, #amount::before, #customerName::before, #customerEmail::before, #customerPhone::before {
+    content: '✓ ';
+    color: #f28123;
+}
