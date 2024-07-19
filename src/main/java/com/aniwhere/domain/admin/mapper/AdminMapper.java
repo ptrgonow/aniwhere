@@ -115,9 +115,13 @@ public interface AdminMapper {
     @Select("SELECT COUNT(*) FROM product WHERE name LIKE CONCAT('%', #{keyword}, '%')")
     int getTotalSearchResults(@Param("keyword") String keyword);
 
-    @Select("SELECT * FROM product WHERE product_id = #{productId}")
+    @Select("SELECT product_id as productId, name, image, price, detail_url as detailUrl, category, " +
+            "quantity FROM product WHERE product_id = #{productId}")
     ProductDTO selectProductById(@Param("productId") Integer productId);
 
     @Update("UPDATE product SET name = #{name}, image = #{image}, price = #{price}, detail_url = #{detailUrl}, category = #{category}, quantity = #{quantity} WHERE product_id = #{productId}")
     void updateProduct(Product product);
+
+    @Delete("DELETE FROM product WHERE product_id = #{productId}")
+    void deleteProduct(@Param("productId") Integer productId);
 }
