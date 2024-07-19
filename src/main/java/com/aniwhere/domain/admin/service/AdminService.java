@@ -2,33 +2,20 @@ package com.aniwhere.domain.admin.service;
 
 import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
-import com.aniwhere.domain.admin.dto.UploadImgDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
-import com.aniwhere.domain.shop.review.domain.Review;
-import com.aniwhere.domain.user.join.domain.Join;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
-import com.aniwhere.domain.user.join.service.MailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 @Service
@@ -75,16 +62,8 @@ public class AdminService {
         }
     }
 
-    public List<JoinDTO> allMembers(int limit, int offset) {
-        return adminMapper.selectAllUsers(limit, offset);
-    }
-
     public List<JoinDTO> selectAllShopUsers(int limit, int offset){
         return adminMapper.selectAllShopUsers(limit, offset);
-    }
-
-    public int memberCount( ) {
-        return adminMapper.userCount();
     }
 
     public int shopUserCount(){
@@ -113,8 +92,8 @@ public class AdminService {
         int totalUsers;
 
         if (userId == null || userId.isEmpty()) {
-            users = adminMapper.selectAllUsers(limit, offset);
-            totalUsers = adminMapper.userCount();
+            users = adminMapper.selectAllShopUsers(limit, offset);
+            totalUsers = adminMapper.shopUserCount();
         } else {
             users = adminMapper.findUserByUserId(userId, limit, offset);
             totalUsers = adminMapper.countByUserId(userId);

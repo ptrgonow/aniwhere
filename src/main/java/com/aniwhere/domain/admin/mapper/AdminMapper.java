@@ -15,10 +15,10 @@ import java.util.List;
 public interface AdminMapper {
 
     @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
-            "FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%') ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
+            "FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%') AND role = 'ROLE_USER' ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> findUserByUserId(@Param("userId") String userId, @Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT COUNT(*) FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%')")
+    @Select("SELECT COUNT(*) FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%') AND role = 'ROLE_USER'")
     int countByUserId(@Param("userId") String userId);
 
     @Select("SELECT id, user_id as userId, email, user_name as userName, address, detail_address as detailAddress, " +
@@ -39,12 +39,12 @@ public interface AdminMapper {
     @Insert("INSERT INTO user_mail (title, content) VALUES (#{title}, #{content})")
     void insertMail(MailDTO mailDTO);
 
-    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
+    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt, is_social AS isSocial " +
             "FROM user WHERE detail_address = '' AND role = 'ROLE_USER'" +
             "ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> emptyAdressUsers(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
+    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt, is_social AS isSocial " +
             "FROM user WHERE phone IS NULL AND role = 'ROLE_USER' ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> emptyPhoneUsers(@Param("limit") int limit, @Param("offset") int offset);
 
