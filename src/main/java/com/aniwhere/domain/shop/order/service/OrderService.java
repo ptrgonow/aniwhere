@@ -56,11 +56,10 @@ public class OrderService {
         // orders 테이블에 주문 삽입
         orderSucDTO.setUserId(userId);
         orderMapper.insertOrder(orderSucDTO);
+
         // order_id 확인
         System.out.println("Order ID after insertion: " + orderSucDTO.getOrderId());
 
-        // 장바구니에서 주문한 상품 삭제
-        orderMapper.deleteFromCart(userId);
     }
 
 
