@@ -208,6 +208,10 @@ body {
     height: 100px;
 }
 
+.ck-content{
+    height: 400px;
+}
+
 .social-person{
     vertical-align: middle;
     margin-right: 5px;

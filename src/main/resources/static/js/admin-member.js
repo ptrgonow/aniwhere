@@ -58,14 +58,18 @@ let editorInstance = null;
 $(document).ready(function(){
     let limit = 10; // 페이지당 항목 수
     let offset = 0; // 시작점
+    let isSearchMode = false;
+    let searchQuery = '';
 
     fetchMembers('all', limit, offset);
     initializeModal();
     initializeCkEditor();
+    initializeRemoveEmail();
 
     $('#empty-info').change(function() {
         const selectedOption = $(this).val();
         offset = 0; // 선택 변경 시 오프셋 초기화
+        isSearchMode = false; // 전체 목록 모드로 전환
         fetchMembers(selectedOption, limit, offset);
     });
 
@@ -73,6 +77,8 @@ $(document).ready(function(){
         if (e.which === 13) { // 엔터 키 코드
             const userId = $(this).val();
             offset = 0; // 엔터가 눌리면 페이지 오프셋 초기화
+            isSearchMode = true;
+            searchQuery = userId;
             searchUser(userId, limit, offset);
         }
     });
@@ -82,7 +88,6 @@ $(document).ready(function(){
 
     // 만약 개별 체크박스가 모두 선택되거나 해제되었을 때, 전체 선택 체크박스의 상태를 업데이트
     $('#member-tbody').on('change', '.mem-check', handleMemCheckChange);
-    $('#remove-email').on('click', initializeRemoveEmail);
     $('#sendMailButton').on('click', validateAndSendEmail);
 });
 
@@ -97,7 +102,7 @@ function fetchMembers(type, limit, offset) {
         },
         success: function(response) {
             updateTable(response.members, offset);
-            updatePagination(response.totalPages, response.currentPage, limit, offset, type);
+            updatePagination(response.totalPages, response.currentPage, limit, offset, type, false, ''); // 검색 모드가 아님
         },
         error: function() {
             alert('Error');
@@ -139,7 +144,7 @@ function abbreviate(str, maxLength) {
     return str;
 }
 
-function updatePagination(totalPages, currentPage, limit, offset, type) {
+function updatePagination(totalPages, currentPage, limit, offset, typeOrQuery, isSearchMode, searchQuery) {
     const pagination = $('.pagination');
     pagination.empty();
 
@@ -164,7 +169,11 @@ function updatePagination(totalPages, currentPage, limit, offset, type) {
             e.preventDefault();
             const page = $(this).data('page');
             let newOffset = (page - 1) * limit;
-            fetchMembers(type, limit, newOffset);
+            if (isSearchMode) {
+                searchUser(searchQuery, limit, newOffset); // 검색
+            } else {
+                fetchMembers(typeOrQuery, limit, newOffset); // 전체 목록
+            }
         });
     }
 }
@@ -180,7 +189,7 @@ function searchUser(userId, limit, offset) {
         },
         success: function(response) {
             updateTable(response.users, offset);
-            updatePagination(response.totalPages, response.currentPage, limit, offset, userId);
+            updatePagination(response.totalPages, response.currentPage, limit, offset, userId, true, userId); // 검색 모드로 설정
         },
         error: function() {
             alert('Error fetching users');
@@ -215,9 +224,11 @@ function initializeModal() {
 }
 
 function initializeRemoveEmail() {
-    const email = $(this).data('email');
-    $(this).parent().remove();
-    $(`.mem-check[data-email="${email}"]`).prop('checked', false);
+    $(document).on('click', '.remove-email', function() {
+        const email = $(this).data('email');
+        $(this).parent().remove();
+        $(`.mem-check[data-email="${email}"]`).prop('checked', false);
+    });
 }
 
 // 이메일 전송
@@ -254,7 +265,7 @@ function sendEmails(disableDuration) {
     });
 }
 
-// 이메일 발송 회원 12시간 동안 비활성화
+// 이메일 발송 회원 30초 동안 비활성화
 function disableCheckboxes(checkboxes, duration) {
     checkboxes.forEach(function(checkbox) {
         checkbox.prop('disabled', true);
