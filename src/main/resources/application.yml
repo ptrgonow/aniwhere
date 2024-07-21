@@ -4,21 +4,21 @@ spring:
       client:
         registration:
           naver:
-            client-id: ${NAVER_CLIENT_ID}
-            client-secret: ${NAVER_CLIENT_SECRET}
+            client-id: 5FqaEpkU2bXFCNMxciFL
+            client-secret: GRBHZbR_oP
             client-name: Naver
             authorization-grant-type: authorization_code
-            redirect-uri: "http://localhost:8543/login/oauth2/code/naver"
+            redirect-uri: "https://www.aniwhere.click/login/oauth2/code/naver"
             scope:
               - name
               - email
           kakao:
-            client-id: ${KAKAO_CLIENT_ID}
-            client-secret: ${KAKAO_CLIENT_SECRET}
+            client-id: 97073f3ae836af338ca159b6be418974
+            client-secret: UewXOCIiuAlzSnfcsdUOQXGBtC2ZRoBY
             client-name: Kakao
             client-authentication-method: post
             authorization-grant-type: authorization_code
-            redirect-uri: "http://localhost:8543/login/oauth2/code/kakao"
+            redirect-uri: "https://www.aniwhere.click/login/oauth2/code/kakao"
             scope:
               - profile_nickname
               - account_email

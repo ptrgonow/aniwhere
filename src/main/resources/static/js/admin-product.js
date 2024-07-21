@@ -77,6 +77,14 @@ $(document).ready(function () {
         const imageInput = $('#new-image')[0].files[0];
         const detailImageInput = $('#new-detail-image')[0].files[0];
         console.log(imageInput, detailImageInput)
+
+        // 이미지 파일, 상세 이미지 파일 없으면 기존 이미지 사용
+        if (!imageInput || !detailImageInput) {
+            alert('기존 이미지를 사용하시겠습니까?');
+            editProduct(formData);
+            return;
+        }
+
         const reader = new FileReader();
         reader.onloadend = function () {
             const base64Image = reader.result.split(',')[1];
@@ -137,7 +145,7 @@ $(document).ready(function () {
         reader.readAsDataURL(imageInput);
     });
 });
-ㅈㅁ
+
 function submitProduct(formData) {
     const url = '/admin/dash/products/add';
 

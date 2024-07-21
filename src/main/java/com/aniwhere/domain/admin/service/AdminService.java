@@ -173,10 +173,15 @@ public class AdminService {
     }
 
     public void editProduct(ProductDTO productDTO) {
-
         Product product = Product.fromDTO(productDTO);
 
-        adminMapper.updateProduct(product);
+        if(product.getImage() == null || product.getDetailUrl() == null) {
+            adminMapper.updateProductWithoutImage(product);
+
+        } else {
+            adminMapper.updateProduct(product);
+        }
+
 
     }
 

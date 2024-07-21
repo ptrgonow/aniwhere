@@ -36,7 +36,6 @@ public class SecurityConfig {
                         .requestMatchers("/", "/login", "/loginProc", "/joinProc", "/join", "/user/exists", "/user/joinProc", "/user/sendemail").permitAll()
                         .requestMatchers("/resources/**", "/css/**", "/js/**", "/static/**", "/img/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        // 추가된 엔드포인트 접근 권한 설정
                         .requestMatchers("/admin/regi/userinfo").authenticated()
                         .anyRequest().authenticated()
                 )

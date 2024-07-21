@@ -143,4 +143,7 @@ public interface AdminMapper {
 
     @Delete("DELETE FROM product WHERE product_id = #{productId}")
     void deleteProduct(@Param("productId") Integer productId);
+
+    @Update("UPDATE product SET name = #{name}, price = #{price}, category = #{category}, quantity = #{quantity} WHERE product_id = #{productId}")
+    void updateProductWithoutImage(Product product);
 }

@@ -21,14 +21,6 @@ public class OrderService {
     private OrderMapper orderMapper;
     private HomeService homeService;
 
-   /* public List<OrderSucDTO> findOrdersByDateRange(String startDate, String endDate) {
-        return orderMapper.findOrdersByDateRange(startDate, endDate);
-    }
-
-    public OrderSucDTO findOrderById(String orderId) {
-        return orderMapper.findOrderById(orderId);
-    }*/
-
     public List<Cart> getCheckedCartItems(String userId) {
         return orderMapper.getCheckedCartItemsByUserId(userId);
     }
