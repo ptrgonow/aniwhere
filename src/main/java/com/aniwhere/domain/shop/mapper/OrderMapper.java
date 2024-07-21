@@ -73,4 +73,8 @@ public interface OrderMapper {
             "SET p.quantity = p.quantity - od.quantity " +
             "WHERE os.order_id = #{orderId};")
     void updateQuantity(String orderId);
+
+    @Delete("DELETE FROM order_success WHERE order_id = #{orderId}")
+    void deleteOrderSuccess(String orderId);
+
 }

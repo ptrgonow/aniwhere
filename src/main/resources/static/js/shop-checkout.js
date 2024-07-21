@@ -163,7 +163,7 @@ async function toss() {
 
         try {
             console.log("상품정보", orderDetails)
-            // 1. 서버에 주문 정보 저장 요청
+
             $.ajax({
                 type: "POST",
                 url: "/orders/success",

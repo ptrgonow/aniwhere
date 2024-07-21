@@ -146,4 +146,8 @@ public interface AdminMapper {
 
     @Update("UPDATE product SET name = #{name}, price = #{price}, category = #{category}, quantity = #{quantity} WHERE product_id = #{productId}")
     void updateProductWithoutImage(Product product);
+
+    @Delete("DELETE FROM cart WHERE checked = 'Y' AND user_id = #{userId}")
+    void deleteFromCart(String userId);
+
 }
