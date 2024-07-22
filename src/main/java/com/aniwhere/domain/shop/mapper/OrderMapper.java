@@ -62,10 +62,10 @@ public interface OrderMapper {
             "JOIN product p ON od.product_id = p.product_id " +
             "WHERE os.user_id = #{userId} " +
             "AND DATE(os.order_date) BETWEEN #{startDate} AND #{endDate} " +
-            "AND os.order_status = '결제 완료' or os.order_status = '배송 출발' or os.order_status = '배송 준비' " +
+            "AND (os.order_status = '결제 완료' OR os.order_status = '배송 출발' OR os.order_status = '배송 준비') " +
             "GROUP BY os.order_id, os.user_id, od.product_id, p.name, os.order_status, os.order_date " +
             "ORDER BY os.order_date DESC")
-    List<OrderSearchDTO> getOrderItemsByUserIdForDate(@Param("userId") String userId, @Param("startDate") String startDate, @Param("endDate") String endDate);
+    List<OrderSearchDTO> getOrderItemsByUserIdForDate(String userId, String startDate, String endDate);
 
     @Update("UPDATE product p\n" +
             "JOIN order_detail od ON p.product_id = od.product_id " +
