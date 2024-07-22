@@ -80,7 +80,7 @@ function getAllReviews(productId) {
             const reviewDiv = $('<div class="review-box"></div>');
             const reviewId = $('<input type="hidden" class="reviewId">').val(review.reviewId);
             const reviewImg = $('<div class="review-img"><img src="" alt="Review Image"></div>');
-
+            const userId = $('#userId').val();
             if (review.reviewImg) {
                 reviewImg.find('img').attr('src', 'data:image/jpeg;base64,' + review.reviewImg);
             } else {
@@ -116,8 +116,11 @@ function getAllReviews(productId) {
 
             reviewDiv.append(reviewImg, reviewContent);
             reviewContainer.append(reviewDiv);
-            reviewDiv.append(updateButton);
-            reviewDiv.append(deleteButton);
+            if (review.userId == userId) {
+                reviewDiv.append(updateButton);
+                reviewDiv.append(deleteButton);
+            }
+
         });
     }, function(error) {
         console.log("Error fetching reviews: ", error);
