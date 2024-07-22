@@ -65,6 +65,7 @@ public class OrderRestController {
 
     @GetMapping("/search")
     public ResponseEntity<List<OrderSearchDTO>> getOrderItemsById(@RequestParam String userId, @RequestParam String startDate, @RequestParam String endDate) {
+        System.out.println("Received search request for userId: " + userId + ", startDate: " + startDate + ", endDate: " + endDate);
         List<OrderSearchDTO> searchItems = orderService.getOrderItemsByUserIdForDate(userId, startDate, endDate);
         return ResponseEntity.ok(searchItems);
     }

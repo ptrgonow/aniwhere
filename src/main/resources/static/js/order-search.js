@@ -71,7 +71,7 @@ function searchOrders(userId, e) {
         success: function(searchItems) {
             console.log(searchItems); // 응답 데이터 확인
             if (!searchItems || searchItems.length === 0) {
-                alert('검색 결과가 없습니당당.');
+                alert('검색 결과가 없습니다.');
                 return;
             }
 
