@@ -1,7 +1,204 @@
+.admin-list-container {
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    width: 100%;
+    height: 100%;
+}
+
 .admin-list-start{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     align-items: center;
-    margin-top: 200px;
-    margin-left: 400px;
+    justify-content: center;
+}
+
+.search_button {
+    padding: 10px 20px;
+    background-color: #5d9ce0;
+    border: none;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.search_button:hover {
+    background-color: #4a8ac2;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.admin-list-table th, .admin-list-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+/* 페이징 처리 */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.pagination button.disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    padding: 5px 10px;
+}
+
+.admin-tr {
+    cursor: pointer;
+}
+
+.admin-tr td {
+    padding: 10px;
+
+}
+
+.table-div {
+    margin-top: 50px;
+    min-height: 400px;
+    max-height: 400px;
+}
+
+.table thead.admin-list-table-primary tr th {
+    width: 250px;
+    text-align: center;
+}
+
+.page-link {
+    display: block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.page-link.active {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.page-link.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    color: #ccc;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.page-wrapper {
+    margin: 0;
+}
+
+.slide-panel {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s;
+    z-index: 1000;
+}
+
+.slide-panel.open {
+    overflow-y: scroll;
+    right: 0;
+}
+
+.slide-panel-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.slide-panel-header h4 {
+    margin: 0;
+}
+
+.slide-panel-header i.close {
+    cursor: pointer;
+}
+
+.slide-panel-content {
+    padding: 10px;
 }
 
 .join {
@@ -16,21 +213,33 @@
     color: #F28123;
 }
 
+/* 드로어 패널 혹은 슬라이드 패널? */
 .form-input {
-    display: flex;
-    width: 470px;
-    padding: 16px;
-    border-radius: 7px;
-    border: 0;
-    margin: 15px;
-    font-size: 18px;
-    height: auto;
-    outline-color: rgba(0, 0, 0, 0);
-    background: rgba(255, 255, 255, .95);
-    color: #F28123;
-    align-items: center;
-    position: relative;
-    padding-bottom: 30px; /* Space for message */
+    margin-bottom: 10px;
+}
+
+.form-input label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-input input,
+.form-input p {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.form-input button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 .reg-form {

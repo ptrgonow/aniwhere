@@ -32,40 +32,37 @@
                                 <table class="table mb-0 align-middle">
                                     <thead class="text-dark fs4">
                                     <tr>
-                                        <th><input type="checkbox" /></th>
                                         <th>대표이미지</th>
                                         <th>상품명</th>
                                         <th>판매가</th>
-                                        <th>재고수정</th>
+                                        <th>수량</th>
                                         <th>상품분류</th>
                                         <th>상품 등록일</th>
-                                        <th>수정</th>
+                                        <th>수정/삭제</th>
                                     </tr>
                                     </thead>
                                     <tbody id="product-container">
                                     <tr th:each="product : ${products}">
                                         <input type="hidden" id="productId" class="productId" th:value="${product.productId}">
-                                        <td><input type="checkbox" class="product-checkbox" th:value="${product.productId}"/></td>
 
                                         <td class="product-image">
-                                            <a th:href="@{/shop/detail(id=${product.productId})}">
-                                                <img th:src="${product.image}" alt="제품 이미지">
-                                            </a>
+                                            <img th:src="${#strings.startsWith(product.image, 'https://')} ? ${product.image} : @{'data:image/png;base64,' + ${product.image}}" alt="상품 이미지">
                                         </td>
+
                                         <td>  <p th:text="${#strings.abbreviate(product.name, 12)}"></p>
                                         </td>
                                         <td th:text="${product.price}">
                                         </td>
                                         <td>
-                                            <input type="text" class="inventory" th:value="${product.quantity}"/>
-                                            <button class="btn btn-success">변경</button>
+                                            <p th:text="${product.quantity}"></p>
                                         </td>
                                         <td th:text="${product.category}">강아지/의류</td>
                                         <td th:text="${#temporals.format(product.createdAt, 'yyyy-MM-dd')}"></td>
                                         <td>
                                             <div class="actions">
-                                                <input type="button" class="btn btn-primary" value="수정">
-                                                <input type="button" class="btn btn-danger" value="삭제">
+                                                <button class="btn btn-primary edit" th:data-product-id="${product.productId}"
+                                                        data-bs-toggle="modal" data-bs-target="#new-staticBackdrop">수정</button>
+                                                <button class="btn btn-danger delete-product-btn" th:data-product-id="${product.productId}">삭제</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -75,12 +72,12 @@
 
 
                             <div id="pagination-container" class="pagination-container"></div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <button type="button" class="btn btn-light-primary d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 상품 등록하기
                             </button>
                         </div>
-                        <div class="search d-flex justify-content-center align-content-center">
-                            <label for="searchKeyword">
+                        <div class="search d-flex justify-content-center align-content-center d-flex">
+                            <label for="searchKeyword" class="search-label">
                                 <input type="text" id="searchKeyword" class="search-input" placeholder="검색어를 입력하세요">
                             </label>
                             <button id="search-btn" class="btn btn-info"><i class="fas fa-search"></i></button>
@@ -99,18 +96,119 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">새로운 상품 등록</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form>
-                    <table>
-
-
+            <form>
+                <div class="modal-body">
+                    <table class="table mb-0 align-middle">
+                        <tr>
+                            <th>상품명</th>
+                            <td>
+                                <input type="text" name="productName" id="name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>대표 이미지</th>
+                            <td>
+                                <img id="imagePreview" src="#" alt="Image Preview">
+                                <input type="file" id="image" accept="image/*">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>가격</th>
+                            <td>
+                                <input type="text" name="price" id="price">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>상세 이미지</th>
+                            <td>
+                                <input type="file" id="detail-image" accept="image/*">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>카테고리</th>
+                            <td>
+                                <select name="category" id="category">
+                                    <option value="강아지">강아지</option>
+                                    <option value="고양이">고양이</option>
+                                    <option value="공용">공용</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>수량</th>
+                            <td>
+                                <input type="number" name="quantity" id="quantity">
+                            </td>
+                        </tr>
                     </table>
-                </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary insert">등록</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-lg" id="new-staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="new-staticBackdropLabel">상품정보 수정하기</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
+            <form>
+                <div class="modal-body">
+                    <input type="hidden" id="product-id" value="">
+                    <table class="table mb-0 align-middle">
+                        <tr>
+                            <th>상품명</th>
+                            <td>
+                                <input type="text" name="productName" id="new-name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>대표 이미지</th>
+                            <td>
+                                <img id="new-imagePreview" src="#" alt="Image Preview">
+                                <input type="file" id="new-image" accept="image/*">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>가격</th>
+                            <td>
+                                <input type="text" name="price" id="new-price">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>상세 이미지</th>
+                            <td>
+                                <input type="file" id="new-detail-image" accept="image/*">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>카테고리</th>
+                            <td>
+                                <select name="category" id="new-category">
+                                    <option value="강아지">강아지</option>
+                                    <option value="고양이">고양이</option>
+                                    <option value="공용">공용</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>수량</th>
+                            <td>
+                                <input type="number" name="quantity" id="new-quantity">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary submit" id="update-product">수정</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

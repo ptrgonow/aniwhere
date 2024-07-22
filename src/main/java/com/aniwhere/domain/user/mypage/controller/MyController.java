@@ -41,7 +41,7 @@ public class MyController {
         model.addAttribute("userId", userId);
         model.addAttribute("isSocial", isSocial);
 
-        return "/mypage/modify";
+        return "mypage/modify";
 
     }
 
@@ -56,7 +56,7 @@ public class MyController {
         model.addAttribute("name", userName);
         model.addAttribute("id", userId);
 
-        return "/mypage/route-detail";
+        return "mypage/route-detail";
     }
 
     @GetMapping("/routelist")
@@ -80,7 +80,7 @@ public class MyController {
         model.addAttribute("name", userName);
         model.addAttribute("id", userId);
 
-        return "/mypage/route-list";
+        return "mypage/route-list";
     }
 
 

@@ -1,17 +1,57 @@
 body img {
     max-width: 100%;
 }
+
+.card-body.w-100{
+    text-align: center;
+}
+
+.product-filters{
+    margin: 50px 0 20px 0;
+}
+
+.product-filters ul {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.product-filters ul li {
+    list-style: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    margin: 0;
+    border-radius: 5px 5px 0 0;
+    font-size: 16px;
+}
+
+.product-filters ul li.active {
+    background-color: #5d9ce0;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: none;
+}
+
+.product-filters ul li:hover {
+    background-color: #5d9ce0;
+    color: #FFFFFF;
+}
+
 .product-lists{
     display: flex;
     justify-content: space-between;
 }
 
-
-
 .table td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.btn.btn-outline-light-primary{
+    border: 1px solid #5d9ce0;
+    color: #5d9ce0;
 }
 
 .pagination-container {
@@ -36,12 +76,82 @@ body img {
 }
 
 .pagination-container .page-link.current {
-
-        color: #5d9ce0;
-        text-decoration: underline;
-
+    color: #5d9ce0;
+    text-decoration: underline;
 }
 
 .pagination-container a{
     margin-right: 10px;
+}
+
+.btn.btn-light-primary.d-flex.justify-content-end{
+    margin-left: auto;
+}
+
+.modal-content{
+    min-height: 600px;
+}
+.modal-body{
+    min-height: 500px;
+}
+
+aside.left-sidebar {
+    top: 0;
+    width: 170px;
+    height: 160vh;
+}
+
+.search{
+    align-items: baseline;
+}
+
+.search-label{
+    margin-right: 5px;
+    display: flex;
+}
+
+/* 상품 수정 모달 */
+#new-name, #name{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    width: 300px;
+}
+
+#new-price, #price{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+}
+
+#new-image{
+    display: block;
+    margin-top: 7px;
+}
+
+#new-imagePreview, #imagePreview{
+    display: none;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+#new-category, #category{
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 100px;
+}
+
+input[type=file]::file-selector-button {
+    width: 100px;
+    height: 30px;
+    background: darkgray;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#searchKeyword{
+    padding: 5px;
 }

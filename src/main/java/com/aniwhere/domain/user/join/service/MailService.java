@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+
 import java.util.logging.Logger;
 
 
@@ -21,6 +22,7 @@ public class MailService {
     private static final String senderEmail= "aniwhere03@gmail.com";// 랜덤 인증 코드
     private final Logger logger = Logger.getLogger(MailService.class.getName());
     public static HashMap<String, String> codeStorage = new HashMap<>();
+    private static final String UPLOAD_DIR = "src/main/resources/static/images/";
 
 
     // 메일 양식
@@ -94,7 +96,7 @@ public class MailService {
 
         helper.setTo(to);
         helper.setSubject(subject);
-        helper.setText(htmlBody, true);  // true to indicate that the text is HTML
+        helper.setText(htmlBody, true);
 
         javaMailSender.send(message);
     }
@@ -103,5 +105,17 @@ public class MailService {
         for (String to : toList) {
             sendHtmlMessage(to, subject, htmlBody);
         }
+    }
+
+    // 이미지 포함 메일 전송 메서드
+    public void sendEmailWithImage(String to, String subject, String body, String imageUrl) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText("<html><body>" + body + "<br><img src='" + imageUrl + "' /></body></html>", true);
+
+        javaMailSender.send(message);
     }
 }

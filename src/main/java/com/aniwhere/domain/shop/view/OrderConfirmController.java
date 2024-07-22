@@ -83,6 +83,7 @@ public class OrderConfirmController {
         // 결제 성공 및 실패 비즈니스 로직을 구현하세요.
         Reader reader = new InputStreamReader(responseStream, StandardCharsets.UTF_8);
         JSONObject jsonObject = (JSONObject) parser.parse(reader);
+
         orderService.updateOrderStatus(orderId, "결제 완료");
         responseStream.close();
 

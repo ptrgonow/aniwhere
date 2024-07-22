@@ -2,29 +2,41 @@ package com.aniwhere.domain.admin.controller;
 
 import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
+import com.aniwhere.domain.admin.dto.UploadImgDTO;
 import com.aniwhere.domain.admin.service.AdminService;
+import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.user.join.service.MailService;
+import com.nimbusds.jose.shaded.gson.JsonObject;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController("adminRestController")
 @RequestMapping("/admin/dash")
 public class AdminRestController {
 
     private final AdminService adminService;
-    private MailService mailService;
+    private final MailService mailService;
 
-    public AdminRestController(AdminService adminService) {
+    public AdminRestController(AdminService adminService, MailService mailService) {
         this.adminService = adminService;
+        this.mailService = mailService;
     }
 
 
@@ -52,8 +64,8 @@ public class AdminRestController {
         switch (type) {
             case "all":
             default:
-                members = adminService.allMembers(limit, offset);
-                totalMember = adminService.memberCount();
+                members = adminService.selectAllShopUsers(limit, offset);
+                totalMember = adminService.shopUserCount();
                 break;
             case "address":
                 members = adminService.emptyAdressUsers(limit, offset);
@@ -85,13 +97,14 @@ public class AdminRestController {
         return ResponseEntity.ok(response);
     }
 
+
     @PostMapping("/member/mailsend")
     public String sendMail(@RequestParam List<String> to, @RequestParam String subject, @RequestParam String body) {
         try {
             mailService.sendBulkHtmlMessage(to, subject, body);
             return "이메일 전송 성공!";
         } catch (MessagingException e) {
-            e.printStackTrace();
+            System.out.println("메일 전송 실패" + e.getMessage());
             return "이메일 전송 실패";
         }
     }
@@ -116,8 +129,8 @@ public class AdminRestController {
             @RequestBody Map<String, String> requestBody) {
 
         String newStatus = requestBody.get("newStatus");
-            adminService.updateOrderStatus(orderId, newStatus);
-            return ResponseEntity.ok(Map.of("success", true, "message", "주문 상태 업데이트 성공"));
+        adminService.updateOrderStatus(orderId, newStatus);
+        return ResponseEntity.ok(Map.of("success", true, "message", "주문 상태 업데이트 성공"));
     }
 
     @GetMapping("/chart")
@@ -150,5 +163,39 @@ public class AdminRestController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/products/add")
+    public ResponseEntity<?> addProduct(@RequestBody ProductDTO productDTO) {
+
+        adminService.addProduct(productDTO);
+
+        return ResponseEntity.ok().build();
+
+    }
+    @PutMapping("/products/edit")
+    public ResponseEntity<?> editProduct(@RequestBody ProductDTO productDTO) {
+
+        adminService.editProduct(productDTO);
+
+        return ResponseEntity.ok().build();
+
+    }
+
+    @GetMapping("/products/{productId}")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Integer productId) {
+        ProductDTO productDTO = adminService.getProductById(productId);
+        if (productDTO != null) {
+            return ResponseEntity.ok(productDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/products/delete/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Integer productId) {
+
+        adminService.deleteProduct(productId);
+        return ResponseEntity.ok(Map.of("success", true, "message", "상품 삭제 성공"));
+
+    }
 
 }

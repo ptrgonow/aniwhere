@@ -21,14 +21,6 @@ public class OrderService {
     private OrderMapper orderMapper;
     private HomeService homeService;
 
-   /* public List<OrderSucDTO> findOrdersByDateRange(String startDate, String endDate) {
-        return orderMapper.findOrdersByDateRange(startDate, endDate);
-    }
-
-    public OrderSucDTO findOrderById(String orderId) {
-        return orderMapper.findOrderById(orderId);
-    }*/
-
     public List<Cart> getCheckedCartItems(String userId) {
         return orderMapper.getCheckedCartItemsByUserId(userId);
     }
@@ -51,15 +43,30 @@ public class OrderService {
     }
     @Transactional
     public void makeOrder(OrderSucDTO orderSucDTO) {
-
         String userId = homeService.getAuthenticatedUserId();
 
+        // 기존 주문 삭제
+        if (!orderMapper.getOrderItemsByUserId(userId, orderSucDTO.getOrderId()).isEmpty()) {
+            orderMapper.deleteOrderSuccess(orderSucDTO.getOrderId());
+        }
+
+        // order_id 확인
+        System.out.println("Order ID before insertion: " + orderSucDTO.getOrderId());
+
+        // orders 테이블에 주문 삽입
         orderSucDTO.setUserId(userId);
         orderMapper.insertOrder(orderSucDTO);
+
+        // order_id 확인
+        System.out.println("Order ID after insertion: " + orderSucDTO.getOrderId());
+
     }
 
+
+    @Transactional
     public void updateOrderStatus(String orderId, String newStatus) {
         orderMapper.updateOrderStatus(orderId, newStatus);
+        orderMapper.updateQuantity(orderId);
     }
 
     public void deleteFromCart(String userId){

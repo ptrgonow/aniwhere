@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,7 @@ public class ShopViewController {
         String userName = homeService.getAuthenticatedUserName();
         String userId = homeService.getAuthenticatedUserId();
         Product detail = productService.findProductById(id);
+        System.out.println("img" + detail.getImage());
         model.addAttribute("details", detail);
         model.addAttribute("name", userName);
         model.addAttribute("userId", userId);

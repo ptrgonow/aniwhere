@@ -4,6 +4,7 @@ import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import org.apache.ibatis.annotations.*;
@@ -14,40 +15,48 @@ import java.util.List;
 public interface AdminMapper {
 
     @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
-            "FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%') ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
+            "FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%') AND role = 'ROLE_USER' ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> findUserByUserId(@Param("userId") String userId, @Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT COUNT(*) FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%')")
+    @Select("SELECT COUNT(*) FROM user WHERE user_id LIKE CONCAT('%', #{userId}, '%') AND role = 'ROLE_USER'")
     int countByUserId(@Param("userId") String userId);
 
     @Select("SELECT id, user_id as userId, email, user_name as userName, address, detail_address as detailAddress, " +
             "zip_code as zipCode, phone, created_at as createdAt from user order by userId DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> selectAllUsers(@Param("limit") int limit, @Param("offset") int offset);
 
+    @Select("SELECT id, user_id as userId, email, user_name as userName, address, detail_address as detailAddress, " +
+            "zip_code as zipCode, phone, created_at as createdAt, is_social AS isSocial from user " +
+            "WHERE role = 'ROLE_USER' order by userId DESC LIMIT #{limit} OFFSET #{offset}")
+    List<JoinDTO> selectAllShopUsers(@Param("limit") int limit, @Param("offset") int offset);
+
     @Select("SELECT COUNT(*) FROM user")
     int userCount( );
+
+    @Select("SELECT COUNT(*) FROM user WHERE role = 'ROLE_USER'")
+    int shopUserCount();
 
     @Insert("INSERT INTO user_mail (title, content) VALUES (#{title}, #{content})")
     void insertMail(MailDTO mailDTO);
 
-    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
-            "FROM user WHERE (detail_address IS NULL OR detail_address = '') OR (address IS NULL OR address = '') " +
+    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt, is_social AS isSocial " +
+            "FROM user WHERE detail_address = '' AND role = 'ROLE_USER'" +
             "ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> emptyAdressUsers(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt " +
-            "FROM user WHERE phone IS NULL ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
+    @Select("SELECT id, user_id AS userId, email, user_name AS userName, address, detail_address AS detailAddress, phone, created_at AS createdAt, is_social AS isSocial " +
+            "FROM user WHERE phone IS NULL AND role = 'ROLE_USER' ORDER BY user_id DESC LIMIT #{limit} OFFSET #{offset}")
     List<JoinDTO> emptyPhoneUsers(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("SELECT COUNT(*) FROM user WHERE (detail_address IS NULL OR detail_address = '') OR (address IS NULL OR address = '')")
+    @Select("SELECT COUNT(*) FROM user WHERE detail_address = '' AND role = 'ROLE_USER'")
     int countEmptyAddressUsers( );
 
     // ROLE_USER 에게만 메일 보내짐
     @Select("SELECT email FROM user WHERE role = 'ROLE_USER'")
     List<String> selectAllUserEmails();
 
-    @Select("SELECT COUNT(*) FROM user WHERE phone IS NULL")
-    int countEmptyPhoneUsers( );
+    @Select("SELECT COUNT(*) FROM user WHERE phone IS NULL AND role = 'ROLE_USER'")
+    int countEmptyPhoneUsers();
 
     @Select("SELECT order_id as orderId, user_id as userId, shipping_address1 as shippingAddress1, " +
             "shipping_address2 as shippingAddress2, shipping_address3 as shippingAddress3, " +
@@ -55,6 +64,13 @@ public interface AdminMapper {
             "recipient_phone as recipientPhone, order_request as orderRequest from order_success order by" +
             " order_date desc LIMIT #{limit} OFFSET #{offset}")
     List<OrderSucDTO> selectAllOrders(@Param("limit") int limit, @Param("offset") int offset);
+
+    @Select("SELECT order_id as orderId, user_id as userId, shipping_address1 as shippingAddress1, " +
+            "shipping_address2 as shippingAddress2, shipping_address3 as shippingAddress3, " +
+            "amount, order_status as orderStatus, order_date as orderDate, recipient_name as recipientName, " +
+            "recipient_phone as recipientPhone, order_request as orderRequest from order_success order by" +
+            " order_date desc LIMIT #{limit}")
+    List<OrderSucDTO> selectRecentOrders(@Param("limit") int limit);
 
     @Select("SELECT os.order_id AS orderId, " +
             "       os.user_id AS userId, " +
@@ -88,6 +104,10 @@ public interface AdminMapper {
             "created_at as createdAt, updated_at as updatedAt, quantity FROM product limit 9")
     List<ProductDTO> selectAllProducts();
 
+    @Select("SELECT name, image, " +
+            "quantity FROM product order by quantity limit 4")
+    List<ProductDTO> selectRowQuantityProducts();
+
     @Select("SELECT DATE_FORMAT(order_date, '%Y-%m') AS date, SUM(amount) AS amount " +
             "FROM order_success " +
             "GROUP BY DATE_FORMAT(order_date, '%Y-%m')")
@@ -103,5 +123,31 @@ public interface AdminMapper {
             "FROM order_success " +
             "GROUP BY DATE_FORMAT(order_date, '%Y')")
     List<ChartDTO> selectYearOnYearChartData();
+
+    @Insert("INSERT INTO product (name, image, price, detail_url, category, quantity) VALUES " +
+            "(#{name}, #{image}, #{price}, #{detailUrl}, #{category}, #{quantity})")
+    void insertProduct(Product product);
+
+    @Select("SELECT product_id as productId, name, image, detail_url AS detailUrl, category, price, created_at as createdAt, quantity FROM product WHERE name LIKE CONCAT('%', #{keyword}, '%') LIMIT #{limit} OFFSET #{offset}")
+    List<Product>searchProducts(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
+
+    @Select("SELECT COUNT(*) FROM product WHERE name LIKE CONCAT('%', #{keyword}, '%')")
+    int getTotalSearchResults(@Param("keyword") String keyword);
+
+    @Select("SELECT product_id as productId, name, image, price, detail_url as detailUrl, category, " +
+            "quantity FROM product WHERE product_id = #{productId}")
+    ProductDTO selectProductById(@Param("productId") Integer productId);
+
+    @Update("UPDATE product SET name = #{name}, image = #{image}, price = #{price}, detail_url = #{detailUrl}, category = #{category}, quantity = #{quantity} WHERE product_id = #{productId}")
+    void updateProduct(Product product);
+
+    @Delete("DELETE FROM product WHERE product_id = #{productId}")
+    void deleteProduct(@Param("productId") Integer productId);
+
+    @Update("UPDATE product SET name = #{name}, price = #{price}, category = #{category}, quantity = #{quantity} WHERE product_id = #{productId}")
+    void updateProductWithoutImage(Product product);
+
+    @Delete("DELETE FROM cart WHERE checked = 'Y' AND user_id = #{userId}")
+    void deleteFromCart(String userId);
 
 }

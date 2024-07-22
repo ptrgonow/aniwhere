@@ -5,32 +5,25 @@ import com.aniwhere.domain.admin.dto.MailDTO;
 import com.aniwhere.domain.admin.mapper.AdminMapper;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
+import com.aniwhere.domain.shop.product.domain.Product;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
-import com.aniwhere.domain.user.join.domain.Join;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
+@AllArgsConstructor
 public class AdminService {
 
     private final AdminMapper adminMapper;
     private final JavaMailSender javaMailSender;
-
-    @Autowired
-    public AdminService(AdminMapper adminMapper, JavaMailSender javaMailSender) {
-        this.adminMapper = adminMapper;
-        this.javaMailSender = javaMailSender;
-    }
   
     public void saveMailAndSendToAllUsers(MailDTO mailDTO) {
         // Save mail to the database
@@ -69,12 +62,12 @@ public class AdminService {
         }
     }
 
-    public List<JoinDTO> allMembers(int limit, int offset) {
-        return adminMapper.selectAllUsers(limit, offset);
+    public List<JoinDTO> selectAllShopUsers(int limit, int offset){
+        return adminMapper.selectAllShopUsers(limit, offset);
     }
 
-    public int memberCount( ) {
-        return adminMapper.userCount();
+    public int shopUserCount(){
+        return adminMapper.shopUserCount();
     }
 
     public List<JoinDTO> emptyAdressUsers(int limit, int offset) {
@@ -99,8 +92,8 @@ public class AdminService {
         int totalUsers;
 
         if (userId == null || userId.isEmpty()) {
-            users = adminMapper.selectAllUsers(limit, offset);
-            totalUsers = adminMapper.userCount();
+            users = adminMapper.selectAllShopUsers(limit, offset);
+            totalUsers = adminMapper.shopUserCount();
         } else {
             users = adminMapper.findUserByUserId(userId, limit, offset);
             totalUsers = adminMapper.countByUserId(userId);
@@ -124,6 +117,13 @@ public class AdminService {
     public List<OrderSucDTO> allOrders(int limit, int offset) {
         return adminMapper.selectAllOrders(limit, offset);
     }
+    public List<OrderSucDTO> selectRecentOrders(int limit) {
+        return adminMapper.selectRecentOrders(limit);
+    }
+
+    public List<ProductDTO> selectRowQuantityProducts(){
+        return adminMapper.selectRowQuantityProducts();
+    }
 
     public OrderSucDTO findOrderById(String orderId) {
         return adminMapper.selectOrderById(orderId);
@@ -141,10 +141,6 @@ public class AdminService {
         adminMapper.updateOrderStatus(orderId, newStatus);
     }
 
-    public List<ProductDTO> getAllProducts() {
-       return adminMapper.selectAllProducts();
-    }
-
     public List<ChartDTO> getYearChartData( ) {
         return adminMapper.selectYearChartData();
     }
@@ -157,4 +153,39 @@ public class AdminService {
         return adminMapper.selectYearOnYearChartData();
     }
 
+    public void addProduct(ProductDTO productDTO) {
+
+        Product product = Product.fromDTO(productDTO);
+
+        adminMapper.insertProduct(product);
+
+    }
+    public List<Product> searchProducts(String keyword, int limit, int offset) {
+        return adminMapper.searchProducts(keyword, limit, offset);
+    }
+
+    public int getTotalSearchResults(String keyword) {
+        return adminMapper.getTotalSearchResults(keyword);
+    }
+
+    public ProductDTO getProductById(Integer productId) {
+        return adminMapper.selectProductById(productId);
+    }
+
+    public void editProduct(ProductDTO productDTO) {
+        Product product = Product.fromDTO(productDTO);
+
+        if(product.getImage() == null || product.getDetailUrl() == null) {
+            adminMapper.updateProductWithoutImage(product);
+
+        } else {
+            adminMapper.updateProduct(product);
+        }
+
+
+    }
+
+    public void deleteProduct(Integer productId) {
+        adminMapper.deleteProduct(productId);
+    }
 }

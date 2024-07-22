@@ -13,8 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -28,7 +31,13 @@ public class AdminViewController {
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
         String userName = homeService.getAuthenticatedUserName();
+        int limit = 5;
+
+        List<OrderSucDTO> orders = adminService.selectRecentOrders(limit);
+        List<ProductDTO> products = adminService.selectRowQuantityProducts();
         model.addAttribute("name", userName);
+        model.addAttribute("orders", orders);
+        model.addAttribute("products", products);
         return "admin/admin-dashboard";
     }
 
@@ -37,7 +46,6 @@ public class AdminViewController {
                            @RequestParam(defaultValue = "9") int size,
                            @RequestParam(defaultValue = "all") String category) {
         String userName = homeService.getAuthenticatedUserName();
-
 
         model.addAttribute("name", userName);
         int totalProducts;
@@ -91,10 +99,10 @@ public class AdminViewController {
     @GetMapping("/member")
     public String member(Model model, @RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "0") int offset) {
 
-        List<JoinDTO> members = adminService.allMembers(limit, offset);
+        List<JoinDTO> members = adminService.selectAllShopUsers(limit, offset);
         String userName = homeService.getAuthenticatedUserName();
 
-        int totalRoutes = adminService.memberCount();
+        int totalRoutes = adminService.shopUserCount();
         int currentPage = offset / limit + 1;
         int totalPages = (int) Math.ceil((double) totalRoutes / limit);
 
@@ -121,5 +129,23 @@ public class AdminViewController {
         return "admin/admin-mail";
     }
 
+    @GetMapping("/product")
+    @ResponseBody
+    public Map<String, Object> searchProducts(@RequestParam("keyword") String keyword,
+                                              @RequestParam(defaultValue = "1") int page,
+                                              @RequestParam(defaultValue = "9") int size) {
+        int offset = (page - 1) * size;
+        List<Product> products = adminService.searchProducts(keyword, size, offset);
+        int totalProducts = adminService.getTotalSearchResults(keyword);
+        int totalPages = (int) Math.ceil((double) totalProducts / size);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("products", products);
+        response.put("currentPage", page);
+        response.put("totalPages", totalPages);
+        response.put("totalProducts", totalProducts);
+
+        return response;
+    }
 
 }

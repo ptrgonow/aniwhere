@@ -12,4 +12,6 @@ public class AdminListDetailDTO {
     private String zipCode;
     private String phone;
     private String createdAt;
+    private String role; // 역할 필드 추가
 }
+

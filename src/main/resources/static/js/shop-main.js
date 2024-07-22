@@ -116,13 +116,18 @@ function displaySearchResults(products) {
     const productContainer = $('#product-container');
     productContainer.empty();
 
+
     products.forEach(product => {
+        const productImage = product.image.startsWith('https://')
+            ? `<img src="${product.image}" alt="상품 이미지">`
+            : `<img src="data:image/png;base64,${product.image}" alt="상품 이미지">`;
+
         const productHtml = `
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
                         <a href="/shop/detail?id=${product.productId}">
-                            <img src="${product.image}" alt="제품 이미지">
+                            ${productImage}
                         </a>
                     </div>
                     <div class="product-details">

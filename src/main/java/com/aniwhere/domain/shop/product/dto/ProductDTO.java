@@ -12,7 +12,7 @@ public class ProductDTO {
     private String name;
     private String image;
     private String price;
-    private String detail_url;
+    private String detailUrl;
     private String category;
     private Date createdAt;
     private Date updatedAt;

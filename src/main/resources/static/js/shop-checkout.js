@@ -15,6 +15,35 @@ $(document).ready(function(){
         }
     });
 
+    $(".del-check").on("change", function() {
+        const isChecked = $(this).is(":checked");
+        const $userNameInput = $("#shipping-form input[type='text'][placeholder='수취인']");
+        const $userEmailInput = $("#shipping-form input[type='email'][placeholder='이메일']");
+        const $userPhoneInput = $("#shipping-form input[type='tel'][placeholder='연락처']");
+        const $userAddressInput = $("#shipping-form input[name='address']");
+        const $userDetailAddressInput = $("#shipping-form input[name='detailAddress']");
+        const $userZipCodeInput = $("#shipping-form input[name='zipCode']");
+
+
+        if (isChecked) {
+
+            $userNameInput.val($("input[type='text'][readonly]").val());
+            $userEmailInput.val($("input[type='email'][readonly]").val());
+            $userPhoneInput.val($("input[type='tel'][readonly]").val());
+            $userAddressInput.val($("input[name='address'][readonly]").val());
+            $userDetailAddressInput.val($("input[name='detailAddress'][readonly]").val());
+            $userZipCodeInput.val($("input[name='zipCode'][readonly]").val());
+        } else {
+
+            $userNameInput.val('');
+            $userEmailInput.val('');
+            $userPhoneInput.val('');
+            $userAddressInput.val('');
+            $userDetailAddressInput.val('');
+            $userZipCodeInput.val('');
+        }
+    });
+
     // 새로운 배송지 클릭 시 입력값 초기화
     $(".new-del").on("click", function(event){
         event.preventDefault();
@@ -68,36 +97,6 @@ function searchAdd() {
         }
     }).open();
 }
-$(document).ready(function() {
-    $(".del-check").on("change", function() {
-        const isChecked = $(this).is(":checked");
-        const $userNameInput = $("#shipping-form input[type='text'][placeholder='수취인']");
-        const $userEmailInput = $("#shipping-form input[type='email'][placeholder='이메일']");
-        const $userPhoneInput = $("#shipping-form input[type='tel'][placeholder='연락처']");
-        const $userAddressInput = $("#shipping-form input[name='address']");
-        const $userDetailAddressInput = $("#shipping-form input[name='detailAddress']");
-        const $userZipCodeInput = $("#shipping-form input[name='zipCode']");
-
-
-        if (isChecked) {
-
-            $userNameInput.val($("input[type='text'][readonly]").val());
-            $userEmailInput.val($("input[type='email'][readonly]").val());
-            $userPhoneInput.val($("input[type='tel'][readonly]").val());
-            $userAddressInput.val($("input[name='address'][readonly]").val());
-            $userDetailAddressInput.val($("input[name='detailAddress'][readonly]").val());
-            $userZipCodeInput.val($("input[name='zipCode'][readonly]").val());
-        } else {
-
-            $userNameInput.val('');
-            $userEmailInput.val('');
-            $userPhoneInput.val('');
-            $userAddressInput.val('');
-            $userDetailAddressInput.val('');
-            $userZipCodeInput.val('');
-        }
-    });
-});
 
 
 // 토스페이먼츠 결제위젯
@@ -156,9 +155,15 @@ async function toss() {
             orderRequest: orderRequest
         }
 
+        // oderDetails에 한 필드라도 값이 존재하지 않는다면 alert
+        if (Object.values(orderDetails).some(value => !value)) {
+            alert("주문 정보를 입력해주세요.");
+            return;
+        }
+
         try {
             console.log("상품정보", orderDetails)
-            // 1. 서버에 주문 정보 저장 요청
+
             $.ajax({
                 type: "POST",
                 url: "/orders/success",

@@ -1,0 +1,25 @@
+aside.left-sidebar {
+    top: 0;
+    width: 170px;
+    height: 132vh;
+}
+
+ .card-title.d-flex {
+     display: block;
+     background-color: #ffffff; /* 배경색 */
+     color: #c45201; /* 글자색 */
+     text-decoration: none; /* 밑줄 제거 */
+     padding: 10px 20px; /* 여백 설정 */
+     border-radius: 5px; /* 둥근 모서리 */
+     text-align: right; /* 텍스트 오른쪽 정렬 */
+     transition: background-color 0.3s; /* 배경색 변화 시간 */
+ }
+
+.card-title.d-flex:hover {
+    background-color: #c04500;
+    color: white;
+}
+
+.fw-semibold{
+    margin-top: 15px;
+}

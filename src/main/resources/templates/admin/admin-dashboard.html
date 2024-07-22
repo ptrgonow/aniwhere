@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <div th:replace="~{include/admin-header :: header}"></div>
 <div th:replace="~{admin/admin-side :: side}"></div>
+<link rel="stylesheet" href="/css/admin-dashboard.css">
 <body>
 <div class="">
   <div class="body-wrapper">
@@ -12,11 +13,11 @@
             <div class="card-body">
               <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                 <div class="mb-3 mb-sm-0">
-                    <h5 class="card-title fw-semibold">월별 매출</h5>
+                  <h5 class="card-title fw-semibold">월별 매출</h5>
                 </div>
               </div>
-                <select id="year-select" onchange="filterYearData()"></select>
-                <div id="year-chart"></div>
+              <select id="year-select" onchange="filterYearData()"></select>
+              <div id="year-chart"></div>
             </div>
           </div>
         </div>
@@ -64,45 +65,30 @@
       <div class="row">
         <div class="col-lg-4 d-flex align-items-stretch">
           <div class="card w-100">
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="card-title fw-semibold">재고 부족 상품</h5>
+                <a class="card-title d-flex justify-content-end" href="/admin/products">More</a>
+            </div>
             <div class="card-body p-4">
-              <div class="mb-4">
-                <h5 class="card-title fw-semibold">인기 상품</h5>
-              </div>
               <div class="table-responsive">
-                <table class="table text-nowrap mb-0 align-middle">
+                <table class="table mb-0 align-middle">
                   <thead class="text-dark fs4">
                   <tr>
-                    <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">이미지</h6>
-                    </th>
-                    <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">상품명</h6>
-                    </th>
-                    <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">누적판매</h6>
-                    </th>
+                    <th>대표이미지</th>
+                    <th>상품명</th>
+                    <th>수량</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <tr>
-                    <td>상품이미지</td>
-                    <td>강아지 목줄</td>
-                    <td>2600건</td>
-                  </tr>
-                  <tr>
-                    <td>상품이미지</td>
-                    <td>강아지 목줄</td>
-                    <td>2600건</td>
-                  </tr>
-                  <tr>
-                    <td>상품이미지</td>
-                    <td>강아지 목줄</td>
-                    <td>2600건</td>
-                  </tr>
-                  <tr>
-                    <td>상품이미지</td>
-                    <td>강아지 목줄</td>
-                    <td>2600건</td>
+                  <tbody id="product-container">
+                  <tr th:each="product : ${products}">
+                    <td class="product-image">
+                      <img th:src="${#strings.startsWith(product.image, 'https://')} ? ${product.image} : @{'data:image/png;base64,' + ${product.image}}" alt="상품 이미지">
+                    </td>
+                    <td> <p th:text="${#strings.abbreviate(product.name, 12)}"></p>
+                    </td>
+                    <td>
+                      <p th:text="${product.quantity}"></p>
+                    </td>
                   </tr>
                   </tbody>
                 </table>
@@ -112,8 +98,11 @@
         </div>
         <div class="col-lg-8 d-flex align-items-stretch">
           <div class="card w-100">
+            <div class="card-header d-flex justify-content-between">
+              <h5 class="card-title fw-semibold">최근 주문</h5>
+              <a class="card-title d-flex justify-content-end" href="/admin/orders">More</a>
+            </div>
             <div class="card-body p-4">
-              <h5 class="card-title fw-semibold mb-4">최근 주문</h5>
               <div class="table-responsive">
                 <table class="table text-nowrap mb-0 align-middle">
                   <thead class="text-dark fs-4">
@@ -125,7 +114,7 @@
                       <h6 class="fw-semibold mb-0">고객명</h6>
                     </th>
                     <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">상품명</h6>
+                      <h6 class="fw-semibold mb-0">주문일시</h6>
                     </th>
                     <th class="border-bottom-0">
                       <h6 class="fw-semibold mb-0">현황</h6>
@@ -136,72 +125,23 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">A103205</h6></td>
+                  <tr th:each="orders : ${orders}" th:data-orderid="${orders.orderId}">
+                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0" th:text="${orders.orderId}"></h6></td>
                     <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-1">김수진</h6>
+                      <h6 class="fw-semibold mb-1" th:text="${orders.recipientName}"></h6>
                     </td>
                     <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">강아지 목줄</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-primary rounded-3 fw-semibold">배송준비중</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">12,000원</h6>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">A103205</h6></td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-1">이민수</h6>
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">고양이 사료</p>
+                      <p class="mb-0 fw-normal" th:text="${#dates.format(orders.orderDate, 'yyyy-MM-dd HH:mm:ss')} ?: '-'"></p>
                     </td>
                     <td class="border-bottom-0">
                       <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-secondary rounded-3 fw-semibold">배송출발</span>
+                        <span class="badge rounded-3 fw-semibold"
+                              th:classappend="${orders.orderStatus == '결제 전' ? 'bg-danger' : orders.orderStatus == '결제 완료' ? 'bg-primary' : orders.orderStatus == '결제 취소' ? 'bg-secondary' : orders.orderStatus == '배송 준비' ? 'bg-warning' : 'bg-success'}"
+                              th:text="${orders.orderStatus}"></span>
                       </div>
                     </td>
                     <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">24,000원</h6>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">A103205</h6></td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-1">정주용</h6>
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">강아지 사료</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-danger rounded-3 fw-semibold">환불</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">12,000원</h6>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">A103205</h6></td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-1">김하늘</h6>
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">고양이 모래</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-3 fw-semibold">교환</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">24,000원</h6>
+                      <h6 class="fw-semibold mb-0 fs-4" th:text="${orders.amount} + 원"></h6>
                     </td>
                   </tr>
                   </tbody>

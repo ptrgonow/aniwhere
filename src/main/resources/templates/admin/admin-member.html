@@ -2,7 +2,7 @@
 <div th:replace="~{include/admin-header :: header}"></div>
 <div th:replace="~{admin/admin-side :: side}"></div>
 <link rel="stylesheet" href="/css/admin-member.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.css">
 <body>
 
 <div class="body-wrapper">
@@ -31,7 +31,7 @@
                 <th>아이디</th>
                 <th>이름</th>
                 <th>이메일</th>
-                <th>(우편번호) 주소</th>
+                <th>주소</th>
                 <th>전화번호</th>
                 <th>가입일</th>
             </tr>
@@ -40,16 +40,23 @@
             <tr th:each="member, status : ${members}">
                 <td><input type="checkbox" class="mem-check"></td>
                 <td th:text="${(currentPage - 1) * limit + status.index + 1}"></td>
+                <td th:text="${#strings.abbreviate(member.userId, 10)}"></td>
                 <td>
-                    <span th:text="${#strings.abbreviate(member.userId, 10)}" class="user-id"></span>
+                    <div th:if="${member.isSocial}">
+                        <img src="/img/social-person.png" alt="social" class="social-person">
+                        <p th:text="${member.userName}"></p>
+                    </div>
+                    <div th:unless="${member.isSocial}">
+                        <p th:text="${member.userName}"></p>
+                    </div>
                 </td>
-                <td th:text="${member.userName}"></td>
                 <td th:text="${member.email}"></td>
-                <td th:text="${member.address} + ' ' + ${member.detailAddress}"></td>
+                <td th:text="${member.detailAddress}"></td>
                 <td th:text="${member.phone}"></td>
                 <td th:text="${member.createdAt.substring(0,10)}"></td>
             </tr>
             </tbody>
+
         </table>
         <button type="button" class="mail-send" data-bs-toggle="modal" data-bs-target="#mailSendModal" data-bs-whatever="@fat">메일 발송</button>
     </div>
@@ -83,11 +90,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="recipient-title" class="col-form-label">제목:</label>
-                        <input type="text" class="form-control" id="recipient-title">
+                        <input type="text" class="form-control" id="recipient-title" required>
                     </div>
                     <div class="mb-3">
                         <label for="editor" class="col-form-label">내용:</label>
-                        <textarea class="form-control" id="editor"></textarea>
+                        <textarea class="form-control" name="editor" id="editor" required></textarea>
                     </div>
                 </form>
             </div>
@@ -99,6 +106,13 @@
     </div>
 </div>
 <div th:replace="~{include/admin-footer :: footer}"></div>
-<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
-<script src="/js/admin-member.js"></script>
+<script type="importmap">
+    {
+        "imports": {
+            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.1/ckeditor5.js",
+            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.1/"
+        }
+    }
+</script>
+<script type="module" src="/js/admin-member.js"></script>
 </body>

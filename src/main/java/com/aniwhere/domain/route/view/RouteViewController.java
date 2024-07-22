@@ -56,7 +56,7 @@ public class RouteViewController {
         model.addAttribute("name", homeService.getAuthenticatedUserName());
         model.addAttribute("userId", homeService.getAuthenticatedUserId());
 
-        return "/aniwhere/route/detail";
+        return "aniwhere/route/detail";
     }
 
 
