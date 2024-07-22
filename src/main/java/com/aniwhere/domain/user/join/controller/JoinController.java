@@ -22,13 +22,10 @@ public class JoinController {
 
     private final JoinService joinService;
     private final MailService mailService;
-    private final Map<String, String> authCodeStorage = new ConcurrentHashMap<>();
 
     @PostMapping("/joinProc")
     public ResponseEntity<String> joinProc(@RequestBody Join join) {
-        System.out.println("Received join request: " + join); // 로그 추가
         boolean success = joinService.joinProcess(join);
-        System.out.println("Join process result: " + success); // 로그 추가
         return success ? ResponseEntity.ok("success") : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("fail");
     }
 
@@ -38,7 +35,6 @@ public class JoinController {
             case "userId" -> joinService.isUserIdExists(value);
             case "email" -> joinService.isEmailExists(value);
             case "phone" -> joinService.isPhoneExists(value);
-            case "userName" -> joinService.isUserNameExists(value);
             default -> throw new IllegalArgumentException("Invalid type: " + type);
         };
         return ResponseEntity.ok(exists);

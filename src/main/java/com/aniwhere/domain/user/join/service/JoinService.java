@@ -18,7 +18,8 @@ public class JoinService {
 
     @Transactional
     public boolean joinProcess(Join join) {
-        if (isDuplicate(join.getUserId(), join.getEmail(), join.getPhone(), join.getUserName())) {
+
+        if (isDuplicate(join.getUserId(), join.getEmail(), join.getPhone())) {
             return false; // 중복 항목 존재, 가입 불가
         }
 
@@ -43,23 +44,17 @@ public class JoinService {
         }
     }
 
-    public boolean isDuplicate(String userId, String email, String phone, String userName) {
+    public boolean isDuplicate(String userId, String email, String phone) {
         if (userId != null) {
-            boolean exists = userMapper.existsByUserId(userId);
-            if (exists) return true;
+            return userMapper.existsByUserId(userId);
         }
         if (email != null) {
-            boolean exists = userMapper.existsByEmail(email);
-            if (exists) return true;
+            return userMapper.existsByEmail(email);
         }
         if (phone != null) {
-            boolean exists = userMapper.existsByPhone(phone);
-            if (exists) return true;
+            return userMapper.existsByPhone(phone);
         }
-        if (userName != null) {
-            boolean exists = userMapper.existsName(userName);
-            if (exists) return true;
-        }
+
         return false;
     }
 
@@ -75,7 +70,4 @@ public class JoinService {
         return userMapper.existsByPhone(phone);
     }
 
-    public boolean isUserNameExists(String userName) {
-        return userMapper.existsName(userName);
-    }
 }
