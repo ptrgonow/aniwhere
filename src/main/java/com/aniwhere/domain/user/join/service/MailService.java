@@ -22,7 +22,6 @@ public class MailService {
     private static final String senderEmail= "aniwhere03@gmail.com";// 랜덤 인증 코드
     private final Logger logger = Logger.getLogger(MailService.class.getName());
     public static HashMap<String, String> codeStorage = new HashMap<>();
-    private static final String UPLOAD_DIR = "src/main/resources/static/images/";
 
 
     // 메일 양식

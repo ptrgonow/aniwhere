@@ -56,9 +56,6 @@ $(document).ready(function() {
                     case "phone":
                         typeKor = "휴대폰";
                         break;
-                    case "userName":
-                        typeKor = "이름";
-                        break;
                     default:
                         typeKor = "";
                 }
