@@ -36,7 +36,7 @@ public class AdminListDetailController {
 
     @GetMapping("/list")
     public ResponseEntity<Map<String, Object>> getAllAdmins(
-            @RequestParam(defaultValue = "3") int limit,
+            @RequestParam(defaultValue = "5") int limit,
             @RequestParam(defaultValue = "0") int offset,
             @RequestParam(defaultValue = "ROLE_ADMIN") String role) {
         logger.debug("Received request to fetch all admins with limit {} and offset {} for role {}", limit, offset, role);
@@ -47,7 +47,7 @@ public class AdminListDetailController {
     @GetMapping("/search")
     public ResponseEntity<Map<String, Object>> searchAdmin(
             @RequestParam String query,
-            @RequestParam(defaultValue = "3") int limit,
+            @RequestParam(defaultValue = "5") int limit,
             @RequestParam(defaultValue = "0") int offset,
             @RequestParam(defaultValue = "ROLE_ADMIN") String role) {
         logger.debug("Received request to search admin by query: {} with limit {} and offset {}", query, limit, offset);

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    fetchAdminList(5, 0); // 초기 로드 시 3명씩 가져오기
+    fetchAdminList(5, 0); // 초기 로드 시 5명씩 가져오기
     fetchAuthenticatedUserInfo();
 
     $('#searchId').on('keypress', function(e) {
@@ -11,7 +11,7 @@ $(document).ready(function(){
     $('#searchButton').on('click', searchAdmin);
 
     $('#roleSelect').on('change', function() {
-        fetchAdminList(3, 0, $(this).val());
+        fetchAdminList(5, 0, $(this).val());
     });
 
     $('#closePanel').on('click', closeSlidePanel);
@@ -257,7 +257,7 @@ function updateAdminDetails(userId) {
         data: JSON.stringify(adminDetails),
         success: function(response) {
             alert(response);
-            fetchAdminList(3, 0, $('#roleSelect').val()); // 수정 후 관리자 목록을 다시 불러옴
+            fetchAdminList(5, 0, $('#roleSelect').val()); // 수정 후 관리자 목록을 다시 불러옴
         },
         error: function() {
             alert('관리자 정보 수정에 실패했습니다.');
