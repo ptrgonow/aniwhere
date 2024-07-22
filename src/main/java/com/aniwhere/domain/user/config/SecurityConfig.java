@@ -75,9 +75,7 @@ public class SecurityConfig {
                 )
                 .headers(headers -> headers
                         .contentSecurityPolicy(csp -> csp
-                                .policyDirectives("frame-ancestors 'self'")
-                        )
-                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable
+                                .policyDirectives("upgrade-insecure-requests")
                         )
                 );
 
