@@ -30,9 +30,6 @@ public interface UserMapper {
      @Select("SELECT COUNT(*) > 0 FROM user WHERE phone = #{phone}")
      boolean existsByPhone(String phone);
 
-     @Select("SELECT COUNT(*) > 0 FROM user WHERE user_name = #{userName}")
-     boolean existsName(String userName);
-
      @Select("SELECT COUNT(*) FROM user WHERE phone = #{phone} AND user_id != #{userId}")
      boolean existsByUserPhone(@Param("phone") String phone, @Param("userId") String userId);
 
