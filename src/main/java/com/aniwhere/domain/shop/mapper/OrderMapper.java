@@ -67,7 +67,7 @@ public interface OrderMapper {
             "ORDER BY os.order_date DESC")
     List<OrderSearchDTO> getOrderItemsByUserIdForDate(String userId, String startDate, String endDate);
 
-    @Update("UPDATE product p\n" +
+    @Update("UPDATE product p " +
             "JOIN order_detail od ON p.product_id = od.product_id " +
             "JOIN order_success os ON od.order_id = os.order_id " +
             "SET p.quantity = p.quantity - od.quantity " +

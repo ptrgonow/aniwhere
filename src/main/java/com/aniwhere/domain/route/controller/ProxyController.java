@@ -38,22 +38,19 @@ public class ProxyController {
      */
     @GetMapping(value = "/proxy.json")
     public byte[] html2canvasProxy(@RequestParam("url") String urlString) {
-        byte[] data = null; // 반환할 데이터 초기화
+        byte[] data = null;
 
         try {
-            // URL 디코딩 및 객체 생성
             URL url = new URL(URLDecoder.decode(urlString, StandardCharsets.UTF_8));
             data = fetchUrlData(url);
         } catch (MalformedURLException e) {
-            // URL 형식이 잘못된 경우
             loggingUtil.logError(this.getClass(), "잘못된 URL 형식: " + urlString, e);
             data = "잘못된 URL 형식입니다.".getBytes(StandardCharsets.UTF_8);
         } catch (Exception e) {
-            // 기타 예외 발생 시
             loggingUtil.logError(this.getClass(), "예기치 않은 예외 발생", e);
             data = "예기치 않은 예외가 발생했습니다.".getBytes(StandardCharsets.UTF_8);
         }
-        return data; // 응답 데이터 반환
+        return data;
     }
 
     /**
@@ -65,23 +62,19 @@ public class ProxyController {
     private byte[] fetchUrlData(URL url) {
         byte[] data = null;
         try {
-            // HTTP 연결 열기
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET"); // GET 요청 설정
+            connection.setRequestMethod("GET");
 
-            int responseCode = connection.getResponseCode(); // 응답 코드 가져오기
-            if (responseCode == 200) { // 응답 코드가 200(성공)인 경우
-                // InputStream 을 사용하여 응답 데이터 읽기
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
                 try (InputStream is = connection.getInputStream()) {
-                    data = is.readAllBytes(); // 응답 데이터를 바이트 배열로 변환
+                    data = is.readAllBytes();
                 }
             } else {
-                // 응답 코드가 200이 아닌 경우 경고 메시지 기록 및 데이터 설정
                 loggingUtil.logInfo(this.getClass(), "데이터를 가져오지 못했습니다. 응답 코드: " + responseCode);
                 data = ("데이터를 가져오지 못했습니다. 응답 코드: " + responseCode).getBytes(StandardCharsets.UTF_8);
             }
         } catch (IOException e) {
-            // 입출력 예외 발생 시
             loggingUtil.logError(this.getClass(), "입출력 예외 발생", e);
             data = "입출력 예외가 발생했습니다.".getBytes(StandardCharsets.UTF_8);
         }
