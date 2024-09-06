@@ -2,43 +2,29 @@ package com.aniwhere.domain.admin.controller;
 
 import com.aniwhere.domain.admin.dto.ChartDTO;
 import com.aniwhere.domain.admin.dto.MailDTO;
-import com.aniwhere.domain.admin.dto.UploadImgDTO;
 import com.aniwhere.domain.admin.service.AdminService;
 import com.aniwhere.domain.shop.product.dto.ProductDTO;
 import com.aniwhere.domain.user.join.dto.JoinDTO;
 import com.aniwhere.domain.shop.order.dto.OrderDetailDTO;
 import com.aniwhere.domain.shop.order.dto.OrderSucDTO;
 import com.aniwhere.domain.user.join.service.MailService;
-import com.nimbusds.jose.shaded.gson.JsonObject;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+
 
 @RestController("adminRestController")
 @RequestMapping("/admin/dash")
+@AllArgsConstructor
 public class AdminRestController {
 
     private final AdminService adminService;
     private final MailService mailService;
-
-    public AdminRestController(AdminService adminService, MailService mailService) {
-        this.adminService = adminService;
-        this.mailService = mailService;
-    }
-
 
     @PostMapping("/submit-mail")
     public Map<String, String> submitMail(@RequestBody MailDTO mailDTO) {
@@ -47,7 +33,7 @@ public class AdminRestController {
             adminService.saveMailAndSendToAllUsers(mailDTO);
             response.put("status", "success");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("메일 전송 실패" + e.getMessage());
             response.put("status", "error");
             response.put("message", e.getMessage());
         }
@@ -62,11 +48,6 @@ public class AdminRestController {
         int totalMember;
 
         switch (type) {
-            case "all":
-            default:
-                members = adminService.selectAllShopUsers(limit, offset);
-                totalMember = adminService.shopUserCount();
-                break;
             case "address":
                 members = adminService.emptyAdressUsers(limit, offset);
                 totalMember = adminService.countAddUsers();
@@ -74,6 +55,11 @@ public class AdminRestController {
             case "phone":
                 members = adminService.emptyPhoneUsers(limit, offset);
                 totalMember = adminService.countPhoneUsers();
+                break;
+            case "all":
+            default:
+                members = adminService.selectAllShopUsers(limit, offset);
+                totalMember = adminService.shopUserCount();
                 break;
         }
 

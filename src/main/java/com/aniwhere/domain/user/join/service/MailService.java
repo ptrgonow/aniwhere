@@ -92,8 +92,14 @@ public class MailService {
         return String.valueOf((int)(Math.random() * 900000) + 100000);
     }
 
+    public void sendBulkHtmlMessage(List<String> toList, String subject, String htmlBody) throws MessagingException {
+        for (String to : toList) {
+            sendHtmlMessage(to, subject, htmlBody);
+        }
+    }
+
     // 관리자 회원 관리 메일 발송
-    public void sendHtmlMessage(String to, String subject, String htmlBody) throws MessagingException {
+    private void sendHtmlMessage(String to, String subject, String htmlBody) throws MessagingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
@@ -102,11 +108,5 @@ public class MailService {
         helper.setText(htmlBody, true);
 
         javaMailSender.send(message);
-    }
-
-    public void sendBulkHtmlMessage(List<String> toList, String subject, String htmlBody) throws MessagingException {
-        for (String to : toList) {
-            sendHtmlMessage(to, subject, htmlBody);
-        }
     }
 }
